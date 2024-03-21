@@ -8,5 +8,6 @@ import { Component } from '@angular/core';
   styleUrl: './registerpage.component.scss'
 })
 export class RegisterpageComponent {
+  //test
 
 }
