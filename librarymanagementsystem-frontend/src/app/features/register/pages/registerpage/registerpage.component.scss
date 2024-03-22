@@ -8,6 +8,9 @@
 .login {
   display: none;
 }
+.signin {
+  display: none;
+}
 
 section {
   display: flex;
@@ -15,8 +18,14 @@ section {
   align-items: center;
   min-height: 100vh;
   width: 100%;
-  background: url("/assets/images/background8.jpg") no-repeat;
-  background-position: center;
+  // background: url("/assets/images/background8.jpg") no-repeat;
+  // background-position: center;
+  // background-size: cover;
+
+  background: url("/assets/images/background8.jpg"); 
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-attachment: fixed;
   background-size: cover;
 }
 

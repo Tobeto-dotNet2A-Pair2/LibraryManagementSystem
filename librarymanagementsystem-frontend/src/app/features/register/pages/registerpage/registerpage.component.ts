@@ -1,13 +1,24 @@
+import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-registerpage',
   standalone: true,
-  imports: [],
+  imports: [CommonModule],
   templateUrl: './registerpage.component.html',
-  styleUrl: './registerpage.component.scss'
+  styleUrl: './registerpage.component.scss',
 })
 export class RegisterpageComponent {
-  //test
+  showLoginForm: boolean = false;
+  showSigninForm: boolean = true;
 
+  registerHandler() {
+    this.showLoginForm = true;
+    this.showSigninForm = false;
+  }
+
+  loginHandler() {
+    this.showLoginForm = false;
+    this.showSigninForm = true;
+  }
 }
