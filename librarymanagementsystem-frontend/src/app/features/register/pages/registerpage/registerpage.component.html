@@ -20,7 +20,7 @@
                 
                 <button>Log in</button>
                 <div class="register" >
-                    <p>Don't have a account <a (click)="registerHandler()">Register</a></p>
+                    <p>Don't have a account <a href="#" (click)="registerHandler($event)">Register</a></p>
                 </div>
             </form>
             <form [ngClass]="{'signin': showSigninForm}" >
@@ -40,13 +40,23 @@
                     <input type="password" required>
                     <label for="">Password</label>
                 </div>
+                <div class="inputbox">
+                    <!-- <ion-icon name="lock-closed-outline"></ion-icon> -->
+                    <input type="password" required>
+                    <label for="">Password</label>
+                </div>
+                <div class="inputbox">
+                    <!-- <ion-icon name="lock-closed-outline"></ion-icon> -->
+                    <input type="password" required>
+                    <label for="">Password</label>
+                </div>
                 <div class="forget">
                     <label for=""><input type="checkbox">Remember Me  <a href="#">Forget Password</a></label>
                   
                 </div>
                 <button>Log in</button>
                 <div class="register">
-                    <p>Don't have a account <a (click)="loginHandler()">giriş yap</a></p>
+                    <p>Don't have a account <a href="#" (click)="loginHandler($event)">giriş yap</a></p>
                 </div>
             </form>
         </div>
