@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @Component({
@@ -10,6 +10,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
   styleUrl: './registerpage.component.scss',
 })
 export class RegisterpageComponent {
+  registerForm!:FormsModule;
   showLoginForm: boolean = false;
   showSigninForm: boolean = true;
 
