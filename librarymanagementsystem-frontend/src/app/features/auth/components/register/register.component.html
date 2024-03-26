@@ -31,6 +31,6 @@
     </div>
     <button>Log in</button>
     <div class="register">
-        <p>Don't have a account <a href="#" (click)="loginHandler($event)">giriş yap</a></p>
+        <p>Don't have a account <a href="#" (click)="callLoginHandler(); $event.preventDefault();">giriş yap</a></p>
     </div>
 </form>

@@ -7,22 +7,26 @@ import { RegisterComponent } from '../../components/register/register.component'
 @Component({
   selector: 'app-auth',
   standalone: true,
-  imports: [CommonModule, FormsModule, ReactiveFormsModule, LoginComponent, RegisterComponent],
+  imports: [
+    CommonModule,
+    FormsModule,
+    ReactiveFormsModule,
+    LoginComponent,
+    RegisterComponent,
+  ],
   templateUrl: './auth.component.html',
-  styleUrl: './auth.component.scss'
+  styleUrl: './auth.component.scss',
 })
 export class AuthComponent {
   showLoginForm: boolean = false;
   showSigninForm: boolean = true;
 
-  registerHandler(event: Event) {
-    event.preventDefault();
+  registerHandler()  {
     this.showLoginForm = true;
     this.showSigninForm = false;
   }
 
-  loginHandler(event: Event) {
-    event.preventDefault();
+  loginHandler() {
     this.showLoginForm = false;
     this.showSigninForm = true;
   }

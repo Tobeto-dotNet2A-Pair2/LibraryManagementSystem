@@ -1,13 +1,22 @@
 import { CommonModule } from '@angular/common';
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 
 @Component({
   selector: 'app-register',
   standalone: true,
-  imports: [],
+  imports: [CommonModule],
   templateUrl: './register.component.html',
-  styleUrl: './register.component.scss'
+  styleUrl: '../../pages/auth/auth.component.scss',
 })
 export class RegisterComponent {
-@Input() showSigninForm: any;
+  @Input() showSigninForm: boolean = true;
+  @Input() loginHandler: Function;
+  constructor() {
+    this.loginHandler = () => {};
+  }
+  callLoginHandler() {
+    if (this.loginHandler) {
+      this.loginHandler();
+    }
+  }
 }
