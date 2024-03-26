@@ -4,9 +4,19 @@
   margin: 0;
   padding: 0;
   font-family: "poppins", sans-serif;
+    text-transform: capitalize; 
+    transition: 0.3s ease; 
+    scroll-padding-top: 9rem;
+    scroll-behavior: smooth;
+ 
 }
 .login {
   display: none;
+
+}
+.signin {
+  display: none;
+
 }
 
 section {
@@ -15,15 +25,18 @@ section {
   align-items: center;
   min-height: 100vh;
   width: 100%;
-  background: url("/assets/images/background8.jpg") no-repeat;
-  background-position: center;
+  background: url("/assets/images/background3.jpg");
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-attachment: fixed;
   background-size: cover;
+ 
 }
 
 .form-box {
   position: relative;
-  width: 400px;
-  height: 450px;
+  min-width: 400px;
+  min-height: 450px;
   background: transparent;
   border: 2px solid rgba(255, 255, 255, 0.5);
   border-radius: 20px;
@@ -31,12 +44,13 @@ section {
   display: flex;
   justify-content: center;
   align-items: center;
-}
+ }
 
 h2 {
   font-size: 2em;
   color: #fff;
   text-align: center;
+  margin-top: 50px;
 }
 
 .inputbox {
@@ -96,10 +110,12 @@ input:valid ~ label {
 .forget label a {
   color: #fff;
   text-decoration: none;
+ 
 }
 
 .forget label a:hover {
   text-decoration: underline;
+  
 }
 
 button {
@@ -118,7 +134,8 @@ button {
   font-size: 0.9em;
   color: #fff;
   text-align: center;
-  margin: 25px 0 10px;
+  margin: 25px 0 10px ;
+  margin-bottom: 40px;
 }
 
 .register p a {
@@ -130,3 +147,4 @@ button {
 .register p a:hover {
   text-decoration: underline;
 }
+

@@ -1,7 +1,7 @@
 <section class="section">
     <div class="form-box">
         <div class="form-value">
-            <form class="login" >
+            <form [ngClass]="{'login': showLoginForm}">
                 <h2>Login</h2>
                 <div class="inputbox">
                     <!-- <ion-icon name="mail-outline"></ion-icon> -->
@@ -17,12 +17,13 @@
                     <label for=""><input type="checkbox">Remember Me  <a href="#">Forget Password</a></label>
                   
                 </div>
+                
                 <button>Log in</button>
-                <div class="register">
-                    <p>Don't have a account <a href="#">Register</a></p>
+                <div class="register" >
+                    <p>Don't have a account <a href="#" (click)="registerHandler($event)">Register</a></p>
                 </div>
             </form>
-            <form class="signin" >
+            <form [ngClass]="{'signin': showSigninForm}" >
                 <h2>üye ol</h2>
                 <div class="inputbox">
                     <!-- <ion-icon name="mail-outline"></ion-icon> -->
@@ -39,13 +40,23 @@
                     <input type="password" required>
                     <label for="">Password</label>
                 </div>
+                <div class="inputbox">
+                    <!-- <ion-icon name="lock-closed-outline"></ion-icon> -->
+                    <input type="password" required>
+                    <label for="">Password</label>
+                </div>
+                <div class="inputbox">
+                    <!-- <ion-icon name="lock-closed-outline"></ion-icon> -->
+                    <input type="password" required>
+                    <label for="">Password</label>
+                </div>
                 <div class="forget">
                     <label for=""><input type="checkbox">Remember Me  <a href="#">Forget Password</a></label>
                   
                 </div>
                 <button>Log in</button>
                 <div class="register">
-                    <p>Don't have a account <a href="#">Register</a></p>
+                    <p>Don't have a account <a href="#" (click)="loginHandler($event)">giriş yap</a></p>
                 </div>
             </form>
         </div>
