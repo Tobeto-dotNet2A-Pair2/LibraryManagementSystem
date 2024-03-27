@@ -25,7 +25,9 @@ public class MemberConfiguration : IEntityTypeConfiguration<Member>
         builder.Property(m => m.CreatedDate).HasColumnName("CreatedDate").IsRequired();
         builder.Property(m => m.UpdatedDate).HasColumnName("UpdatedDate");
         builder.Property(m => m.DeletedDate).HasColumnName("DeletedDate");
+
         builder.HasOne(m => m.User);
+
         builder.HasQueryFilter(m => !m.DeletedDate.HasValue);
     }
 }

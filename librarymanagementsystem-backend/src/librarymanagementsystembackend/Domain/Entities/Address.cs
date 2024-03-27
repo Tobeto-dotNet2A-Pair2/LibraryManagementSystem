@@ -12,5 +12,6 @@ public class Address : Entity<Guid>
     public Guid StreetId { get; set; }
     public string AddressName { get; set; }
     public string Description { get; set; }
+
     public virtual Street? Street { get; set; } 
 }
