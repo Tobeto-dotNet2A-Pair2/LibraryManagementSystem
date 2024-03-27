@@ -13,6 +13,8 @@ using Application.Features.Neighborhoods.Constants;
 using Application.Features.Districts.Constants;
 using Application.Features.Cities.Constants;
 using Application.Features.Branches.Constants;
+using Application.Features.Libraries.Constants;
+
 
 
 namespace Persistence.EntityConfigurations;
@@ -199,6 +201,20 @@ public class OperationClaimConfiguration : IEntityTypeConfiguration<OperationCla
                 new() { Id = ++lastId, Name = BranchesOperationClaims.Create },
                 new() { Id = ++lastId, Name = BranchesOperationClaims.Update },
                 new() { Id = ++lastId, Name = BranchesOperationClaims.Delete },
+            ]
+        );
+        #endregion
+        
+        
+        #region Libraries
+        featureOperationClaims.AddRange(
+            [
+                new() { Id = ++lastId, Name = LibrariesOperationClaims.Admin },
+                new() { Id = ++lastId, Name = LibrariesOperationClaims.Read },
+                new() { Id = ++lastId, Name = LibrariesOperationClaims.Write },
+                new() { Id = ++lastId, Name = LibrariesOperationClaims.Create },
+                new() { Id = ++lastId, Name = LibrariesOperationClaims.Update },
+                new() { Id = ++lastId, Name = LibrariesOperationClaims.Delete },
             ]
         );
         #endregion
