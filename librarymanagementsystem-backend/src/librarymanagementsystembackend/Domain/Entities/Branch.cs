@@ -19,6 +19,7 @@ public class Branch : Entity<Guid>
     public virtual Library? Library { get; set; }
     public virtual ICollection<PaymentMethod> PaymentMethods { get; set; } = null;
     public virtual ICollection<SocialMediaAccount> SocialMediaAccounts { get; set; } = null;
+    public virtual ICollection<MaterialCopy> MaterialCopies { get; set; } = null;
 
     //todo: materialcopies  navigation property  yapılmadı
 
