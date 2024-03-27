@@ -9,6 +9,7 @@ using NArchitecture.Core.Security.Constants;
 using Application.Features.Members.Constants;
 using Application.Features.Addresses.Constants;
 using Application.Features.Streets.Constants;
+using Application.Features.Neighborhoods.Constants;
 
 namespace Persistence.EntityConfigurations;
 
@@ -138,6 +139,20 @@ public class OperationClaimConfiguration : IEntityTypeConfiguration<OperationCla
                 new() { Id = ++lastId, Name = StreetsOperationClaims.Create },
                 new() { Id = ++lastId, Name = StreetsOperationClaims.Update },
                 new() { Id = ++lastId, Name = StreetsOperationClaims.Delete },
+            ]
+        );
+        #endregion
+        
+        
+        #region Neighborhoods
+        featureOperationClaims.AddRange(
+            [
+                new() { Id = ++lastId, Name = NeighborhoodsOperationClaims.Admin },
+                new() { Id = ++lastId, Name = NeighborhoodsOperationClaims.Read },
+                new() { Id = ++lastId, Name = NeighborhoodsOperationClaims.Write },
+                new() { Id = ++lastId, Name = NeighborhoodsOperationClaims.Create },
+                new() { Id = ++lastId, Name = NeighborhoodsOperationClaims.Update },
+                new() { Id = ++lastId, Name = NeighborhoodsOperationClaims.Delete },
             ]
         );
         #endregion

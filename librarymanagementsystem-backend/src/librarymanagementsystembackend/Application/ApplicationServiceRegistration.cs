@@ -22,6 +22,7 @@ using NArchitecture.Core.Security.DependencyInjection;
 using Application.Services.Members;
 using Application.Services.Addresses;
 using Application.Services.Streets;
+using Application.Services.Neighborhoods;
 
 namespace Application;
 
@@ -65,6 +66,7 @@ public static class ApplicationServiceRegistration
         services.AddScoped<IMemberService, MemberManager>();
         services.AddScoped<IAddressService, AddressManager>();
         services.AddScoped<IStreetService, StreetManager>();
+        services.AddScoped<INeighborhoodService, NeighborhoodManager>();
         return services;
     }
 
