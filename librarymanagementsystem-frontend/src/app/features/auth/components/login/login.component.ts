@@ -9,14 +9,12 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
   styleUrl: '../../pages/auth/auth.component.scss',
 })
 export class LoginComponent {
-  @Input() showLoginForm: boolean=false;
-  @Input() registerHandler: Function;
-  constructor() {
-    this.registerHandler = () => {};
-  }
+  @Input() showLoginForm: boolean = false;
+  @Output() registerClicked = new EventEmitter<void>();
+
+  constructor() {}
+
   callRegisterHandler() {
-    if (this.registerHandler) {
-      this.registerHandler();
-    }
+    this.registerClicked.emit();
   }
 }

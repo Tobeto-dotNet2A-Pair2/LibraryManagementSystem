@@ -19,15 +19,15 @@ import { RegisterComponent } from '../../components/register/register.component'
 })
 export class AuthComponent {
   showLoginForm: boolean = false;
-  showSigninForm: boolean = true;
+  showRegisterForm: boolean = true;
 
   registerHandler()  {
     this.showLoginForm = true;
-    this.showSigninForm = false;
+    this.showRegisterForm = false;
   }
 
   loginHandler() {
     this.showLoginForm = false;
-    this.showSigninForm = true;
+    this.showRegisterForm = true;
   }
 }
