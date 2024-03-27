@@ -21,6 +21,7 @@ using NArchitecture.Core.Mailing.MailKit;
 using NArchitecture.Core.Security.DependencyInjection;
 using Application.Services.Members;
 using Application.Services.Addresses;
+using Application.Services.Streets;
 
 namespace Application;
 
@@ -63,6 +64,7 @@ public static class ApplicationServiceRegistration
 
         services.AddScoped<IMemberService, MemberManager>();
         services.AddScoped<IAddressService, AddressManager>();
+        services.AddScoped<IStreetService, StreetManager>();
         return services;
     }
 

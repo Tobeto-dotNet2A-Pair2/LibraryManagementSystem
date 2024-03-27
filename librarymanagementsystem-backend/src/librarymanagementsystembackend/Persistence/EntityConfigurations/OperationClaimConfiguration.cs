@@ -8,6 +8,7 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using NArchitecture.Core.Security.Constants;
 using Application.Features.Members.Constants;
 using Application.Features.Addresses.Constants;
+using Application.Features.Streets.Constants;
 
 namespace Persistence.EntityConfigurations;
 
@@ -123,6 +124,20 @@ public class OperationClaimConfiguration : IEntityTypeConfiguration<OperationCla
                 new() { Id = ++lastId, Name = AddressesOperationClaims.Create },
                 new() { Id = ++lastId, Name = AddressesOperationClaims.Update },
                 new() { Id = ++lastId, Name = AddressesOperationClaims.Delete },
+            ]
+        );
+        #endregion
+        
+        
+        #region Streets
+        featureOperationClaims.AddRange(
+            [
+                new() { Id = ++lastId, Name = StreetsOperationClaims.Admin },
+                new() { Id = ++lastId, Name = StreetsOperationClaims.Read },
+                new() { Id = ++lastId, Name = StreetsOperationClaims.Write },
+                new() { Id = ++lastId, Name = StreetsOperationClaims.Create },
+                new() { Id = ++lastId, Name = StreetsOperationClaims.Update },
+                new() { Id = ++lastId, Name = StreetsOperationClaims.Delete },
             ]
         );
         #endregion
