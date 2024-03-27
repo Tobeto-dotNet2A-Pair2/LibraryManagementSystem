@@ -11,6 +11,7 @@ using Application.Features.Addresses.Constants;
 using Application.Features.Streets.Constants;
 using Application.Features.Neighborhoods.Constants;
 using Application.Features.Districts.Constants;
+using Application.Features.Cities.Constants;
 
 namespace Persistence.EntityConfigurations;
 
@@ -168,6 +169,20 @@ public class OperationClaimConfiguration : IEntityTypeConfiguration<OperationCla
                 new() { Id = ++lastId, Name = DistrictsOperationClaims.Create },
                 new() { Id = ++lastId, Name = DistrictsOperationClaims.Update },
                 new() { Id = ++lastId, Name = DistrictsOperationClaims.Delete },
+            ]
+        );
+        #endregion
+        
+        
+        #region Cities
+        featureOperationClaims.AddRange(
+            [
+                new() { Id = ++lastId, Name = CitiesOperationClaims.Admin },
+                new() { Id = ++lastId, Name = CitiesOperationClaims.Read },
+                new() { Id = ++lastId, Name = CitiesOperationClaims.Write },
+                new() { Id = ++lastId, Name = CitiesOperationClaims.Create },
+                new() { Id = ++lastId, Name = CitiesOperationClaims.Update },
+                new() { Id = ++lastId, Name = CitiesOperationClaims.Delete },
             ]
         );
         #endregion

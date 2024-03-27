@@ -27,6 +27,7 @@ public static class PersistenceServiceRegistration
         services.AddScoped<IStreetRepository, StreetRepository>();
         services.AddScoped<INeighborhoodRepository, NeighborhoodRepository>();
         services.AddScoped<IDistrictRepository, DistrictRepository>();
+        services.AddScoped<ICityRepository, CityRepository>();
         return services;
     }
 }

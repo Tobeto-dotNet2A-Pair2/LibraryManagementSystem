@@ -24,6 +24,7 @@ using Application.Services.Addresses;
 using Application.Services.Streets;
 using Application.Services.Neighborhoods;
 using Application.Services.Districts;
+using Application.Services.Cities;
 
 namespace Application;
 
@@ -69,6 +70,7 @@ public static class ApplicationServiceRegistration
         services.AddScoped<IStreetService, StreetManager>();
         services.AddScoped<INeighborhoodService, NeighborhoodManager>();
         services.AddScoped<IDistrictService, DistrictManager>();
+        services.AddScoped<ICityService, CityManager>();
         return services;
     }
 
