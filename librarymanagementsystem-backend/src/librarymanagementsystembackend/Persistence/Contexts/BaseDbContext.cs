@@ -20,6 +20,7 @@ public class BaseDbContext : DbContext
     public DbSet<Neighborhood> Neighborhoods { get; set; }
     public DbSet<District> Districts { get; set; }
     public DbSet<City> Cities { get; set; }
+    public DbSet<Branch> Branches { get; set; }
 
     public BaseDbContext(DbContextOptions dbContextOptions, IConfiguration configuration)
         : base(dbContextOptions)
