@@ -19,6 +19,7 @@ public class AddressConfiguration : IEntityTypeConfiguration<Address>
         builder.Property(a => a.DeletedDate).HasColumnName("DeletedDate");
 
         builder.HasOne(a => a.Street);
+        builder.HasOne(a => a.Branch); //?
 
         builder.HasQueryFilter(a => !a.DeletedDate.HasValue);
     }
