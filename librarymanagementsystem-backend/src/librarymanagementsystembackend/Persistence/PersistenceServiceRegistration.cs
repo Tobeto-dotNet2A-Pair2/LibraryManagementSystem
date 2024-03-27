@@ -30,6 +30,7 @@ public static class PersistenceServiceRegistration
         services.AddScoped<ICityRepository, CityRepository>();
         services.AddScoped<IBranchRepository, BranchRepository>();
         services.AddScoped<ILibraryRepository, LibraryRepository>();
+        services.AddScoped<IPaymentMethodRepository, PaymentMethodRepository>();
         return services;
     }
 }

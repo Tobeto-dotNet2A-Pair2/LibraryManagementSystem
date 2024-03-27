@@ -14,6 +14,8 @@ using Application.Features.Districts.Constants;
 using Application.Features.Cities.Constants;
 using Application.Features.Branches.Constants;
 using Application.Features.Libraries.Constants;
+using Application.Features.PaymentMethods.Constants;
+
 
 
 
@@ -215,6 +217,20 @@ public class OperationClaimConfiguration : IEntityTypeConfiguration<OperationCla
                 new() { Id = ++lastId, Name = LibrariesOperationClaims.Create },
                 new() { Id = ++lastId, Name = LibrariesOperationClaims.Update },
                 new() { Id = ++lastId, Name = LibrariesOperationClaims.Delete },
+            ]
+        );
+        #endregion
+        
+        
+        #region PaymentMethods
+        featureOperationClaims.AddRange(
+            [
+                new() { Id = ++lastId, Name = PaymentMethodsOperationClaims.Admin },
+                new() { Id = ++lastId, Name = PaymentMethodsOperationClaims.Read },
+                new() { Id = ++lastId, Name = PaymentMethodsOperationClaims.Write },
+                new() { Id = ++lastId, Name = PaymentMethodsOperationClaims.Create },
+                new() { Id = ++lastId, Name = PaymentMethodsOperationClaims.Update },
+                new() { Id = ++lastId, Name = PaymentMethodsOperationClaims.Delete },
             ]
         );
         #endregion

@@ -27,6 +27,7 @@ using Application.Services.Districts;
 using Application.Services.Cities;
 using Application.Services.Branches;
 using Application.Services.Libraries;
+using Application.Services.PaymentMethods;
 
 namespace Application;
 
@@ -75,6 +76,7 @@ public static class ApplicationServiceRegistration
         services.AddScoped<ICityService, CityManager>();
         services.AddScoped<IBranchService, BranchManager>();
         services.AddScoped<ILibraryService, LibraryManager>();
+        services.AddScoped<IPaymentMethodService, PaymentMethodManager>();
         return services;
     }
 
