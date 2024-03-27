@@ -15,6 +15,8 @@ using Application.Features.Cities.Constants;
 using Application.Features.Branches.Constants;
 using Application.Features.Libraries.Constants;
 using Application.Features.PaymentMethods.Constants;
+using Application.Features.SocialMediaAccounts.Constants;
+
 
 
 
@@ -231,6 +233,20 @@ public class OperationClaimConfiguration : IEntityTypeConfiguration<OperationCla
                 new() { Id = ++lastId, Name = PaymentMethodsOperationClaims.Create },
                 new() { Id = ++lastId, Name = PaymentMethodsOperationClaims.Update },
                 new() { Id = ++lastId, Name = PaymentMethodsOperationClaims.Delete },
+            ]
+        );
+        #endregion
+        
+        
+        #region SocialMediaAccounts
+        featureOperationClaims.AddRange(
+            [
+                new() { Id = ++lastId, Name = SocialMediaAccountsOperationClaims.Admin },
+                new() { Id = ++lastId, Name = SocialMediaAccountsOperationClaims.Read },
+                new() { Id = ++lastId, Name = SocialMediaAccountsOperationClaims.Write },
+                new() { Id = ++lastId, Name = SocialMediaAccountsOperationClaims.Create },
+                new() { Id = ++lastId, Name = SocialMediaAccountsOperationClaims.Update },
+                new() { Id = ++lastId, Name = SocialMediaAccountsOperationClaims.Delete },
             ]
         );
         #endregion

@@ -28,6 +28,7 @@ using Application.Services.Cities;
 using Application.Services.Branches;
 using Application.Services.Libraries;
 using Application.Services.PaymentMethods;
+using Application.Services.SocialMediaAccounts;
 
 namespace Application;
 
@@ -77,6 +78,7 @@ public static class ApplicationServiceRegistration
         services.AddScoped<IBranchService, BranchManager>();
         services.AddScoped<ILibraryService, LibraryManager>();
         services.AddScoped<IPaymentMethodService, PaymentMethodManager>();
+        services.AddScoped<ISocialMediaAccountService, SocialMediaAccountManager>();
         return services;
     }
 

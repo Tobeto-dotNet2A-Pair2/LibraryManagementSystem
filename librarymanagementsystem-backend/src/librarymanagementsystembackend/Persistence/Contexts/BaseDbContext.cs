@@ -23,6 +23,7 @@ public class BaseDbContext : DbContext
     public DbSet<Branch> Branches { get; set; }
     public DbSet<Library> Libraries { get; set; }
     public DbSet<PaymentMethod> PaymentMethods { get; set; }
+    public DbSet<SocialMediaAccount> SocialMediaAccounts { get; set; }
 
     public BaseDbContext(DbContextOptions dbContextOptions, IConfiguration configuration)
         : base(dbContextOptions)
