@@ -24,6 +24,7 @@ public class BranchConfiguration : IEntityTypeConfiguration<Branch>
         builder.HasOne(b => b.Library);
         builder.HasMany(b => b.SocialMediaAccounts);
         builder.HasMany(b => b.PaymentMethods);
+        builder.HasMany(b => b.MaterialCopies);
 
 
         builder.HasQueryFilter(b => !b.DeletedDate.HasValue);
