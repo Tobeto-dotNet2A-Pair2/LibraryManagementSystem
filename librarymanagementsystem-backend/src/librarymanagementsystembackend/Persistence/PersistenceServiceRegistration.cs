@@ -40,6 +40,7 @@ public static class PersistenceServiceRegistration
         services.AddScoped<ILocationRepository, LocationRepository>();
         services.AddScoped<IPublisherRepository, PublisherRepository>();
         services.AddScoped<ILanguageRepository, LanguageRepository>();
+        services.AddScoped<IAuthorRepository, AuthorRepository>();
         return services;
     }
 }

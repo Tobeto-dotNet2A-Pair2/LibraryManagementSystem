@@ -34,6 +34,7 @@ using Application.Services.Locations;
 using Application.Services.Materials;
 using Application.Services.Publishers;
 using Application.Services.Languages;
+using Application.Services.Authors;
 
 namespace Application;
 
@@ -92,6 +93,7 @@ public static class ApplicationServiceRegistration
         services.AddScoped<ILocationService, LocationManager>();
         services.AddScoped<IPublisherService, PublisherManager>();
         services.AddScoped<ILanguageService, LanguageManager>();
+        services.AddScoped<IAuthorService, AuthorManager>();
         return services;
     }
 

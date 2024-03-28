@@ -13,5 +13,6 @@ public class Material : Entity<Guid>
     public virtual ICollection<MaterialCopy>? MaterialCopies { get; set; }
     public virtual ICollection<Publisher>? Publishers { get; set; }
     public virtual ICollection<Language>? Languages { get; set; }
+    public virtual ICollection<Author>? Authors { get; set; }
     
 }

@@ -29,6 +29,7 @@ public class BaseDbContext : DbContext
     public DbSet<Material> Materials { get; set; }
     public DbSet<Publisher> Publishers { get; set; }
     public DbSet<Language> Languages { get; set; }
+    public DbSet<Author> Authors { get; set; }
 
     public BaseDbContext(DbContextOptions dbContextOptions, IConfiguration configuration)
         : base(dbContextOptions)

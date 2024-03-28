@@ -21,6 +21,7 @@ using Application.Features.Locations.Constants;
 using Application.Features.Materials.Constants;
 using Application.Features.Publishers.Constants;
 using Application.Features.Languages.Constants;
+using Application.Features.Authors.Constants;
 
 
 
@@ -364,6 +365,20 @@ public class OperationClaimConfiguration : IEntityTypeConfiguration<OperationCla
                 new() { Id = ++lastId, Name = LanguagesOperationClaims.Create },
                 new() { Id = ++lastId, Name = LanguagesOperationClaims.Update },
                 new() { Id = ++lastId, Name = LanguagesOperationClaims.Delete },
+            ]
+        );
+        #endregion
+        
+        
+        #region Authors
+        featureOperationClaims.AddRange(
+            [
+                new() { Id = ++lastId, Name = AuthorsOperationClaims.Admin },
+                new() { Id = ++lastId, Name = AuthorsOperationClaims.Read },
+                new() { Id = ++lastId, Name = AuthorsOperationClaims.Write },
+                new() { Id = ++lastId, Name = AuthorsOperationClaims.Create },
+                new() { Id = ++lastId, Name = AuthorsOperationClaims.Update },
+                new() { Id = ++lastId, Name = AuthorsOperationClaims.Delete },
             ]
         );
         #endregion
