@@ -33,6 +33,7 @@ using Application.Services.MaterialCopies;
 using Application.Services.Locations;
 using Application.Services.Materials;
 using Application.Services.Publishers;
+using Application.Services.Languages;
 
 namespace Application;
 
@@ -90,6 +91,7 @@ public static class ApplicationServiceRegistration
         services.AddScoped<IMaterialCopyService, MaterialCopyManager>();
         services.AddScoped<ILocationService, LocationManager>();
         services.AddScoped<IPublisherService, PublisherManager>();
+        services.AddScoped<ILanguageService, LanguageManager>();
         return services;
     }
 

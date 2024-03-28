@@ -39,6 +39,7 @@ public static class PersistenceServiceRegistration
         services.AddScoped<IMaterialCopyRepository, MaterialCopyRepository>();
         services.AddScoped<ILocationRepository, LocationRepository>();
         services.AddScoped<IPublisherRepository, PublisherRepository>();
+        services.AddScoped<ILanguageRepository, LanguageRepository>();
         return services;
     }
 }
