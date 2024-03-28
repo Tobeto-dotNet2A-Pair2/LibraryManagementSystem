@@ -1,15 +1,14 @@
-﻿using NArchitecture.Core.Persistence.Repositories;
+using NArchitecture.Core.Application.Responses;
 
-namespace Domain.Entities;
-public class Material : Entity<Guid>
+namespace Application.Features.Materials.Commands.Create;
+
+public class CreatedMaterialResponse : IResponse
 {
+    public Guid Id { get; set; }
     public string Name { get; set; }
     public string Description { get; set; }
     public DateTime PublicationDate { get; set; }
     public string Punishment { get; set; }
     public bool IsBorrowable { get; set; }
     public byte BorrowDay { get; set; }
-
-    public virtual ICollection<MaterialCopy>? MaterialCopies { get; set; }
-    
 }

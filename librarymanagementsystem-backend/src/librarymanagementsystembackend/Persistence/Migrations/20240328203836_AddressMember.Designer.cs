@@ -12,8 +12,8 @@ using Persistence.Contexts;
 namespace Persistence.Migrations
 {
     [DbContext(typeof(BaseDbContext))]
-    [Migration("20240327131024_AddAdresses")]
-    partial class AddAdresses
+    [Migration("20240328203836_AddressMember")]
+    partial class AddressMember
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -24,6 +24,21 @@ namespace Persistence.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
+
+            modelBuilder.Entity("AddressMember", b =>
+                {
+                    b.Property<Guid>("AddressesId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("MembersId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.HasKey("AddressesId", "MembersId");
+
+                    b.HasIndex("MembersId");
+
+                    b.ToTable("AddressMember");
+                });
 
             modelBuilder.Entity("Domain.Entities.Address", b =>
                 {
@@ -63,6 +78,60 @@ namespace Persistence.Migrations
                     b.HasIndex("StreetId");
 
                     b.ToTable("Addresses", (string)null);
+                });
+
+            modelBuilder.Entity("Domain.Entities.Branch", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier")
+                        .HasColumnName("Id");
+
+                    b.Property<Guid>("AddressId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("BranchName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)")
+                        .HasColumnName("BranchName");
+
+                    b.Property<DateTime>("CreatedDate")
+                        .HasColumnType("datetime2")
+                        .HasColumnName("CreatedDate");
+
+                    b.Property<DateTime?>("DeletedDate")
+                        .HasColumnType("datetime2")
+                        .HasColumnName("DeletedDate");
+
+                    b.Property<Guid>("LibraryId")
+                        .HasColumnType("uniqueidentifier")
+                        .HasColumnName("LibraryId");
+
+                    b.Property<string>("Telephone")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)")
+                        .HasColumnName("Telephone");
+
+                    b.Property<DateTime?>("UpdatedDate")
+                        .HasColumnType("datetime2")
+                        .HasColumnName("UpdatedDate");
+
+                    b.Property<string>("WebSiteUrl")
+                        .HasColumnType("nvarchar(max)")
+                        .HasColumnName("WebSiteUrl");
+
+                    b.Property<DateTime>("WorkingHours")
+                        .HasColumnType("datetime2")
+                        .HasColumnName("WorkingHours");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("AddressId")
+                        .IsUnique();
+
+                    b.HasIndex("LibraryId");
+
+                    b.ToTable("Branches", (string)null);
                 });
 
             modelBuilder.Entity("Domain.Entities.City", b =>
@@ -165,6 +234,173 @@ namespace Persistence.Migrations
                     b.HasIndex("UserId");
 
                     b.ToTable("EmailAuthenticators", (string)null);
+                });
+
+            modelBuilder.Entity("Domain.Entities.Library", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier")
+                        .HasColumnName("Id");
+
+                    b.Property<DateTime>("CreatedDate")
+                        .HasColumnType("datetime2")
+                        .HasColumnName("CreatedDate");
+
+                    b.Property<DateTime?>("DeletedDate")
+                        .HasColumnType("datetime2")
+                        .HasColumnName("DeletedDate");
+
+                    b.Property<string>("LibraryName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)")
+                        .HasColumnName("LibraryName");
+
+                    b.Property<DateTime?>("UpdatedDate")
+                        .HasColumnType("datetime2")
+                        .HasColumnName("UpdatedDate");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Libraries", (string)null);
+                });
+
+            modelBuilder.Entity("Domain.Entities.Location", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier")
+                        .HasColumnName("Id");
+
+                    b.Property<string>("Corridor")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)")
+                        .HasColumnName("Corridor");
+
+                    b.Property<DateTime>("CreatedDate")
+                        .HasColumnType("datetime2")
+                        .HasColumnName("CreatedDate");
+
+                    b.Property<DateTime?>("DeletedDate")
+                        .HasColumnType("datetime2")
+                        .HasColumnName("DeletedDate");
+
+                    b.Property<string>("Floor")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)")
+                        .HasColumnName("Floor");
+
+                    b.Property<Guid>("MaterialCopyId")
+                        .HasColumnType("uniqueidentifier")
+                        .HasColumnName("MaterialCopyId");
+
+                    b.Property<string>("Shelf")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)")
+                        .HasColumnName("Shelf");
+
+                    b.Property<string>("ShelfFloor")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)")
+                        .HasColumnName("ShelfFloor");
+
+                    b.Property<string>("ShelfLineNumber")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)")
+                        .HasColumnName("ShelfLineNumber");
+
+                    b.Property<DateTime?>("UpdatedDate")
+                        .HasColumnType("datetime2")
+                        .HasColumnName("UpdatedDate");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("MaterialCopyId")
+                        .IsUnique();
+
+                    b.ToTable("Locations", (string)null);
+                });
+
+            modelBuilder.Entity("Domain.Entities.Material", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<byte>("BorrowDay")
+                        .HasColumnType("tinyint");
+
+                    b.Property<DateTime>("CreatedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime?>("DeletedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("IsBorrowable")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("PublicationDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Punishment")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime?>("UpdatedDate")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Material");
+                });
+
+            modelBuilder.Entity("Domain.Entities.MaterialCopy", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier")
+                        .HasColumnName("Id");
+
+                    b.Property<Guid>("BranchId")
+                        .HasColumnType("uniqueidentifier")
+                        .HasColumnName("BranchId");
+
+                    b.Property<DateTime>("CreatedDate")
+                        .HasColumnType("datetime2")
+                        .HasColumnName("CreatedDate");
+
+                    b.Property<DateTime?>("DeletedDate")
+                        .HasColumnType("datetime2")
+                        .HasColumnName("DeletedDate");
+
+                    b.Property<Guid>("MaterialId")
+                        .HasColumnType("uniqueidentifier")
+                        .HasColumnName("MaterialId");
+
+                    b.Property<string>("Status")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)")
+                        .HasColumnName("Status");
+
+                    b.Property<DateTime?>("UpdatedDate")
+                        .HasColumnType("datetime2")
+                        .HasColumnName("UpdatedDate");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("BranchId");
+
+                    b.HasIndex("MaterialId");
+
+                    b.ToTable("MaterialCopies", (string)null);
                 });
 
             modelBuilder.Entity("Domain.Entities.Member", b =>
@@ -668,6 +904,222 @@ namespace Persistence.Migrations
                             Id = 59,
                             CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Name = "Cities.Delete"
+                        },
+                        new
+                        {
+                            Id = 60,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "Branches.Admin"
+                        },
+                        new
+                        {
+                            Id = 61,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "Branches.Read"
+                        },
+                        new
+                        {
+                            Id = 62,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "Branches.Write"
+                        },
+                        new
+                        {
+                            Id = 63,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "Branches.Create"
+                        },
+                        new
+                        {
+                            Id = 64,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "Branches.Update"
+                        },
+                        new
+                        {
+                            Id = 65,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "Branches.Delete"
+                        },
+                        new
+                        {
+                            Id = 66,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "Libraries.Admin"
+                        },
+                        new
+                        {
+                            Id = 67,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "Libraries.Read"
+                        },
+                        new
+                        {
+                            Id = 68,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "Libraries.Write"
+                        },
+                        new
+                        {
+                            Id = 69,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "Libraries.Create"
+                        },
+                        new
+                        {
+                            Id = 70,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "Libraries.Update"
+                        },
+                        new
+                        {
+                            Id = 71,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "Libraries.Delete"
+                        },
+                        new
+                        {
+                            Id = 72,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "PaymentMethods.Admin"
+                        },
+                        new
+                        {
+                            Id = 73,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "PaymentMethods.Read"
+                        },
+                        new
+                        {
+                            Id = 74,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "PaymentMethods.Write"
+                        },
+                        new
+                        {
+                            Id = 75,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "PaymentMethods.Create"
+                        },
+                        new
+                        {
+                            Id = 76,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "PaymentMethods.Update"
+                        },
+                        new
+                        {
+                            Id = 77,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "PaymentMethods.Delete"
+                        },
+                        new
+                        {
+                            Id = 78,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "SocialMediaAccounts.Admin"
+                        },
+                        new
+                        {
+                            Id = 79,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "SocialMediaAccounts.Read"
+                        },
+                        new
+                        {
+                            Id = 80,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "SocialMediaAccounts.Write"
+                        },
+                        new
+                        {
+                            Id = 81,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "SocialMediaAccounts.Create"
+                        },
+                        new
+                        {
+                            Id = 82,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "SocialMediaAccounts.Update"
+                        },
+                        new
+                        {
+                            Id = 83,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "SocialMediaAccounts.Delete"
+                        },
+                        new
+                        {
+                            Id = 84,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "MaterialCopies.Admin"
+                        },
+                        new
+                        {
+                            Id = 85,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "MaterialCopies.Read"
+                        },
+                        new
+                        {
+                            Id = 86,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "MaterialCopies.Write"
+                        },
+                        new
+                        {
+                            Id = 87,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "MaterialCopies.Create"
+                        },
+                        new
+                        {
+                            Id = 88,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "MaterialCopies.Update"
+                        },
+                        new
+                        {
+                            Id = 89,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "MaterialCopies.Delete"
+                        },
+                        new
+                        {
+                            Id = 90,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "Locations.Admin"
+                        },
+                        new
+                        {
+                            Id = 91,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "Locations.Read"
+                        },
+                        new
+                        {
+                            Id = 92,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "Locations.Write"
+                        },
+                        new
+                        {
+                            Id = 93,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "Locations.Create"
+                        },
+                        new
+                        {
+                            Id = 94,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "Locations.Update"
+                        },
+                        new
+                        {
+                            Id = 95,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "Locations.Delete"
                         });
                 });
 
@@ -708,6 +1160,41 @@ namespace Persistence.Migrations
                     b.HasIndex("UserId");
 
                     b.ToTable("OtpAuthenticators", (string)null);
+                });
+
+            modelBuilder.Entity("Domain.Entities.PaymentMethod", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier")
+                        .HasColumnName("Id");
+
+                    b.Property<Guid>("BranchId")
+                        .HasColumnType("uniqueidentifier")
+                        .HasColumnName("BranchId");
+
+                    b.Property<DateTime>("CreatedDate")
+                        .HasColumnType("datetime2")
+                        .HasColumnName("CreatedDate");
+
+                    b.Property<DateTime?>("DeletedDate")
+                        .HasColumnType("datetime2")
+                        .HasColumnName("DeletedDate");
+
+                    b.Property<string>("PaymentMethodName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)")
+                        .HasColumnName("PaymentMethodName");
+
+                    b.Property<DateTime?>("UpdatedDate")
+                        .HasColumnType("datetime2")
+                        .HasColumnName("UpdatedDate");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("BranchId");
+
+                    b.ToTable("PaymentMethods", (string)null);
                 });
 
             modelBuilder.Entity("Domain.Entities.RefreshToken", b =>
@@ -768,6 +1255,45 @@ namespace Persistence.Migrations
                     b.HasIndex("UserId");
 
                     b.ToTable("RefreshTokens", (string)null);
+                });
+
+            modelBuilder.Entity("Domain.Entities.SocialMediaAccount", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier")
+                        .HasColumnName("Id");
+
+                    b.Property<Guid>("BranchId")
+                        .HasColumnType("uniqueidentifier")
+                        .HasColumnName("BranchId");
+
+                    b.Property<DateTime>("CreatedDate")
+                        .HasColumnType("datetime2")
+                        .HasColumnName("CreatedDate");
+
+                    b.Property<DateTime?>("DeletedDate")
+                        .HasColumnType("datetime2")
+                        .HasColumnName("DeletedDate");
+
+                    b.Property<string>("SocialMediaAccountLogo")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)")
+                        .HasColumnName("SocialMediaAccountLogo");
+
+                    b.Property<string>("SocialMediaAccountUrl")
+                        .HasColumnType("nvarchar(max)")
+                        .HasColumnName("SocialMediaAccountUrl");
+
+                    b.Property<DateTime?>("UpdatedDate")
+                        .HasColumnType("datetime2")
+                        .HasColumnName("UpdatedDate");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("BranchId");
+
+                    b.ToTable("SocialMediaAccounts", (string)null);
                 });
 
             modelBuilder.Entity("Domain.Entities.Street", b =>
@@ -850,12 +1376,12 @@ namespace Persistence.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("b2dd3494-d66e-4d4d-930d-1825f715de73"),
+                            Id = new Guid("f6f52612-d6bd-4cbc-a37b-54eb0dddabb0"),
                             AuthenticatorType = 0,
                             CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Email = "narch@kodlama.io",
-                            PasswordHash = new byte[] { 144, 231, 122, 157, 248, 50, 99, 183, 2, 195, 129, 243, 13, 101, 149, 61, 210, 199, 148, 14, 143, 22, 118, 192, 43, 157, 251, 143, 76, 217, 3, 22, 125, 232, 50, 224, 252, 57, 146, 208, 7, 250, 236, 158, 91, 156, 90, 140, 171, 49, 16, 194, 39, 44, 92, 62, 161, 195, 4, 250, 110, 190, 20, 63 },
-                            PasswordSalt = new byte[] { 237, 236, 32, 115, 96, 197, 44, 193, 162, 222, 102, 245, 156, 112, 54, 140, 118, 125, 88, 79, 132, 247, 83, 11, 145, 128, 153, 80, 70, 125, 120, 135, 173, 208, 189, 238, 88, 187, 197, 246, 100, 53, 73, 103, 201, 185, 37, 120, 54, 83, 95, 144, 156, 141, 200, 36, 198, 95, 169, 215, 50, 243, 230, 126, 5, 21, 91, 82, 86, 3, 17, 3, 38, 88, 209, 227, 131, 242, 239, 24, 86, 87, 187, 232, 128, 111, 1, 232, 220, 77, 92, 147, 71, 12, 145, 53, 3, 1, 17, 128, 51, 51, 23, 211, 227, 14, 130, 185, 169, 203, 31, 11, 31, 241, 203, 125, 182, 180, 77, 1, 61, 251, 46, 206, 248, 153, 208, 208 }
+                            PasswordHash = new byte[] { 75, 142, 170, 195, 252, 116, 15, 132, 169, 87, 54, 59, 234, 208, 148, 62, 75, 240, 160, 40, 138, 214, 10, 91, 175, 139, 24, 129, 176, 116, 6, 110, 202, 12, 242, 58, 247, 81, 53, 139, 0, 41, 184, 21, 161, 214, 245, 140, 212, 156, 110, 62, 27, 195, 89, 40, 178, 226, 168, 98, 158, 174, 60, 43 },
+                            PasswordSalt = new byte[] { 49, 156, 239, 127, 141, 112, 188, 205, 50, 157, 3, 234, 197, 154, 107, 236, 253, 127, 138, 174, 25, 32, 247, 254, 134, 126, 111, 32, 207, 89, 222, 73, 110, 75, 229, 151, 35, 95, 165, 0, 139, 253, 96, 223, 0, 96, 67, 250, 157, 252, 194, 5, 131, 66, 135, 20, 182, 202, 245, 134, 247, 87, 76, 226, 78, 9, 30, 178, 49, 43, 50, 46, 52, 9, 94, 100, 186, 186, 205, 90, 14, 223, 66, 179, 142, 125, 86, 181, 8, 34, 64, 211, 237, 194, 145, 59, 121, 135, 213, 12, 165, 32, 35, 30, 169, 170, 34, 93, 108, 30, 65, 93, 239, 171, 186, 230, 185, 118, 207, 74, 81, 115, 205, 113, 162, 62, 121, 150 }
                         });
                 });
 
@@ -897,11 +1423,26 @@ namespace Persistence.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("cb1c8d6b-80aa-4f10-a900-1a45c859cd41"),
+                            Id = new Guid("55787242-689a-41d4-8425-48e053d9d1c3"),
                             CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             OperationClaimId = 1,
-                            UserId = new Guid("b2dd3494-d66e-4d4d-930d-1825f715de73")
+                            UserId = new Guid("f6f52612-d6bd-4cbc-a37b-54eb0dddabb0")
                         });
+                });
+
+            modelBuilder.Entity("AddressMember", b =>
+                {
+                    b.HasOne("Domain.Entities.Address", null)
+                        .WithMany()
+                        .HasForeignKey("AddressesId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Domain.Entities.Member", null)
+                        .WithMany()
+                        .HasForeignKey("MembersId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("Domain.Entities.Address", b =>
@@ -913,6 +1454,25 @@ namespace Persistence.Migrations
                         .IsRequired();
 
                     b.Navigation("Street");
+                });
+
+            modelBuilder.Entity("Domain.Entities.Branch", b =>
+                {
+                    b.HasOne("Domain.Entities.Address", "Address")
+                        .WithOne("Branch")
+                        .HasForeignKey("Domain.Entities.Branch", "AddressId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Domain.Entities.Library", "Library")
+                        .WithMany("Branches")
+                        .HasForeignKey("LibraryId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Address");
+
+                    b.Navigation("Library");
                 });
 
             modelBuilder.Entity("Domain.Entities.District", b =>
@@ -935,6 +1495,36 @@ namespace Persistence.Migrations
                         .IsRequired();
 
                     b.Navigation("User");
+                });
+
+            modelBuilder.Entity("Domain.Entities.Location", b =>
+                {
+                    b.HasOne("Domain.Entities.MaterialCopy", "MaterialCopy")
+                        .WithOne("Location")
+                        .HasForeignKey("Domain.Entities.Location", "MaterialCopyId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("MaterialCopy");
+                });
+
+            modelBuilder.Entity("Domain.Entities.MaterialCopy", b =>
+                {
+                    b.HasOne("Domain.Entities.Branch", "Branch")
+                        .WithMany("MaterialCopies")
+                        .HasForeignKey("BranchId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Domain.Entities.Material", "Material")
+                        .WithMany("MaterialCopies")
+                        .HasForeignKey("MaterialId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Branch");
+
+                    b.Navigation("Material");
                 });
 
             modelBuilder.Entity("Domain.Entities.Member", b =>
@@ -970,6 +1560,17 @@ namespace Persistence.Migrations
                     b.Navigation("User");
                 });
 
+            modelBuilder.Entity("Domain.Entities.PaymentMethod", b =>
+                {
+                    b.HasOne("Domain.Entities.Branch", "Branch")
+                        .WithMany("PaymentMethods")
+                        .HasForeignKey("BranchId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Branch");
+                });
+
             modelBuilder.Entity("Domain.Entities.RefreshToken", b =>
                 {
                     b.HasOne("Domain.Entities.User", "User")
@@ -979,6 +1580,17 @@ namespace Persistence.Migrations
                         .IsRequired();
 
                     b.Navigation("User");
+                });
+
+            modelBuilder.Entity("Domain.Entities.SocialMediaAccount", b =>
+                {
+                    b.HasOne("Domain.Entities.Branch", "Branch")
+                        .WithMany("SocialMediaAccounts")
+                        .HasForeignKey("BranchId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Branch");
                 });
 
             modelBuilder.Entity("Domain.Entities.Street", b =>
@@ -1011,6 +1623,20 @@ namespace Persistence.Migrations
                     b.Navigation("User");
                 });
 
+            modelBuilder.Entity("Domain.Entities.Address", b =>
+                {
+                    b.Navigation("Branch");
+                });
+
+            modelBuilder.Entity("Domain.Entities.Branch", b =>
+                {
+                    b.Navigation("MaterialCopies");
+
+                    b.Navigation("PaymentMethods");
+
+                    b.Navigation("SocialMediaAccounts");
+                });
+
             modelBuilder.Entity("Domain.Entities.City", b =>
                 {
                     b.Navigation("Districts");
@@ -1019,6 +1645,21 @@ namespace Persistence.Migrations
             modelBuilder.Entity("Domain.Entities.District", b =>
                 {
                     b.Navigation("Neighborhoods");
+                });
+
+            modelBuilder.Entity("Domain.Entities.Library", b =>
+                {
+                    b.Navigation("Branches");
+                });
+
+            modelBuilder.Entity("Domain.Entities.Material", b =>
+                {
+                    b.Navigation("MaterialCopies");
+                });
+
+            modelBuilder.Entity("Domain.Entities.MaterialCopy", b =>
+                {
+                    b.Navigation("Location");
                 });
 
             modelBuilder.Entity("Domain.Entities.Neighborhood", b =>

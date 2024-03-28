@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Persistence.Contexts;
 
@@ -11,9 +12,11 @@ using Persistence.Contexts;
 namespace Persistence.Migrations
 {
     [DbContext(typeof(BaseDbContext))]
-    partial class BaseDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240328001553_deneme")]
+    partial class deneme
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -21,21 +24,6 @@ namespace Persistence.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
-
-            modelBuilder.Entity("AddressMember", b =>
-                {
-                    b.Property<Guid>("AddressesId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid>("MembersId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.HasKey("AddressesId", "MembersId");
-
-                    b.HasIndex("MembersId");
-
-                    b.ToTable("AddressMember");
-                });
 
             modelBuilder.Entity("Domain.Entities.Address", b =>
                 {
@@ -266,148 +254,120 @@ namespace Persistence.Migrations
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier")
-                        .HasColumnName("Id");
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Corridor")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)")
-                        .HasColumnName("Corridor");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("CreatedDate")
-                        .HasColumnType("datetime2")
-                        .HasColumnName("CreatedDate");
+                        .HasColumnType("datetime2");
 
                     b.Property<DateTime?>("DeletedDate")
-                        .HasColumnType("datetime2")
-                        .HasColumnName("DeletedDate");
+                        .HasColumnType("datetime2");
 
                     b.Property<string>("Floor")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)")
-                        .HasColumnName("Floor");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Shelf")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)")
-                        .HasColumnName("Shelf");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("ShelfFloor")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)")
-                        .HasColumnName("ShelfFloor");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("ShelfLineNumber")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)")
-                        .HasColumnName("ShelfLineNumber");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime?>("UpdatedDate")
-                        .HasColumnType("datetime2")
-                        .HasColumnName("UpdatedDate");
+                        .HasColumnType("datetime2");
 
                     b.HasKey("Id");
 
-                    b.ToTable("Locations", (string)null);
+                    b.ToTable("Location");
                 });
 
             modelBuilder.Entity("Domain.Entities.Material", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier")
-                        .HasColumnName("Id");
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<byte>("BorrowDay")
-                        .HasColumnType("tinyint")
-                        .HasColumnName("BorrowDay");
+                        .HasColumnType("tinyint");
 
                     b.Property<DateTime>("CreatedDate")
-                        .HasColumnType("datetime2")
-                        .HasColumnName("CreatedDate");
+                        .HasColumnType("datetime2");
 
                     b.Property<DateTime?>("DeletedDate")
-                        .HasColumnType("datetime2")
-                        .HasColumnName("DeletedDate");
+                        .HasColumnType("datetime2");
 
                     b.Property<string>("Description")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)")
-                        .HasColumnName("Description");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<bool>("IsBorrowable")
-                        .HasColumnType("bit")
-                        .HasColumnName("IsBorrowable");
+                        .HasColumnType("bit");
 
                     b.Property<string>("Name")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)")
-                        .HasColumnName("Name");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("PublicationDate")
-                        .HasColumnType("datetime2")
-                        .HasColumnName("PublicationDate");
+                        .HasColumnType("datetime2");
 
                     b.Property<string>("Punishment")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)")
-                        .HasColumnName("Punishment");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime?>("UpdatedDate")
-                        .HasColumnType("datetime2")
-                        .HasColumnName("UpdatedDate");
+                        .HasColumnType("datetime2");
 
                     b.HasKey("Id");
 
-                    b.ToTable("Materials", (string)null);
+                    b.ToTable("Material");
                 });
 
             modelBuilder.Entity("Domain.Entities.MaterialCopy", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier")
-                        .HasColumnName("Id");
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<Guid>("BranchId")
-                        .HasColumnType("uniqueidentifier")
-                        .HasColumnName("BranchId");
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<DateTime>("CreatedDate")
-                        .HasColumnType("datetime2")
-                        .HasColumnName("CreatedDate");
+                        .HasColumnType("datetime2");
 
                     b.Property<DateTime?>("DeletedDate")
-                        .HasColumnType("datetime2")
-                        .HasColumnName("DeletedDate");
+                        .HasColumnType("datetime2");
 
                     b.Property<Guid>("LocationId")
-                        .HasColumnType("uniqueidentifier")
-                        .HasColumnName("LocationId");
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<Guid>("MaterialId")
-                        .HasColumnType("uniqueidentifier")
-                        .HasColumnName("MaterialId");
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Status")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)")
-                        .HasColumnName("Status");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime?>("UpdatedDate")
-                        .HasColumnType("datetime2")
-                        .HasColumnName("UpdatedDate");
+                        .HasColumnType("datetime2");
 
                     b.HasKey("Id");
 
                     b.HasIndex("BranchId");
 
-                    b.HasIndex("LocationId")
-                        .IsUnique();
+                    b.HasIndex("LocationId");
 
                     b.HasIndex("MaterialId");
 
-                    b.ToTable("MaterialCopies", (string)null);
+                    b.ToTable("MaterialCopy");
                 });
 
             modelBuilder.Entity("Domain.Entities.Member", b =>
@@ -416,6 +376,9 @@ namespace Persistence.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier")
                         .HasColumnName("Id");
+
+                    b.Property<Guid>("AddressId")
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("AskLibrarianDescription")
                         .IsRequired()
@@ -486,6 +449,9 @@ namespace Persistence.Migrations
                         .HasColumnName("UserId");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("AddressId")
+                        .IsUnique();
 
                     b.HasIndex("UserId");
 
@@ -1055,222 +1021,6 @@ namespace Persistence.Migrations
                             Id = 83,
                             CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Name = "SocialMediaAccounts.Delete"
-                        },
-                        new
-                        {
-                            Id = 84,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Name = "MaterialCopies.Admin"
-                        },
-                        new
-                        {
-                            Id = 85,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Name = "MaterialCopies.Read"
-                        },
-                        new
-                        {
-                            Id = 86,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Name = "MaterialCopies.Write"
-                        },
-                        new
-                        {
-                            Id = 87,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Name = "MaterialCopies.Create"
-                        },
-                        new
-                        {
-                            Id = 88,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Name = "MaterialCopies.Update"
-                        },
-                        new
-                        {
-                            Id = 89,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Name = "MaterialCopies.Delete"
-                        },
-                        new
-                        {
-                            Id = 90,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Name = "Locations.Admin"
-                        },
-                        new
-                        {
-                            Id = 91,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Name = "Locations.Read"
-                        },
-                        new
-                        {
-                            Id = 92,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Name = "Locations.Write"
-                        },
-                        new
-                        {
-                            Id = 93,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Name = "Locations.Create"
-                        },
-                        new
-                        {
-                            Id = 94,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Name = "Locations.Update"
-                        },
-                        new
-                        {
-                            Id = 95,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Name = "Locations.Delete"
-                        },
-                        new
-                        {
-                            Id = 96,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Name = "Materials.Admin"
-                        },
-                        new
-                        {
-                            Id = 97,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Name = "Materials.Read"
-                        },
-                        new
-                        {
-                            Id = 98,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Name = "Materials.Write"
-                        },
-                        new
-                        {
-                            Id = 99,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Name = "Materials.Create"
-                        },
-                        new
-                        {
-                            Id = 100,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Name = "Materials.Update"
-                        },
-                        new
-                        {
-                            Id = 101,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Name = "Materials.Delete"
-                        },
-                        new
-                        {
-                            Id = 102,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Name = "Locations.Admin"
-                        },
-                        new
-                        {
-                            Id = 103,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Name = "Locations.Read"
-                        },
-                        new
-                        {
-                            Id = 104,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Name = "Locations.Write"
-                        },
-                        new
-                        {
-                            Id = 105,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Name = "Locations.Create"
-                        },
-                        new
-                        {
-                            Id = 106,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Name = "Locations.Update"
-                        },
-                        new
-                        {
-                            Id = 107,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Name = "Locations.Delete"
-                        },
-                        new
-                        {
-                            Id = 108,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Name = "MaterialCopies.Admin"
-                        },
-                        new
-                        {
-                            Id = 109,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Name = "MaterialCopies.Read"
-                        },
-                        new
-                        {
-                            Id = 110,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Name = "MaterialCopies.Write"
-                        },
-                        new
-                        {
-                            Id = 111,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Name = "MaterialCopies.Create"
-                        },
-                        new
-                        {
-                            Id = 112,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Name = "MaterialCopies.Update"
-                        },
-                        new
-                        {
-                            Id = 113,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Name = "MaterialCopies.Delete"
-                        },
-                        new
-                        {
-                            Id = 114,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Name = "Locations.Admin"
-                        },
-                        new
-                        {
-                            Id = 115,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Name = "Locations.Read"
-                        },
-                        new
-                        {
-                            Id = 116,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Name = "Locations.Write"
-                        },
-                        new
-                        {
-                            Id = 117,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Name = "Locations.Create"
-                        },
-                        new
-                        {
-                            Id = 118,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Name = "Locations.Update"
-                        },
-                        new
-                        {
-                            Id = 119,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Name = "Locations.Delete"
                         });
                 });
 
@@ -1527,12 +1277,12 @@ namespace Persistence.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("9b257c0b-679a-4f48-bab7-397f6ffb2494"),
+                            Id = new Guid("88fd462c-c409-4a62-91ac-61c5f8e509ee"),
                             AuthenticatorType = 0,
                             CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Email = "narch@kodlama.io",
-                            PasswordHash = new byte[] { 155, 108, 116, 116, 184, 192, 110, 37, 10, 67, 168, 25, 126, 224, 168, 79, 125, 190, 231, 98, 234, 12, 13, 247, 173, 239, 119, 38, 114, 140, 149, 58, 116, 76, 138, 76, 174, 196, 224, 191, 249, 157, 188, 52, 53, 159, 66, 131, 236, 8, 50, 112, 183, 223, 152, 188, 235, 60, 20, 50, 122, 161, 100, 211 },
-                            PasswordSalt = new byte[] { 98, 231, 182, 125, 47, 80, 188, 209, 240, 226, 148, 239, 245, 181, 69, 247, 156, 11, 254, 120, 171, 206, 182, 225, 229, 245, 33, 84, 221, 185, 224, 232, 239, 203, 49, 234, 56, 92, 211, 105, 250, 52, 215, 12, 151, 116, 210, 173, 85, 86, 122, 209, 43, 109, 168, 167, 184, 215, 118, 196, 100, 83, 209, 112, 109, 187, 143, 13, 108, 182, 234, 106, 236, 109, 31, 212, 14, 205, 178, 134, 127, 151, 194, 108, 36, 191, 232, 210, 242, 162, 150, 77, 81, 85, 61, 207, 242, 154, 248, 98, 38, 150, 25, 43, 86, 202, 170, 68, 253, 87, 193, 166, 0, 73, 123, 175, 87, 237, 154, 172, 186, 128, 174, 188, 58, 91, 248, 88 }
+                            PasswordHash = new byte[] { 98, 150, 168, 203, 137, 136, 135, 116, 107, 159, 134, 25, 11, 254, 4, 3, 253, 154, 229, 120, 169, 13, 98, 71, 140, 218, 118, 217, 55, 197, 62, 159, 3, 176, 87, 69, 93, 171, 131, 133, 61, 226, 57, 195, 58, 201, 24, 54, 37, 158, 141, 193, 60, 92, 158, 101, 23, 178, 141, 215, 47, 52, 233, 128 },
+                            PasswordSalt = new byte[] { 188, 77, 173, 62, 57, 250, 113, 11, 12, 235, 176, 68, 127, 29, 94, 50, 16, 228, 63, 228, 235, 139, 94, 74, 112, 14, 227, 248, 72, 79, 148, 74, 111, 32, 5, 32, 30, 38, 121, 20, 53, 46, 241, 245, 157, 49, 249, 135, 55, 29, 23, 88, 109, 28, 214, 98, 26, 174, 178, 102, 65, 52, 198, 45, 238, 12, 107, 215, 117, 69, 245, 13, 208, 188, 19, 168, 31, 43, 121, 236, 65, 206, 49, 28, 215, 178, 101, 39, 217, 189, 157, 189, 10, 217, 118, 92, 243, 15, 85, 186, 47, 132, 46, 70, 222, 231, 41, 21, 86, 7, 220, 128, 91, 72, 98, 152, 237, 53, 157, 34, 247, 169, 195, 79, 127, 30, 166, 94 }
                         });
                 });
 
@@ -1574,26 +1324,11 @@ namespace Persistence.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("a5fe8ba6-b540-4d21-bfc7-aaaec5ae305b"),
+                            Id = new Guid("91687d4d-025a-402a-b4d0-35f1567fe106"),
                             CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             OperationClaimId = 1,
-                            UserId = new Guid("9b257c0b-679a-4f48-bab7-397f6ffb2494")
+                            UserId = new Guid("88fd462c-c409-4a62-91ac-61c5f8e509ee")
                         });
-                });
-
-            modelBuilder.Entity("AddressMember", b =>
-                {
-                    b.HasOne("Domain.Entities.Address", null)
-                        .WithMany()
-                        .HasForeignKey("AddressesId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Domain.Entities.Member", null)
-                        .WithMany()
-                        .HasForeignKey("MembersId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
                 });
 
             modelBuilder.Entity("Domain.Entities.Address", b =>
@@ -1657,8 +1392,8 @@ namespace Persistence.Migrations
                         .IsRequired();
 
                     b.HasOne("Domain.Entities.Location", "Location")
-                        .WithOne("MaterialCopy")
-                        .HasForeignKey("Domain.Entities.MaterialCopy", "LocationId")
+                        .WithMany()
+                        .HasForeignKey("LocationId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -1677,11 +1412,19 @@ namespace Persistence.Migrations
 
             modelBuilder.Entity("Domain.Entities.Member", b =>
                 {
+                    b.HasOne("Domain.Entities.Address", "Address")
+                        .WithOne("Member")
+                        .HasForeignKey("Domain.Entities.Member", "AddressId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.HasOne("Domain.Entities.User", "User")
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.Navigation("Address");
 
                     b.Navigation("User");
                 });
@@ -1774,6 +1517,8 @@ namespace Persistence.Migrations
             modelBuilder.Entity("Domain.Entities.Address", b =>
                 {
                     b.Navigation("Branch");
+
+                    b.Navigation("Member");
                 });
 
             modelBuilder.Entity("Domain.Entities.Branch", b =>
@@ -1798,11 +1543,6 @@ namespace Persistence.Migrations
             modelBuilder.Entity("Domain.Entities.Library", b =>
                 {
                     b.Navigation("Branches");
-                });
-
-            modelBuilder.Entity("Domain.Entities.Location", b =>
-                {
-                    b.Navigation("MaterialCopy");
                 });
 
             modelBuilder.Entity("Domain.Entities.Material", b =>

@@ -34,6 +34,10 @@ public static class PersistenceServiceRegistration
         services.AddScoped<ISocialMediaAccountRepository, SocialMediaAccountRepository>();
         services.AddScoped<IMaterialCopyRepository, MaterialCopyRepository>();
         services.AddScoped<ILocationRepository, LocationRepository>();
+        services.AddScoped<IMaterialRepository, MaterialRepository>();
+        services.AddScoped<ILocationRepository, LocationRepository>();
+        services.AddScoped<IMaterialCopyRepository, MaterialCopyRepository>();
+        services.AddScoped<ILocationRepository, LocationRepository>();
         return services;
     }
 }
