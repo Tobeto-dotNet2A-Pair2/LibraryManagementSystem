@@ -1,36 +1,42 @@
 <form [ngClass]="{'signin': showRegisterForm}" >
-    <h2>üye ol</h2>
+    <h2>Üye Ol</h2>
+    <div class="inputbox">
+        <!-- <ion-icon name="mail-outline"></ion-icon> -->
+        <input type="text" required>
+        <label for="">İsim</label>
+    </div>
+    <div class="inputbox">
+        <!-- <ion-icon name="mail-outline"></ion-icon> -->
+        <input type="text" required>
+        <label for="">Soyisim</label>
+    </div>
+    <div class="inputbox">
+        <!-- <ion-icon name="mail-outline"></ion-icon> -->
+        <input type="number" required>
+        <label for="">TC</label>
+    </div>
+    <div class="inputbox">
+        <!-- <ion-icon name="mail-outline"></ion-icon> -->
+        <input type="phone" required>
+        <label for="">Telefon</label>
+    </div>
     <div class="inputbox">
         <!-- <ion-icon name="mail-outline"></ion-icon> -->
         <input type="email" required>
         <label for="">Email</label>
     </div>
     <div class="inputbox">
-        <!-- <ion-icon name="mail-outline"></ion-icon> -->
-        <input type="email" required>
-        <label for="">Email</label>
+        <!-- <ion-icon name="lock-closed-outline"></ion-icon> -->
+        <input type="password" required>
+        <label for="">Şifre</label>
     </div>
     <div class="inputbox">
         <!-- <ion-icon name="lock-closed-outline"></ion-icon> -->
         <input type="password" required>
-        <label for="">Password</label>
+        <label for="">Tekrar Şifre</label>
     </div>
-    <div class="inputbox">
-        <!-- <ion-icon name="lock-closed-outline"></ion-icon> -->
-        <input type="password" required>
-        <label for="">Password</label>
-    </div>
-    <div class="inputbox">
-        <!-- <ion-icon name="lock-closed-outline"></ion-icon> -->
-        <input type="password" required>
-        <label for="">Password</label>
-    </div>
-    <div class="forget">
-        <label for=""><input type="checkbox">Remember Me  <a href="#">Forget Password</a></label>
-      
-    </div>
-    <button>Log in</button>
+    <button>Üye Ol</button>
     <div class="register">
-        <p>Don't have a account <a href="#" (click)="callLoginHandler(); $event.preventDefault();">giriş yap</a></p>
+        <p>Hesabın var mı?<a href="#" (click)="callLoginHandler(); $event.preventDefault();"> giriş yap</a></p>
     </div>
 </form>

@@ -1,5 +1,5 @@
 <form [ngClass]="{'login': showLoginForm}">
-    <h2>Login</h2>
+    <h2>Hoş Geldin</h2>
     <div class="inputbox">
         <!-- <ion-icon name="mail-outline"></ion-icon> -->
         <input type="email" required>
@@ -8,15 +8,15 @@
     <div class="inputbox">
         <!-- <ion-icon name="lock-closed-outline"></ion-icon> -->
         <input type="password" required>
-        <label for="">Password</label>
+        <label for="">Şifre</label>
     </div>
     <div class="forget">
-        <label for=""><input type="checkbox">Remember Me  <a href="#">Forget Password</a></label>
+        <label for=""><input type="checkbox">Beni Hatırla </label>
       
     </div>
     
-    <button>Log in</button>
+    <button>Giriş Yap</button>
     <div class="register" >
-        <p>Don't have a account <a href="#"  (click)="callRegisterHandler(); $event.preventDefault();">Register</a></p>
+        <p>Hesabın yok mu? <a href="#"  (click)="callRegisterHandler(); $event.preventDefault();">Üye ol</a></p>
     </div>
 </form>
