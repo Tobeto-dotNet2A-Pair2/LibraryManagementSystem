@@ -29,6 +29,8 @@ using Application.Services.Branches;
 using Application.Services.Libraries;
 using Application.Services.PaymentMethods;
 using Application.Services.SocialMediaAccounts;
+using Application.Services.MaterialCopies;
+using Application.Services.Locations;
 
 namespace Application;
 
@@ -79,6 +81,8 @@ public static class ApplicationServiceRegistration
         services.AddScoped<ILibraryService, LibraryManager>();
         services.AddScoped<IPaymentMethodService, PaymentMethodManager>();
         services.AddScoped<ISocialMediaAccountService, SocialMediaAccountManager>();
+        services.AddScoped<IMaterialCopyService, MaterialCopyManager>();
+        services.AddScoped<ILocationService, LocationManager>();
         return services;
     }
 
