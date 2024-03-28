@@ -8,4 +8,5 @@ public class GetListMaterialCopyListItemDto : IDto
     public string Status { get; set; }
     public Guid MaterialId { get; set; }
     public Guid BranchId { get; set; }
+    public Guid LocationId { get; set; }
 }

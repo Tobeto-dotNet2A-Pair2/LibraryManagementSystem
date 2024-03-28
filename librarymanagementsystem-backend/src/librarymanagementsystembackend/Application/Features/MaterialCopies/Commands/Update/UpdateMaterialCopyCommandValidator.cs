@@ -10,5 +10,6 @@ public class UpdateMaterialCopyCommandValidator : AbstractValidator<UpdateMateri
         RuleFor(c => c.Status).NotEmpty();
         RuleFor(c => c.MaterialId).NotEmpty();
         RuleFor(c => c.BranchId).NotEmpty();
+        RuleFor(c => c.LocationId).NotEmpty();
     }
 }

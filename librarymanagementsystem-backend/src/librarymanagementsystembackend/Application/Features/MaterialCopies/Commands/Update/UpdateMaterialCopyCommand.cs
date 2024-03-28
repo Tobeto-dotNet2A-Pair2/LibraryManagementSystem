@@ -18,6 +18,7 @@ public class UpdateMaterialCopyCommand : IRequest<UpdatedMaterialCopyResponse>, 
     public string Status { get; set; }
     public Guid MaterialId { get; set; }
     public Guid BranchId { get; set; }
+    public Guid LocationId { get; set; }
 
     public string[] Roles => [Admin, Write, MaterialCopiesOperationClaims.Update];
 
