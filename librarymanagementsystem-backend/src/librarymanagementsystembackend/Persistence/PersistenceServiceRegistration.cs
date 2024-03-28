@@ -41,6 +41,7 @@ public static class PersistenceServiceRegistration
         services.AddScoped<IPublisherRepository, PublisherRepository>();
         services.AddScoped<ILanguageRepository, LanguageRepository>();
         services.AddScoped<IAuthorRepository, AuthorRepository>();
+        services.AddScoped<ITranslatorRepository, TranslatorRepository>();
         return services;
     }
 }
