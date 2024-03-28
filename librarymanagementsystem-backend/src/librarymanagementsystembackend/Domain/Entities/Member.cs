@@ -20,11 +20,10 @@ public class Member:Entity<Guid>
     public string Messages { get; set; }
     public string AskLibrarianTopic { get; set; }
     public string AskLibrarianDescription { get; set; }
-    public Guid AddressId { get; set; }
-    public virtual Address? Address { get; set; }
+    public virtual ICollection<Address> Addresses { get; set; }
     public Guid UserId { get; set; }
 
-    public virtual User? User { get; set; } = null;
+    public virtual User? User { get; set; } 
 
     //Role entity prop
 
