@@ -19,7 +19,6 @@ public class CreateLocationCommand : IRequest<CreatedLocationResponse>, ISecured
     public string Shelf { get; set; }
     public string Corridor { get; set; }
     public string Floor { get; set; }
-    public Guid MaterialCopyId { get; set; }
 
     public string[] Roles => [Admin, Write, LocationsOperationClaims.Create];
 
