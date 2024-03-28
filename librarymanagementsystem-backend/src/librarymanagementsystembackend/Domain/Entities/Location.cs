@@ -9,5 +9,8 @@ public class Location : Entity<Guid>
     public string Corridor { get; set; }
     public string Floor { get; set; }
 
-    public virtual 
+    public Guid MaterialCopyId { get; set; }
+    public virtual MaterialCopy? MaterialCopy { get; set; }
+
+
 }

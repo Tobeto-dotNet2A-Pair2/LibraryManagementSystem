@@ -16,6 +16,8 @@ using Application.Features.Branches.Constants;
 using Application.Features.Libraries.Constants;
 using Application.Features.PaymentMethods.Constants;
 using Application.Features.SocialMediaAccounts.Constants;
+using Application.Features.MaterialCopies.Constants;
+using Application.Features.Locations.Constants;
 
 
 
@@ -247,6 +249,34 @@ public class OperationClaimConfiguration : IEntityTypeConfiguration<OperationCla
                 new() { Id = ++lastId, Name = SocialMediaAccountsOperationClaims.Create },
                 new() { Id = ++lastId, Name = SocialMediaAccountsOperationClaims.Update },
                 new() { Id = ++lastId, Name = SocialMediaAccountsOperationClaims.Delete },
+            ]
+        );
+        #endregion
+        
+        
+        #region MaterialCopies
+        featureOperationClaims.AddRange(
+            [
+                new() { Id = ++lastId, Name = MaterialCopiesOperationClaims.Admin },
+                new() { Id = ++lastId, Name = MaterialCopiesOperationClaims.Read },
+                new() { Id = ++lastId, Name = MaterialCopiesOperationClaims.Write },
+                new() { Id = ++lastId, Name = MaterialCopiesOperationClaims.Create },
+                new() { Id = ++lastId, Name = MaterialCopiesOperationClaims.Update },
+                new() { Id = ++lastId, Name = MaterialCopiesOperationClaims.Delete },
+            ]
+        );
+        #endregion
+        
+        
+        #region Locations
+        featureOperationClaims.AddRange(
+            [
+                new() { Id = ++lastId, Name = LocationsOperationClaims.Admin },
+                new() { Id = ++lastId, Name = LocationsOperationClaims.Read },
+                new() { Id = ++lastId, Name = LocationsOperationClaims.Write },
+                new() { Id = ++lastId, Name = LocationsOperationClaims.Create },
+                new() { Id = ++lastId, Name = LocationsOperationClaims.Update },
+                new() { Id = ++lastId, Name = LocationsOperationClaims.Delete },
             ]
         );
         #endregion
