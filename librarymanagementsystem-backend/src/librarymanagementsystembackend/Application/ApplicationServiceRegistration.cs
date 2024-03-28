@@ -32,6 +32,7 @@ using Application.Services.SocialMediaAccounts;
 using Application.Services.MaterialCopies;
 using Application.Services.Locations;
 using Application.Services.Materials;
+using Application.Services.Publishers;
 
 namespace Application;
 
@@ -88,6 +89,7 @@ public static class ApplicationServiceRegistration
         services.AddScoped<ILocationService, LocationManager>();
         services.AddScoped<IMaterialCopyService, MaterialCopyManager>();
         services.AddScoped<ILocationService, LocationManager>();
+        services.AddScoped<IPublisherService, PublisherManager>();
         return services;
     }
 

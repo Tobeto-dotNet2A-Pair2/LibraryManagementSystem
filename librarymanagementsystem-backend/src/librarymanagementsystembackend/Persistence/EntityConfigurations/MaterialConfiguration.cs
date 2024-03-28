@@ -21,6 +21,7 @@ public class MaterialConfiguration : IEntityTypeConfiguration<Material>
         builder.Property(m => m.UpdatedDate).HasColumnName("UpdatedDate");
         builder.Property(m => m.DeletedDate).HasColumnName("DeletedDate");
         builder.HasMany(m => m.MaterialCopies);
+        builder.HasMany(m => m.Publishers);
         builder.HasQueryFilter(m => !m.DeletedDate.HasValue);
     }
 }

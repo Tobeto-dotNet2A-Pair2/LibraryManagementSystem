@@ -11,5 +11,6 @@ public class Material : Entity<Guid>
     public byte BorrowDay { get; set; }
 
     public virtual ICollection<MaterialCopy>? MaterialCopies { get; set; }
+    public virtual ICollection<Publisher>? Publishers { get; set; }
     
 }

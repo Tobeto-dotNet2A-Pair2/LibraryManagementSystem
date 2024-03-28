@@ -19,6 +19,7 @@ using Application.Features.SocialMediaAccounts.Constants;
 using Application.Features.MaterialCopies.Constants;
 using Application.Features.Locations.Constants;
 using Application.Features.Materials.Constants;
+using Application.Features.Publishers.Constants;
 
 
 
@@ -334,6 +335,20 @@ public class OperationClaimConfiguration : IEntityTypeConfiguration<OperationCla
                 new() { Id = ++lastId, Name = LocationsOperationClaims.Create },
                 new() { Id = ++lastId, Name = LocationsOperationClaims.Update },
                 new() { Id = ++lastId, Name = LocationsOperationClaims.Delete },
+            ]
+        );
+        #endregion
+        
+        
+        #region Publishers
+        featureOperationClaims.AddRange(
+            [
+                new() { Id = ++lastId, Name = PublishersOperationClaims.Admin },
+                new() { Id = ++lastId, Name = PublishersOperationClaims.Read },
+                new() { Id = ++lastId, Name = PublishersOperationClaims.Write },
+                new() { Id = ++lastId, Name = PublishersOperationClaims.Create },
+                new() { Id = ++lastId, Name = PublishersOperationClaims.Update },
+                new() { Id = ++lastId, Name = PublishersOperationClaims.Delete },
             ]
         );
         #endregion

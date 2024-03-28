@@ -27,6 +27,7 @@ public class BaseDbContext : DbContext
     public DbSet<MaterialCopy> MaterialCopies { get; set; }
     public DbSet<Location> Locations { get; set; }
     public DbSet<Material> Materials { get; set; }
+    public DbSet<Publisher> Publishers { get; set; }
 
     public BaseDbContext(DbContextOptions dbContextOptions, IConfiguration configuration)
         : base(dbContextOptions)
