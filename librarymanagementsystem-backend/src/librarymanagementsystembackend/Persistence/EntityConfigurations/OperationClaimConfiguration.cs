@@ -23,6 +23,7 @@ using Application.Features.Publishers.Constants;
 using Application.Features.Languages.Constants;
 using Application.Features.Authors.Constants;
 using Application.Features.Translators.Constants;
+using Application.Features.FavoriteLists.Constants;
 
 
 
@@ -394,6 +395,20 @@ public class OperationClaimConfiguration : IEntityTypeConfiguration<OperationCla
                 new() { Id = ++lastId, Name = TranslatorsOperationClaims.Create },
                 new() { Id = ++lastId, Name = TranslatorsOperationClaims.Update },
                 new() { Id = ++lastId, Name = TranslatorsOperationClaims.Delete },
+            ]
+        );
+        #endregion
+        
+        
+        #region FavoriteLists
+        featureOperationClaims.AddRange(
+            [
+                new() { Id = ++lastId, Name = FavoriteListsOperationClaims.Admin },
+                new() { Id = ++lastId, Name = FavoriteListsOperationClaims.Read },
+                new() { Id = ++lastId, Name = FavoriteListsOperationClaims.Write },
+                new() { Id = ++lastId, Name = FavoriteListsOperationClaims.Create },
+                new() { Id = ++lastId, Name = FavoriteListsOperationClaims.Update },
+                new() { Id = ++lastId, Name = FavoriteListsOperationClaims.Delete },
             ]
         );
         #endregion

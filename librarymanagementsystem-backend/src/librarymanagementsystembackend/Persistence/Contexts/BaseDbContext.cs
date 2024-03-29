@@ -31,6 +31,7 @@ public class BaseDbContext : DbContext
     public DbSet<Language> Languages { get; set; }
     public DbSet<Author> Authors { get; set; }
     public DbSet<Translator> Translators { get; set; }
+    public DbSet<FavoriteList> FavoriteLists { get; set; }
 
     public BaseDbContext(DbContextOptions dbContextOptions, IConfiguration configuration)
         : base(dbContextOptions)

@@ -25,6 +25,7 @@ public class MaterialConfiguration : IEntityTypeConfiguration<Material>
         builder.HasMany(m => m.Languages);
         builder.HasMany(m => m.Authors);
         builder.HasMany(m => m.Translators);
+        builder.HasMany(m => m.FavoriteLists);
 
 
         builder.HasQueryFilter(m => !m.DeletedDate.HasValue);
