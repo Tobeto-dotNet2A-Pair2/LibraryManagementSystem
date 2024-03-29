@@ -12,8 +12,8 @@ using Persistence.Contexts;
 namespace Persistence.Migrations
 {
     [DbContext(typeof(BaseDbContext))]
-    [Migration("20240328212513_relationmaterialcopy")]
-    partial class relationmaterialcopy
+    [Migration("20240328223515_initial")]
+    partial class initial
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -1274,6 +1274,42 @@ namespace Persistence.Migrations
                             Id = 119,
                             CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Name = "Locations.Delete"
+                        },
+                        new
+                        {
+                            Id = 120,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "Publishers.Admin"
+                        },
+                        new
+                        {
+                            Id = 121,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "Publishers.Read"
+                        },
+                        new
+                        {
+                            Id = 122,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "Publishers.Write"
+                        },
+                        new
+                        {
+                            Id = 123,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "Publishers.Create"
+                        },
+                        new
+                        {
+                            Id = 124,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "Publishers.Update"
+                        },
+                        new
+                        {
+                            Id = 125,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "Publishers.Delete"
                         });
                 });
 
@@ -1349,6 +1385,40 @@ namespace Persistence.Migrations
                     b.HasIndex("BranchId");
 
                     b.ToTable("PaymentMethods", (string)null);
+                });
+
+            modelBuilder.Entity("Domain.Entities.Publisher", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier")
+                        .HasColumnName("Id");
+
+                    b.Property<DateTime>("CreatedDate")
+                        .HasColumnType("datetime2")
+                        .HasColumnName("CreatedDate");
+
+                    b.Property<DateTime?>("DeletedDate")
+                        .HasColumnType("datetime2")
+                        .HasColumnName("DeletedDate");
+
+                    b.Property<string>("PublicationPlace")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)")
+                        .HasColumnName("PublicationPlace");
+
+                    b.Property<string>("PublisherName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)")
+                        .HasColumnName("PublisherName");
+
+                    b.Property<DateTime?>("UpdatedDate")
+                        .HasColumnType("datetime2")
+                        .HasColumnName("UpdatedDate");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Publishers", (string)null);
                 });
 
             modelBuilder.Entity("Domain.Entities.RefreshToken", b =>
@@ -1530,12 +1600,12 @@ namespace Persistence.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("9b257c0b-679a-4f48-bab7-397f6ffb2494"),
+                            Id = new Guid("3c4545c0-efe3-4783-b9cb-be97447facbe"),
                             AuthenticatorType = 0,
                             CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Email = "narch@kodlama.io",
-                            PasswordHash = new byte[] { 155, 108, 116, 116, 184, 192, 110, 37, 10, 67, 168, 25, 126, 224, 168, 79, 125, 190, 231, 98, 234, 12, 13, 247, 173, 239, 119, 38, 114, 140, 149, 58, 116, 76, 138, 76, 174, 196, 224, 191, 249, 157, 188, 52, 53, 159, 66, 131, 236, 8, 50, 112, 183, 223, 152, 188, 235, 60, 20, 50, 122, 161, 100, 211 },
-                            PasswordSalt = new byte[] { 98, 231, 182, 125, 47, 80, 188, 209, 240, 226, 148, 239, 245, 181, 69, 247, 156, 11, 254, 120, 171, 206, 182, 225, 229, 245, 33, 84, 221, 185, 224, 232, 239, 203, 49, 234, 56, 92, 211, 105, 250, 52, 215, 12, 151, 116, 210, 173, 85, 86, 122, 209, 43, 109, 168, 167, 184, 215, 118, 196, 100, 83, 209, 112, 109, 187, 143, 13, 108, 182, 234, 106, 236, 109, 31, 212, 14, 205, 178, 134, 127, 151, 194, 108, 36, 191, 232, 210, 242, 162, 150, 77, 81, 85, 61, 207, 242, 154, 248, 98, 38, 150, 25, 43, 86, 202, 170, 68, 253, 87, 193, 166, 0, 73, 123, 175, 87, 237, 154, 172, 186, 128, 174, 188, 58, 91, 248, 88 }
+                            PasswordHash = new byte[] { 29, 14, 162, 124, 239, 73, 61, 164, 158, 65, 16, 254, 209, 62, 201, 237, 182, 4, 196, 103, 101, 169, 165, 183, 96, 135, 230, 210, 64, 116, 159, 252, 193, 171, 89, 214, 143, 183, 230, 41, 201, 218, 21, 169, 128, 126, 57, 232, 7, 53, 16, 58, 13, 70, 3, 17, 100, 110, 227, 156, 131, 24, 92, 17 },
+                            PasswordSalt = new byte[] { 69, 158, 114, 235, 228, 106, 161, 79, 133, 254, 243, 133, 81, 174, 226, 77, 85, 131, 62, 132, 136, 152, 108, 181, 246, 113, 229, 12, 132, 33, 176, 65, 19, 118, 173, 18, 124, 219, 87, 45, 63, 67, 241, 183, 26, 148, 17, 118, 206, 242, 161, 135, 214, 93, 169, 11, 183, 168, 165, 58, 0, 83, 197, 62, 38, 201, 124, 177, 190, 82, 102, 113, 48, 42, 53, 140, 220, 96, 18, 99, 242, 90, 18, 48, 105, 129, 134, 215, 22, 73, 6, 210, 105, 42, 7, 162, 188, 123, 6, 116, 51, 228, 204, 24, 81, 167, 196, 232, 32, 144, 7, 204, 181, 226, 172, 85, 82, 169, 233, 108, 168, 77, 193, 222, 252, 255, 227, 233 }
                         });
                 });
 
@@ -1577,11 +1647,26 @@ namespace Persistence.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("a5fe8ba6-b540-4d21-bfc7-aaaec5ae305b"),
+                            Id = new Guid("cff5c4c9-eda7-4e93-bc78-0e3c1c847d2e"),
                             CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             OperationClaimId = 1,
-                            UserId = new Guid("9b257c0b-679a-4f48-bab7-397f6ffb2494")
+                            UserId = new Guid("3c4545c0-efe3-4783-b9cb-be97447facbe")
                         });
+                });
+
+            modelBuilder.Entity("MaterialPublisher", b =>
+                {
+                    b.Property<Guid>("MaterialsId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("PublishersId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.HasKey("MaterialsId", "PublishersId");
+
+                    b.HasIndex("PublishersId");
+
+                    b.ToTable("MaterialPublisher");
                 });
 
             modelBuilder.Entity("AddressMember", b =>
@@ -1772,6 +1857,21 @@ namespace Persistence.Migrations
                     b.Navigation("OperationClaim");
 
                     b.Navigation("User");
+                });
+
+            modelBuilder.Entity("MaterialPublisher", b =>
+                {
+                    b.HasOne("Domain.Entities.Material", null)
+                        .WithMany()
+                        .HasForeignKey("MaterialsId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Domain.Entities.Publisher", null)
+                        .WithMany()
+                        .HasForeignKey("PublishersId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("Domain.Entities.Address", b =>

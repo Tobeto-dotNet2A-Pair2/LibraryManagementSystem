@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace Persistence.Migrations
 {
     /// <inheritdoc />
-    public partial class init : Migration
+    public partial class initial : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -44,7 +44,7 @@ namespace Persistence.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Location",
+                name: "Locations",
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
@@ -59,11 +59,11 @@ namespace Persistence.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Location", x => x.Id);
+                    table.PrimaryKey("PK_Locations", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
-                name: "Material",
+                name: "Materials",
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
@@ -79,7 +79,7 @@ namespace Persistence.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Material", x => x.Id);
+                    table.PrimaryKey("PK_Materials", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -96,6 +96,22 @@ namespace Persistence.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_OperationClaims", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Publishers",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    PublisherName = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    PublicationPlace = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    UpdatedDate = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    DeletedDate = table.Column<DateTime>(type: "datetime2", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Publishers", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -139,6 +155,30 @@ namespace Persistence.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "MaterialPublisher",
+                columns: table => new
+                {
+                    MaterialsId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    PublishersId = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_MaterialPublisher", x => new { x.MaterialsId, x.PublishersId });
+                    table.ForeignKey(
+                        name: "FK_MaterialPublisher_Materials_MaterialsId",
+                        column: x => x.MaterialsId,
+                        principalTable: "Materials",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_MaterialPublisher_Publishers_PublishersId",
+                        column: x => x.PublishersId,
+                        principalTable: "Publishers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "EmailAuthenticators",
                 columns: table => new
                 {
@@ -155,6 +195,38 @@ namespace Persistence.Migrations
                     table.PrimaryKey("PK_EmailAuthenticators", x => x.Id);
                     table.ForeignKey(
                         name: "FK_EmailAuthenticators_Users_UserId",
+                        column: x => x.UserId,
+                        principalTable: "Users",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Members",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    FirstName = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    LastName = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    TC = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    PhoneNumber = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Photograph = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    MemberShipDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    Position = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Reservation = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Messages = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    AskLibrarianTopic = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    AskLibrarianDescription = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    UserId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    UpdatedDate = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    DeletedDate = table.Column<DateTime>(type: "datetime2", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Members", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Members_Users_UserId",
                         column: x => x.UserId,
                         principalTable: "Users",
                         principalColumn: "Id",
@@ -308,15 +380,40 @@ namespace Persistence.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "AddressMember",
+                columns: table => new
+                {
+                    AddressesId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    MembersId = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_AddressMember", x => new { x.AddressesId, x.MembersId });
+                    table.ForeignKey(
+                        name: "FK_AddressMember_Addresses_AddressesId",
+                        column: x => x.AddressesId,
+                        principalTable: "Addresses",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_AddressMember_Members_MembersId",
+                        column: x => x.MembersId,
+                        principalTable: "Members",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Branches",
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    LibraryId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     BranchName = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     WorkingHours = table.Column<DateTime>(type: "datetime2", nullable: false),
                     Telephone = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     WebSiteUrl = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    AddressId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    LibraryId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     UpdatedDate = table.Column<DateTime>(type: "datetime2", nullable: true),
                     DeletedDate = table.Column<DateTime>(type: "datetime2", nullable: true)
@@ -325,8 +422,8 @@ namespace Persistence.Migrations
                 {
                     table.PrimaryKey("PK_Branches", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Branches_Addresses_Id",
-                        column: x => x.Id,
+                        name: "FK_Branches_Addresses_AddressId",
+                        column: x => x.AddressId,
                         principalTable: "Addresses",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
@@ -339,45 +436,7 @@ namespace Persistence.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Members",
-                columns: table => new
-                {
-                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    FirstName = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    LastName = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    TC = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    PhoneNumber = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Photograph = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    MemberShipDate = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    Position = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Reservation = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Messages = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    AskLibrarianTopic = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    AskLibrarianDescription = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    UserId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    UpdatedDate = table.Column<DateTime>(type: "datetime2", nullable: true),
-                    DeletedDate = table.Column<DateTime>(type: "datetime2", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Members", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_Members_Addresses_Id",
-                        column: x => x.Id,
-                        principalTable: "Addresses",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_Members_Users_UserId",
-                        column: x => x.UserId,
-                        principalTable: "Users",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "MaterialCopy",
+                name: "MaterialCopies",
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
@@ -391,23 +450,23 @@ namespace Persistence.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_MaterialCopy", x => x.Id);
+                    table.PrimaryKey("PK_MaterialCopies", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_MaterialCopy_Branches_BranchId",
+                        name: "FK_MaterialCopies_Branches_BranchId",
                         column: x => x.BranchId,
                         principalTable: "Branches",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_MaterialCopy_Location_LocationId",
+                        name: "FK_MaterialCopies_Locations_LocationId",
                         column: x => x.LocationId,
-                        principalTable: "Location",
+                        principalTable: "Locations",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_MaterialCopy_Material_MaterialId",
+                        name: "FK_MaterialCopies_Materials_MaterialId",
                         column: x => x.MaterialId,
-                        principalTable: "Material",
+                        principalTable: "Materials",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -544,23 +603,76 @@ namespace Persistence.Migrations
                     { 80, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "SocialMediaAccounts.Write", null },
                     { 81, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "SocialMediaAccounts.Create", null },
                     { 82, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "SocialMediaAccounts.Update", null },
-                    { 83, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "SocialMediaAccounts.Delete", null }
+                    { 83, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "SocialMediaAccounts.Delete", null },
+                    { 84, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "MaterialCopies.Admin", null },
+                    { 85, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "MaterialCopies.Read", null },
+                    { 86, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "MaterialCopies.Write", null },
+                    { 87, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "MaterialCopies.Create", null },
+                    { 88, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "MaterialCopies.Update", null },
+                    { 89, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "MaterialCopies.Delete", null },
+                    { 90, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "Locations.Admin", null },
+                    { 91, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "Locations.Read", null },
+                    { 92, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "Locations.Write", null },
+                    { 93, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "Locations.Create", null },
+                    { 94, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "Locations.Update", null },
+                    { 95, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "Locations.Delete", null },
+                    { 96, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "Materials.Admin", null },
+                    { 97, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "Materials.Read", null },
+                    { 98, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "Materials.Write", null },
+                    { 99, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "Materials.Create", null },
+                    { 100, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "Materials.Update", null },
+                    { 101, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "Materials.Delete", null },
+                    { 102, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "Locations.Admin", null },
+                    { 103, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "Locations.Read", null },
+                    { 104, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "Locations.Write", null },
+                    { 105, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "Locations.Create", null },
+                    { 106, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "Locations.Update", null },
+                    { 107, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "Locations.Delete", null },
+                    { 108, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "MaterialCopies.Admin", null },
+                    { 109, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "MaterialCopies.Read", null },
+                    { 110, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "MaterialCopies.Write", null },
+                    { 111, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "MaterialCopies.Create", null },
+                    { 112, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "MaterialCopies.Update", null },
+                    { 113, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "MaterialCopies.Delete", null },
+                    { 114, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "Locations.Admin", null },
+                    { 115, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "Locations.Read", null },
+                    { 116, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "Locations.Write", null },
+                    { 117, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "Locations.Create", null },
+                    { 118, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "Locations.Update", null },
+                    { 119, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "Locations.Delete", null },
+                    { 120, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "Publishers.Admin", null },
+                    { 121, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "Publishers.Read", null },
+                    { 122, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "Publishers.Write", null },
+                    { 123, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "Publishers.Create", null },
+                    { 124, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "Publishers.Update", null },
+                    { 125, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "Publishers.Delete", null }
                 });
 
             migrationBuilder.InsertData(
                 table: "Users",
                 columns: new[] { "Id", "AuthenticatorType", "CreatedDate", "DeletedDate", "Email", "PasswordHash", "PasswordSalt", "UpdatedDate" },
-                values: new object[] { new Guid("f5adf9bf-b05c-4604-a889-e740675db9f1"), 0, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "narch@kodlama.io", new byte[] { 253, 149, 230, 213, 5, 153, 113, 33, 112, 246, 91, 63, 73, 204, 159, 192, 119, 228, 63, 62, 228, 224, 174, 236, 63, 140, 157, 255, 29, 204, 186, 24, 246, 251, 157, 104, 208, 179, 103, 140, 123, 8, 175, 56, 120, 250, 18, 191, 222, 138, 221, 221, 146, 250, 86, 197, 47, 33, 133, 195, 26, 93, 202, 110 }, new byte[] { 37, 66, 127, 131, 129, 63, 203, 172, 28, 3, 88, 53, 189, 67, 129, 211, 30, 161, 172, 109, 174, 53, 66, 30, 127, 48, 25, 10, 252, 126, 87, 64, 25, 40, 44, 151, 14, 238, 159, 145, 102, 54, 114, 12, 198, 46, 208, 115, 126, 65, 102, 237, 65, 43, 135, 85, 239, 87, 219, 123, 27, 231, 3, 16, 117, 82, 98, 3, 207, 27, 157, 1, 105, 129, 71, 203, 43, 199, 135, 146, 78, 125, 53, 230, 24, 61, 109, 80, 152, 254, 76, 114, 194, 212, 14, 116, 141, 33, 171, 11, 250, 136, 144, 108, 117, 87, 28, 204, 105, 53, 214, 49, 60, 197, 39, 41, 108, 38, 27, 117, 172, 65, 198, 25, 189, 97, 234, 1 }, null });
+                values: new object[] { new Guid("3c4545c0-efe3-4783-b9cb-be97447facbe"), 0, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "narch@kodlama.io", new byte[] { 29, 14, 162, 124, 239, 73, 61, 164, 158, 65, 16, 254, 209, 62, 201, 237, 182, 4, 196, 103, 101, 169, 165, 183, 96, 135, 230, 210, 64, 116, 159, 252, 193, 171, 89, 214, 143, 183, 230, 41, 201, 218, 21, 169, 128, 126, 57, 232, 7, 53, 16, 58, 13, 70, 3, 17, 100, 110, 227, 156, 131, 24, 92, 17 }, new byte[] { 69, 158, 114, 235, 228, 106, 161, 79, 133, 254, 243, 133, 81, 174, 226, 77, 85, 131, 62, 132, 136, 152, 108, 181, 246, 113, 229, 12, 132, 33, 176, 65, 19, 118, 173, 18, 124, 219, 87, 45, 63, 67, 241, 183, 26, 148, 17, 118, 206, 242, 161, 135, 214, 93, 169, 11, 183, 168, 165, 58, 0, 83, 197, 62, 38, 201, 124, 177, 190, 82, 102, 113, 48, 42, 53, 140, 220, 96, 18, 99, 242, 90, 18, 48, 105, 129, 134, 215, 22, 73, 6, 210, 105, 42, 7, 162, 188, 123, 6, 116, 51, 228, 204, 24, 81, 167, 196, 232, 32, 144, 7, 204, 181, 226, 172, 85, 82, 169, 233, 108, 168, 77, 193, 222, 252, 255, 227, 233 }, null });
 
             migrationBuilder.InsertData(
                 table: "UserOperationClaims",
                 columns: new[] { "Id", "CreatedDate", "DeletedDate", "OperationClaimId", "UpdatedDate", "UserId" },
-                values: new object[] { new Guid("b2d87683-6cf5-44a4-a867-bdd79cf2ee06"), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, 1, null, new Guid("f5adf9bf-b05c-4604-a889-e740675db9f1") });
+                values: new object[] { new Guid("cff5c4c9-eda7-4e93-bc78-0e3c1c847d2e"), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, 1, null, new Guid("3c4545c0-efe3-4783-b9cb-be97447facbe") });
 
             migrationBuilder.CreateIndex(
                 name: "IX_Addresses_StreetId",
                 table: "Addresses",
                 column: "StreetId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_AddressMember_MembersId",
+                table: "AddressMember",
+                column: "MembersId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Branches_AddressId",
+                table: "Branches",
+                column: "AddressId",
+                unique: true);
 
             migrationBuilder.CreateIndex(
                 name: "IX_Branches_LibraryId",
@@ -578,19 +690,25 @@ namespace Persistence.Migrations
                 column: "UserId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_MaterialCopy_BranchId",
-                table: "MaterialCopy",
+                name: "IX_MaterialCopies_BranchId",
+                table: "MaterialCopies",
                 column: "BranchId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_MaterialCopy_LocationId",
-                table: "MaterialCopy",
-                column: "LocationId");
+                name: "IX_MaterialCopies_LocationId",
+                table: "MaterialCopies",
+                column: "LocationId",
+                unique: true);
 
             migrationBuilder.CreateIndex(
-                name: "IX_MaterialCopy_MaterialId",
-                table: "MaterialCopy",
+                name: "IX_MaterialCopies_MaterialId",
+                table: "MaterialCopies",
                 column: "MaterialId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_MaterialPublisher_PublishersId",
+                table: "MaterialPublisher",
+                column: "PublishersId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Members_UserId",
@@ -642,13 +760,16 @@ namespace Persistence.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
+                name: "AddressMember");
+
+            migrationBuilder.DropTable(
                 name: "EmailAuthenticators");
 
             migrationBuilder.DropTable(
-                name: "MaterialCopy");
+                name: "MaterialCopies");
 
             migrationBuilder.DropTable(
-                name: "Members");
+                name: "MaterialPublisher");
 
             migrationBuilder.DropTable(
                 name: "OtpAuthenticators");
@@ -666,10 +787,16 @@ namespace Persistence.Migrations
                 name: "UserOperationClaims");
 
             migrationBuilder.DropTable(
-                name: "Location");
+                name: "Members");
 
             migrationBuilder.DropTable(
-                name: "Material");
+                name: "Locations");
+
+            migrationBuilder.DropTable(
+                name: "Materials");
+
+            migrationBuilder.DropTable(
+                name: "Publishers");
 
             migrationBuilder.DropTable(
                 name: "Branches");
