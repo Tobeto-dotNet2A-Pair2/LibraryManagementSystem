@@ -100,6 +100,7 @@ public static class ApplicationServiceRegistration
         services.AddScoped<ITranslatorService, TranslatorManager>();
         services.AddScoped<IFavoriteListService, FavoriteListManager>();
         services.AddScoped<INotificationService, NotificationManager>();
+        services.AddScoped<INotificationService, NotificationManager>();
         return services;
     }
 

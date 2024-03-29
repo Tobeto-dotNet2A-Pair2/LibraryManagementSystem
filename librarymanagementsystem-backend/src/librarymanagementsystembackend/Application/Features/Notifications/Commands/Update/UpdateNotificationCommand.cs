@@ -19,7 +19,7 @@ public class UpdateNotificationCommand : IRequest<UpdatedNotificationResponse>, 
     public DateTime NotificationDate { get; set; }
     public string Message { get; set; }
     public string Status { get; set; }
-    public string Penalty { get; set; }
+    public Guid PenaltyId { get; set; }
 
     public string[] Roles => [Admin, Write, NotificationsOperationClaims.Update];
 

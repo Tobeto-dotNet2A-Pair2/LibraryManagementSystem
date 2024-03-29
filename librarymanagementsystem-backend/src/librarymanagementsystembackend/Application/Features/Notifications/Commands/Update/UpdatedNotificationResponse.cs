@@ -9,5 +9,5 @@ public class UpdatedNotificationResponse : IResponse
     public DateTime NotificationDate { get; set; }
     public string Message { get; set; }
     public string Status { get; set; }
-    public string Penalty { get; set; }
+    public Guid PenaltyId { get; set; }
 }
