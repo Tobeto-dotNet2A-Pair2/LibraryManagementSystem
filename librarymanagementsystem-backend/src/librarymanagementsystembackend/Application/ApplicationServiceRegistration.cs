@@ -37,6 +37,7 @@ using Application.Services.Languages;
 using Application.Services.Authors;
 using Application.Services.Translators;
 using Application.Services.FavoriteLists;
+using Application.Services.Notifications;
 
 namespace Application;
 
@@ -98,6 +99,7 @@ public static class ApplicationServiceRegistration
         services.AddScoped<IAuthorService, AuthorManager>();
         services.AddScoped<ITranslatorService, TranslatorManager>();
         services.AddScoped<IFavoriteListService, FavoriteListManager>();
+        services.AddScoped<INotificationService, NotificationManager>();
         return services;
     }
 
