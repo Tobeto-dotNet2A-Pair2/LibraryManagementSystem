@@ -25,6 +25,7 @@ using Application.Features.Authors.Constants;
 using Application.Features.Translators.Constants;
 using Application.Features.FavoriteLists.Constants;
 using Application.Features.Notifications.Constants;
+using Application.Features.Penalties.Constants;
 
 
 
@@ -424,6 +425,48 @@ public class OperationClaimConfiguration : IEntityTypeConfiguration<OperationCla
                 new() { Id = ++lastId, Name = NotificationsOperationClaims.Create },
                 new() { Id = ++lastId, Name = NotificationsOperationClaims.Update },
                 new() { Id = ++lastId, Name = NotificationsOperationClaims.Delete },
+            ]
+        );
+        #endregion
+        
+        
+        #region Notifications
+        featureOperationClaims.AddRange(
+            [
+                new() { Id = ++lastId, Name = NotificationsOperationClaims.Admin },
+                new() { Id = ++lastId, Name = NotificationsOperationClaims.Read },
+                new() { Id = ++lastId, Name = NotificationsOperationClaims.Write },
+                new() { Id = ++lastId, Name = NotificationsOperationClaims.Create },
+                new() { Id = ++lastId, Name = NotificationsOperationClaims.Update },
+                new() { Id = ++lastId, Name = NotificationsOperationClaims.Delete },
+            ]
+        );
+        #endregion
+        
+        
+        #region Penalties
+        featureOperationClaims.AddRange(
+            [
+                new() { Id = ++lastId, Name = PenaltiesOperationClaims.Admin },
+                new() { Id = ++lastId, Name = PenaltiesOperationClaims.Read },
+                new() { Id = ++lastId, Name = PenaltiesOperationClaims.Write },
+                new() { Id = ++lastId, Name = PenaltiesOperationClaims.Create },
+                new() { Id = ++lastId, Name = PenaltiesOperationClaims.Update },
+                new() { Id = ++lastId, Name = PenaltiesOperationClaims.Delete },
+            ]
+        );
+        #endregion
+        
+        
+        #region Members
+        featureOperationClaims.AddRange(
+            [
+                new() { Id = ++lastId, Name = MembersOperationClaims.Admin },
+                new() { Id = ++lastId, Name = MembersOperationClaims.Read },
+                new() { Id = ++lastId, Name = MembersOperationClaims.Write },
+                new() { Id = ++lastId, Name = MembersOperationClaims.Create },
+                new() { Id = ++lastId, Name = MembersOperationClaims.Update },
+                new() { Id = ++lastId, Name = MembersOperationClaims.Delete },
             ]
         );
         #endregion

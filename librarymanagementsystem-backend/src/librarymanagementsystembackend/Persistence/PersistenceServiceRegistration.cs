@@ -45,6 +45,9 @@ public static class PersistenceServiceRegistration
         services.AddScoped<IFavoriteListRepository, FavoriteListRepository>();
         services.AddScoped<INotificationRepository, NotificationRepository>();
         services.AddScoped<INotificationRepository, NotificationRepository>();
+        services.AddScoped<IPenaltyRepository, PenaltyRepository>();
+        services.AddScoped<IMemberRepository, MemberRepository>();
+        services.AddScoped<INotificationRepository, NotificationRepository>();
         return services;
     }
 }

@@ -38,6 +38,7 @@ using Application.Services.Authors;
 using Application.Services.Translators;
 using Application.Services.FavoriteLists;
 using Application.Services.Notifications;
+using Application.Services.Penalties;
 
 namespace Application;
 
@@ -100,6 +101,9 @@ public static class ApplicationServiceRegistration
         services.AddScoped<ITranslatorService, TranslatorManager>();
         services.AddScoped<IFavoriteListService, FavoriteListManager>();
         services.AddScoped<INotificationService, NotificationManager>();
+        services.AddScoped<INotificationService, NotificationManager>();
+        services.AddScoped<IPenaltyService, PenaltyManager>();
+        services.AddScoped<IMemberService, MemberManager>();
         services.AddScoped<INotificationService, NotificationManager>();
         return services;
     }
