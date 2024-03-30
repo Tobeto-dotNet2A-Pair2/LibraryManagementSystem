@@ -39,6 +39,7 @@ using Application.Services.Translators;
 using Application.Services.FavoriteLists;
 using Application.Services.Notifications;
 using Application.Services.Penalties;
+using Application.Services.BorrowMaterials;
 
 namespace Application;
 
@@ -105,6 +106,12 @@ public static class ApplicationServiceRegistration
         services.AddScoped<IPenaltyService, PenaltyManager>();
         services.AddScoped<IMemberService, MemberManager>();
         services.AddScoped<INotificationService, NotificationManager>();
+        services.AddScoped<IMemberService, MemberManager>();
+        services.AddScoped<INotificationService, NotificationManager>();
+        services.AddScoped<IMaterialService, MaterialManager>();
+        services.AddScoped<IPenaltyService, PenaltyManager>();
+        services.AddScoped<IBorrowMaterialService, BorrowMaterialManager>();
+        services.AddScoped<IMaterialCopyService, MaterialCopyManager>();
         return services;
     }
 
