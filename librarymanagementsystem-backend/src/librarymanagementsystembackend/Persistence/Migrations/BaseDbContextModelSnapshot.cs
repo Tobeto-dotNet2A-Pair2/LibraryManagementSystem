@@ -287,6 +287,41 @@ namespace Persistence.Migrations
                     b.ToTable("EmailAuthenticators", (string)null);
                 });
 
+            modelBuilder.Entity("Domain.Entities.FavoriteList", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier")
+                        .HasColumnName("Id");
+
+                    b.Property<DateTime>("CreatedDate")
+                        .HasColumnType("datetime2")
+                        .HasColumnName("CreatedDate");
+
+                    b.Property<DateTime?>("DeletedDate")
+                        .HasColumnType("datetime2")
+                        .HasColumnName("DeletedDate");
+
+                    b.Property<string>("ListName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)")
+                        .HasColumnName("ListName");
+
+                    b.Property<Guid>("MemberId")
+                        .HasColumnType("uniqueidentifier")
+                        .HasColumnName("MemberId");
+
+                    b.Property<DateTime?>("UpdatedDate")
+                        .HasColumnType("datetime2")
+                        .HasColumnName("UpdatedDate");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("MemberId");
+
+                    b.ToTable("FavoriteLists", (string)null);
+                });
+
             modelBuilder.Entity("Domain.Entities.Language", b =>
                 {
                     b.Property<Guid>("Id")
@@ -608,6 +643,56 @@ namespace Persistence.Migrations
                     b.HasIndex("DistrictId");
 
                     b.ToTable("Neighborhoods", (string)null);
+                });
+
+            modelBuilder.Entity("Domain.Entities.Notification", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier")
+                        .HasColumnName("Id");
+
+                    b.Property<DateTime>("CreatedDate")
+                        .HasColumnType("datetime2")
+                        .HasColumnName("CreatedDate");
+
+                    b.Property<DateTime?>("DeletedDate")
+                        .HasColumnType("datetime2")
+                        .HasColumnName("DeletedDate");
+
+                    b.Property<string>("Message")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)")
+                        .HasColumnName("Message");
+
+                    b.Property<DateTime>("NotificationDate")
+                        .HasColumnType("datetime2")
+                        .HasColumnName("NotificationDate");
+
+                    b.Property<string>("NotificationType")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)")
+                        .HasColumnName("NotificationType");
+
+                    b.Property<Guid>("PenaltyId")
+                        .HasColumnType("uniqueidentifier")
+                        .HasColumnName("PenaltyId");
+
+                    b.Property<string>("Status")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)")
+                        .HasColumnName("Status");
+
+                    b.Property<DateTime?>("UpdatedDate")
+                        .HasColumnType("datetime2")
+                        .HasColumnName("UpdatedDate");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("PenaltyId")
+                        .IsUnique();
+
+                    b.ToTable("Notifications", (string)null);
                 });
 
             modelBuilder.Entity("Domain.Entities.OperationClaim", b =>
@@ -1498,6 +1583,114 @@ namespace Persistence.Migrations
                             Id = 143,
                             CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Name = "Translators.Delete"
+                        },
+                        new
+                        {
+                            Id = 144,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "FavoriteLists.Admin"
+                        },
+                        new
+                        {
+                            Id = 145,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "FavoriteLists.Read"
+                        },
+                        new
+                        {
+                            Id = 146,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "FavoriteLists.Write"
+                        },
+                        new
+                        {
+                            Id = 147,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "FavoriteLists.Create"
+                        },
+                        new
+                        {
+                            Id = 148,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "FavoriteLists.Update"
+                        },
+                        new
+                        {
+                            Id = 149,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "FavoriteLists.Delete"
+                        },
+                        new
+                        {
+                            Id = 150,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "Notifications.Admin"
+                        },
+                        new
+                        {
+                            Id = 151,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "Notifications.Read"
+                        },
+                        new
+                        {
+                            Id = 152,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "Notifications.Write"
+                        },
+                        new
+                        {
+                            Id = 153,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "Notifications.Create"
+                        },
+                        new
+                        {
+                            Id = 154,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "Notifications.Update"
+                        },
+                        new
+                        {
+                            Id = 155,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "Notifications.Delete"
+                        },
+                        new
+                        {
+                            Id = 156,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "Notifications.Admin"
+                        },
+                        new
+                        {
+                            Id = 157,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "Notifications.Read"
+                        },
+                        new
+                        {
+                            Id = 158,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "Notifications.Write"
+                        },
+                        new
+                        {
+                            Id = 159,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "Notifications.Create"
+                        },
+                        new
+                        {
+                            Id = 160,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "Notifications.Update"
+                        },
+                        new
+                        {
+                            Id = 161,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "Notifications.Delete"
                         });
                 });
 
@@ -1573,6 +1766,38 @@ namespace Persistence.Migrations
                     b.HasIndex("BranchId");
 
                     b.ToTable("PaymentMethods", (string)null);
+                });
+
+            modelBuilder.Entity("Domain.Entities.Penalty", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<decimal>("AmountPenalty")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<DateTime>("CreatedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("DayDelay")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime?>("DeletedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("FirstDayPunishment")
+                        .HasColumnType("datetime2");
+
+                    b.Property<decimal>("TotalPenalty")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<DateTime?>("UpdatedDate")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Penalty");
                 });
 
             modelBuilder.Entity("Domain.Entities.Publisher", b =>
@@ -1822,12 +2047,12 @@ namespace Persistence.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("03f4f691-01cc-49bc-a3e1-9c0d967e7fb5"),
+                            Id = new Guid("0d229e20-4940-4e38-81af-b2c5902ae00f"),
                             AuthenticatorType = 0,
                             CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Email = "narch@kodlama.io",
-                            PasswordHash = new byte[] { 83, 211, 33, 42, 13, 236, 214, 69, 116, 151, 57, 251, 59, 174, 144, 254, 64, 137, 100, 40, 40, 70, 219, 112, 43, 168, 12, 0, 90, 31, 18, 244, 35, 159, 136, 161, 4, 200, 220, 56, 176, 136, 3, 58, 41, 105, 58, 162, 51, 82, 226, 225, 44, 139, 211, 186, 194, 128, 232, 178, 129, 81, 225, 249 },
-                            PasswordSalt = new byte[] { 55, 143, 89, 171, 248, 99, 17, 129, 154, 93, 98, 135, 199, 222, 139, 242, 41, 251, 248, 139, 26, 129, 37, 206, 145, 191, 224, 31, 77, 226, 120, 114, 95, 12, 249, 171, 128, 112, 73, 114, 89, 21, 43, 19, 12, 221, 237, 110, 222, 202, 18, 163, 42, 79, 48, 63, 223, 171, 176, 94, 3, 152, 124, 8, 63, 207, 199, 64, 219, 224, 135, 7, 234, 74, 249, 86, 36, 40, 108, 73, 122, 140, 213, 5, 128, 250, 80, 146, 223, 26, 68, 38, 47, 10, 231, 175, 71, 172, 219, 250, 206, 177, 247, 130, 155, 9, 164, 142, 227, 116, 69, 138, 35, 227, 164, 200, 174, 241, 98, 58, 126, 75, 108, 193, 28, 246, 146, 59 }
+                            PasswordHash = new byte[] { 63, 74, 244, 54, 122, 218, 237, 192, 16, 54, 95, 247, 103, 167, 248, 168, 211, 29, 30, 164, 192, 173, 138, 116, 179, 155, 152, 125, 180, 216, 39, 6, 98, 253, 49, 145, 209, 79, 9, 122, 212, 128, 174, 190, 138, 211, 237, 204, 253, 48, 231, 59, 230, 134, 31, 239, 197, 57, 227, 100, 63, 210, 125, 212 },
+                            PasswordSalt = new byte[] { 187, 72, 41, 235, 137, 172, 80, 77, 144, 11, 137, 62, 219, 241, 67, 166, 117, 220, 71, 192, 62, 49, 139, 124, 249, 165, 232, 110, 107, 43, 121, 68, 104, 234, 23, 111, 53, 150, 42, 172, 126, 45, 168, 202, 157, 127, 93, 127, 205, 48, 70, 185, 128, 158, 2, 201, 153, 97, 129, 174, 3, 160, 174, 231, 133, 66, 237, 104, 73, 95, 108, 23, 235, 213, 31, 132, 197, 12, 196, 43, 79, 111, 79, 43, 45, 217, 160, 252, 48, 124, 237, 4, 85, 88, 12, 182, 47, 172, 51, 120, 89, 180, 117, 195, 232, 0, 25, 109, 185, 175, 118, 2, 193, 153, 198, 71, 207, 122, 24, 24, 137, 132, 79, 9, 67, 12, 210, 223 }
                         });
                 });
 
@@ -1869,11 +2094,26 @@ namespace Persistence.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("d37f0a0a-4be4-4cf4-8d2a-b69914a6745f"),
+                            Id = new Guid("9ec486f6-4b82-410a-b03b-619f3dd301ec"),
                             CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             OperationClaimId = 1,
-                            UserId = new Guid("03f4f691-01cc-49bc-a3e1-9c0d967e7fb5")
+                            UserId = new Guid("0d229e20-4940-4e38-81af-b2c5902ae00f")
                         });
+                });
+
+            modelBuilder.Entity("FavoriteListMaterial", b =>
+                {
+                    b.Property<Guid>("FavoriteListsId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("MaterialsId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.HasKey("FavoriteListsId", "MaterialsId");
+
+                    b.HasIndex("MaterialsId");
+
+                    b.ToTable("FavoriteListMaterial");
                 });
 
             modelBuilder.Entity("LanguageMaterial", b =>
@@ -1919,6 +2159,21 @@ namespace Persistence.Migrations
                     b.HasIndex("TranslatorsId");
 
                     b.ToTable("MaterialTranslator");
+                });
+
+            modelBuilder.Entity("MemberNotification", b =>
+                {
+                    b.Property<Guid>("MembersId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("NotificationsId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.HasKey("MembersId", "NotificationsId");
+
+                    b.HasIndex("NotificationsId");
+
+                    b.ToTable("MemberNotification");
                 });
 
             modelBuilder.Entity("AddressMember", b =>
@@ -2003,6 +2258,17 @@ namespace Persistence.Migrations
                     b.Navigation("User");
                 });
 
+            modelBuilder.Entity("Domain.Entities.FavoriteList", b =>
+                {
+                    b.HasOne("Domain.Entities.Member", "Member")
+                        .WithMany("FavoriteLists")
+                        .HasForeignKey("MemberId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Member");
+                });
+
             modelBuilder.Entity("Domain.Entities.MaterialCopy", b =>
                 {
                     b.HasOne("Domain.Entities.Branch", "Branch")
@@ -2050,6 +2316,17 @@ namespace Persistence.Migrations
                         .IsRequired();
 
                     b.Navigation("District");
+                });
+
+            modelBuilder.Entity("Domain.Entities.Notification", b =>
+                {
+                    b.HasOne("Domain.Entities.Penalty", "Penalty")
+                        .WithOne("Notification")
+                        .HasForeignKey("Domain.Entities.Notification", "PenaltyId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Penalty");
                 });
 
             modelBuilder.Entity("Domain.Entities.OtpAuthenticator", b =>
@@ -2126,6 +2403,21 @@ namespace Persistence.Migrations
                     b.Navigation("User");
                 });
 
+            modelBuilder.Entity("FavoriteListMaterial", b =>
+                {
+                    b.HasOne("Domain.Entities.FavoriteList", null)
+                        .WithMany()
+                        .HasForeignKey("FavoriteListsId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Domain.Entities.Material", null)
+                        .WithMany()
+                        .HasForeignKey("MaterialsId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
             modelBuilder.Entity("LanguageMaterial", b =>
                 {
                     b.HasOne("Domain.Entities.Language", null)
@@ -2171,6 +2463,21 @@ namespace Persistence.Migrations
                         .IsRequired();
                 });
 
+            modelBuilder.Entity("MemberNotification", b =>
+                {
+                    b.HasOne("Domain.Entities.Member", null)
+                        .WithMany()
+                        .HasForeignKey("MembersId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Domain.Entities.Notification", null)
+                        .WithMany()
+                        .HasForeignKey("NotificationsId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
             modelBuilder.Entity("Domain.Entities.Address", b =>
                 {
                     b.Navigation("Branch");
@@ -2210,9 +2517,19 @@ namespace Persistence.Migrations
                     b.Navigation("MaterialCopies");
                 });
 
+            modelBuilder.Entity("Domain.Entities.Member", b =>
+                {
+                    b.Navigation("FavoriteLists");
+                });
+
             modelBuilder.Entity("Domain.Entities.Neighborhood", b =>
                 {
                     b.Navigation("Streets");
+                });
+
+            modelBuilder.Entity("Domain.Entities.Penalty", b =>
+                {
+                    b.Navigation("Notification");
                 });
 
             modelBuilder.Entity("Domain.Entities.Street", b =>

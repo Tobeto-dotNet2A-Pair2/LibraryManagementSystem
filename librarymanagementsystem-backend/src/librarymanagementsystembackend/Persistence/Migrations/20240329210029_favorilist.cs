@@ -8,11 +8,28 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace Persistence.Migrations
 {
     /// <inheritdoc />
-    public partial class initial : Migration
+    public partial class favorilist : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.CreateTable(
+                name: "Authors",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    FirstName = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    LastName = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    AuthorCountry = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    UpdatedDate = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    DeletedDate = table.Column<DateTime>(type: "datetime2", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Authors", x => x.Id);
+                });
+
             migrationBuilder.CreateTable(
                 name: "Cities",
                 columns: table => new
@@ -26,6 +43,21 @@ namespace Persistence.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Cities", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Languages",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    LanguageName = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    UpdatedDate = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    DeletedDate = table.Column<DateTime>(type: "datetime2", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Languages", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -115,6 +147,22 @@ namespace Persistence.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Translators",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    TranslatorName = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Description = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    UpdatedDate = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    DeletedDate = table.Column<DateTime>(type: "datetime2", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Translators", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Users",
                 columns: table => new
                 {
@@ -155,6 +203,54 @@ namespace Persistence.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "AuthorMaterial",
+                columns: table => new
+                {
+                    AuthorsId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    MaterialsId = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_AuthorMaterial", x => new { x.AuthorsId, x.MaterialsId });
+                    table.ForeignKey(
+                        name: "FK_AuthorMaterial_Authors_AuthorsId",
+                        column: x => x.AuthorsId,
+                        principalTable: "Authors",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_AuthorMaterial_Materials_MaterialsId",
+                        column: x => x.MaterialsId,
+                        principalTable: "Materials",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "LanguageMaterial",
+                columns: table => new
+                {
+                    LanguagesId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    MaterialsId = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_LanguageMaterial", x => new { x.LanguagesId, x.MaterialsId });
+                    table.ForeignKey(
+                        name: "FK_LanguageMaterial_Languages_LanguagesId",
+                        column: x => x.LanguagesId,
+                        principalTable: "Languages",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_LanguageMaterial_Materials_MaterialsId",
+                        column: x => x.MaterialsId,
+                        principalTable: "Materials",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "MaterialPublisher",
                 columns: table => new
                 {
@@ -174,6 +270,30 @@ namespace Persistence.Migrations
                         name: "FK_MaterialPublisher_Publishers_PublishersId",
                         column: x => x.PublishersId,
                         principalTable: "Publishers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "MaterialTranslator",
+                columns: table => new
+                {
+                    MaterialsId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    TranslatorsId = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_MaterialTranslator", x => new { x.MaterialsId, x.TranslatorsId });
+                    table.ForeignKey(
+                        name: "FK_MaterialTranslator_Materials_MaterialsId",
+                        column: x => x.MaterialsId,
+                        principalTable: "Materials",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_MaterialTranslator_Translators_TranslatorsId",
+                        column: x => x.TranslatorsId,
+                        principalTable: "Translators",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -335,6 +455,28 @@ namespace Persistence.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "FavoriteLists",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    ListName = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    MemberId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    UpdatedDate = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    DeletedDate = table.Column<DateTime>(type: "datetime2", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_FavoriteLists", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_FavoriteLists_Members_MemberId",
+                        column: x => x.MemberId,
+                        principalTable: "Members",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Streets",
                 columns: table => new
                 {
@@ -352,6 +494,30 @@ namespace Persistence.Migrations
                         name: "FK_Streets_Neighborhoods_NeighborhoodId",
                         column: x => x.NeighborhoodId,
                         principalTable: "Neighborhoods",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "FavoriteListMaterial",
+                columns: table => new
+                {
+                    FavoriteListsId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    MaterialsId = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_FavoriteListMaterial", x => new { x.FavoriteListsId, x.MaterialsId });
+                    table.ForeignKey(
+                        name: "FK_FavoriteListMaterial_FavoriteLists_FavoriteListsId",
+                        column: x => x.FavoriteListsId,
+                        principalTable: "FavoriteLists",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_FavoriteListMaterial_Materials_MaterialsId",
+                        column: x => x.MaterialsId,
+                        principalTable: "Materials",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -645,18 +811,42 @@ namespace Persistence.Migrations
                     { 122, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "Publishers.Write", null },
                     { 123, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "Publishers.Create", null },
                     { 124, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "Publishers.Update", null },
-                    { 125, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "Publishers.Delete", null }
+                    { 125, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "Publishers.Delete", null },
+                    { 126, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "Languages.Admin", null },
+                    { 127, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "Languages.Read", null },
+                    { 128, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "Languages.Write", null },
+                    { 129, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "Languages.Create", null },
+                    { 130, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "Languages.Update", null },
+                    { 131, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "Languages.Delete", null },
+                    { 132, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "Authors.Admin", null },
+                    { 133, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "Authors.Read", null },
+                    { 134, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "Authors.Write", null },
+                    { 135, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "Authors.Create", null },
+                    { 136, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "Authors.Update", null },
+                    { 137, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "Authors.Delete", null },
+                    { 138, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "Translators.Admin", null },
+                    { 139, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "Translators.Read", null },
+                    { 140, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "Translators.Write", null },
+                    { 141, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "Translators.Create", null },
+                    { 142, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "Translators.Update", null },
+                    { 143, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "Translators.Delete", null },
+                    { 144, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "FavoriteLists.Admin", null },
+                    { 145, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "FavoriteLists.Read", null },
+                    { 146, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "FavoriteLists.Write", null },
+                    { 147, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "FavoriteLists.Create", null },
+                    { 148, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "FavoriteLists.Update", null },
+                    { 149, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "FavoriteLists.Delete", null }
                 });
 
             migrationBuilder.InsertData(
                 table: "Users",
                 columns: new[] { "Id", "AuthenticatorType", "CreatedDate", "DeletedDate", "Email", "PasswordHash", "PasswordSalt", "UpdatedDate" },
-                values: new object[] { new Guid("3c4545c0-efe3-4783-b9cb-be97447facbe"), 0, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "narch@kodlama.io", new byte[] { 29, 14, 162, 124, 239, 73, 61, 164, 158, 65, 16, 254, 209, 62, 201, 237, 182, 4, 196, 103, 101, 169, 165, 183, 96, 135, 230, 210, 64, 116, 159, 252, 193, 171, 89, 214, 143, 183, 230, 41, 201, 218, 21, 169, 128, 126, 57, 232, 7, 53, 16, 58, 13, 70, 3, 17, 100, 110, 227, 156, 131, 24, 92, 17 }, new byte[] { 69, 158, 114, 235, 228, 106, 161, 79, 133, 254, 243, 133, 81, 174, 226, 77, 85, 131, 62, 132, 136, 152, 108, 181, 246, 113, 229, 12, 132, 33, 176, 65, 19, 118, 173, 18, 124, 219, 87, 45, 63, 67, 241, 183, 26, 148, 17, 118, 206, 242, 161, 135, 214, 93, 169, 11, 183, 168, 165, 58, 0, 83, 197, 62, 38, 201, 124, 177, 190, 82, 102, 113, 48, 42, 53, 140, 220, 96, 18, 99, 242, 90, 18, 48, 105, 129, 134, 215, 22, 73, 6, 210, 105, 42, 7, 162, 188, 123, 6, 116, 51, 228, 204, 24, 81, 167, 196, 232, 32, 144, 7, 204, 181, 226, 172, 85, 82, 169, 233, 108, 168, 77, 193, 222, 252, 255, 227, 233 }, null });
+                values: new object[] { new Guid("451f4ea4-91a1-49ff-a584-d4fe5e2ebda9"), 0, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "narch@kodlama.io", new byte[] { 32, 254, 239, 85, 18, 170, 228, 160, 162, 57, 138, 82, 210, 225, 54, 149, 154, 6, 46, 40, 104, 48, 174, 129, 175, 39, 130, 76, 135, 158, 145, 241, 117, 146, 243, 216, 139, 254, 176, 134, 225, 210, 55, 232, 94, 32, 196, 205, 204, 102, 213, 187, 10, 157, 136, 246, 0, 82, 56, 184, 155, 102, 169, 30 }, new byte[] { 69, 55, 101, 93, 7, 118, 82, 211, 1, 147, 108, 79, 11, 86, 250, 106, 73, 182, 229, 176, 70, 146, 95, 114, 210, 205, 204, 95, 130, 144, 21, 232, 186, 64, 129, 107, 252, 242, 126, 74, 213, 53, 27, 124, 47, 169, 16, 252, 222, 214, 185, 166, 170, 43, 206, 40, 114, 64, 203, 172, 148, 177, 16, 43, 95, 226, 34, 53, 21, 106, 39, 129, 220, 92, 5, 50, 245, 235, 123, 192, 198, 174, 130, 253, 143, 37, 60, 218, 237, 106, 21, 129, 104, 130, 61, 245, 49, 233, 27, 20, 42, 167, 214, 153, 55, 178, 1, 139, 105, 109, 187, 157, 237, 159, 148, 204, 100, 216, 111, 151, 114, 122, 103, 17, 120, 105, 215, 113 }, null });
 
             migrationBuilder.InsertData(
                 table: "UserOperationClaims",
                 columns: new[] { "Id", "CreatedDate", "DeletedDate", "OperationClaimId", "UpdatedDate", "UserId" },
-                values: new object[] { new Guid("cff5c4c9-eda7-4e93-bc78-0e3c1c847d2e"), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, 1, null, new Guid("3c4545c0-efe3-4783-b9cb-be97447facbe") });
+                values: new object[] { new Guid("73124fe0-3e9c-4086-ba8d-dcf8c9197e8a"), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, 1, null, new Guid("451f4ea4-91a1-49ff-a584-d4fe5e2ebda9") });
 
             migrationBuilder.CreateIndex(
                 name: "IX_Addresses_StreetId",
@@ -667,6 +857,11 @@ namespace Persistence.Migrations
                 name: "IX_AddressMember_MembersId",
                 table: "AddressMember",
                 column: "MembersId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_AuthorMaterial_MaterialsId",
+                table: "AuthorMaterial",
+                column: "MaterialsId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Branches_AddressId",
@@ -690,6 +885,21 @@ namespace Persistence.Migrations
                 column: "UserId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_FavoriteListMaterial_MaterialsId",
+                table: "FavoriteListMaterial",
+                column: "MaterialsId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_FavoriteLists_MemberId",
+                table: "FavoriteLists",
+                column: "MemberId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_LanguageMaterial_MaterialsId",
+                table: "LanguageMaterial",
+                column: "MaterialsId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_MaterialCopies_BranchId",
                 table: "MaterialCopies",
                 column: "BranchId");
@@ -709,6 +919,11 @@ namespace Persistence.Migrations
                 name: "IX_MaterialPublisher_PublishersId",
                 table: "MaterialPublisher",
                 column: "PublishersId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_MaterialTranslator_TranslatorsId",
+                table: "MaterialTranslator",
+                column: "TranslatorsId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Members_UserId",
@@ -763,13 +978,25 @@ namespace Persistence.Migrations
                 name: "AddressMember");
 
             migrationBuilder.DropTable(
+                name: "AuthorMaterial");
+
+            migrationBuilder.DropTable(
                 name: "EmailAuthenticators");
+
+            migrationBuilder.DropTable(
+                name: "FavoriteListMaterial");
+
+            migrationBuilder.DropTable(
+                name: "LanguageMaterial");
 
             migrationBuilder.DropTable(
                 name: "MaterialCopies");
 
             migrationBuilder.DropTable(
                 name: "MaterialPublisher");
+
+            migrationBuilder.DropTable(
+                name: "MaterialTranslator");
 
             migrationBuilder.DropTable(
                 name: "OtpAuthenticators");
@@ -787,16 +1014,25 @@ namespace Persistence.Migrations
                 name: "UserOperationClaims");
 
             migrationBuilder.DropTable(
-                name: "Members");
+                name: "Authors");
+
+            migrationBuilder.DropTable(
+                name: "FavoriteLists");
+
+            migrationBuilder.DropTable(
+                name: "Languages");
 
             migrationBuilder.DropTable(
                 name: "Locations");
 
             migrationBuilder.DropTable(
+                name: "Publishers");
+
+            migrationBuilder.DropTable(
                 name: "Materials");
 
             migrationBuilder.DropTable(
-                name: "Publishers");
+                name: "Translators");
 
             migrationBuilder.DropTable(
                 name: "Branches");
@@ -805,13 +1041,16 @@ namespace Persistence.Migrations
                 name: "OperationClaims");
 
             migrationBuilder.DropTable(
-                name: "Users");
+                name: "Members");
 
             migrationBuilder.DropTable(
                 name: "Addresses");
 
             migrationBuilder.DropTable(
                 name: "Libraries");
+
+            migrationBuilder.DropTable(
+                name: "Users");
 
             migrationBuilder.DropTable(
                 name: "Streets");
