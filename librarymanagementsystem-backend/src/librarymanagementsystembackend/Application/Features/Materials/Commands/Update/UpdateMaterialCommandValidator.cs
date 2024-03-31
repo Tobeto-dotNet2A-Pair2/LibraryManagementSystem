@@ -10,7 +10,7 @@ public class UpdateMaterialCommandValidator : AbstractValidator<UpdateMaterialCo
         RuleFor(c => c.Name).NotEmpty();
         RuleFor(c => c.Description).NotEmpty();
         RuleFor(c => c.PublicationDate).NotEmpty();
-        RuleFor(c => c.Punishment).NotEmpty();
+        RuleFor(c => c.PunishmentAmount).NotEmpty();
         RuleFor(c => c.IsBorrowable).NotEmpty();
         RuleFor(c => c.BorrowDay).NotEmpty();
     }

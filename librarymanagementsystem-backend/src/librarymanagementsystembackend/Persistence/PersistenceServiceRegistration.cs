@@ -46,6 +46,7 @@ public static class PersistenceServiceRegistration
         services.AddScoped<INotificationRepository, NotificationRepository>();
         services.AddScoped<INotificationRepository, NotificationRepository>();
         services.AddScoped<IBorrowedMaterialRepository, BorrowedMaterialRepository>();
+        services.AddScoped<IMaterialRepository, MaterialRepository>();
         return services;
     }
 }

@@ -103,6 +103,7 @@ public static class ApplicationServiceRegistration
         services.AddScoped<INotificationService, NotificationManager>();
         services.AddScoped<INotificationService, NotificationManager>();
         services.AddScoped<IBorrowedMaterialService, BorrowedMaterialManager>();
+        services.AddScoped<IMaterialService, MaterialManager>();
         return services;
     }
 
