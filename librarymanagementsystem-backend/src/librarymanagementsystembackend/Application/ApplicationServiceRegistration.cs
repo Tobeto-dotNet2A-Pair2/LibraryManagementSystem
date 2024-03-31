@@ -105,6 +105,7 @@ public static class ApplicationServiceRegistration
         services.AddScoped<IBorrowedMaterialService, BorrowedMaterialManager>();
         services.AddScoped<IMaterialService, MaterialManager>();
         services.AddScoped<IMaterialCopyService, MaterialCopyManager>();
+        services.AddScoped<IMemberService, MemberManager>();
         return services;
     }
 
