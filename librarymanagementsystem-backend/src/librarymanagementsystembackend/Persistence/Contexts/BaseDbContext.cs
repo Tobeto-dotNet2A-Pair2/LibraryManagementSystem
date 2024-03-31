@@ -33,7 +33,6 @@ public class BaseDbContext : DbContext
     public DbSet<Translator> Translators { get; set; }
     public DbSet<FavoriteList> FavoriteLists { get; set; }
     public DbSet<Notification> Notifications { get; set; }
-    public DbSet<Penalty> Penalties { get; set; }
 
     public BaseDbContext(DbContextOptions dbContextOptions, IConfiguration configuration)
         : base(dbContextOptions)
