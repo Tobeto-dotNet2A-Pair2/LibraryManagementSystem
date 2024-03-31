@@ -15,9 +15,7 @@ namespace Application.Features.MaterialCopies.Commands.Create;
 public class CreateMaterialCopyCommand : IRequest<CreatedMaterialCopyResponse>, ISecuredRequest, ICacheRemoverRequest, ILoggableRequest, ITransactionalRequest
 {
     public string Status { get; set; }
-    public DateTime DateReceipt { get; set; }
     public Guid MaterialId { get; set; }
-    public Guid BorrowMaterialId { get; set; }
     public Guid BranchId { get; set; }
     public Guid LocationId { get; set; }
 

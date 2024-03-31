@@ -15,9 +15,10 @@ namespace Application.Features.Penalties.Commands.Update;
 public class UpdatePenaltyCommand : IRequest<UpdatedPenaltyResponse>, ISecuredRequest, ICacheRemoverRequest, ILoggableRequest, ITransactionalRequest
 {
     public Guid Id { get; set; }
+    public decimal AmountPenalty { get; set; }
     public int DayDelay { get; set; }
-    public decimal TotalMaterialPenalty { get; set; }
-    public Guid BorrowMaterialId { get; set; }
+    public DateTime FirstDayPunishment { get; set; }
+    public decimal TotalPenalty { get; set; }
 
     public string[] Roles => [Admin, Write, PenaltiesOperationClaims.Update];
 
