@@ -471,6 +471,20 @@ public class OperationClaimConfiguration : IEntityTypeConfiguration<OperationCla
         );
         #endregion
         
+        
+        #region MaterialCopies
+        featureOperationClaims.AddRange(
+            [
+                new() { Id = ++lastId, Name = MaterialCopiesOperationClaims.Admin },
+                new() { Id = ++lastId, Name = MaterialCopiesOperationClaims.Read },
+                new() { Id = ++lastId, Name = MaterialCopiesOperationClaims.Write },
+                new() { Id = ++lastId, Name = MaterialCopiesOperationClaims.Create },
+                new() { Id = ++lastId, Name = MaterialCopiesOperationClaims.Update },
+                new() { Id = ++lastId, Name = MaterialCopiesOperationClaims.Delete },
+            ]
+        );
+        #endregion
+        
         return featureOperationClaims;
     }
 #pragma warning restore S1854 // Unused assignments should be removed

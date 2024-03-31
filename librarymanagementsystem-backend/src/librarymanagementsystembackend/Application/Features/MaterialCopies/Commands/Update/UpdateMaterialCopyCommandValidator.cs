@@ -7,6 +7,7 @@ public class UpdateMaterialCopyCommandValidator : AbstractValidator<UpdateMateri
     public UpdateMaterialCopyCommandValidator()
     {
         RuleFor(c => c.Id).NotEmpty();
+        RuleFor(c => c.DateReceipt).NotEmpty();
         RuleFor(c => c.Status).NotEmpty();
         RuleFor(c => c.MaterialId).NotEmpty();
         RuleFor(c => c.BranchId).NotEmpty();

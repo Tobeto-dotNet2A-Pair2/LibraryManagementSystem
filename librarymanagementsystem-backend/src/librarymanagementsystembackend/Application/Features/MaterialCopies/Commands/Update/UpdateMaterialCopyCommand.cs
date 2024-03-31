@@ -15,6 +15,7 @@ namespace Application.Features.MaterialCopies.Commands.Update;
 public class UpdateMaterialCopyCommand : IRequest<UpdatedMaterialCopyResponse>, ISecuredRequest, ICacheRemoverRequest, ILoggableRequest, ITransactionalRequest
 {
     public Guid Id { get; set; }
+    public DateTime DateReceipt { get; set; }
     public string Status { get; set; }
     public Guid MaterialId { get; set; }
     public Guid BranchId { get; set; }
