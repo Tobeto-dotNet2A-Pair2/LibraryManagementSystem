@@ -38,6 +38,7 @@ using Application.Services.Authors;
 using Application.Services.Translators;
 using Application.Services.FavoriteLists;
 using Application.Services.Notifications;
+using Application.Services.BorrowedMaterials;
 
 namespace Application;
 
@@ -101,6 +102,7 @@ public static class ApplicationServiceRegistration
         services.AddScoped<IFavoriteListService, FavoriteListManager>();
         services.AddScoped<INotificationService, NotificationManager>();
         services.AddScoped<INotificationService, NotificationManager>();
+        services.AddScoped<IBorrowedMaterialService, BorrowedMaterialManager>();
         return services;
     }
 

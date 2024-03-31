@@ -25,6 +25,7 @@ using Application.Features.Authors.Constants;
 using Application.Features.Translators.Constants;
 using Application.Features.FavoriteLists.Constants;
 using Application.Features.Notifications.Constants;
+using Application.Features.BorrowedMaterials.Constants;
 
 
 
@@ -438,6 +439,20 @@ public class OperationClaimConfiguration : IEntityTypeConfiguration<OperationCla
                 new() { Id = ++lastId, Name = NotificationsOperationClaims.Create },
                 new() { Id = ++lastId, Name = NotificationsOperationClaims.Update },
                 new() { Id = ++lastId, Name = NotificationsOperationClaims.Delete },
+            ]
+        );
+        #endregion
+        
+        
+        #region BorrowedMaterials
+        featureOperationClaims.AddRange(
+            [
+                new() { Id = ++lastId, Name = BorrowedMaterialsOperationClaims.Admin },
+                new() { Id = ++lastId, Name = BorrowedMaterialsOperationClaims.Read },
+                new() { Id = ++lastId, Name = BorrowedMaterialsOperationClaims.Write },
+                new() { Id = ++lastId, Name = BorrowedMaterialsOperationClaims.Create },
+                new() { Id = ++lastId, Name = BorrowedMaterialsOperationClaims.Update },
+                new() { Id = ++lastId, Name = BorrowedMaterialsOperationClaims.Delete },
             ]
         );
         #endregion
