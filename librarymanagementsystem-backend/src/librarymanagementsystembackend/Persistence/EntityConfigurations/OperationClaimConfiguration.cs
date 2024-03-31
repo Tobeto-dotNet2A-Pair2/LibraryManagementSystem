@@ -26,6 +26,7 @@ using Application.Features.Translators.Constants;
 using Application.Features.FavoriteLists.Constants;
 using Application.Features.Notifications.Constants;
 using Application.Features.BorrowedMaterials.Constants;
+using Application.Features.Penalties.Constants;
 
 
 
@@ -495,6 +496,20 @@ public class OperationClaimConfiguration : IEntityTypeConfiguration<OperationCla
                 new() { Id = ++lastId, Name = MembersOperationClaims.Create },
                 new() { Id = ++lastId, Name = MembersOperationClaims.Update },
                 new() { Id = ++lastId, Name = MembersOperationClaims.Delete },
+            ]
+        );
+        #endregion
+        
+        
+        #region Penalties
+        featureOperationClaims.AddRange(
+            [
+                new() { Id = ++lastId, Name = PenaltiesOperationClaims.Admin },
+                new() { Id = ++lastId, Name = PenaltiesOperationClaims.Read },
+                new() { Id = ++lastId, Name = PenaltiesOperationClaims.Write },
+                new() { Id = ++lastId, Name = PenaltiesOperationClaims.Create },
+                new() { Id = ++lastId, Name = PenaltiesOperationClaims.Update },
+                new() { Id = ++lastId, Name = PenaltiesOperationClaims.Delete },
             ]
         );
         #endregion
