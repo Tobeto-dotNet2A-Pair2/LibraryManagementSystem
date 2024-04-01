@@ -17,8 +17,8 @@ public class StreetConfiguration : IEntityTypeConfiguration<Street>
         builder.Property(s => s.UpdatedDate).HasColumnName("UpdatedDate");
         builder.Property(s => s.DeletedDate).HasColumnName("DeletedDate");
 
-        builder.HasOne(s => s.Neighborhood);
         builder.HasMany(s => s.Addresses);
+        builder.HasOne(s => s.Neighborhood);
 
         builder.HasQueryFilter(s => !s.DeletedDate.HasValue);
     }
