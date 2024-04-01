@@ -17,9 +17,9 @@ public class NeighborhoodConfiguration : IEntityTypeConfiguration<Neighborhood>
         builder.Property(n => n.UpdatedDate).HasColumnName("UpdatedDate");
         builder.Property(n => n.DeletedDate).HasColumnName("DeletedDate");
 
-        builder.HasOne(n => n.District);
-        builder.HasMany(n => n.Streets);
 
+        builder.HasMany(n => n.Streets);
+        builder.HasOne(n => n.District);
         builder.HasQueryFilter(n => !n.DeletedDate.HasValue);
     }
 }

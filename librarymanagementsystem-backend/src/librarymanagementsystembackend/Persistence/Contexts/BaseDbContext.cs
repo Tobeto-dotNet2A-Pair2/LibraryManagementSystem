@@ -24,6 +24,20 @@ public class BaseDbContext : DbContext
     public DbSet<Library> Libraries { get; set; }
     public DbSet<PaymentMethod> PaymentMethods { get; set; }
     public DbSet<SocialMediaAccount> SocialMediaAccounts { get; set; }
+    public DbSet<MaterialCopy> MaterialCopies { get; set; }
+    public DbSet<Location> Locations { get; set; }
+    public DbSet<Material> Materials { get; set; }
+    public DbSet<Publisher> Publishers { get; set; }
+    public DbSet<Language> Languages { get; set; }
+    public DbSet<Author> Authors { get; set; }
+    public DbSet<Translator> Translators { get; set; }
+    public DbSet<FavoriteList> FavoriteLists { get; set; }
+    public DbSet<Notification> Notifications { get; set; }
+    public DbSet<BorrowedMaterial> BorrowedMaterials { get; set; }
+    public DbSet<Penalty> Penalties { get; set; }
+    public DbSet<MaterialProperty> MaterialProperties { get; set; }
+    public DbSet<MaterialPropertyValue> MaterialPropertyValues { get; set; }
+    public DbSet<MaterialType> MaterialTypes { get; set; }
 
     public BaseDbContext(DbContextOptions dbContextOptions, IConfiguration configuration)
         : base(dbContextOptions)

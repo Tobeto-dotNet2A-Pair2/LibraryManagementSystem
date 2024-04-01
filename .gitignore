@@ -3,3 +3,5 @@
 ################################################################################
 
 /librarymanagementsystem-backend/src/librarymanagementsystembackend/WebAPI/appsettings.Development.json
+
+/persistence/migrations/

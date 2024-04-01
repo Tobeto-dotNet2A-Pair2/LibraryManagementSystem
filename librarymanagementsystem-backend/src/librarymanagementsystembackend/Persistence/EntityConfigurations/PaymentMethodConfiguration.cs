@@ -18,7 +18,6 @@ public class PaymentMethodConfiguration : IEntityTypeConfiguration<PaymentMethod
         builder.Property(pm => pm.DeletedDate).HasColumnName("DeletedDate");
 
         builder.HasOne(pm => pm.Branch);
-
         builder.HasQueryFilter(pm => !pm.DeletedDate.HasValue);
     }
 }
