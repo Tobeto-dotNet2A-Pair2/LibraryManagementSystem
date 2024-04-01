@@ -20,9 +20,10 @@ public class AddressConfiguration : IEntityTypeConfiguration<Address>
         builder.Property(a => a.DeletedDate).HasColumnName("DeletedDate");
 
         builder.HasOne(a => a.Street);
-    
 
-      
+        builder.HasMany(a => a.Members);
+
+
         builder.HasQueryFilter(a => !a.DeletedDate.HasValue);
     }
 }

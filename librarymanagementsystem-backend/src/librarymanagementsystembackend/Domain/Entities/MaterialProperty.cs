@@ -6,8 +6,8 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace Domain.Entities;
-public class City : Entity<Guid>
+public class MaterialProperty : Entity<Guid>
 {
-    public string CityName { get; set; }
-    public virtual ICollection<District>? Districts { get; set; } 
+    public string MaterialPropertyName { get; set; }
+    public virtual ICollection<MaterialPropertyValue>? MaterialPropertyValues { get; set; }
 }

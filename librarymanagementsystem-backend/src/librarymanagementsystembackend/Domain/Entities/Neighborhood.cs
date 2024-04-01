@@ -10,6 +10,6 @@ public class Neighborhood : Entity<Guid>
 {
     public string NeighborhoodName { get; set; }
     public Guid DistrictId { get; set; }
-    public virtual ICollection<Street> Streets { get; set; } = null;
+    public virtual ICollection<Street>? Streets { get; set; }
     public virtual District? District { get; set; }
 }

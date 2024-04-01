@@ -27,6 +27,7 @@ public class Member:Entity<Guid>
 
     public virtual ICollection<FavoriteList>? FavoriteLists { get; set;}
     public virtual ICollection<Notification>? Notifications { get; set; }
+    public virtual ICollection<BorrowedMaterial>? BorrowedMaterials { get; set; }
 
     //Role entity prop
 
