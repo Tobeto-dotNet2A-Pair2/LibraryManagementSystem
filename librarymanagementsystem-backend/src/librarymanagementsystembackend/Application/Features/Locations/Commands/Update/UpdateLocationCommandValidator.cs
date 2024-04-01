@@ -12,5 +12,6 @@ public class UpdateLocationCommandValidator : AbstractValidator<UpdateLocationCo
         RuleFor(c => c.Shelf).NotEmpty();
         RuleFor(c => c.Corridor).NotEmpty();
         RuleFor(c => c.Floor).NotEmpty();
+        RuleFor(c => c.FullLocationMap).NotEmpty();
     }
 }

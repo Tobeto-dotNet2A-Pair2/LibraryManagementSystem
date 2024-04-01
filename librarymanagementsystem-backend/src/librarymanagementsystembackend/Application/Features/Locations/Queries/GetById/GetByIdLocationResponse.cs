@@ -10,4 +10,5 @@ public class GetByIdLocationResponse : IResponse
     public string Shelf { get; set; }
     public string Corridor { get; set; }
     public string Floor { get; set; }
+    public string FullLocationMap { get; set; }
 }

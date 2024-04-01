@@ -16,7 +16,6 @@ public class TranslatorConfiguration : IEntityTypeConfiguration<Translator>
         builder.Property(t => t.CreatedDate).HasColumnName("CreatedDate").IsRequired();
         builder.Property(t => t.UpdatedDate).HasColumnName("UpdatedDate");
         builder.Property(t => t.DeletedDate).HasColumnName("DeletedDate");
-        builder.HasMany(t => t.Materials);
 
         builder.HasQueryFilter(t => !t.DeletedDate.HasValue);
     }

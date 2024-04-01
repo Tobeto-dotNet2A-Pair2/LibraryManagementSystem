@@ -40,6 +40,9 @@ using Application.Services.FavoriteLists;
 using Application.Services.Notifications;
 using Application.Services.BorrowedMaterials;
 using Application.Services.Penalties;
+using Application.Services.MaterialProperties;
+using Application.Services.MaterialPropertyValues;
+using Application.Services.MaterialTypes;
 
 namespace Application;
 
@@ -108,6 +111,30 @@ public static class ApplicationServiceRegistration
         services.AddScoped<IMaterialCopyService, MaterialCopyManager>();
         services.AddScoped<IMemberService, MemberManager>();
         services.AddScoped<IPenaltyService, PenaltyManager>();
+        services.AddScoped<IAddressService, AddressManager>();
+        services.AddScoped<IAuthorService, AuthorManager>();
+        services.AddScoped<IBorrowedMaterialService, BorrowedMaterialManager>();
+        services.AddScoped<IBranchService, BranchManager>();
+        services.AddScoped<ICityService, CityManager>();
+        services.AddScoped<IDistrictService, DistrictManager>();
+        services.AddScoped<IFavoriteListService, FavoriteListManager>();
+        services.AddScoped<ILanguageService, LanguageManager>();
+        services.AddScoped<ILibraryService, LibraryManager>();
+        services.AddScoped<ILocationService, LocationManager>();
+        services.AddScoped<IMaterialService, MaterialManager>();
+        services.AddScoped<IMaterialCopyService, MaterialCopyManager>();
+        services.AddScoped<IMaterialPropertyService, MaterialPropertyManager>();
+        services.AddScoped<IMaterialPropertyValueService, MaterialPropertyValueManager>();
+        services.AddScoped<IMaterialTypeService, MaterialTypeManager>();
+        services.AddScoped<IMemberService, MemberManager>();
+        services.AddScoped<INeighborhoodService, NeighborhoodManager>();
+        services.AddScoped<INotificationService, NotificationManager>();
+        services.AddScoped<IPaymentMethodService, PaymentMethodManager>();
+        services.AddScoped<IPenaltyService, PenaltyManager>();
+        services.AddScoped<IPublisherService, PublisherManager>();
+        services.AddScoped<ISocialMediaAccountService, SocialMediaAccountManager>();
+        services.AddScoped<IStreetService, StreetManager>();
+        services.AddScoped<ITranslatorService, TranslatorManager>();
         return services;
     }
 

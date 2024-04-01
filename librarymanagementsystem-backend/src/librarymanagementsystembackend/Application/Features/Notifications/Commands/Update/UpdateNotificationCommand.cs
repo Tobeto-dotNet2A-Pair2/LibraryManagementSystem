@@ -20,6 +20,7 @@ public class UpdateNotificationCommand : IRequest<UpdatedNotificationResponse>, 
     public string Message { get; set; }
     public string Status { get; set; }
     public Guid PenaltyId { get; set; }
+    public Guid BorrowedMaterialId { get; set; }
 
     public string[] Roles => [Admin, Write, NotificationsOperationClaims.Update];
 

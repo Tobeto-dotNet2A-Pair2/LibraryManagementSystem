@@ -11,5 +11,6 @@ public class CreateNotificationCommandValidator : AbstractValidator<CreateNotifi
         RuleFor(c => c.Message).NotEmpty();
         RuleFor(c => c.Status).NotEmpty();
         RuleFor(c => c.PenaltyId).NotEmpty();
+        RuleFor(c => c.BorrowedMaterialId).NotEmpty();
     }
 }

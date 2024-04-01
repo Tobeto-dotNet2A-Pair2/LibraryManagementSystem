@@ -11,5 +11,6 @@ public class CreateLocationCommandValidator : AbstractValidator<CreateLocationCo
         RuleFor(c => c.Shelf).NotEmpty();
         RuleFor(c => c.Corridor).NotEmpty();
         RuleFor(c => c.Floor).NotEmpty();
+        RuleFor(c => c.FullLocationMap).NotEmpty();
     }
 }

@@ -16,10 +16,11 @@ public class LocationConfiguration : IEntityTypeConfiguration<Location>
         builder.Property(l => l.Shelf).HasColumnName("Shelf");
         builder.Property(l => l.Corridor).HasColumnName("Corridor");
         builder.Property(l => l.Floor).HasColumnName("Floor");
+        builder.Property(l => l.FullLocationMap).HasColumnName("FullLocationMap");
         builder.Property(l => l.CreatedDate).HasColumnName("CreatedDate").IsRequired();
         builder.Property(l => l.UpdatedDate).HasColumnName("UpdatedDate");
         builder.Property(l => l.DeletedDate).HasColumnName("DeletedDate");
-        builder.HasOne(l => l.MaterialCopy);
+
         builder.HasQueryFilter(l => !l.DeletedDate.HasValue);
     }
 }

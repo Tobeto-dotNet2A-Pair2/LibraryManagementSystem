@@ -19,6 +19,7 @@ public class CreateNotificationCommand : IRequest<CreatedNotificationResponse>, 
     public string Message { get; set; }
     public string Status { get; set; }
     public Guid PenaltyId { get; set; }
+    public Guid BorrowedMaterialId { get; set; }
 
     public string[] Roles => [Admin, Write, NotificationsOperationClaims.Create];
 

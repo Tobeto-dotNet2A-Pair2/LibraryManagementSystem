@@ -50,6 +50,30 @@ public static class PersistenceServiceRegistration
         services.AddScoped<IMaterialCopyRepository, MaterialCopyRepository>();
         services.AddScoped<IMemberRepository, MemberRepository>();
         services.AddScoped<IPenaltyRepository, PenaltyRepository>();
+        services.AddScoped<IAddressRepository, AddressRepository>();
+        services.AddScoped<IAuthorRepository, AuthorRepository>();
+        services.AddScoped<IBorrowedMaterialRepository, BorrowedMaterialRepository>();
+        services.AddScoped<IBranchRepository, BranchRepository>();
+        services.AddScoped<ICityRepository, CityRepository>();
+        services.AddScoped<IDistrictRepository, DistrictRepository>();
+        services.AddScoped<IFavoriteListRepository, FavoriteListRepository>();
+        services.AddScoped<ILanguageRepository, LanguageRepository>();
+        services.AddScoped<ILibraryRepository, LibraryRepository>();
+        services.AddScoped<ILocationRepository, LocationRepository>();
+        services.AddScoped<IMaterialRepository, MaterialRepository>();
+        services.AddScoped<IMaterialCopyRepository, MaterialCopyRepository>();
+        services.AddScoped<IMaterialPropertyRepository, MaterialPropertyRepository>();
+        services.AddScoped<IMaterialPropertyValueRepository, MaterialPropertyValueRepository>();
+        services.AddScoped<IMaterialTypeRepository, MaterialTypeRepository>();
+        services.AddScoped<IMemberRepository, MemberRepository>();
+        services.AddScoped<INeighborhoodRepository, NeighborhoodRepository>();
+        services.AddScoped<INotificationRepository, NotificationRepository>();
+        services.AddScoped<IPaymentMethodRepository, PaymentMethodRepository>();
+        services.AddScoped<IPenaltyRepository, PenaltyRepository>();
+        services.AddScoped<IPublisherRepository, PublisherRepository>();
+        services.AddScoped<ISocialMediaAccountRepository, SocialMediaAccountRepository>();
+        services.AddScoped<IStreetRepository, StreetRepository>();
+        services.AddScoped<ITranslatorRepository, TranslatorRepository>();
         return services;
     }
 }

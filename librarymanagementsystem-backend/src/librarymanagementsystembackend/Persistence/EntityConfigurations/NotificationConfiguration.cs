@@ -16,13 +16,10 @@ public class NotificationConfiguration : IEntityTypeConfiguration<Notification>
         builder.Property(n => n.Message).HasColumnName("Message");
         builder.Property(n => n.Status).HasColumnName("Status");
         builder.Property(n => n.PenaltyId).HasColumnName("PenaltyId");
+        builder.Property(n => n.BorrowedMaterialId).HasColumnName("BorrowedMaterialId");
         builder.Property(n => n.CreatedDate).HasColumnName("CreatedDate").IsRequired();
         builder.Property(n => n.UpdatedDate).HasColumnName("UpdatedDate");
         builder.Property(n => n.DeletedDate).HasColumnName("DeletedDate");
-
-        builder.HasMany(n => n.Members);
-
-        builder.HasOne(n => n.Penalty);
 
         builder.HasQueryFilter(n => !n.DeletedDate.HasValue);
     }

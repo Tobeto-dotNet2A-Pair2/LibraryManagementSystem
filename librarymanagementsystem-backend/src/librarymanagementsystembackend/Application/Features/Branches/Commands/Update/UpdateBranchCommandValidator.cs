@@ -7,10 +7,11 @@ public class UpdateBranchCommandValidator : AbstractValidator<UpdateBranchComman
     public UpdateBranchCommandValidator()
     {
         RuleFor(c => c.Id).NotEmpty();
-        RuleFor(c => c.LibraryId).NotEmpty();
         RuleFor(c => c.BranchName).NotEmpty();
         RuleFor(c => c.WorkingHours).NotEmpty();
         RuleFor(c => c.Telephone).NotEmpty();
         RuleFor(c => c.WebSiteUrl).NotEmpty();
+        RuleFor(c => c.AddressId).NotEmpty();
+        RuleFor(c => c.LibraryId).NotEmpty();
     }
 }

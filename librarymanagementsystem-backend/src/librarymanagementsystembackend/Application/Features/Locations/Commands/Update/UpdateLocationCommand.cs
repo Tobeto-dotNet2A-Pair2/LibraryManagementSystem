@@ -20,6 +20,7 @@ public class UpdateLocationCommand : IRequest<UpdatedLocationResponse>, ISecured
     public string Shelf { get; set; }
     public string Corridor { get; set; }
     public string Floor { get; set; }
+    public string FullLocationMap { get; set; }
 
     public string[] Roles => [Admin, Write, LocationsOperationClaims.Update];
 

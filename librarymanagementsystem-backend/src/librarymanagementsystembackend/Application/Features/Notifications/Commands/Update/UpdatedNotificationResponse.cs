@@ -10,4 +10,5 @@ public class UpdatedNotificationResponse : IResponse
     public string Message { get; set; }
     public string Status { get; set; }
     public Guid PenaltyId { get; set; }
+    public Guid BorrowedMaterialId { get; set; }
 }

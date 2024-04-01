@@ -15,7 +15,7 @@ public class LanguageConfiguration : IEntityTypeConfiguration<Language>
         builder.Property(l => l.CreatedDate).HasColumnName("CreatedDate").IsRequired();
         builder.Property(l => l.UpdatedDate).HasColumnName("UpdatedDate");
         builder.Property(l => l.DeletedDate).HasColumnName("DeletedDate");
-        builder.HasMany(l => l.Materials);
+
         builder.HasQueryFilter(l => !l.DeletedDate.HasValue);
     }
 }

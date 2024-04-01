@@ -17,6 +17,8 @@ public class UpdatePenaltyCommand : IRequest<UpdatedPenaltyResponse>, ISecuredRe
     public Guid Id { get; set; }
     public decimal? TotalMaterialPenalty { get; set; }
     public int DayDelay { get; set; }
+    public Guid NotificationId { get; set; }
+    public Guid BorrowedMaterialId { get; set; }
 
     public string[] Roles => [Admin, Write, PenaltiesOperationClaims.Update];
 

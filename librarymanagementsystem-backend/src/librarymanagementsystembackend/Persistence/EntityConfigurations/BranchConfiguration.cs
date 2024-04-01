@@ -11,21 +11,15 @@ public class BranchConfiguration : IEntityTypeConfiguration<Branch>
         builder.ToTable("Branches").HasKey(b => b.Id);
 
         builder.Property(b => b.Id).HasColumnName("Id").IsRequired();
-        builder.Property(b => b.LibraryId).HasColumnName("LibraryId");
         builder.Property(b => b.BranchName).HasColumnName("BranchName");
         builder.Property(b => b.WorkingHours).HasColumnName("WorkingHours");
         builder.Property(b => b.Telephone).HasColumnName("Telephone");
         builder.Property(b => b.WebSiteUrl).HasColumnName("WebSiteUrl");
+        builder.Property(b => b.AddressId).HasColumnName("AddressId");
+        builder.Property(b => b.LibraryId).HasColumnName("LibraryId");
         builder.Property(b => b.CreatedDate).HasColumnName("CreatedDate").IsRequired();
         builder.Property(b => b.UpdatedDate).HasColumnName("UpdatedDate");
         builder.Property(b => b.DeletedDate).HasColumnName("DeletedDate");
-
-        builder.HasOne(m => m.Address);
-        builder.HasOne(b => b.Library);
-        builder.HasMany(b => b.SocialMediaAccounts);
-        builder.HasMany(b => b.PaymentMethods);
-        builder.HasMany(b => b.MaterialCopies);
-
 
         builder.HasQueryFilter(b => !b.DeletedDate.HasValue);
     }

@@ -35,6 +35,9 @@ public class BaseDbContext : DbContext
     public DbSet<Notification> Notifications { get; set; }
     public DbSet<BorrowedMaterial> BorrowedMaterials { get; set; }
     public DbSet<Penalty> Penalties { get; set; }
+    public DbSet<MaterialProperty> MaterialProperties { get; set; }
+    public DbSet<MaterialPropertyValue> MaterialPropertyValues { get; set; }
+    public DbSet<MaterialType> MaterialTypes { get; set; }
 
     public BaseDbContext(DbContextOptions dbContextOptions, IConfiguration configuration)
         : base(dbContextOptions)
