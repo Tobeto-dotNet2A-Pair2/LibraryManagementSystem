@@ -18,6 +18,8 @@ public class SocialMediaAccountConfiguration : IEntityTypeConfiguration<SocialMe
         builder.Property(sma => sma.UpdatedDate).HasColumnName("UpdatedDate");
         builder.Property(sma => sma.DeletedDate).HasColumnName("DeletedDate");
 
+
+        builder.HasOne(sma => sma.Branch);
         builder.HasQueryFilter(sma => !sma.DeletedDate.HasValue);
     }
 }

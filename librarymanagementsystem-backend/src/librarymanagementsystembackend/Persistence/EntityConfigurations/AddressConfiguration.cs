@@ -21,6 +21,7 @@ public class AddressConfiguration : IEntityTypeConfiguration<Address>
 
         builder.HasMany(a => a.Members);
         builder.HasOne(a => a.Street);
+        builder.HasOne(a => a.Branch);
         
 
 

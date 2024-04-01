@@ -135,6 +135,7 @@ public static class ApplicationServiceRegistration
         services.AddScoped<ISocialMediaAccountService, SocialMediaAccountManager>();
         services.AddScoped<IStreetService, StreetManager>();
         services.AddScoped<ITranslatorService, TranslatorManager>();
+        services.AddScoped<IBorrowedMaterialService, BorrowedMaterialManager>();
         return services;
     }
 

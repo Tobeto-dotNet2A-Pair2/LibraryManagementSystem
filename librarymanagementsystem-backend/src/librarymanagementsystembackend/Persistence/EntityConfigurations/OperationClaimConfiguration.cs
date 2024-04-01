@@ -853,6 +853,20 @@ public class OperationClaimConfiguration : IEntityTypeConfiguration<OperationCla
         );
         #endregion
         
+        
+        #region BorrowedMaterials
+        featureOperationClaims.AddRange(
+            [
+                new() { Id = ++lastId, Name = BorrowedMaterialsOperationClaims.Admin },
+                new() { Id = ++lastId, Name = BorrowedMaterialsOperationClaims.Read },
+                new() { Id = ++lastId, Name = BorrowedMaterialsOperationClaims.Write },
+                new() { Id = ++lastId, Name = BorrowedMaterialsOperationClaims.Create },
+                new() { Id = ++lastId, Name = BorrowedMaterialsOperationClaims.Update },
+                new() { Id = ++lastId, Name = BorrowedMaterialsOperationClaims.Delete },
+            ]
+        );
+        #endregion
+        
         return featureOperationClaims;
     }
 #pragma warning restore S1854 // Unused assignments should be removed

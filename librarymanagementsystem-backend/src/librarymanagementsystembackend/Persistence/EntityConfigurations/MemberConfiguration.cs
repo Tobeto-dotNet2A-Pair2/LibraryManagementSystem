@@ -30,7 +30,10 @@ public class MemberConfiguration : IEntityTypeConfiguration<Member>
 
         builder.HasOne(m => m.User);
         builder.HasMany(m => m.Addresses);
-
+        builder.HasMany(m => m.Notifications);
+        builder.HasMany(m => m.BorrowedMaterials);
+        builder.HasMany(m => m.FavoriteLists);
+      
         builder.HasQueryFilter(m => !m.DeletedDate.HasValue);
     }
 }
