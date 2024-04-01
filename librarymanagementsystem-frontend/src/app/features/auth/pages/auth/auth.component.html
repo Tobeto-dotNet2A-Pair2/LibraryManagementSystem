@@ -1,0 +1,8 @@
+<section class="section">
+    <div class="form-box">
+        <div class="form-value">
+           <app-login (registerClicked)="registerHandler()" [showLoginForm]="showLoginForm"/>
+          <app-register (loginClicked)="loginHandler()" [showRegisterForm]="showRegisterForm"/>            
+        </div>
+    </div>
+</section>
