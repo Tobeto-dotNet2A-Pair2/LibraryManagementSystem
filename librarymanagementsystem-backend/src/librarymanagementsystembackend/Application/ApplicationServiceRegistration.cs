@@ -1,4 +1,4 @@
-﻿using System.Reflection;
+using System.Reflection;
 using Application.Services.AuthenticatorService;
 using Application.Services.AuthService;
 using Application.Services.UsersService;
@@ -19,6 +19,16 @@ using NArchitecture.Core.Localization.Resource.Yaml.DependencyInjection;
 using NArchitecture.Core.Mailing;
 using NArchitecture.Core.Mailing.MailKit;
 using NArchitecture.Core.Security.DependencyInjection;
+using Application.Services.Members;
+using Application.Services.Addresses;
+using Application.Services.Streets;
+using Application.Services.Neighborhoods;
+using Application.Services.Districts;
+using Application.Services.Cities;
+using Application.Services.Branches;
+using Application.Services.Libraries;
+using Application.Services.PaymentMethods;
+using Application.Services.SocialMediaAccounts;
 
 namespace Application;
 
@@ -59,6 +69,16 @@ public static class ApplicationServiceRegistration
 
         services.AddSecurityServices<Guid, int>();
 
+        services.AddScoped<IMemberService, MemberManager>();
+        services.AddScoped<IAddressService, AddressManager>();
+        services.AddScoped<IStreetService, StreetManager>();
+        services.AddScoped<INeighborhoodService, NeighborhoodManager>();
+        services.AddScoped<IDistrictService, DistrictManager>();
+        services.AddScoped<ICityService, CityManager>();
+        services.AddScoped<IBranchService, BranchManager>();
+        services.AddScoped<ILibraryService, LibraryManager>();
+        services.AddScoped<IPaymentMethodService, PaymentMethodManager>();
+        services.AddScoped<ISocialMediaAccountService, SocialMediaAccountManager>();
         return services;
     }
 

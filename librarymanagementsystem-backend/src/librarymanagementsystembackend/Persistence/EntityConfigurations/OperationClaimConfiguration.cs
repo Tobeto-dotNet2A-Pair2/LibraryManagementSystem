@@ -6,6 +6,20 @@ using Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using NArchitecture.Core.Security.Constants;
+using Application.Features.Members.Constants;
+using Application.Features.Addresses.Constants;
+using Application.Features.Streets.Constants;
+using Application.Features.Neighborhoods.Constants;
+using Application.Features.Districts.Constants;
+using Application.Features.Cities.Constants;
+using Application.Features.Branches.Constants;
+using Application.Features.Libraries.Constants;
+using Application.Features.PaymentMethods.Constants;
+using Application.Features.SocialMediaAccounts.Constants;
+
+
+
+
 
 namespace Persistence.EntityConfigurations;
 
@@ -97,6 +111,146 @@ public class OperationClaimConfiguration : IEntityTypeConfiguration<OperationCla
         );
         #endregion
 
+        
+        #region Members
+        featureOperationClaims.AddRange(
+            [
+                new() { Id = ++lastId, Name = MembersOperationClaims.Admin },
+                new() { Id = ++lastId, Name = MembersOperationClaims.Read },
+                new() { Id = ++lastId, Name = MembersOperationClaims.Write },
+                new() { Id = ++lastId, Name = MembersOperationClaims.Create },
+                new() { Id = ++lastId, Name = MembersOperationClaims.Update },
+                new() { Id = ++lastId, Name = MembersOperationClaims.Delete },
+            ]
+        );
+        #endregion
+        
+        
+        #region Addresses
+        featureOperationClaims.AddRange(
+            [
+                new() { Id = ++lastId, Name = AddressesOperationClaims.Admin },
+                new() { Id = ++lastId, Name = AddressesOperationClaims.Read },
+                new() { Id = ++lastId, Name = AddressesOperationClaims.Write },
+                new() { Id = ++lastId, Name = AddressesOperationClaims.Create },
+                new() { Id = ++lastId, Name = AddressesOperationClaims.Update },
+                new() { Id = ++lastId, Name = AddressesOperationClaims.Delete },
+            ]
+        );
+        #endregion
+        
+        
+        #region Streets
+        featureOperationClaims.AddRange(
+            [
+                new() { Id = ++lastId, Name = StreetsOperationClaims.Admin },
+                new() { Id = ++lastId, Name = StreetsOperationClaims.Read },
+                new() { Id = ++lastId, Name = StreetsOperationClaims.Write },
+                new() { Id = ++lastId, Name = StreetsOperationClaims.Create },
+                new() { Id = ++lastId, Name = StreetsOperationClaims.Update },
+                new() { Id = ++lastId, Name = StreetsOperationClaims.Delete },
+            ]
+        );
+        #endregion
+        
+        
+        #region Neighborhoods
+        featureOperationClaims.AddRange(
+            [
+                new() { Id = ++lastId, Name = NeighborhoodsOperationClaims.Admin },
+                new() { Id = ++lastId, Name = NeighborhoodsOperationClaims.Read },
+                new() { Id = ++lastId, Name = NeighborhoodsOperationClaims.Write },
+                new() { Id = ++lastId, Name = NeighborhoodsOperationClaims.Create },
+                new() { Id = ++lastId, Name = NeighborhoodsOperationClaims.Update },
+                new() { Id = ++lastId, Name = NeighborhoodsOperationClaims.Delete },
+            ]
+        );
+        #endregion
+        
+        
+        #region Districts
+        featureOperationClaims.AddRange(
+            [
+                new() { Id = ++lastId, Name = DistrictsOperationClaims.Admin },
+                new() { Id = ++lastId, Name = DistrictsOperationClaims.Read },
+                new() { Id = ++lastId, Name = DistrictsOperationClaims.Write },
+                new() { Id = ++lastId, Name = DistrictsOperationClaims.Create },
+                new() { Id = ++lastId, Name = DistrictsOperationClaims.Update },
+                new() { Id = ++lastId, Name = DistrictsOperationClaims.Delete },
+            ]
+        );
+        #endregion
+        
+        
+        #region Cities
+        featureOperationClaims.AddRange(
+            [
+                new() { Id = ++lastId, Name = CitiesOperationClaims.Admin },
+                new() { Id = ++lastId, Name = CitiesOperationClaims.Read },
+                new() { Id = ++lastId, Name = CitiesOperationClaims.Write },
+                new() { Id = ++lastId, Name = CitiesOperationClaims.Create },
+                new() { Id = ++lastId, Name = CitiesOperationClaims.Update },
+                new() { Id = ++lastId, Name = CitiesOperationClaims.Delete },
+            ]
+        );
+        #endregion
+        
+        
+        #region Branches
+        featureOperationClaims.AddRange(
+            [
+                new() { Id = ++lastId, Name = BranchesOperationClaims.Admin },
+                new() { Id = ++lastId, Name = BranchesOperationClaims.Read },
+                new() { Id = ++lastId, Name = BranchesOperationClaims.Write },
+                new() { Id = ++lastId, Name = BranchesOperationClaims.Create },
+                new() { Id = ++lastId, Name = BranchesOperationClaims.Update },
+                new() { Id = ++lastId, Name = BranchesOperationClaims.Delete },
+            ]
+        );
+        #endregion
+        
+        
+        #region Libraries
+        featureOperationClaims.AddRange(
+            [
+                new() { Id = ++lastId, Name = LibrariesOperationClaims.Admin },
+                new() { Id = ++lastId, Name = LibrariesOperationClaims.Read },
+                new() { Id = ++lastId, Name = LibrariesOperationClaims.Write },
+                new() { Id = ++lastId, Name = LibrariesOperationClaims.Create },
+                new() { Id = ++lastId, Name = LibrariesOperationClaims.Update },
+                new() { Id = ++lastId, Name = LibrariesOperationClaims.Delete },
+            ]
+        );
+        #endregion
+        
+        
+        #region PaymentMethods
+        featureOperationClaims.AddRange(
+            [
+                new() { Id = ++lastId, Name = PaymentMethodsOperationClaims.Admin },
+                new() { Id = ++lastId, Name = PaymentMethodsOperationClaims.Read },
+                new() { Id = ++lastId, Name = PaymentMethodsOperationClaims.Write },
+                new() { Id = ++lastId, Name = PaymentMethodsOperationClaims.Create },
+                new() { Id = ++lastId, Name = PaymentMethodsOperationClaims.Update },
+                new() { Id = ++lastId, Name = PaymentMethodsOperationClaims.Delete },
+            ]
+        );
+        #endregion
+        
+        
+        #region SocialMediaAccounts
+        featureOperationClaims.AddRange(
+            [
+                new() { Id = ++lastId, Name = SocialMediaAccountsOperationClaims.Admin },
+                new() { Id = ++lastId, Name = SocialMediaAccountsOperationClaims.Read },
+                new() { Id = ++lastId, Name = SocialMediaAccountsOperationClaims.Write },
+                new() { Id = ++lastId, Name = SocialMediaAccountsOperationClaims.Create },
+                new() { Id = ++lastId, Name = SocialMediaAccountsOperationClaims.Update },
+                new() { Id = ++lastId, Name = SocialMediaAccountsOperationClaims.Delete },
+            ]
+        );
+        #endregion
+        
         return featureOperationClaims;
     }
 #pragma warning restore S1854 // Unused assignments should be removed
