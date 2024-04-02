@@ -43,6 +43,7 @@ using Application.Services.Penalties;
 using Application.Services.MaterialProperties;
 using Application.Services.MaterialPropertyValues;
 using Application.Services.MaterialTypes;
+using Application.Services.MemberContacts;
 
 namespace Application;
 
@@ -136,6 +137,11 @@ public static class ApplicationServiceRegistration
         services.AddScoped<IStreetService, StreetManager>();
         services.AddScoped<ITranslatorService, TranslatorManager>();
         services.AddScoped<IBorrowedMaterialService, BorrowedMaterialManager>();
+        services.AddScoped<IBorrowedMaterialService, BorrowedMaterialManager>();
+        services.AddScoped<IMaterialCopyService, MaterialCopyManager>();
+        services.AddScoped<IMemberService, MemberManager>();
+        services.AddScoped<IMemberContactService, MemberContactManager>();
+        services.AddScoped<ILibraryService, LibraryManager>();
         return services;
     }
 
