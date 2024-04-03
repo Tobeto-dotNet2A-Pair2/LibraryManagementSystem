@@ -142,6 +142,7 @@ public static class ApplicationServiceRegistration
         services.AddScoped<IMemberService, MemberManager>();
         services.AddScoped<IMemberContactService, MemberContactManager>();
         services.AddScoped<ILibraryService, LibraryManager>();
+        services.AddScoped<IMaterialService, MaterialManager>();
         return services;
     }
 
