@@ -8,7 +8,7 @@ public class Material : Entity<Guid>
     public DateTime PublicationDate { get; set; }
     public decimal? PunishmentAmount { get; set; }
     public bool IsBorrowable { get; set; }
-    public byte BorrowDay { get; set; }
+    public byte BorrowDay { get; set; } = default;
 
     public virtual ICollection<Language>? Languages { get; set; }
     public virtual ICollection<Author>? Authors { get; set; }

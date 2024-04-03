@@ -18,7 +18,7 @@ public class AddressConfiguration : IEntityTypeConfiguration<Address>
         builder.Property(a => a.UpdatedDate).HasColumnName("UpdatedDate");
         builder.Property(a => a.DeletedDate).HasColumnName("DeletedDate");
 
-
+        
         builder.HasMany(a => a.Members);
         builder.HasOne(a => a.Street);
         builder.HasOne(a => a.Branch);

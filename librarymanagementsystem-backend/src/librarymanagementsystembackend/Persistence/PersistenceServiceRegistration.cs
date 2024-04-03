@@ -75,6 +75,12 @@ public static class PersistenceServiceRegistration
         services.AddScoped<IStreetRepository, StreetRepository>();
         services.AddScoped<ITranslatorRepository, TranslatorRepository>();
         services.AddScoped<IBorrowedMaterialRepository, BorrowedMaterialRepository>();
+        services.AddScoped<IBorrowedMaterialRepository, BorrowedMaterialRepository>();
+        services.AddScoped<IMaterialCopyRepository, MaterialCopyRepository>();
+        services.AddScoped<IMemberRepository, MemberRepository>();
+        services.AddScoped<IMemberContactRepository, MemberContactRepository>();
+        services.AddScoped<ILibraryRepository, LibraryRepository>();
+        services.AddScoped<IMaterialRepository, MaterialRepository>();
         return services;
     }
 }
