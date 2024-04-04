@@ -6,6 +6,9 @@ public class MaterialCopy : Entity<Guid>
     // todo?: DateTime PublicationArrivalDate 
     public DateTime DateReceipt { get; set; }
     public string Status { get; set; }
+
+    public bool isReserved { get; set; } = false;
+    public bool isReservable { get; set; } 
     public Guid MaterialId { get; set; }
     public Guid BranchId { get; set; }
     public Guid LocationId { get; set; }

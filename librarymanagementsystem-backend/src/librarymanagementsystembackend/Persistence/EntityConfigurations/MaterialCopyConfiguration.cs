@@ -13,6 +13,8 @@ public class MaterialCopyConfiguration : IEntityTypeConfiguration<MaterialCopy>
         builder.Property(mc => mc.Id).HasColumnName("Id").IsRequired();
         builder.Property(mc => mc.DateReceipt).HasColumnName("DateReceipt");
         builder.Property(mc => mc.Status).HasColumnName("Status");
+        builder.Property(mc => mc.isReserved).HasColumnName("isReserved");
+        builder.Property(mc => mc.isReservable).HasColumnName("isReservable");
         builder.Property(mc => mc.MaterialId).HasColumnName("MaterialId");
         builder.Property(mc => mc.BranchId).HasColumnName("BranchId");
         builder.Property(mc => mc.LocationId).HasColumnName("LocationId");
