@@ -2,6 +2,5 @@
 # This .gitignore file was automatically created by Microsoft(R) Visual Studio.
 ################################################################################
 
-/librarymanagementsystem-backend/src/librarymanagementsystembackend/WebAPI/appsettings.Development.json
 
 /persistence/migrations/

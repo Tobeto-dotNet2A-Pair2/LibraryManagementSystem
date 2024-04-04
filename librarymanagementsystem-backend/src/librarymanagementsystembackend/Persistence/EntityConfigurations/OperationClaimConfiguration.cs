@@ -966,6 +966,20 @@ public class OperationClaimConfiguration : IEntityTypeConfiguration<OperationCla
         );
         #endregion
         
+        
+        #region Penalties
+        featureOperationClaims.AddRange(
+            [
+                new() { Id = ++lastId, Name = PenaltiesOperationClaims.Admin },
+                new() { Id = ++lastId, Name = PenaltiesOperationClaims.Read },
+                new() { Id = ++lastId, Name = PenaltiesOperationClaims.Write },
+                new() { Id = ++lastId, Name = PenaltiesOperationClaims.Create },
+                new() { Id = ++lastId, Name = PenaltiesOperationClaims.Update },
+                new() { Id = ++lastId, Name = PenaltiesOperationClaims.Delete },
+            ]
+        );
+        #endregion
+        
         return featureOperationClaims;
     }
 #pragma warning restore S1854 // Unused assignments should be removed
