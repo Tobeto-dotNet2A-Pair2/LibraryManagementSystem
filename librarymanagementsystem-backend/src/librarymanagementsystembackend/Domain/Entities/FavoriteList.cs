@@ -10,6 +10,6 @@ public class FavoriteList : Entity<Guid>
 {
     public string ListName { get; set; }
     public Guid MemberId { get; set; }
-    public virtual Member? Member { get; set; }
-    public virtual ICollection<Material>? Materials { get; set; }
+    public virtual Member Member { get; set; }
+    public virtual ICollection<Material> Materials { get; set; }
 }

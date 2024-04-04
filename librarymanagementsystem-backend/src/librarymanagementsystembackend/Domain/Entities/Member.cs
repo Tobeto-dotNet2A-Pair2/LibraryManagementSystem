@@ -16,13 +16,13 @@ public class Member:Entity<Guid>
     public string? Position { get; set; }
     public decimal TotalDebt { get; set; }
     public Guid UserId { get; set; }
-    public virtual User? User { get; set; }
-    public virtual ICollection<Address>? Addresses { get; set; }
+    public virtual User User { get; set; }
+    public virtual ICollection<Address> Addresses { get; set; }
 
-    public virtual ICollection<FavoriteList>? FavoriteLists { get; set;}
-    public virtual ICollection<Notification>? Notifications { get; set; }
-    public virtual ICollection<BorrowedMaterial>? BorrowedMaterials { get; set; }
-    public virtual ICollection<MemberContact>? MemberContacts { get; set; }
+    public virtual ICollection<FavoriteList> FavoriteLists { get; set;}
+    public virtual ICollection<Notification> Notifications { get; set; }
+    public virtual ICollection<BorrowedMaterial> BorrowedMaterials { get; set; }
+    public virtual ICollection<MemberContact> MemberContacts { get; set; }
 
     //Role entity prop
 

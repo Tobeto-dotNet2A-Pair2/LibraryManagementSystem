@@ -13,7 +13,6 @@ public class PenaltyConfiguration : IEntityTypeConfiguration<Penalty>
         builder.Property(p => p.Id).HasColumnName("Id").IsRequired();
         builder.Property(p => p.TotalMaterialPenalty).HasColumnName("TotalMaterialPenalty");
         builder.Property(p => p.DayDelay).HasColumnName("DayDelay");
-        builder.Property(p => p.NotificationId).HasColumnName("NotificationId");
         builder.Property(p => p.BorrowedMaterialId).HasColumnName("BorrowedMaterialId");
         builder.Property(p => p.CreatedDate).HasColumnName("CreatedDate").IsRequired();
         builder.Property(p => p.UpdatedDate).HasColumnName("UpdatedDate");
@@ -21,6 +20,7 @@ public class PenaltyConfiguration : IEntityTypeConfiguration<Penalty>
 
 
         builder.HasOne(p => p.BorrowedMaterial);
+
         builder.HasQueryFilter(p => !p.DeletedDate.HasValue);
     }
 }

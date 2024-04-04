@@ -6,7 +6,7 @@ public class CreateTranslatorCommandValidator : AbstractValidator<CreateTranslat
 {
     public CreateTranslatorCommandValidator()
     {
-        RuleFor(c => c.TranslatorName).NotEmpty();
-        RuleFor(c => c.Description).NotEmpty();
+        RuleFor(c => c.TranslatorName).NotEmpty().Length(1,100);
+        RuleFor(c => c.Description).NotEmpty().Length(1, 200);
     }
 }

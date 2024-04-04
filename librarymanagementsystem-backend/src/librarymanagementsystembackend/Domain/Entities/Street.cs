@@ -12,6 +12,6 @@ public class Street : Entity<Guid>
 
     public Guid NeighborhoodId { get; set; }
 
-    public virtual ICollection <Address>? Addresses { get; set; } 
-    public virtual Neighborhood? Neighborhood { get; set; }
+    public virtual ICollection <Address> Addresses { get; set; } 
+    public virtual Neighborhood Neighborhood { get; set; }
 }

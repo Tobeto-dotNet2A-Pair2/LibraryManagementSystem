@@ -11,6 +11,6 @@ public class Author : Entity<Guid>
     public string FirstName { get; set; }
     public string LastName { get; set; }
     public string AuthorCountry { get; set; }
-    public virtual ICollection<Material>? Materials { get; set; }
+    public virtual ICollection<Material> Materials { get; set; }
 
 }

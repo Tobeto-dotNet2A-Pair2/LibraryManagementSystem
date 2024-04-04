@@ -10,7 +10,7 @@ public class Library: Entity<Guid>
 {
     public string LibraryName { get; set; }
    
-    public virtual MemberContact? MemberContact { get; set; }
+    public virtual MemberContact MemberContact { get; set; }
     public virtual ICollection<Branch> Branches { get; set; }
 
 }
