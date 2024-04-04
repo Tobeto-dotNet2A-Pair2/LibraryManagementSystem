@@ -6,6 +6,6 @@ public class CreateLibraryCommandValidator : AbstractValidator<CreateLibraryComm
 {
     public CreateLibraryCommandValidator()
     {
-        RuleFor(c => c.LibraryName).NotEmpty();
+        RuleFor(c => c.LibraryName).NotEmpty().Lentgh(2,50);
     }
 }
