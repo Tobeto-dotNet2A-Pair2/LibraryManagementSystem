@@ -1,4 +1,4 @@
-using System.Reflection;
+﻿using System.Reflection;
 using Application.Services.AuthenticatorService;
 using Application.Services.AuthService;
 using Application.Services.UsersService;
@@ -19,7 +19,6 @@ using NArchitecture.Core.Localization.Resource.Yaml.DependencyInjection;
 using NArchitecture.Core.Mailing;
 using NArchitecture.Core.Mailing.MailKit;
 using NArchitecture.Core.Security.DependencyInjection;
-using Application.Services.Members;
 
 namespace Application;
 
@@ -60,7 +59,6 @@ public static class ApplicationServiceRegistration
 
         services.AddSecurityServices<Guid, int>();
 
-        services.AddScoped<IMemberService, MemberManager>();
         return services;
     }
 
