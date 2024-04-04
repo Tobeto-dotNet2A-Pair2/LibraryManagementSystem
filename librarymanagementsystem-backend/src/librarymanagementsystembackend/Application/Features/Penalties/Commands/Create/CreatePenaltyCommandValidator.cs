@@ -6,8 +6,10 @@ public class CreatePenaltyCommandValidator : AbstractValidator<CreatePenaltyComm
 {
     public CreatePenaltyCommandValidator()
     {
-        RuleFor(c => c.TotalMaterialPenalty).NotEmpty();
-        RuleFor(c => c.DayDelay).NotEmpty();
+        RuleFor(c => c.TotalMaterialPenalty).NotEmpty().GreaterThan(0)
+                .When(c => c.TotalMaterialPenalty.HasValue);
+
+        RuleFor(c => c.DayDelay).NotEmpty().GreaterThan(0);
         RuleFor(c => c.NotificationId).NotEmpty();
         RuleFor(c => c.BorrowedMaterialId).NotEmpty();
     }
