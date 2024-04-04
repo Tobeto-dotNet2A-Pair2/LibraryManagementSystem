@@ -14,7 +14,7 @@ public class UpdateBranchCommandValidator : AbstractValidator<UpdateBranchComman
                                       .Matches(@"^(http(s)?://)?([\w-]+\.)+[\w-]+(/[\w- ./?%&=]*)?$")
                                       .WithMessage("Please enter a valid website URL");
         RuleFor(c => c.AddressId).NotEmpty();
-        RuleFor(c => c.LibraryId).NotEmpty()
+        RuleFor(c => c.LibraryId).NotEmpty();
     }
 
 }
