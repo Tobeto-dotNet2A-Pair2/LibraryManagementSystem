@@ -9,5 +9,5 @@ namespace Domain.Entities;
 public class Language:Entity<Guid>
 {
     public string LanguageName { get; set; }
-    public virtual ICollection<Material>? Materials { get; set; }
+    public virtual ICollection<Material> Materials { get; set; }
 }

@@ -10,5 +10,5 @@ public class MaterialType : Entity<Guid>
 {
     public string MaterialTypeName { get; set; }
     public string MaterialTypeCategory { get; set; }
-    public virtual ICollection<MaterialPropertyValue>? MaterialPropertyValues { get; set; }
+    public virtual ICollection<MaterialPropertyValue> MaterialPropertyValues { get; set; }
 }

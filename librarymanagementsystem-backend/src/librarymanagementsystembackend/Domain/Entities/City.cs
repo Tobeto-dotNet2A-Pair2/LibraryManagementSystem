@@ -9,5 +9,5 @@ namespace Domain.Entities;
 public class City : Entity<Guid>
 {
     public string CityName { get; set; }
-    public virtual ICollection<District>? Districts { get; set; } 
+    public virtual ICollection<District> Districts { get; set; } 
 }

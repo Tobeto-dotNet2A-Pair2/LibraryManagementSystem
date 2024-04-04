@@ -13,6 +13,6 @@ public class MemberContact : Entity<Guid>
     public string Messages { get; set; }
     public Guid MemberId { get; set; }
     public Guid LibraryId { get; set; }
-    public virtual Member? Member { get; set; }
-    public virtual Library? Library { get; set; }
+    public virtual Member Member { get; set; }
+    public virtual Library?Library { get; set; }
 }

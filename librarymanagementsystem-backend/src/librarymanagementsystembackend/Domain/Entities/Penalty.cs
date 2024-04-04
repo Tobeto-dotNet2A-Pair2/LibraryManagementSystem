@@ -11,6 +11,6 @@ public class Penalty : Entity<Guid>
     public decimal? TotalMaterialPenalty { get; set; }
     public int DayDelay { get; set; }
     public Guid BorrowedMaterialId { get; set; }
-    public virtual BorrowedMaterial? BorrowedMaterial { get; set; }
+    public virtual BorrowedMaterial BorrowedMaterial { get; set; }
 
 }

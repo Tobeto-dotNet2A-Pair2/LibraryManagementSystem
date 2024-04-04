@@ -12,5 +12,5 @@ public class SocialMediaAccount : Entity<Guid>
     public string SocialMediaAccountLogo { get; set; }
     public string? SocialMediaAccountUrl { get; set; }
 
-    public virtual Branch? Branch { get; set; }
+    public virtual Branch Branch { get; set; }
 }
