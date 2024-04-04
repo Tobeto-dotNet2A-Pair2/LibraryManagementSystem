@@ -8,9 +8,8 @@ public class CreateNotificationCommandValidator : AbstractValidator<CreateNotifi
     {
         RuleFor(c => c.NotificationType).NotEmpty();
         RuleFor(c => c.NotificationDate).NotEmpty();
-        RuleFor(c => c.Message).NotEmpty().Length(1,500);
+        RuleFor(c => c.Message).NotEmpty();
         RuleFor(c => c.Status).NotEmpty();
-        RuleFor(c => c.PenaltyId).Empty();
-        RuleFor(c => c.BorrowedMaterialId).Empty();
+        RuleFor(c => c.BorrowedMaterialId).NotEmpty();
     }
 }
