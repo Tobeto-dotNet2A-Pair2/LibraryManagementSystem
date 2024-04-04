@@ -6,11 +6,11 @@ public class CreateLocationCommandValidator : AbstractValidator<CreateLocationCo
 {
     public CreateLocationCommandValidator()
     {
-        RuleFor(c => c.ShelfLineNumber).NotEmpty();
-        RuleFor(c => c.ShelfFloor).NotEmpty();
-        RuleFor(c => c.Shelf).NotEmpty();
-        RuleFor(c => c.Corridor).NotEmpty();
-        RuleFor(c => c.Floor).NotEmpty();
-        RuleFor(c => c.FullLocationMap).NotEmpty();
+        RuleFor(c => c.ShelfLineNumber).MaximumLength(50);
+        RuleFor(c => c.ShelfFloor).MaximumLength(50);
+        RuleFor(c => c.Shelf).MaximumLength(50);
+        RuleFor(c => c.Corridor).MaximumLength(50);
+        RuleFor(c => c.Floor).MaximumLength(50);
+        RuleFor(c => c.FullLocationMap).MaximumLength(50);
     }
 }
