@@ -15,6 +15,6 @@ public class Material : Entity<Guid>
     public virtual ICollection<Publisher> Publishers { get; set; }
     public virtual ICollection<Translator> Translators { get; set; }
     public virtual ICollection<MaterialCopy> MaterialCopies { get; set; }
-    public virtual ICollection<FavoriteList>? FavoriteLists { get; set; }
-    public virtual ICollection<MaterialPropertyValue>? MaterialPropertyValues { get; set; }
+    public virtual ICollection<FavoriteList> FavoriteLists { get; set; }
+    public virtual ICollection<MaterialPropertyValue> MaterialPropertyValues { get; set; }
 }
