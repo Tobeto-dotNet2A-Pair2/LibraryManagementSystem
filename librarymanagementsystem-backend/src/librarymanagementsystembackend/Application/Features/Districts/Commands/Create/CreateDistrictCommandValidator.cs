@@ -6,7 +6,7 @@ public class CreateDistrictCommandValidator : AbstractValidator<CreateDistrictCo
 {
     public CreateDistrictCommandValidator()
     {
-        RuleFor(c => c.DistrictName).NotEmpty();
+        RuleFor(c => c.DistrictName).NotEmpty().MinimumLength(2).MaximumLength(150);
         RuleFor(c => c.CityId).NotEmpty();
     }
 }
