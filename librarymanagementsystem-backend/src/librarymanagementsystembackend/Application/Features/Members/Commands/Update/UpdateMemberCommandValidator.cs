@@ -16,7 +16,7 @@ public class UpdateMemberCommandValidator : AbstractValidator<UpdateMemberComman
 
         RuleFor(c => c.Photo).NotEmpty()
                              .Matches(@".(jpg|jpeg|png|gif)$").WithMessage("Please provide a valid photo file (jpg, jpeg, png, gif).");
-        RuleFor(c => c.Position).NotEmpty().MinimumLength(2).MaximumLength(50);
+        RuleFor(c => c.Position).NotEmpty().MinimumLength(2).MaximumLength(40);
         RuleFor(c => c.TotalDebt).GreaterThanOrEqualTo(0);
         RuleFor(c => c.UserId).NotEmpty();
     }
