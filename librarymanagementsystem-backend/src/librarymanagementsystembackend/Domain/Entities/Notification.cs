@@ -12,8 +12,6 @@ public class Notification : Entity<Guid>
     public DateTime NotificationDate { get; set; }
     public string Message { get; set; }
     public string Status { get; set; }
-    public Guid BorrowedMaterialId { get; set; }
-    public virtual BorrowedMaterial BorrowedMaterial { get; set; }
     public virtual ICollection<Member> Members { get; set; }
 
 }

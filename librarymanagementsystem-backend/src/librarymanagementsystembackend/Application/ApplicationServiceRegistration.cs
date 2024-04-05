@@ -145,6 +145,10 @@ public static class ApplicationServiceRegistration
         services.AddScoped<IMaterialService, MaterialManager>();
         services.AddScoped<INotificationService, NotificationManager>();
         services.AddScoped<IPenaltyService, PenaltyManager>();
+        services.AddScoped<IMemberService, MemberManager>();
+        services.AddScoped<INotificationService, NotificationManager>();
+        services.AddScoped<IBorrowedMaterialService, BorrowedMaterialManager>();
+        services.AddScoped<IMemberService, MemberManager>();
         return services;
     }
 

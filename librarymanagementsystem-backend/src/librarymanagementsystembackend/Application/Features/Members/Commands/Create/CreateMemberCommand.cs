@@ -22,6 +22,7 @@ public class CreateMemberCommand : IRequest<CreatedMemberResponse>, ISecuredRequ
     public string? Position { get; set; }
     public decimal TotalDebt { get; set; }
     public Guid UserId { get; set; }
+    public bool IsActive { get; set; }
 
     public string[] Roles => [Admin, Write, MembersOperationClaims.Create];
 
