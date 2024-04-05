@@ -24,6 +24,13 @@ public class MemberConfiguration : IEntityTypeConfiguration<Member>
         builder.Property(m => m.UpdatedDate).HasColumnName("UpdatedDate");
         builder.Property(m => m.DeletedDate).HasColumnName("DeletedDate");
 
+        builder.HasOne(m => m.User);
+        builder.HasMany(m => m.Addresses);
+        builder.HasMany(m => m.Notifications);
+        builder.HasMany(m => m.BorrowedMaterials);
+        builder.HasMany(m => m.FavoriteLists);
+        builder.HasMany(m => m.MemberContacts);
+
         builder.HasQueryFilter(m => !m.DeletedDate.HasValue);
     }
 }
