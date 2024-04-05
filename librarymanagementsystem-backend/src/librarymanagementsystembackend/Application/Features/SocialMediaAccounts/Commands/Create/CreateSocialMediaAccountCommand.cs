@@ -40,6 +40,7 @@ public class CreateSocialMediaAccountCommand : IRequest<CreatedSocialMediaAccoun
 
         public async Task<CreatedSocialMediaAccountResponse> Handle(CreateSocialMediaAccountCommand request, CancellationToken cancellationToken)
         {
+            await _socialMediaAccountBusinessRules.BranchIdIsExist(request.BranchId);
             SocialMediaAccount socialMediaAccount = _mapper.Map<SocialMediaAccount>(request);
 
             await _socialMediaAccountRepository.AddAsync(socialMediaAccount);

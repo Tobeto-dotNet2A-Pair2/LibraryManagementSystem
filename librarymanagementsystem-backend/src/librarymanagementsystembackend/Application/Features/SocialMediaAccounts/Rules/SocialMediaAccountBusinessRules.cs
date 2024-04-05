@@ -11,11 +11,20 @@ public class SocialMediaAccountBusinessRules : BaseBusinessRules
 {
     private readonly ISocialMediaAccountRepository _socialMediaAccountRepository;
     private readonly ILocalizationService _localizationService;
+    private readonly IBranchRepository _branchRepository;
 
-    public SocialMediaAccountBusinessRules(ISocialMediaAccountRepository socialMediaAccountRepository, ILocalizationService localizationService)
+    public SocialMediaAccountBusinessRules(ISocialMediaAccountRepository socialMediaAccountRepository, ILocalizationService localizationService, IBranchRepository branchRepository)
     {
         _socialMediaAccountRepository = socialMediaAccountRepository;
         _localizationService = localizationService;
+        _branchRepository = branchRepository;
+    }
+
+    public async Task BranchIdIsExist(Guid branchId)
+    {
+        bool response = await _branchRepository.AnyAsync(b => b.Id == branchId);
+        if (!response)
+            await throwBusinessException(SocialMediaAccountsBusinessMessages.SocialMediaAccountBranchIdNotExist);
     }
 
     private async Task throwBusinessException(string messageKey)
