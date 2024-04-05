@@ -11,6 +11,5 @@ public class UpdateNotificationCommandValidator : AbstractValidator<UpdateNotifi
         RuleFor(c => c.NotificationDate).NotEmpty();
         RuleFor(c => c.Message).NotEmpty().Length(1, 500);
         RuleFor(c => c.Status).NotEmpty();
-        RuleFor(c => c.BorrowedMaterialId).Empty();
     }
 }

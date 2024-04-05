@@ -11,6 +11,5 @@ public class BorrowedMaterial : Entity<Guid>
     public virtual Member Member { get; set; }
     public virtual Penalty Penalty { get; set; }
     public virtual MaterialCopy MaterialCopy { get; set; }
-    public virtual ICollection<Notification> Notifications { get; set;}
 
 }

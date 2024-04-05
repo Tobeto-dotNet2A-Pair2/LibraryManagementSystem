@@ -13,4 +13,5 @@ public class CreatedMemberResponse : IResponse
     public string? Position { get; set; }
     public decimal TotalDebt { get; set; }
     public Guid UserId { get; set; }
+    public bool IsActive { get; set; }
 }

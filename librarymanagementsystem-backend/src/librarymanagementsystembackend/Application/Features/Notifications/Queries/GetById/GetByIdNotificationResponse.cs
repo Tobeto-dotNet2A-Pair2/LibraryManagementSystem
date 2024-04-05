@@ -9,5 +9,4 @@ public class GetByIdNotificationResponse : IResponse
     public DateTime NotificationDate { get; set; }
     public string Message { get; set; }
     public string Status { get; set; }
-    public Guid BorrowedMaterialId { get; set; }
 }

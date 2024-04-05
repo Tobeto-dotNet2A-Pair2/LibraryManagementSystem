@@ -8,14 +8,14 @@ public class UpdateMemberCommandValidator : AbstractValidator<UpdateMemberComman
     {
         RuleFor(c => c.Id).NotEmpty();
         RuleFor(c => c.FirstName).NotEmpty().MinimumLength(2).MaximumLength(150);
-        RuleFor(c => c.LastName).NotEmpty().MinimumLength(2).MaximumLength(150); 
+        RuleFor(c => c.LastName).NotEmpty().MinimumLength(2).MaximumLength(150);
         RuleFor(c => c.TC).Must(ValidateTurkishIdentityNumber);
         RuleFor(c => c.PhoneNumber).NotEmpty()
-                                   .Matches(@"^\+?\d{10,15}$").WithMessage("Please enter a valid phone number (should be between 10 and 15 digits, starting with '+' if present).");
-                                   
+                                   .Matches(@"^+?\d{10,15}$").WithMessage("Please enter a valid phone number (should be between 10 and 15 digits, starting with '+' if present).");
+        RuleFor(c => c.IsActive).NotEmpty();
 
         RuleFor(c => c.Photo).NotEmpty()
-                             .Matches(@"\.(jpg|jpeg|png|gif)$").WithMessage("Please provide a valid photo file (jpg, jpeg, png, gif)."); 
+                             .Matches(@".(jpg|jpeg|png|gif)$").WithMessage("Please provide a valid photo file (jpg, jpeg, png, gif).");
         RuleFor(c => c.Position).NotEmpty();
         RuleFor(c => c.TotalDebt).GreaterThanOrEqualTo(0);
         RuleFor(c => c.UserId).NotEmpty();
