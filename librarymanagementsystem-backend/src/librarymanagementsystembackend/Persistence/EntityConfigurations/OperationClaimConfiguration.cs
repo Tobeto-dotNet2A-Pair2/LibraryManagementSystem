@@ -31,6 +31,7 @@ using Application.Features.MaterialProperties.Constants;
 using Application.Features.MaterialPropertyValues.Constants;
 using Application.Features.MaterialTypes.Constants;
 using Application.Features.MemberContacts.Constants;
+using Application.Features.MemberNotifications.Constants;
 
 
 
@@ -976,6 +977,90 @@ public class OperationClaimConfiguration : IEntityTypeConfiguration<OperationCla
                 new() { Id = ++lastId, Name = PenaltiesOperationClaims.Create },
                 new() { Id = ++lastId, Name = PenaltiesOperationClaims.Update },
                 new() { Id = ++lastId, Name = PenaltiesOperationClaims.Delete },
+            ]
+        );
+        #endregion
+        
+        
+        #region MemberNotifications
+        featureOperationClaims.AddRange(
+            [
+                new() { Id = ++lastId, Name = MemberNotificationsOperationClaims.Admin },
+                new() { Id = ++lastId, Name = MemberNotificationsOperationClaims.Read },
+                new() { Id = ++lastId, Name = MemberNotificationsOperationClaims.Write },
+                new() { Id = ++lastId, Name = MemberNotificationsOperationClaims.Create },
+                new() { Id = ++lastId, Name = MemberNotificationsOperationClaims.Update },
+                new() { Id = ++lastId, Name = MemberNotificationsOperationClaims.Delete },
+            ]
+        );
+        #endregion
+        
+        
+        #region Members
+        featureOperationClaims.AddRange(
+            [
+                new() { Id = ++lastId, Name = MembersOperationClaims.Admin },
+                new() { Id = ++lastId, Name = MembersOperationClaims.Read },
+                new() { Id = ++lastId, Name = MembersOperationClaims.Write },
+                new() { Id = ++lastId, Name = MembersOperationClaims.Create },
+                new() { Id = ++lastId, Name = MembersOperationClaims.Update },
+                new() { Id = ++lastId, Name = MembersOperationClaims.Delete },
+            ]
+        );
+        #endregion
+        
+        
+        #region Notifications
+        featureOperationClaims.AddRange(
+            [
+                new() { Id = ++lastId, Name = NotificationsOperationClaims.Admin },
+                new() { Id = ++lastId, Name = NotificationsOperationClaims.Read },
+                new() { Id = ++lastId, Name = NotificationsOperationClaims.Write },
+                new() { Id = ++lastId, Name = NotificationsOperationClaims.Create },
+                new() { Id = ++lastId, Name = NotificationsOperationClaims.Update },
+                new() { Id = ++lastId, Name = NotificationsOperationClaims.Delete },
+            ]
+        );
+        #endregion
+        
+        
+        #region Members
+        featureOperationClaims.AddRange(
+            [
+                new() { Id = ++lastId, Name = MembersOperationClaims.Admin },
+                new() { Id = ++lastId, Name = MembersOperationClaims.Read },
+                new() { Id = ++lastId, Name = MembersOperationClaims.Write },
+                new() { Id = ++lastId, Name = MembersOperationClaims.Create },
+                new() { Id = ++lastId, Name = MembersOperationClaims.Update },
+                new() { Id = ++lastId, Name = MembersOperationClaims.Delete },
+            ]
+        );
+        #endregion
+        
+        
+        #region Notifications
+        featureOperationClaims.AddRange(
+            [
+                new() { Id = ++lastId, Name = NotificationsOperationClaims.Admin },
+                new() { Id = ++lastId, Name = NotificationsOperationClaims.Read },
+                new() { Id = ++lastId, Name = NotificationsOperationClaims.Write },
+                new() { Id = ++lastId, Name = NotificationsOperationClaims.Create },
+                new() { Id = ++lastId, Name = NotificationsOperationClaims.Update },
+                new() { Id = ++lastId, Name = NotificationsOperationClaims.Delete },
+            ]
+        );
+        #endregion
+        
+        
+        #region MemberNotifications
+        featureOperationClaims.AddRange(
+            [
+                new() { Id = ++lastId, Name = MemberNotificationsOperationClaims.Admin },
+                new() { Id = ++lastId, Name = MemberNotificationsOperationClaims.Read },
+                new() { Id = ++lastId, Name = MemberNotificationsOperationClaims.Write },
+                new() { Id = ++lastId, Name = MemberNotificationsOperationClaims.Create },
+                new() { Id = ++lastId, Name = MemberNotificationsOperationClaims.Update },
+                new() { Id = ++lastId, Name = MemberNotificationsOperationClaims.Delete },
             ]
         );
         #endregion

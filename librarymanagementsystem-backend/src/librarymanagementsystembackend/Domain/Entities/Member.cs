@@ -19,10 +19,11 @@ public class Member:Entity<Guid>
     public virtual User User { get; set; }
     public virtual ICollection<Address> Addresses { get; set; }
 
-    public virtual ICollection<FavoriteList> FavoriteLists { get; set;}
-    public virtual ICollection<Notification> Notifications { get; set; }
+    public virtual ICollection<FavoriteList> FavoriteLists { get; set; }
     public virtual ICollection<BorrowedMaterial> BorrowedMaterials { get; set; }
     public virtual ICollection<MemberContact> MemberContacts { get; set; }
+
+    public virtual ICollection<MemberNotification> MemberNotifications { get; set; } = null!;
 
     //Role entity prop
 

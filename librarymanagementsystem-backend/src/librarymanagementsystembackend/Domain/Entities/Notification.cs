@@ -14,6 +14,6 @@ public class Notification : Entity<Guid>
     public string Status { get; set; }
     public Guid BorrowedMaterialId { get; set; }
     public virtual BorrowedMaterial BorrowedMaterial { get; set; }
-    public virtual ICollection<Member> Members { get; set; }
+    public virtual ICollection<MemberNotification> MemberNotifications { get; set; } = null!;
 
 }

@@ -44,6 +44,7 @@ using Application.Services.MaterialProperties;
 using Application.Services.MaterialPropertyValues;
 using Application.Services.MaterialTypes;
 using Application.Services.MemberContacts;
+using Application.Services.MemberNotifications;
 
 namespace Application;
 
@@ -145,6 +146,12 @@ public static class ApplicationServiceRegistration
         services.AddScoped<IMaterialService, MaterialManager>();
         services.AddScoped<INotificationService, NotificationManager>();
         services.AddScoped<IPenaltyService, PenaltyManager>();
+        services.AddScoped<IMemberNotificationService, MemberNotificationManager>();
+        services.AddScoped<IMemberService, MemberManager>();
+        services.AddScoped<INotificationService, NotificationManager>();
+        services.AddScoped<IMemberService, MemberManager>();
+        services.AddScoped<INotificationService, NotificationManager>();
+        services.AddScoped<IMemberNotificationService, MemberNotificationManager>();
         return services;
     }
 

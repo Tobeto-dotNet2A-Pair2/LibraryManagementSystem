@@ -39,6 +39,7 @@ public class BaseDbContext : DbContext
     public DbSet<MaterialPropertyValue> MaterialPropertyValues { get; set; }
     public DbSet<MaterialType> MaterialTypes { get; set; }
     public DbSet<MemberContact> MemberContacts { get; set; }
+    public DbSet<MemberNotification> MemberNotifications { get; set; }
 
     public BaseDbContext(DbContextOptions dbContextOptions, IConfiguration configuration)
         : base(dbContextOptions)
