@@ -6,10 +6,12 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace Domain.Entities;
-public class FavoriteList : Entity<Guid>
+public class MemberAddress : Entity<Guid>
 {
-    public string ListName { get; set; }
     public Guid MemberId { get; set; }
+    public Guid AddressId { get; set; }
+
     public virtual Member Member { get; set; }
-    public virtual ICollection<FavoriteListMaterial> FavoriteListMaterials { get; set; }
+    public virtual Address Address { get; set; }
+
 }
