@@ -6,6 +6,6 @@ public class CreateCityCommandValidator : AbstractValidator<CreateCityCommand>
 {
     public CreateCityCommandValidator()
     {
-        RuleFor(c => c.CityName).NotEmpty();
+        RuleFor(c => c.CityName).NotEmpty().Length(2, 50).Matches("^[a-zA-Z?ü?öç?Ü??ÖÇ]+$");
     }
 }

@@ -6,7 +6,7 @@ public class CreateFavoriteListCommandValidator : AbstractValidator<CreateFavori
 {
     public CreateFavoriteListCommandValidator()
     {
-        RuleFor(c => c.ListName).NotEmpty();
+        RuleFor(c => c.ListName).NotEmpty().Length(2, 150);
         RuleFor(c => c.MemberId).NotEmpty();
     }
 }

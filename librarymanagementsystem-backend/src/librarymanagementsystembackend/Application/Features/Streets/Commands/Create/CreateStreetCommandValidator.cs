@@ -6,7 +6,7 @@ public class CreateStreetCommandValidator : AbstractValidator<CreateStreetComman
 {
     public CreateStreetCommandValidator()
     {
-        RuleFor(c => c.StreetName).NotEmpty();
+        RuleFor(c => c.StreetName).NotEmpty().Length(2, 100).Matches("^[a-zA-Z?ü?öç?Ü??ÖÇ ]+$");
         RuleFor(c => c.NeighborhoodId).NotEmpty();
     }
 }

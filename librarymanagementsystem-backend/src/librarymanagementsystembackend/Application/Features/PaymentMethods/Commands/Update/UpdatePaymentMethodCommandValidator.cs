@@ -8,6 +8,6 @@ public class UpdatePaymentMethodCommandValidator : AbstractValidator<UpdatePayme
     {
         RuleFor(c => c.Id).NotEmpty();
         RuleFor(c => c.BranchId).NotEmpty();
-        RuleFor(c => c.PaymentMethodName).NotEmpty();
+        RuleFor(c => c.PaymentMethodName).NotEmpty().Length(2, 50);
     }
 }
