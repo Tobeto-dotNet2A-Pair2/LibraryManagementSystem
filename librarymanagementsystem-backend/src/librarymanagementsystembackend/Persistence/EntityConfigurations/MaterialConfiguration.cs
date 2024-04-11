@@ -14,7 +14,7 @@ public class MaterialConfiguration : IEntityTypeConfiguration<Material>
         builder.Property(m => m.Name).HasColumnName("Name");
         builder.Property(m => m.Description).HasColumnName("Description");
         builder.Property(m => m.PublicationDate).HasColumnName("PublicationDate");
-        builder.Property(m => m.PunishmentAmount).HasColumnName("PunishmentAmount");
+        builder.Property(m => m.PunishmentAmount).HasColumnName("PunishmentAmount").HasPrecision(18,2);
         builder.Property(m => m.IsBorrowable).HasColumnName("IsBorrowable");
         builder.Property(m => m.BorrowDay).HasColumnName("BorrowDay");
         builder.Property(m => m.CreatedDate).HasColumnName("CreatedDate").IsRequired();
