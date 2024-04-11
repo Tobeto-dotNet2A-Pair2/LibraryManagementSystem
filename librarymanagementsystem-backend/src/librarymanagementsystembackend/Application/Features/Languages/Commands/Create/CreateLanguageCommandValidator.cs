@@ -6,6 +6,6 @@ public class CreateLanguageCommandValidator : AbstractValidator<CreateLanguageCo
 {
     public CreateLanguageCommandValidator()
     {
-        RuleFor(c => c.LanguageName).NotEmpty().MinimumLength(2).MaximumLength(150);
+        RuleFor(c => c.LanguageName).NotEmpty();
     }
 }

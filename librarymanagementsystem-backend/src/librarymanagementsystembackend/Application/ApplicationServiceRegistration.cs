@@ -44,6 +44,13 @@ using Application.Services.MaterialProperties;
 using Application.Services.MaterialPropertyValues;
 using Application.Services.MaterialTypes;
 using Application.Services.MemberContacts;
+using Application.Services.AuthorMaterials;
+using Application.Services.FavoriteListMaterials;
+using Application.Services.LanguageMaterials;
+using Application.Services.MemberAddresses;
+using Application.Services.MemberNotifications;
+using Application.Services.PublisherMaterials;
+using Application.Services.TranslatorMaterials;
 
 namespace Application;
 
@@ -149,6 +156,38 @@ public static class ApplicationServiceRegistration
         services.AddScoped<INotificationService, NotificationManager>();
         services.AddScoped<IBorrowedMaterialService, BorrowedMaterialManager>();
         services.AddScoped<IMemberService, MemberManager>();
+        services.AddScoped<IAddressService, AddressManager>();
+        services.AddScoped<IAuthorService, AuthorManager>();
+        services.AddScoped<IAuthorMaterialService, AuthorMaterialManager>();
+        services.AddScoped<IBorrowedMaterialService, BorrowedMaterialManager>();
+        services.AddScoped<IBranchService, BranchManager>();
+        services.AddScoped<ICityService, CityManager>();
+        services.AddScoped<IDistrictService, DistrictManager>();
+        services.AddScoped<IFavoriteListService, FavoriteListManager>();
+        services.AddScoped<IFavoriteListMaterialService, FavoriteListMaterialManager>();
+        services.AddScoped<ILanguageService, LanguageManager>();
+        services.AddScoped<ILanguageMaterialService, LanguageMaterialManager>();
+        services.AddScoped<ILibraryService, LibraryManager>();
+        services.AddScoped<ILocationService, LocationManager>();
+        services.AddScoped<IMaterialService, MaterialManager>();
+        services.AddScoped<IMaterialCopyService, MaterialCopyManager>();
+        services.AddScoped<IMaterialPropertyService, MaterialPropertyManager>();
+        services.AddScoped<IMaterialPropertyValueService, MaterialPropertyValueManager>();
+        services.AddScoped<IMaterialTypeService, MaterialTypeManager>();
+        services.AddScoped<IMemberService, MemberManager>();
+        services.AddScoped<IMemberAddressService, MemberAddressManager>();
+        services.AddScoped<IMemberContactService, MemberContactManager>();
+        services.AddScoped<IMemberNotificationService, MemberNotificationManager>();
+        services.AddScoped<INeighborhoodService, NeighborhoodManager>();
+        services.AddScoped<INotificationService, NotificationManager>();
+        services.AddScoped<IPaymentMethodService, PaymentMethodManager>();
+        services.AddScoped<IPenaltyService, PenaltyManager>();
+        services.AddScoped<IPublisherService, PublisherManager>();
+        services.AddScoped<IPublisherMaterialService, PublisherMaterialManager>();
+        services.AddScoped<ISocialMediaAccountService, SocialMediaAccountManager>();
+        services.AddScoped<IStreetService, StreetManager>();
+        services.AddScoped<ITranslatorService, TranslatorManager>();
+        services.AddScoped<ITranslatorMaterialService, TranslatorMaterialManager>();
         return services;
     }
 

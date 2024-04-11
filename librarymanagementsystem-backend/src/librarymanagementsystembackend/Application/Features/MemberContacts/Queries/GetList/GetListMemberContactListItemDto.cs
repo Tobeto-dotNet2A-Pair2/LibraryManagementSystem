@@ -9,4 +9,5 @@ public class GetListMemberContactListItemDto : IDto
     public string AskLibrarianDescription { get; set; }
     public string Messages { get; set; }
     public Guid MemberId { get; set; }
+    public Guid LibraryId { get; set; }
 }

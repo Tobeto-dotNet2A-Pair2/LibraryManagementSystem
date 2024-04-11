@@ -7,7 +7,7 @@ public class UpdateNeighborhoodCommandValidator : AbstractValidator<UpdateNeighb
     public UpdateNeighborhoodCommandValidator()
     {
         RuleFor(c => c.Id).NotEmpty();
-        RuleFor(c => c.NeighborhoodName).NotEmpty().MinimumLength(2).MaximumLength(50);
+        RuleFor(c => c.NeighborhoodName).NotEmpty();
         RuleFor(c => c.DistrictId).NotEmpty();
     }
 }

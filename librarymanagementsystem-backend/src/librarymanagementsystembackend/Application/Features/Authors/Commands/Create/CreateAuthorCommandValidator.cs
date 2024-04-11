@@ -6,9 +6,8 @@ public class CreateAuthorCommandValidator : AbstractValidator<CreateAuthorComman
 {
     public CreateAuthorCommandValidator()
     {
-        RuleFor(c => c.FirstName).NotEmpty().MinimumLength(2).MaximumLength(50);
-        RuleFor(c => c.LastName).NotEmpty().MinimumLength(2).MaximumLength(50);
-        RuleFor(c => c.AuthorCountry).NotEmpty().MinimumLength(2).MaximumLength(50);
+        RuleFor(c => c.FirstName).NotEmpty();
+        RuleFor(c => c.LastName).NotEmpty();
+        RuleFor(c => c.AuthorCountry).NotEmpty();
     }
 }
-

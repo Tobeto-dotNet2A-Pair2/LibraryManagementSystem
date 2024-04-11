@@ -17,8 +17,6 @@ public class PublisherConfiguration : IEntityTypeConfiguration<Publisher>
         builder.Property(p => p.UpdatedDate).HasColumnName("UpdatedDate");
         builder.Property(p => p.DeletedDate).HasColumnName("DeletedDate");
 
-
-        builder.HasMany(p => p.Materials);
         builder.HasQueryFilter(p => !p.DeletedDate.HasValue);
     }
 }

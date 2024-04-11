@@ -15,12 +15,11 @@ public class MemberContactConfiguration : IEntityTypeConfiguration<MemberContact
         builder.Property(mc => mc.AskLibrarianDescription).HasColumnName("AskLibrarianDescription");
         builder.Property(mc => mc.Messages).HasColumnName("Messages");
         builder.Property(mc => mc.MemberId).HasColumnName("MemberId");
+        builder.Property(mc => mc.LibraryId).HasColumnName("LibraryId");
         builder.Property(mc => mc.CreatedDate).HasColumnName("CreatedDate").IsRequired();
         builder.Property(mc => mc.UpdatedDate).HasColumnName("UpdatedDate");
         builder.Property(mc => mc.DeletedDate).HasColumnName("DeletedDate");
 
-        builder.HasOne(mc => mc.Member);
-        builder.HasOne(mc => mc.Library);
         builder.HasQueryFilter(mc => !mc.DeletedDate.HasValue);
     }
 }

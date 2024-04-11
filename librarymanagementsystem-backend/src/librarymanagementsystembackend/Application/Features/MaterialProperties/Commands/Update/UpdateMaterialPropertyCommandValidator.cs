@@ -7,6 +7,6 @@ public class UpdateMaterialPropertyCommandValidator : AbstractValidator<UpdateMa
     public UpdateMaterialPropertyCommandValidator()
     {
         RuleFor(c => c.Id).NotEmpty();
-        RuleFor(c => c.MaterialPropertyName).NotEmpty().MinimumLength(2).MaximumLength(150);
+        RuleFor(c => c.MaterialPropertyName).NotEmpty();
     }
 }

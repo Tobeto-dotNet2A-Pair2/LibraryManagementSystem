@@ -18,9 +18,6 @@ public class PenaltyConfiguration : IEntityTypeConfiguration<Penalty>
         builder.Property(p => p.UpdatedDate).HasColumnName("UpdatedDate");
         builder.Property(p => p.DeletedDate).HasColumnName("DeletedDate");
 
-
-        builder.HasOne(p => p.BorrowedMaterial);
-
         builder.HasQueryFilter(p => !p.DeletedDate.HasValue);
     }
 }

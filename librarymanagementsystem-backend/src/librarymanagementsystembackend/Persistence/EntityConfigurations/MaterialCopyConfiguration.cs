@@ -22,12 +22,6 @@ public class MaterialCopyConfiguration : IEntityTypeConfiguration<MaterialCopy>
         builder.Property(mc => mc.UpdatedDate).HasColumnName("UpdatedDate");
         builder.Property(mc => mc.DeletedDate).HasColumnName("DeletedDate");
 
-
-        builder.HasOne(mc => mc.BorrowedMaterial);
-        builder.HasOne(mc => mc.Material);
-        builder.HasOne(mc => mc.Branch);
-        builder.HasOne(mc => mc.Location);
-
         builder.HasQueryFilter(mc => !mc.DeletedDate.HasValue);
     }
 }

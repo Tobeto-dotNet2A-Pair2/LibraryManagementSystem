@@ -16,10 +16,6 @@ public class LibraryConfiguration : IEntityTypeConfiguration<Library>
         builder.Property(l => l.UpdatedDate).HasColumnName("UpdatedDate");
         builder.Property(l => l.DeletedDate).HasColumnName("DeletedDate");
 
-        builder.HasMany(l => l.Branches);
-        builder.HasOne(l => l.MemberContact);
-        
-
         builder.HasQueryFilter(l => !l.DeletedDate.HasValue);
     }
 }
