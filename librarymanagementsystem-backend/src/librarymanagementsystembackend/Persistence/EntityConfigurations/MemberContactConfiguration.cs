@@ -20,6 +20,9 @@ public class MemberContactConfiguration : IEntityTypeConfiguration<MemberContact
         builder.Property(mc => mc.UpdatedDate).HasColumnName("UpdatedDate");
         builder.Property(mc => mc.DeletedDate).HasColumnName("DeletedDate");
 
+        builder.HasOne(mc => mc.Member);
+        builder.HasOne(mc => mc.Library);
+
         builder.HasQueryFilter(mc => !mc.DeletedDate.HasValue);
     }
 }

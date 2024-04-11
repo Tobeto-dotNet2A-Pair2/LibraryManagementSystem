@@ -17,6 +17,10 @@ public class MemberAddressConfiguration : IEntityTypeConfiguration<MemberAddress
         builder.Property(ma => ma.UpdatedDate).HasColumnName("UpdatedDate");
         builder.Property(ma => ma.DeletedDate).HasColumnName("DeletedDate");
 
+        builder.HasOne(ma => ma.Address);
+        builder.HasOne(ma => ma.Member);
+
+
         builder.HasQueryFilter(ma => !ma.DeletedDate.HasValue);
     }
 }

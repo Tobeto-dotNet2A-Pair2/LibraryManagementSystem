@@ -17,6 +17,9 @@ public class FavoriteListMaterialConfiguration : IEntityTypeConfiguration<Favori
         builder.Property(flm => flm.UpdatedDate).HasColumnName("UpdatedDate");
         builder.Property(flm => flm.DeletedDate).HasColumnName("DeletedDate");
 
+        builder.HasOne(flm => flm.Material);
+        builder.HasOne(flm => flm.FavoriteList);
+
         builder.HasQueryFilter(flm => !flm.DeletedDate.HasValue);
     }
 }

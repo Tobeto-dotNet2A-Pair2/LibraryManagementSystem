@@ -20,6 +20,10 @@ public class BorrowedMaterialConfiguration : IEntityTypeConfiguration<BorrowedMa
         builder.Property(bm => bm.UpdatedDate).HasColumnName("UpdatedDate");
         builder.Property(bm => bm.DeletedDate).HasColumnName("DeletedDate");
 
+        builder.HasOne(bm => bm.Member); 
+        builder.HasOne(bm => bm.MaterialCopy); 
+        builder.HasOne(bm => bm.Penalty); 
+
         builder.HasQueryFilter(bm => !bm.DeletedDate.HasValue);
     }
 }

@@ -17,6 +17,9 @@ public class AuthorMaterialConfiguration : IEntityTypeConfiguration<AuthorMateri
         builder.Property(am => am.UpdatedDate).HasColumnName("UpdatedDate");
         builder.Property(am => am.DeletedDate).HasColumnName("DeletedDate");
 
+        builder.HasOne(am => am.Author);
+        builder.HasOne(am => am.Material);
+
         builder.HasQueryFilter(am => !am.DeletedDate.HasValue);
     }
 }
