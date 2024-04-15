@@ -19,7 +19,8 @@ public class NotificationConfiguration : IEntityTypeConfiguration<Notification>
         builder.Property(n => n.UpdatedDate).HasColumnName("UpdatedDate");
         builder.Property(n => n.DeletedDate).HasColumnName("DeletedDate");
 
-        builder.HasMany(n => n.Members);
+
+        builder.HasMany(n => n.MemberNotifications);
 
         builder.HasQueryFilter(n => !n.DeletedDate.HasValue);
     }

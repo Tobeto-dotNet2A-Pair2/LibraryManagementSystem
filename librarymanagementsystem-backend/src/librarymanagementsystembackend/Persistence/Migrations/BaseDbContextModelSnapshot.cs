@@ -22,36 +22,6 @@ namespace Persistence.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
-            modelBuilder.Entity("AddressMember", b =>
-                {
-                    b.Property<Guid>("AddressesId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid>("MembersId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.HasKey("AddressesId", "MembersId");
-
-                    b.HasIndex("MembersId");
-
-                    b.ToTable("AddressMember");
-                });
-
-            modelBuilder.Entity("AuthorMaterial", b =>
-                {
-                    b.Property<Guid>("AuthorsId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid>("MaterialsId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.HasKey("AuthorsId", "MaterialsId");
-
-                    b.HasIndex("MaterialsId");
-
-                    b.ToTable("AuthorMaterial");
-                });
-
             modelBuilder.Entity("Domain.Entities.Address", b =>
                 {
                     b.Property<Guid>("Id")
@@ -129,6 +99,42 @@ namespace Persistence.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Authors", (string)null);
+                });
+
+            modelBuilder.Entity("Domain.Entities.AuthorMaterial", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier")
+                        .HasColumnName("Id");
+
+                    b.Property<Guid>("AuthorId")
+                        .HasColumnType("uniqueidentifier")
+                        .HasColumnName("AuthorId");
+
+                    b.Property<DateTime>("CreatedDate")
+                        .HasColumnType("datetime2")
+                        .HasColumnName("CreatedDate");
+
+                    b.Property<DateTime?>("DeletedDate")
+                        .HasColumnType("datetime2")
+                        .HasColumnName("DeletedDate");
+
+                    b.Property<Guid>("MaterialId")
+                        .HasColumnType("uniqueidentifier")
+                        .HasColumnName("MaterialId");
+
+                    b.Property<DateTime?>("UpdatedDate")
+                        .HasColumnType("datetime2")
+                        .HasColumnName("UpdatedDate");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("AuthorId");
+
+                    b.HasIndex("MaterialId");
+
+                    b.ToTable("AuthorMaterials", (string)null);
                 });
 
             modelBuilder.Entity("Domain.Entities.BorrowedMaterial", b =>
@@ -372,6 +378,42 @@ namespace Persistence.Migrations
                     b.ToTable("FavoriteLists", (string)null);
                 });
 
+            modelBuilder.Entity("Domain.Entities.FavoriteListMaterial", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier")
+                        .HasColumnName("Id");
+
+                    b.Property<DateTime>("CreatedDate")
+                        .HasColumnType("datetime2")
+                        .HasColumnName("CreatedDate");
+
+                    b.Property<DateTime?>("DeletedDate")
+                        .HasColumnType("datetime2")
+                        .HasColumnName("DeletedDate");
+
+                    b.Property<Guid>("FavoriteListId")
+                        .HasColumnType("uniqueidentifier")
+                        .HasColumnName("FavoriteListId");
+
+                    b.Property<Guid>("MaterialId")
+                        .HasColumnType("uniqueidentifier")
+                        .HasColumnName("MaterialId");
+
+                    b.Property<DateTime?>("UpdatedDate")
+                        .HasColumnType("datetime2")
+                        .HasColumnName("UpdatedDate");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("FavoriteListId");
+
+                    b.HasIndex("MaterialId");
+
+                    b.ToTable("FavoriteListMaterials", (string)null);
+                });
+
             modelBuilder.Entity("Domain.Entities.Language", b =>
                 {
                     b.Property<Guid>("Id")
@@ -399,6 +441,42 @@ namespace Persistence.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Languages", (string)null);
+                });
+
+            modelBuilder.Entity("Domain.Entities.LanguageMaterial", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier")
+                        .HasColumnName("Id");
+
+                    b.Property<DateTime>("CreatedDate")
+                        .HasColumnType("datetime2")
+                        .HasColumnName("CreatedDate");
+
+                    b.Property<DateTime?>("DeletedDate")
+                        .HasColumnType("datetime2")
+                        .HasColumnName("DeletedDate");
+
+                    b.Property<Guid>("LanguageId")
+                        .HasColumnType("uniqueidentifier")
+                        .HasColumnName("LanguageId");
+
+                    b.Property<Guid>("MaterialId")
+                        .HasColumnType("uniqueidentifier")
+                        .HasColumnName("MaterialId");
+
+                    b.Property<DateTime?>("UpdatedDate")
+                        .HasColumnType("datetime2")
+                        .HasColumnName("UpdatedDate");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("LanguageId");
+
+                    b.HasIndex("MaterialId");
+
+                    b.ToTable("LanguageMaterials", (string)null);
                 });
 
             modelBuilder.Entity("Domain.Entities.Library", b =>
@@ -765,6 +843,42 @@ namespace Persistence.Migrations
                     b.ToTable("Members", (string)null);
                 });
 
+            modelBuilder.Entity("Domain.Entities.MemberAddress", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier")
+                        .HasColumnName("Id");
+
+                    b.Property<Guid>("AddressId")
+                        .HasColumnType("uniqueidentifier")
+                        .HasColumnName("AddressId");
+
+                    b.Property<DateTime>("CreatedDate")
+                        .HasColumnType("datetime2")
+                        .HasColumnName("CreatedDate");
+
+                    b.Property<DateTime?>("DeletedDate")
+                        .HasColumnType("datetime2")
+                        .HasColumnName("DeletedDate");
+
+                    b.Property<Guid>("MemberId")
+                        .HasColumnType("uniqueidentifier")
+                        .HasColumnName("MemberId");
+
+                    b.Property<DateTime?>("UpdatedDate")
+                        .HasColumnType("datetime2")
+                        .HasColumnName("UpdatedDate");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("AddressId");
+
+                    b.HasIndex("MemberId");
+
+                    b.ToTable("MemberAddresses", (string)null);
+                });
+
             modelBuilder.Entity("Domain.Entities.MemberContact", b =>
                 {
                     b.Property<Guid>("Id")
@@ -791,7 +905,8 @@ namespace Persistence.Migrations
                         .HasColumnName("DeletedDate");
 
                     b.Property<Guid>("LibraryId")
-                        .HasColumnType("uniqueidentifier");
+                        .HasColumnType("uniqueidentifier")
+                        .HasColumnName("LibraryId");
 
                     b.Property<Guid>("MemberId")
                         .HasColumnType("uniqueidentifier")
@@ -814,6 +929,42 @@ namespace Persistence.Migrations
                     b.HasIndex("MemberId");
 
                     b.ToTable("MemberContacts", (string)null);
+                });
+
+            modelBuilder.Entity("Domain.Entities.MemberNotification", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier")
+                        .HasColumnName("Id");
+
+                    b.Property<DateTime>("CreatedDate")
+                        .HasColumnType("datetime2")
+                        .HasColumnName("CreatedDate");
+
+                    b.Property<DateTime?>("DeletedDate")
+                        .HasColumnType("datetime2")
+                        .HasColumnName("DeletedDate");
+
+                    b.Property<Guid>("MemberId")
+                        .HasColumnType("uniqueidentifier")
+                        .HasColumnName("MemberId");
+
+                    b.Property<Guid>("NotificationId")
+                        .HasColumnType("uniqueidentifier")
+                        .HasColumnName("NotificationId");
+
+                    b.Property<DateTime?>("UpdatedDate")
+                        .HasColumnType("datetime2")
+                        .HasColumnName("UpdatedDate");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("MemberId");
+
+                    b.HasIndex("NotificationId");
+
+                    b.ToTable("MemberNotifications", (string)null);
                 });
 
             modelBuilder.Entity("Domain.Entities.Neighborhood", b =>
@@ -3402,6 +3553,1158 @@ namespace Persistence.Migrations
                             Id = 413,
                             CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Name = "Members.Delete"
+                        },
+                        new
+                        {
+                            Id = 414,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "Addresses.Admin"
+                        },
+                        new
+                        {
+                            Id = 415,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "Addresses.Read"
+                        },
+                        new
+                        {
+                            Id = 416,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "Addresses.Write"
+                        },
+                        new
+                        {
+                            Id = 417,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "Addresses.Create"
+                        },
+                        new
+                        {
+                            Id = 418,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "Addresses.Update"
+                        },
+                        new
+                        {
+                            Id = 419,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "Addresses.Delete"
+                        },
+                        new
+                        {
+                            Id = 420,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "Authors.Admin"
+                        },
+                        new
+                        {
+                            Id = 421,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "Authors.Read"
+                        },
+                        new
+                        {
+                            Id = 422,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "Authors.Write"
+                        },
+                        new
+                        {
+                            Id = 423,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "Authors.Create"
+                        },
+                        new
+                        {
+                            Id = 424,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "Authors.Update"
+                        },
+                        new
+                        {
+                            Id = 425,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "Authors.Delete"
+                        },
+                        new
+                        {
+                            Id = 426,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "AuthorMaterials.Admin"
+                        },
+                        new
+                        {
+                            Id = 427,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "AuthorMaterials.Read"
+                        },
+                        new
+                        {
+                            Id = 428,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "AuthorMaterials.Write"
+                        },
+                        new
+                        {
+                            Id = 429,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "AuthorMaterials.Create"
+                        },
+                        new
+                        {
+                            Id = 430,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "AuthorMaterials.Update"
+                        },
+                        new
+                        {
+                            Id = 431,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "AuthorMaterials.Delete"
+                        },
+                        new
+                        {
+                            Id = 432,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "BorrowedMaterials.Admin"
+                        },
+                        new
+                        {
+                            Id = 433,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "BorrowedMaterials.Read"
+                        },
+                        new
+                        {
+                            Id = 434,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "BorrowedMaterials.Write"
+                        },
+                        new
+                        {
+                            Id = 435,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "BorrowedMaterials.Create"
+                        },
+                        new
+                        {
+                            Id = 436,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "BorrowedMaterials.Update"
+                        },
+                        new
+                        {
+                            Id = 437,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "BorrowedMaterials.Delete"
+                        },
+                        new
+                        {
+                            Id = 438,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "Branches.Admin"
+                        },
+                        new
+                        {
+                            Id = 439,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "Branches.Read"
+                        },
+                        new
+                        {
+                            Id = 440,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "Branches.Write"
+                        },
+                        new
+                        {
+                            Id = 441,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "Branches.Create"
+                        },
+                        new
+                        {
+                            Id = 442,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "Branches.Update"
+                        },
+                        new
+                        {
+                            Id = 443,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "Branches.Delete"
+                        },
+                        new
+                        {
+                            Id = 444,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "Cities.Admin"
+                        },
+                        new
+                        {
+                            Id = 445,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "Cities.Read"
+                        },
+                        new
+                        {
+                            Id = 446,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "Cities.Write"
+                        },
+                        new
+                        {
+                            Id = 447,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "Cities.Create"
+                        },
+                        new
+                        {
+                            Id = 448,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "Cities.Update"
+                        },
+                        new
+                        {
+                            Id = 449,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "Cities.Delete"
+                        },
+                        new
+                        {
+                            Id = 450,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "Districts.Admin"
+                        },
+                        new
+                        {
+                            Id = 451,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "Districts.Read"
+                        },
+                        new
+                        {
+                            Id = 452,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "Districts.Write"
+                        },
+                        new
+                        {
+                            Id = 453,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "Districts.Create"
+                        },
+                        new
+                        {
+                            Id = 454,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "Districts.Update"
+                        },
+                        new
+                        {
+                            Id = 455,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "Districts.Delete"
+                        },
+                        new
+                        {
+                            Id = 456,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "FavoriteLists.Admin"
+                        },
+                        new
+                        {
+                            Id = 457,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "FavoriteLists.Read"
+                        },
+                        new
+                        {
+                            Id = 458,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "FavoriteLists.Write"
+                        },
+                        new
+                        {
+                            Id = 459,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "FavoriteLists.Create"
+                        },
+                        new
+                        {
+                            Id = 460,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "FavoriteLists.Update"
+                        },
+                        new
+                        {
+                            Id = 461,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "FavoriteLists.Delete"
+                        },
+                        new
+                        {
+                            Id = 462,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "FavoriteListMaterials.Admin"
+                        },
+                        new
+                        {
+                            Id = 463,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "FavoriteListMaterials.Read"
+                        },
+                        new
+                        {
+                            Id = 464,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "FavoriteListMaterials.Write"
+                        },
+                        new
+                        {
+                            Id = 465,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "FavoriteListMaterials.Create"
+                        },
+                        new
+                        {
+                            Id = 466,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "FavoriteListMaterials.Update"
+                        },
+                        new
+                        {
+                            Id = 467,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "FavoriteListMaterials.Delete"
+                        },
+                        new
+                        {
+                            Id = 468,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "Languages.Admin"
+                        },
+                        new
+                        {
+                            Id = 469,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "Languages.Read"
+                        },
+                        new
+                        {
+                            Id = 470,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "Languages.Write"
+                        },
+                        new
+                        {
+                            Id = 471,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "Languages.Create"
+                        },
+                        new
+                        {
+                            Id = 472,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "Languages.Update"
+                        },
+                        new
+                        {
+                            Id = 473,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "Languages.Delete"
+                        },
+                        new
+                        {
+                            Id = 474,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "LanguageMaterials.Admin"
+                        },
+                        new
+                        {
+                            Id = 475,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "LanguageMaterials.Read"
+                        },
+                        new
+                        {
+                            Id = 476,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "LanguageMaterials.Write"
+                        },
+                        new
+                        {
+                            Id = 477,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "LanguageMaterials.Create"
+                        },
+                        new
+                        {
+                            Id = 478,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "LanguageMaterials.Update"
+                        },
+                        new
+                        {
+                            Id = 479,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "LanguageMaterials.Delete"
+                        },
+                        new
+                        {
+                            Id = 480,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "Libraries.Admin"
+                        },
+                        new
+                        {
+                            Id = 481,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "Libraries.Read"
+                        },
+                        new
+                        {
+                            Id = 482,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "Libraries.Write"
+                        },
+                        new
+                        {
+                            Id = 483,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "Libraries.Create"
+                        },
+                        new
+                        {
+                            Id = 484,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "Libraries.Update"
+                        },
+                        new
+                        {
+                            Id = 485,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "Libraries.Delete"
+                        },
+                        new
+                        {
+                            Id = 486,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "Locations.Admin"
+                        },
+                        new
+                        {
+                            Id = 487,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "Locations.Read"
+                        },
+                        new
+                        {
+                            Id = 488,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "Locations.Write"
+                        },
+                        new
+                        {
+                            Id = 489,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "Locations.Create"
+                        },
+                        new
+                        {
+                            Id = 490,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "Locations.Update"
+                        },
+                        new
+                        {
+                            Id = 491,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "Locations.Delete"
+                        },
+                        new
+                        {
+                            Id = 492,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "Materials.Admin"
+                        },
+                        new
+                        {
+                            Id = 493,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "Materials.Read"
+                        },
+                        new
+                        {
+                            Id = 494,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "Materials.Write"
+                        },
+                        new
+                        {
+                            Id = 495,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "Materials.Create"
+                        },
+                        new
+                        {
+                            Id = 496,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "Materials.Update"
+                        },
+                        new
+                        {
+                            Id = 497,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "Materials.Delete"
+                        },
+                        new
+                        {
+                            Id = 498,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "MaterialCopies.Admin"
+                        },
+                        new
+                        {
+                            Id = 499,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "MaterialCopies.Read"
+                        },
+                        new
+                        {
+                            Id = 500,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "MaterialCopies.Write"
+                        },
+                        new
+                        {
+                            Id = 501,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "MaterialCopies.Create"
+                        },
+                        new
+                        {
+                            Id = 502,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "MaterialCopies.Update"
+                        },
+                        new
+                        {
+                            Id = 503,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "MaterialCopies.Delete"
+                        },
+                        new
+                        {
+                            Id = 504,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "MaterialProperties.Admin"
+                        },
+                        new
+                        {
+                            Id = 505,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "MaterialProperties.Read"
+                        },
+                        new
+                        {
+                            Id = 506,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "MaterialProperties.Write"
+                        },
+                        new
+                        {
+                            Id = 507,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "MaterialProperties.Create"
+                        },
+                        new
+                        {
+                            Id = 508,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "MaterialProperties.Update"
+                        },
+                        new
+                        {
+                            Id = 509,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "MaterialProperties.Delete"
+                        },
+                        new
+                        {
+                            Id = 510,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "MaterialPropertyValues.Admin"
+                        },
+                        new
+                        {
+                            Id = 511,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "MaterialPropertyValues.Read"
+                        },
+                        new
+                        {
+                            Id = 512,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "MaterialPropertyValues.Write"
+                        },
+                        new
+                        {
+                            Id = 513,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "MaterialPropertyValues.Create"
+                        },
+                        new
+                        {
+                            Id = 514,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "MaterialPropertyValues.Update"
+                        },
+                        new
+                        {
+                            Id = 515,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "MaterialPropertyValues.Delete"
+                        },
+                        new
+                        {
+                            Id = 516,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "MaterialTypes.Admin"
+                        },
+                        new
+                        {
+                            Id = 517,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "MaterialTypes.Read"
+                        },
+                        new
+                        {
+                            Id = 518,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "MaterialTypes.Write"
+                        },
+                        new
+                        {
+                            Id = 519,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "MaterialTypes.Create"
+                        },
+                        new
+                        {
+                            Id = 520,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "MaterialTypes.Update"
+                        },
+                        new
+                        {
+                            Id = 521,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "MaterialTypes.Delete"
+                        },
+                        new
+                        {
+                            Id = 522,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "Members.Admin"
+                        },
+                        new
+                        {
+                            Id = 523,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "Members.Read"
+                        },
+                        new
+                        {
+                            Id = 524,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "Members.Write"
+                        },
+                        new
+                        {
+                            Id = 525,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "Members.Create"
+                        },
+                        new
+                        {
+                            Id = 526,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "Members.Update"
+                        },
+                        new
+                        {
+                            Id = 527,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "Members.Delete"
+                        },
+                        new
+                        {
+                            Id = 528,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "MemberAddresses.Admin"
+                        },
+                        new
+                        {
+                            Id = 529,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "MemberAddresses.Read"
+                        },
+                        new
+                        {
+                            Id = 530,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "MemberAddresses.Write"
+                        },
+                        new
+                        {
+                            Id = 531,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "MemberAddresses.Create"
+                        },
+                        new
+                        {
+                            Id = 532,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "MemberAddresses.Update"
+                        },
+                        new
+                        {
+                            Id = 533,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "MemberAddresses.Delete"
+                        },
+                        new
+                        {
+                            Id = 534,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "MemberContacts.Admin"
+                        },
+                        new
+                        {
+                            Id = 535,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "MemberContacts.Read"
+                        },
+                        new
+                        {
+                            Id = 536,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "MemberContacts.Write"
+                        },
+                        new
+                        {
+                            Id = 537,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "MemberContacts.Create"
+                        },
+                        new
+                        {
+                            Id = 538,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "MemberContacts.Update"
+                        },
+                        new
+                        {
+                            Id = 539,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "MemberContacts.Delete"
+                        },
+                        new
+                        {
+                            Id = 540,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "MemberNotifications.Admin"
+                        },
+                        new
+                        {
+                            Id = 541,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "MemberNotifications.Read"
+                        },
+                        new
+                        {
+                            Id = 542,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "MemberNotifications.Write"
+                        },
+                        new
+                        {
+                            Id = 543,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "MemberNotifications.Create"
+                        },
+                        new
+                        {
+                            Id = 544,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "MemberNotifications.Update"
+                        },
+                        new
+                        {
+                            Id = 545,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "MemberNotifications.Delete"
+                        },
+                        new
+                        {
+                            Id = 546,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "Neighborhoods.Admin"
+                        },
+                        new
+                        {
+                            Id = 547,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "Neighborhoods.Read"
+                        },
+                        new
+                        {
+                            Id = 548,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "Neighborhoods.Write"
+                        },
+                        new
+                        {
+                            Id = 549,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "Neighborhoods.Create"
+                        },
+                        new
+                        {
+                            Id = 550,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "Neighborhoods.Update"
+                        },
+                        new
+                        {
+                            Id = 551,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "Neighborhoods.Delete"
+                        },
+                        new
+                        {
+                            Id = 552,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "Notifications.Admin"
+                        },
+                        new
+                        {
+                            Id = 553,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "Notifications.Read"
+                        },
+                        new
+                        {
+                            Id = 554,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "Notifications.Write"
+                        },
+                        new
+                        {
+                            Id = 555,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "Notifications.Create"
+                        },
+                        new
+                        {
+                            Id = 556,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "Notifications.Update"
+                        },
+                        new
+                        {
+                            Id = 557,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "Notifications.Delete"
+                        },
+                        new
+                        {
+                            Id = 558,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "PaymentMethods.Admin"
+                        },
+                        new
+                        {
+                            Id = 559,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "PaymentMethods.Read"
+                        },
+                        new
+                        {
+                            Id = 560,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "PaymentMethods.Write"
+                        },
+                        new
+                        {
+                            Id = 561,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "PaymentMethods.Create"
+                        },
+                        new
+                        {
+                            Id = 562,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "PaymentMethods.Update"
+                        },
+                        new
+                        {
+                            Id = 563,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "PaymentMethods.Delete"
+                        },
+                        new
+                        {
+                            Id = 564,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "Penalties.Admin"
+                        },
+                        new
+                        {
+                            Id = 565,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "Penalties.Read"
+                        },
+                        new
+                        {
+                            Id = 566,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "Penalties.Write"
+                        },
+                        new
+                        {
+                            Id = 567,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "Penalties.Create"
+                        },
+                        new
+                        {
+                            Id = 568,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "Penalties.Update"
+                        },
+                        new
+                        {
+                            Id = 569,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "Penalties.Delete"
+                        },
+                        new
+                        {
+                            Id = 570,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "Publishers.Admin"
+                        },
+                        new
+                        {
+                            Id = 571,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "Publishers.Read"
+                        },
+                        new
+                        {
+                            Id = 572,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "Publishers.Write"
+                        },
+                        new
+                        {
+                            Id = 573,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "Publishers.Create"
+                        },
+                        new
+                        {
+                            Id = 574,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "Publishers.Update"
+                        },
+                        new
+                        {
+                            Id = 575,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "Publishers.Delete"
+                        },
+                        new
+                        {
+                            Id = 576,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "PublisherMaterials.Admin"
+                        },
+                        new
+                        {
+                            Id = 577,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "PublisherMaterials.Read"
+                        },
+                        new
+                        {
+                            Id = 578,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "PublisherMaterials.Write"
+                        },
+                        new
+                        {
+                            Id = 579,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "PublisherMaterials.Create"
+                        },
+                        new
+                        {
+                            Id = 580,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "PublisherMaterials.Update"
+                        },
+                        new
+                        {
+                            Id = 581,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "PublisherMaterials.Delete"
+                        },
+                        new
+                        {
+                            Id = 582,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "SocialMediaAccounts.Admin"
+                        },
+                        new
+                        {
+                            Id = 583,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "SocialMediaAccounts.Read"
+                        },
+                        new
+                        {
+                            Id = 584,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "SocialMediaAccounts.Write"
+                        },
+                        new
+                        {
+                            Id = 585,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "SocialMediaAccounts.Create"
+                        },
+                        new
+                        {
+                            Id = 586,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "SocialMediaAccounts.Update"
+                        },
+                        new
+                        {
+                            Id = 587,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "SocialMediaAccounts.Delete"
+                        },
+                        new
+                        {
+                            Id = 588,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "Streets.Admin"
+                        },
+                        new
+                        {
+                            Id = 589,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "Streets.Read"
+                        },
+                        new
+                        {
+                            Id = 590,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "Streets.Write"
+                        },
+                        new
+                        {
+                            Id = 591,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "Streets.Create"
+                        },
+                        new
+                        {
+                            Id = 592,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "Streets.Update"
+                        },
+                        new
+                        {
+                            Id = 593,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "Streets.Delete"
+                        },
+                        new
+                        {
+                            Id = 594,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "Translators.Admin"
+                        },
+                        new
+                        {
+                            Id = 595,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "Translators.Read"
+                        },
+                        new
+                        {
+                            Id = 596,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "Translators.Write"
+                        },
+                        new
+                        {
+                            Id = 597,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "Translators.Create"
+                        },
+                        new
+                        {
+                            Id = 598,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "Translators.Update"
+                        },
+                        new
+                        {
+                            Id = 599,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "Translators.Delete"
+                        },
+                        new
+                        {
+                            Id = 600,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "TranslatorMaterials.Admin"
+                        },
+                        new
+                        {
+                            Id = 601,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "TranslatorMaterials.Read"
+                        },
+                        new
+                        {
+                            Id = 602,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "TranslatorMaterials.Write"
+                        },
+                        new
+                        {
+                            Id = 603,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "TranslatorMaterials.Create"
+                        },
+                        new
+                        {
+                            Id = 604,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "TranslatorMaterials.Update"
+                        },
+                        new
+                        {
+                            Id = 605,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "TranslatorMaterials.Delete"
                         });
                 });
 
@@ -3550,6 +4853,42 @@ namespace Persistence.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Publishers", (string)null);
+                });
+
+            modelBuilder.Entity("Domain.Entities.PublisherMaterial", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier")
+                        .HasColumnName("Id");
+
+                    b.Property<DateTime>("CreatedDate")
+                        .HasColumnType("datetime2")
+                        .HasColumnName("CreatedDate");
+
+                    b.Property<DateTime?>("DeletedDate")
+                        .HasColumnType("datetime2")
+                        .HasColumnName("DeletedDate");
+
+                    b.Property<Guid>("MaterialId")
+                        .HasColumnType("uniqueidentifier")
+                        .HasColumnName("MaterialId");
+
+                    b.Property<Guid>("PublisherId")
+                        .HasColumnType("uniqueidentifier")
+                        .HasColumnName("PublisherId");
+
+                    b.Property<DateTime?>("UpdatedDate")
+                        .HasColumnType("datetime2")
+                        .HasColumnName("UpdatedDate");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("MaterialId");
+
+                    b.HasIndex("PublisherId");
+
+                    b.ToTable("PublisherMaterials", (string)null);
                 });
 
             modelBuilder.Entity("Domain.Entities.RefreshToken", b =>
@@ -3720,6 +5059,42 @@ namespace Persistence.Migrations
                     b.ToTable("Translators", (string)null);
                 });
 
+            modelBuilder.Entity("Domain.Entities.TranslatorMaterial", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier")
+                        .HasColumnName("Id");
+
+                    b.Property<DateTime>("CreatedDate")
+                        .HasColumnType("datetime2")
+                        .HasColumnName("CreatedDate");
+
+                    b.Property<DateTime?>("DeletedDate")
+                        .HasColumnType("datetime2")
+                        .HasColumnName("DeletedDate");
+
+                    b.Property<Guid>("MaterialId")
+                        .HasColumnType("uniqueidentifier")
+                        .HasColumnName("MaterialId");
+
+                    b.Property<Guid>("TranslatorId")
+                        .HasColumnType("uniqueidentifier")
+                        .HasColumnName("TranslatorId");
+
+                    b.Property<DateTime?>("UpdatedDate")
+                        .HasColumnType("datetime2")
+                        .HasColumnName("UpdatedDate");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("MaterialId");
+
+                    b.HasIndex("TranslatorId");
+
+                    b.ToTable("TranslatorMaterials", (string)null);
+                });
+
             modelBuilder.Entity("Domain.Entities.User", b =>
                 {
                     b.Property<Guid>("Id")
@@ -3765,12 +5140,12 @@ namespace Persistence.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("333e4d9f-b265-4e89-9d93-9b88dd10c2b0"),
+                            Id = new Guid("dabac214-c637-4a71-b73b-19a14d6079c3"),
                             AuthenticatorType = 0,
                             CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Email = "narch@kodlama.io",
-                            PasswordHash = new byte[] { 194, 254, 88, 137, 197, 83, 121, 249, 12, 34, 173, 222, 200, 82, 34, 211, 145, 71, 206, 146, 81, 66, 214, 185, 52, 205, 1, 56, 79, 171, 232, 153, 87, 123, 249, 155, 188, 232, 38, 8, 79, 26, 116, 162, 78, 66, 220, 141, 255, 13, 15, 63, 129, 116, 126, 160, 194, 127, 61, 95, 33, 84, 119, 94 },
-                            PasswordSalt = new byte[] { 55, 212, 85, 204, 140, 88, 246, 210, 25, 98, 174, 49, 55, 162, 82, 112, 209, 78, 14, 128, 192, 210, 1, 118, 250, 54, 83, 134, 202, 165, 239, 56, 237, 53, 176, 2, 219, 213, 110, 132, 87, 92, 216, 210, 73, 184, 33, 185, 225, 241, 213, 106, 132, 12, 241, 65, 58, 194, 54, 197, 109, 107, 168, 71, 81, 147, 72, 98, 35, 45, 37, 217, 80, 238, 79, 2, 37, 157, 7, 61, 96, 97, 132, 216, 11, 19, 122, 96, 3, 77, 124, 5, 2, 91, 198, 210, 243, 246, 72, 193, 146, 177, 208, 158, 25, 182, 44, 141, 18, 193, 93, 120, 249, 121, 68, 59, 2, 209, 182, 220, 220, 122, 5, 221, 33, 44, 147, 177 }
+                            PasswordHash = new byte[] { 164, 201, 144, 156, 248, 214, 59, 239, 238, 250, 157, 128, 151, 148, 84, 76, 118, 66, 58, 191, 103, 220, 17, 220, 217, 11, 20, 199, 150, 197, 194, 81, 27, 97, 236, 58, 213, 117, 115, 93, 145, 131, 177, 63, 192, 51, 244, 164, 154, 231, 80, 151, 89, 93, 91, 199, 240, 180, 149, 25, 243, 123, 221, 60 },
+                            PasswordSalt = new byte[] { 107, 88, 183, 225, 28, 208, 58, 51, 53, 152, 94, 13, 216, 76, 175, 192, 249, 25, 119, 123, 22, 154, 239, 78, 182, 210, 28, 117, 21, 96, 167, 200, 197, 97, 215, 156, 150, 190, 168, 65, 89, 166, 34, 85, 94, 48, 85, 162, 52, 31, 9, 174, 166, 33, 24, 226, 177, 112, 15, 104, 211, 211, 172, 26, 128, 30, 132, 62, 213, 74, 217, 167, 7, 98, 228, 25, 206, 47, 167, 205, 31, 84, 7, 53, 139, 225, 245, 11, 182, 241, 26, 159, 56, 22, 101, 94, 144, 183, 183, 195, 182, 75, 227, 110, 41, 79, 227, 47, 242, 76, 126, 48, 80, 48, 135, 167, 89, 228, 226, 35, 69, 30, 6, 208, 207, 237, 26, 161 }
                         });
                 });
 
@@ -3812,116 +5187,11 @@ namespace Persistence.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("67dc8556-822e-4790-bf5e-341c94967d30"),
+                            Id = new Guid("b5afb807-282f-4ac7-831f-24309d9032c1"),
                             CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             OperationClaimId = 1,
-                            UserId = new Guid("333e4d9f-b265-4e89-9d93-9b88dd10c2b0")
+                            UserId = new Guid("dabac214-c637-4a71-b73b-19a14d6079c3")
                         });
-                });
-
-            modelBuilder.Entity("FavoriteListMaterial", b =>
-                {
-                    b.Property<Guid>("FavoriteListsId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid>("MaterialsId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.HasKey("FavoriteListsId", "MaterialsId");
-
-                    b.HasIndex("MaterialsId");
-
-                    b.ToTable("FavoriteListMaterial");
-                });
-
-            modelBuilder.Entity("LanguageMaterial", b =>
-                {
-                    b.Property<Guid>("LanguagesId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid>("MaterialsId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.HasKey("LanguagesId", "MaterialsId");
-
-                    b.HasIndex("MaterialsId");
-
-                    b.ToTable("LanguageMaterial");
-                });
-
-            modelBuilder.Entity("MaterialPublisher", b =>
-                {
-                    b.Property<Guid>("MaterialsId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid>("PublishersId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.HasKey("MaterialsId", "PublishersId");
-
-                    b.HasIndex("PublishersId");
-
-                    b.ToTable("MaterialPublisher");
-                });
-
-            modelBuilder.Entity("MaterialTranslator", b =>
-                {
-                    b.Property<Guid>("MaterialsId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid>("TranslatorsId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.HasKey("MaterialsId", "TranslatorsId");
-
-                    b.HasIndex("TranslatorsId");
-
-                    b.ToTable("MaterialTranslator");
-                });
-
-            modelBuilder.Entity("MemberNotification", b =>
-                {
-                    b.Property<Guid>("MembersId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid>("NotificationsId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.HasKey("MembersId", "NotificationsId");
-
-                    b.HasIndex("NotificationsId");
-
-                    b.ToTable("MemberNotification");
-                });
-
-            modelBuilder.Entity("AddressMember", b =>
-                {
-                    b.HasOne("Domain.Entities.Address", null)
-                        .WithMany()
-                        .HasForeignKey("AddressesId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Domain.Entities.Member", null)
-                        .WithMany()
-                        .HasForeignKey("MembersId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
-            modelBuilder.Entity("AuthorMaterial", b =>
-                {
-                    b.HasOne("Domain.Entities.Author", null)
-                        .WithMany()
-                        .HasForeignKey("AuthorsId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Domain.Entities.Material", null)
-                        .WithMany()
-                        .HasForeignKey("MaterialsId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
                 });
 
             modelBuilder.Entity("Domain.Entities.Address", b =>
@@ -3933,6 +5203,25 @@ namespace Persistence.Migrations
                         .IsRequired();
 
                     b.Navigation("Street");
+                });
+
+            modelBuilder.Entity("Domain.Entities.AuthorMaterial", b =>
+                {
+                    b.HasOne("Domain.Entities.Author", "Author")
+                        .WithMany("AuthorMaterials")
+                        .HasForeignKey("AuthorId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Domain.Entities.Material", "Material")
+                        .WithMany("AuthorMaterials")
+                        .HasForeignKey("MaterialId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Author");
+
+                    b.Navigation("Material");
                 });
 
             modelBuilder.Entity("Domain.Entities.BorrowedMaterial", b =>
@@ -4006,6 +5295,44 @@ namespace Persistence.Migrations
                     b.Navigation("Member");
                 });
 
+            modelBuilder.Entity("Domain.Entities.FavoriteListMaterial", b =>
+                {
+                    b.HasOne("Domain.Entities.FavoriteList", "FavoriteList")
+                        .WithMany("FavoriteListMaterials")
+                        .HasForeignKey("FavoriteListId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Domain.Entities.Material", "Material")
+                        .WithMany("FavoriteListMaterials")
+                        .HasForeignKey("MaterialId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("FavoriteList");
+
+                    b.Navigation("Material");
+                });
+
+            modelBuilder.Entity("Domain.Entities.LanguageMaterial", b =>
+                {
+                    b.HasOne("Domain.Entities.Language", "Language")
+                        .WithMany("LanguageMaterials")
+                        .HasForeignKey("LanguageId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Domain.Entities.Material", "Material")
+                        .WithMany("LanguageMaterials")
+                        .HasForeignKey("MaterialId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Language");
+
+                    b.Navigation("Material");
+                });
+
             modelBuilder.Entity("Domain.Entities.MaterialCopy", b =>
                 {
                     b.HasOne("Domain.Entities.Branch", "Branch")
@@ -4071,6 +5398,25 @@ namespace Persistence.Migrations
                     b.Navigation("User");
                 });
 
+            modelBuilder.Entity("Domain.Entities.MemberAddress", b =>
+                {
+                    b.HasOne("Domain.Entities.Address", "Address")
+                        .WithMany("MemberAddresses")
+                        .HasForeignKey("AddressId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Domain.Entities.Member", "Member")
+                        .WithMany("MemberAddresses")
+                        .HasForeignKey("MemberId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Address");
+
+                    b.Navigation("Member");
+                });
+
             modelBuilder.Entity("Domain.Entities.MemberContact", b =>
                 {
                     b.HasOne("Domain.Entities.Library", "Library")
@@ -4088,6 +5434,25 @@ namespace Persistence.Migrations
                     b.Navigation("Library");
 
                     b.Navigation("Member");
+                });
+
+            modelBuilder.Entity("Domain.Entities.MemberNotification", b =>
+                {
+                    b.HasOne("Domain.Entities.Member", "Member")
+                        .WithMany("MemberNotifications")
+                        .HasForeignKey("MemberId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Domain.Entities.Notification", "Notification")
+                        .WithMany("MemberNotifications")
+                        .HasForeignKey("NotificationId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Member");
+
+                    b.Navigation("Notification");
                 });
 
             modelBuilder.Entity("Domain.Entities.Neighborhood", b =>
@@ -4134,6 +5499,25 @@ namespace Persistence.Migrations
                     b.Navigation("BorrowedMaterial");
                 });
 
+            modelBuilder.Entity("Domain.Entities.PublisherMaterial", b =>
+                {
+                    b.HasOne("Domain.Entities.Material", "Material")
+                        .WithMany("PublisherMaterials")
+                        .HasForeignKey("MaterialId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Domain.Entities.Publisher", "Publisher")
+                        .WithMany("PublisherMaterials")
+                        .HasForeignKey("PublisherId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Material");
+
+                    b.Navigation("Publisher");
+                });
+
             modelBuilder.Entity("Domain.Entities.RefreshToken", b =>
                 {
                     b.HasOne("Domain.Entities.User", "User")
@@ -4167,6 +5551,25 @@ namespace Persistence.Migrations
                     b.Navigation("Neighborhood");
                 });
 
+            modelBuilder.Entity("Domain.Entities.TranslatorMaterial", b =>
+                {
+                    b.HasOne("Domain.Entities.Material", "Material")
+                        .WithMany("TranslatorMaterials")
+                        .HasForeignKey("MaterialId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Domain.Entities.Translator", "Translator")
+                        .WithMany("TranslatorMaterials")
+                        .HasForeignKey("TranslatorId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Material");
+
+                    b.Navigation("Translator");
+                });
+
             modelBuilder.Entity("Domain.Entities.UserOperationClaim", b =>
                 {
                     b.HasOne("Domain.Entities.OperationClaim", "OperationClaim")
@@ -4186,85 +5589,17 @@ namespace Persistence.Migrations
                     b.Navigation("User");
                 });
 
-            modelBuilder.Entity("FavoriteListMaterial", b =>
-                {
-                    b.HasOne("Domain.Entities.FavoriteList", null)
-                        .WithMany()
-                        .HasForeignKey("FavoriteListsId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Domain.Entities.Material", null)
-                        .WithMany()
-                        .HasForeignKey("MaterialsId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
-            modelBuilder.Entity("LanguageMaterial", b =>
-                {
-                    b.HasOne("Domain.Entities.Language", null)
-                        .WithMany()
-                        .HasForeignKey("LanguagesId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Domain.Entities.Material", null)
-                        .WithMany()
-                        .HasForeignKey("MaterialsId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
-            modelBuilder.Entity("MaterialPublisher", b =>
-                {
-                    b.HasOne("Domain.Entities.Material", null)
-                        .WithMany()
-                        .HasForeignKey("MaterialsId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Domain.Entities.Publisher", null)
-                        .WithMany()
-                        .HasForeignKey("PublishersId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
-            modelBuilder.Entity("MaterialTranslator", b =>
-                {
-                    b.HasOne("Domain.Entities.Material", null)
-                        .WithMany()
-                        .HasForeignKey("MaterialsId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Domain.Entities.Translator", null)
-                        .WithMany()
-                        .HasForeignKey("TranslatorsId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
-            modelBuilder.Entity("MemberNotification", b =>
-                {
-                    b.HasOne("Domain.Entities.Member", null)
-                        .WithMany()
-                        .HasForeignKey("MembersId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Domain.Entities.Notification", null)
-                        .WithMany()
-                        .HasForeignKey("NotificationsId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
             modelBuilder.Entity("Domain.Entities.Address", b =>
                 {
                     b.Navigation("Branch")
                         .IsRequired();
+
+                    b.Navigation("MemberAddresses");
+                });
+
+            modelBuilder.Entity("Domain.Entities.Author", b =>
+                {
+                    b.Navigation("AuthorMaterials");
                 });
 
             modelBuilder.Entity("Domain.Entities.BorrowedMaterial", b =>
@@ -4292,6 +5627,16 @@ namespace Persistence.Migrations
                     b.Navigation("Neighborhoods");
                 });
 
+            modelBuilder.Entity("Domain.Entities.FavoriteList", b =>
+                {
+                    b.Navigation("FavoriteListMaterials");
+                });
+
+            modelBuilder.Entity("Domain.Entities.Language", b =>
+                {
+                    b.Navigation("LanguageMaterials");
+                });
+
             modelBuilder.Entity("Domain.Entities.Library", b =>
                 {
                     b.Navigation("Branches");
@@ -4308,9 +5653,19 @@ namespace Persistence.Migrations
 
             modelBuilder.Entity("Domain.Entities.Material", b =>
                 {
+                    b.Navigation("AuthorMaterials");
+
+                    b.Navigation("FavoriteListMaterials");
+
+                    b.Navigation("LanguageMaterials");
+
                     b.Navigation("MaterialCopies");
 
                     b.Navigation("MaterialPropertyValues");
+
+                    b.Navigation("PublisherMaterials");
+
+                    b.Navigation("TranslatorMaterials");
                 });
 
             modelBuilder.Entity("Domain.Entities.MaterialCopy", b =>
@@ -4335,7 +5690,11 @@ namespace Persistence.Migrations
 
                     b.Navigation("FavoriteLists");
 
+                    b.Navigation("MemberAddresses");
+
                     b.Navigation("MemberContacts");
+
+                    b.Navigation("MemberNotifications");
                 });
 
             modelBuilder.Entity("Domain.Entities.Neighborhood", b =>
@@ -4343,9 +5702,24 @@ namespace Persistence.Migrations
                     b.Navigation("Streets");
                 });
 
+            modelBuilder.Entity("Domain.Entities.Notification", b =>
+                {
+                    b.Navigation("MemberNotifications");
+                });
+
+            modelBuilder.Entity("Domain.Entities.Publisher", b =>
+                {
+                    b.Navigation("PublisherMaterials");
+                });
+
             modelBuilder.Entity("Domain.Entities.Street", b =>
                 {
                     b.Navigation("Addresses");
+                });
+
+            modelBuilder.Entity("Domain.Entities.Translator", b =>
+                {
+                    b.Navigation("TranslatorMaterials");
                 });
 
             modelBuilder.Entity("Domain.Entities.User", b =>
