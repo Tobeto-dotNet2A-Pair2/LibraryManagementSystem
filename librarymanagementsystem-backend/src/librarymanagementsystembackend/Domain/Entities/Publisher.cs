@@ -11,5 +11,5 @@ public class Publisher : Entity<Guid>
     public string PublisherName { get; set; }
     public string PublicationPlace { get; set; }
 
-    public virtual ICollection<Material> Materials { get; set; }
+    public virtual ICollection<PublisherMaterial> PublisherMaterials { get; set; }
 }

@@ -13,10 +13,12 @@ public class MaterialCopy : Entity<Guid>
     public Guid BranchId { get; set; }
     public Guid LocationId { get; set; }
 
-    public virtual Material? Material { get; set; }
-    public virtual Branch? Branch { get; set; }
-    public virtual Location? Location { get; set; }
-    public virtual BorrowedMaterial? BorrowedMaterial { get; set; }
 
-    
+    public virtual BorrowedMaterial BorrowedMaterial { get; set; }
+    public virtual Material Material { get; set; }
+    public virtual Branch Branch { get; set; }
+    public virtual Location Location { get; set; }
+
+
+
 }

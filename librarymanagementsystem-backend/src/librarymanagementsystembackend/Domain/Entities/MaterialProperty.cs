@@ -9,5 +9,5 @@ namespace Domain.Entities;
 public class MaterialProperty : Entity<Guid>
 {
     public string MaterialPropertyName { get; set; }
-    public virtual ICollection<MaterialPropertyValue>? MaterialPropertyValues { get; set; }
+    public virtual ICollection<MaterialPropertyValue> MaterialPropertyValues { get; set; }
 }

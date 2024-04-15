@@ -9,7 +9,7 @@ public class Location : Entity<Guid>
     public string? Corridor { get; set; }
     public string? Floor { get; set; }
     public string? FullLocationMap { get; set; }
-    public virtual MaterialCopy? MaterialCopy { get; set; }
+    public virtual MaterialCopy MaterialCopy { get; set; }
 
 
 }

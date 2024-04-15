@@ -6,7 +6,7 @@ public class CreateBranchCommandValidator : AbstractValidator<CreateBranchComman
 {
     public CreateBranchCommandValidator()
     {
-        RuleFor(c => c.BranchName).NotEmpty().MinimumLength(2).MaximumLength(150);
+        RuleFor(c => c.BranchName).NotEmpty().Length(2, 150);
         RuleFor(c => c.WorkingHours).NotEmpty();
         RuleFor(c => c.Telephone).NotEmpty().Matches(@"^+?\d{10,15}$").WithMessage("Please enter a valid phone number (should be between 10 and 15 digits, starting with '+' if present).");
         RuleFor(c => c.WebSiteUrl).NotEmpty()
@@ -14,6 +14,5 @@ public class CreateBranchCommandValidator : AbstractValidator<CreateBranchComman
                                   .WithMessage("Please enter a valid website URL");
         RuleFor(c => c.AddressId).NotEmpty();
         RuleFor(c => c.LibraryId).NotEmpty();
-
     }
 }

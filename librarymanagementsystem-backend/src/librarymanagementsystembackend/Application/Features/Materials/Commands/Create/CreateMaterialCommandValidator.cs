@@ -15,8 +15,7 @@ public class CreateMaterialCommandValidator : AbstractValidator<CreateMaterialCo
             .LessThanOrEqualTo(DateTime.Now.Date);
 
         RuleFor(c => c.PunishmentAmount).NotEmpty().GreaterThanOrEqualTo(0);
-        RuleFor(c => c.IsBorrowable).Must(value => value == true || value == false);
+        RuleFor(c => c.IsBorrowable).NotEmpty();
         RuleFor(c => c.BorrowDay).Must((c, borrowDay) => !c.IsBorrowable || borrowDay > 0);
-
     }
 }

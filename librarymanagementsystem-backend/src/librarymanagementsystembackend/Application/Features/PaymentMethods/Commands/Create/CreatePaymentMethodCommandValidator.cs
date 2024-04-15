@@ -6,7 +6,7 @@ public class CreatePaymentMethodCommandValidator : AbstractValidator<CreatePayme
 {
     public CreatePaymentMethodCommandValidator()
     {
-        RuleFor(c => c.BranchId).NotEmpty().Must(id => Guid.TryParse(id.ToString(), out _)); 
-        RuleFor(c => c.PaymentMethodName).NotEmpty().Length(1, 50);
+        RuleFor(c => c.BranchId).NotEmpty();
+        RuleFor(c => c.PaymentMethodName).NotEmpty().Length(2,50);
     }
 }

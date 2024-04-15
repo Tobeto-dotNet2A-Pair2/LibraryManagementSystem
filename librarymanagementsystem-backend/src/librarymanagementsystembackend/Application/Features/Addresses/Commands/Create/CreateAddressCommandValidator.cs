@@ -6,8 +6,8 @@ public class CreateAddressCommandValidator : AbstractValidator<CreateAddressComm
 {
     public CreateAddressCommandValidator()
     {
-        RuleFor(c => c.StreetId).NotEmpty().Must(id => Guid.TryParse(id.ToString(), out _)); 
-        RuleFor(c => c.AddressName).NotEmpty().Length(1,50);
-        RuleFor(c => c.Description).NotEmpty().Length(1,200); 
+        RuleFor(c => c.StreetId).NotEmpty();
+        RuleFor(c => c.AddressName).NotEmpty().Length(2, 50);
+        RuleFor(c => c.Description).NotEmpty().Length(2, 200);
     }
 }

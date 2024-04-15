@@ -17,18 +17,20 @@ public class MemberConfiguration : IEntityTypeConfiguration<Member>
         builder.Property(m => m.PhoneNumber).HasColumnName("PhoneNumber");
         builder.Property(m => m.Photo).HasColumnName("Photo");
         builder.Property(m => m.Position).HasColumnName("Position");
-        builder.Property(m => m.TotalDebt).HasColumnName("TotalDebt");
+        builder.Property(m => m.TotalDebt).HasColumnName("TotalDebt").HasPrecision(18,2);
         builder.Property(m => m.UserId).HasColumnName("UserId");
+        builder.Property(m => m.isActive).HasColumnName("isActive");
         builder.Property(m => m.CreatedDate).HasColumnName("CreatedDate").IsRequired();
         builder.Property(m => m.UpdatedDate).HasColumnName("UpdatedDate");
         builder.Property(m => m.DeletedDate).HasColumnName("DeletedDate");
 
         builder.HasOne(m => m.User);
-        builder.HasMany(m => m.Addresses);
-        builder.HasMany(m => m.Notifications);
+        builder.HasMany(m => m.MemberAddresses);
+        builder.HasMany(m => m.MemberNotifications);
         builder.HasMany(m => m.BorrowedMaterials);
         builder.HasMany(m => m.FavoriteLists);
-        builder.HasMany(m=>m.MemberContacts);
+        builder.HasMany(m => m.MemberContacts);
+
 
         builder.HasQueryFilter(m => !m.DeletedDate.HasValue);
     }

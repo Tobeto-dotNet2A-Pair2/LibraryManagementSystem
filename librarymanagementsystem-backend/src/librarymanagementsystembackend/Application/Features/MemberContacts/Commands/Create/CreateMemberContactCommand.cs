@@ -18,6 +18,7 @@ public class CreateMemberContactCommand : IRequest<CreatedMemberContactResponse>
     public string AskLibrarianDescription { get; set; }
     public string Messages { get; set; }
     public Guid MemberId { get; set; }
+    public Guid LibraryId { get; set; }
 
     public string[] Roles => [Admin, Write, MemberContactsOperationClaims.Create];
 
