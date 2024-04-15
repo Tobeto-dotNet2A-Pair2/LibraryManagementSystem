@@ -51,6 +51,8 @@ using Application.Services.MemberAddresses;
 using Application.Services.MemberNotifications;
 using Application.Services.PublisherMaterials;
 using Application.Services.TranslatorMaterials;
+using Application.Services.Genres;
+using Application.Services.MaterialGenres;
 
 namespace Application;
 
@@ -188,6 +190,9 @@ public static class ApplicationServiceRegistration
         services.AddScoped<IStreetService, StreetManager>();
         services.AddScoped<ITranslatorService, TranslatorManager>();
         services.AddScoped<ITranslatorMaterialService, TranslatorMaterialManager>();
+        services.AddScoped<IGenreService, GenreManager>();
+        services.AddScoped<IMaterialGenreService, MaterialGenreManager>();
+        services.AddScoped<IMaterialService, MaterialManager>();
         return services;
     }
 

@@ -42,6 +42,8 @@ using Application.Features.MemberAddresses.Constants;
 using Application.Features.MemberNotifications.Constants;
 using Application.Features.PublisherMaterials.Constants;
 using Application.Features.TranslatorMaterials.Constants;
+using Application.Features.Genres.Constants;
+using Application.Features.MaterialGenres.Constants;
 
 
 
@@ -1495,6 +1497,48 @@ public class OperationClaimConfiguration : IEntityTypeConfiguration<OperationCla
                 new() { Id = ++lastId, Name = TranslatorMaterialsOperationClaims.Create },
                 new() { Id = ++lastId, Name = TranslatorMaterialsOperationClaims.Update },
                 new() { Id = ++lastId, Name = TranslatorMaterialsOperationClaims.Delete },
+            ]
+        );
+        #endregion
+        
+        
+        #region Genres
+        featureOperationClaims.AddRange(
+            [
+                new() { Id = ++lastId, Name = GenresOperationClaims.Admin },
+                new() { Id = ++lastId, Name = GenresOperationClaims.Read },
+                new() { Id = ++lastId, Name = GenresOperationClaims.Write },
+                new() { Id = ++lastId, Name = GenresOperationClaims.Create },
+                new() { Id = ++lastId, Name = GenresOperationClaims.Update },
+                new() { Id = ++lastId, Name = GenresOperationClaims.Delete },
+            ]
+        );
+        #endregion
+        
+        
+        #region MaterialGenres
+        featureOperationClaims.AddRange(
+            [
+                new() { Id = ++lastId, Name = MaterialGenresOperationClaims.Admin },
+                new() { Id = ++lastId, Name = MaterialGenresOperationClaims.Read },
+                new() { Id = ++lastId, Name = MaterialGenresOperationClaims.Write },
+                new() { Id = ++lastId, Name = MaterialGenresOperationClaims.Create },
+                new() { Id = ++lastId, Name = MaterialGenresOperationClaims.Update },
+                new() { Id = ++lastId, Name = MaterialGenresOperationClaims.Delete },
+            ]
+        );
+        #endregion
+        
+        
+        #region Materials
+        featureOperationClaims.AddRange(
+            [
+                new() { Id = ++lastId, Name = MaterialsOperationClaims.Admin },
+                new() { Id = ++lastId, Name = MaterialsOperationClaims.Read },
+                new() { Id = ++lastId, Name = MaterialsOperationClaims.Write },
+                new() { Id = ++lastId, Name = MaterialsOperationClaims.Create },
+                new() { Id = ++lastId, Name = MaterialsOperationClaims.Update },
+                new() { Id = ++lastId, Name = MaterialsOperationClaims.Delete },
             ]
         );
         #endregion
