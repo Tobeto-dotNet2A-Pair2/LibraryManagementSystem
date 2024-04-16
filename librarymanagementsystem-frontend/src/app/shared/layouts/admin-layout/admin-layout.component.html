@@ -11,30 +11,23 @@
         <!--begin::Content wrapper-->
         <div class="d-flex flex-column flex-column-fluid">
           <!--begin::Toolbar-->
-          <div id="kt_app_toolbar" class="app-toolbar pt-5">
-            <!--begin::Toolbar container-->
-            Toolbar
 
-            <div class="rounded border d-flex flex-column p-10">
-              <label for="" class="form-label">Basic autosize textarea</label>
-              <textarea class="form-control" data-kt-autosize="true"></textarea>
-            </div>
-
-            <div class="rounded border d-flex flex-column p-10">
-              <label for="" class="form-label">Solid autosize textarea</label>
-              <textarea
-                class="form-control form-control form-control-solid"
-                data-kt-autosize="true"
-              ></textarea>
-            </div>
-            <!--end::Toolbar container-->
-          </div>
+          <app-toolbar/>
           <!--end::Toolbar-->
           <!--begin::Content-->
           <div id="kt_app_content" class="app-content flex-column-fluid">
             <!--begin::Content container-->
-            main
-            <router-outlet />
+            <div
+              id="kt_app_content_container"
+              class="app-container container-fluid"
+            >
+              <div class="row gx-5 gx-xl-10">
+                <div class="col-xxl-6 mb-5 mb-xl-10">
+                  main
+                  <router-outlet />
+                </div>
+              </div>
+            </div>
             <!--end::Content container-->
           </div>
           <!--end::Content-->
