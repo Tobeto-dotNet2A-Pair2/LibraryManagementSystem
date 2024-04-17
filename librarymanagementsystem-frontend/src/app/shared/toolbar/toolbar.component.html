@@ -8,7 +8,7 @@
           <ul class="breadcrumb breadcrumb-separatorless fw-semibold mb-6">
             <!--begin::Item-->
             <li class="breadcrumb-item text-gray-700 fw-bold lh-1">
-              <a href="#" routerLink="/homepage/dashboard" (click)="$event.preventDefault();"  class="text-gray-500">
+              <a href="#" routerLink="/adminpage/dashboard" (click)="$event.preventDefault();"  class="text-gray-500">
                 <i class="ki-duotone ki-home fs-3 text-gray-400 me-n1"></i>
               </a>
             </li>
@@ -19,7 +19,7 @@
             </li>
             <!--end::Item-->
             <!--begin::Item-->
-            <li class="breadcrumb-item text-gray-700 fw-bold lh-1">Dashboards</li>
+            <li class="breadcrumb-item text-gray-700 fw-bold lh-1">{{ activeRouteName }}</li>
             <!--end::Item-->
             <!--begin::Item-->
             <li class="breadcrumb-item">
@@ -27,12 +27,12 @@
             </li>
             <!--end::Item-->
             <!--begin::Item-->
-            <li class="breadcrumb-item text-gray-700">Default</li>
+            <li class="breadcrumb-item text-gray-700">{{activeChildRouteName}}</li>
             <!--end::Item-->
           </ul>
           <!--end::Breadcrumb-->
           <!--begin::Title-->
-          <h1 class="page-heading d-flex flex-column justify-content-center text-dark fw-bolder fs-1 lh-0">Dashboard</h1>
+          <h1 class="page-heading d-flex flex-column justify-content-center text-dark fw-bolder fs-1 lh-0">{{ activeChildRouteName.charAt(0).toUpperCase() + activeChildRouteName.slice(1) }}</h1>
           <!--end::Title-->
         </div>
         <!--end::Page title-->

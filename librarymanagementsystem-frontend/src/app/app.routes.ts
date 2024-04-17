@@ -7,13 +7,13 @@ import { DashboardComponent } from './features/pages/dashboard/dashboard.compone
 import { MaterialComponent } from './features/pages/material/material.component';
 
 export const routes: Routes = [
-  { path: '', redirectTo: 'homepage', pathMatch: 'full' },
+  { path: '', redirectTo: 'adminpage', pathMatch: 'full' },
   // { path: 'homepage', component: HomepageComponent },
   // { path: 'homepage', component: AdminLayoutComponent },
 
   // { path: 'adminpage', component: AdminLayoutComponent, canActivate: [authGuard] },
   { 
-    path: 'homepage',
+    path: 'adminpage',
     component: AdminLayoutComponent,
     // canActivate: [authGuard],
     children: [
