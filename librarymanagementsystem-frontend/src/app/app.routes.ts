@@ -5,6 +5,7 @@ import { AuthComponent } from './features/auth/pages/auth/auth.component';
 import { AdminLayoutComponent } from './shared/layouts/admin-layout/admin-layout.component';
 import { DashboardComponent } from './features/pages/dashboard/dashboard.component';
 import { MaterialComponent } from './features/pages/material/material.component';
+import { UserComponent } from './features/pages/user/user.component';
 
 export const routes: Routes = [
   { path: '', redirectTo: 'adminpage', pathMatch: 'full' },
@@ -20,6 +21,7 @@ export const routes: Routes = [
       { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
       { path: 'dashboard', component: DashboardComponent },
       { path: 'materials', component: MaterialComponent },
+      { path: 'users', component: UserComponent },
     ]
   }
 ];
