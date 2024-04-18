@@ -32,6 +32,8 @@
               "node_modules/bootstrap/dist/css/bootstrap.css"
             ],
             "scripts": [
+              "node_modules/jquery/dist/jquery.min.js",
+              "node_modules/bootstrap/dist/js/bootstrap.min.js"
       
             ]
           },
@@ -85,9 +87,7 @@
             "inlineStyleLanguage": "scss",
             "assets": ["src/favicon.ico", "src/assets"],
             "styles": ["src/styles.scss"],
-            "scripts": [
-      
-            ]
+            "scripts": []
           }
         }
       }
