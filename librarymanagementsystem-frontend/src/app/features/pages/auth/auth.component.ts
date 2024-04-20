@@ -1,8 +1,8 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { LoginComponent } from '../../components/login/login.component';
-import { RegisterComponent } from '../../components/register/register.component';
+import { LoginComponent } from '../../../features/components/auth/login/login.component';
+import { RegisterComponent } from '../../../features/components/auth/register/register.component';
 
 @Component({
   selector: 'app-auth',
