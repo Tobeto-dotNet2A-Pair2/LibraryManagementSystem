@@ -6,7 +6,7 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
   standalone: true,
   imports: [CommonModule],
   templateUrl: './register.component.html',
-  styleUrl: '../../pages/auth/auth.component.scss',
+  styleUrl: '../../../pages/auth/auth.component.scss',
 })
 export class RegisterComponent {
   @Input() showRegisterForm: boolean = false;
