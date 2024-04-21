@@ -1,13 +1,11 @@
-<form [ngClass]="{'login': showLoginForm}">
+<form [ngClass]="{'login': showLoginForm}" [formGroup]="loginForm">
     <h2>Hoş Geldin</h2>
     <div class="inputbox">
-        <!-- <ion-icon name="mail-outline"></ion-icon> -->
-        <input type="email" required>
+        <input type="email" required formControlName="email">
         <label for="">Email</label>
     </div>
     <div class="inputbox">
-        <!-- <ion-icon name="lock-closed-outline"></ion-icon> -->
-        <input type="password" required>
+        <input type="password" required formControlName="password" >
         <label for="">Şifre</label>
     </div>
     <div class="forget">
@@ -15,7 +13,7 @@
       
     </div>
     
-    <button>Giriş Yap</button>
+    <button  (click)="login()">Giriş Yap</button>
     <div class="register" >
         <p>Hesabın yok mu? <a href="#"  (click)="callRegisterHandler(); $event.preventDefault();">Üye ol</a></p>
     </div>
