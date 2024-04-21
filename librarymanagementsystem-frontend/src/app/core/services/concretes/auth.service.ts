@@ -12,7 +12,10 @@ import { AccessTokenModel } from '../../../features/models/responses/users/acces
 import { TokenModel } from '../../../features/models/responses/users/token-model';
 
 
-@Injectable()
+@Injectable({
+  providedIn: 'root'
+})
+
 export class AuthService extends AuthBaseService {
   fullname!:string;
   userId!:string;

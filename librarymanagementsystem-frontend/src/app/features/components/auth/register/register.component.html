@@ -1,37 +1,30 @@
-<form [ngClass]="{'signin': showRegisterForm}" >
+<form [ngClass]="{'signin': showRegisterForm}" [formGroup]="registerForm" >
     <h2>Üye Ol</h2>
     <div class="inputbox">
-        <!-- <ion-icon name="mail-outline"></ion-icon> -->
-        <input type="text" required>
+        <input formControlName="firstName" type="text" required>
         <label for="">İsim</label>
     </div>
     <div class="inputbox">
-        <!-- <ion-icon name="mail-outline"></ion-icon> -->
-        <input type="text" required>
+        <input formControlName="lastName" type="text" required>
         <label for="">Soyisim</label>
     </div>
     <div class="inputbox">
-        <!-- <ion-icon name="mail-outline"></ion-icon> -->
-        <input type="number" required>
+        <input formControlName="tc" type="text" required>
         <label for="">TC</label>
     </div>
     <div class="inputbox">
-        <!-- <ion-icon name="mail-outline"></ion-icon> -->
-        <input type="phone" required>
+        <input formControlName="phoneNumber"type="phone" required>
         <label for="">Telefon</label>
     </div>
     <div class="inputbox">
-        <!-- <ion-icon name="mail-outline"></ion-icon> -->
-        <input type="email" required>
+        <input formControlName="email" type="email" required>
         <label for="">Email</label>
     </div>
     <div class="inputbox">
-        <!-- <ion-icon name="lock-closed-outline"></ion-icon> -->
-        <input type="password" required>
+        <input formControlName="password" type="password" required>
         <label for="">Şifre</label>
     </div>
     <div class="inputbox">
-        <!-- <ion-icon name="lock-closed-outline"></ion-icon> -->
         <input type="password" required>
         <label for="">Tekrar Şifre</label>
     </div>
