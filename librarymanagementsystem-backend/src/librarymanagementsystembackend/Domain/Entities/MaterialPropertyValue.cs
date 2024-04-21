@@ -12,7 +12,7 @@ public class MaterialPropertyValue : Entity<Guid>
     public Guid MaterialId { get; set; }
     public Guid MaterialTypeId { get; set; }
     public Guid MaterialPropertyId { get; set; }
-    public virtual Material Material {  get; set; }
+    public virtual Material Material { get; set; }
     public virtual MaterialType MaterialType { get; set; }
     public virtual MaterialProperty MaterialProperty { get; set; }
 }

@@ -12,6 +12,6 @@ public class Notification : Entity<Guid>
     public DateTime NotificationDate { get; set; }
     public string Message { get; set; }
     public string Status { get; set; }
-    public virtual ICollection<Member> Members { get; set; }
+    public virtual ICollection<MemberNotification> MemberNotifications { get; set; }
 
 }

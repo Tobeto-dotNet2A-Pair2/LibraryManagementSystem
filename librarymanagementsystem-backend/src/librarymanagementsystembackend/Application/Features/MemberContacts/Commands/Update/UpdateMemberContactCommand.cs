@@ -19,6 +19,7 @@ public class UpdateMemberContactCommand : IRequest<UpdatedMemberContactResponse>
     public string AskLibrarianDescription { get; set; }
     public string Messages { get; set; }
     public Guid MemberId { get; set; }
+    public Guid LibraryId { get; set; }
 
     public string[] Roles => [Admin, Write, MemberContactsOperationClaims.Update];
 

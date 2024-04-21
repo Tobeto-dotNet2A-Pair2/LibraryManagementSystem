@@ -21,12 +21,12 @@ public class BranchConfiguration : IEntityTypeConfiguration<Branch>
         builder.Property(b => b.UpdatedDate).HasColumnName("UpdatedDate");
         builder.Property(b => b.DeletedDate).HasColumnName("DeletedDate");
 
-
-        builder.HasMany(b => b.MaterialCopies);
         builder.HasOne(b => b.Address);
         builder.HasOne(b => b.Library);
+        builder.HasMany(b => b.MaterialCopies);
         builder.HasMany(b => b.PaymentMethods);
         builder.HasMany(b => b.SocialMediaAccounts);
+
         builder.HasQueryFilter(b => !b.DeletedDate.HasValue);
     }
 }

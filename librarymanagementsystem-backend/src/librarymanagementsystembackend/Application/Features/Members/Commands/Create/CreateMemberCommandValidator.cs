@@ -6,18 +6,17 @@ public class CreateMemberCommandValidator : AbstractValidator<CreateMemberComman
 {
     public CreateMemberCommandValidator()
     {
-        RuleFor(c => c.FirstName).NotEmpty().MinimumLength(2).MaximumLength(150);
-        RuleFor(c => c.LastName).NotEmpty().MinimumLength(2).MaximumLength(150);
-        RuleFor(c => c.TC).Must(ValidateTurkishIdentityNumber);
+        RuleFor(c => c.FirstName).NotEmpty().Length(2, 150);
+        RuleFor(c => c.LastName).NotEmpty().Length(2, 150);
+        RuleFor(c => c.TC).NotEmpty().Must(ValidateTurkishIdentityNumber);
         RuleFor(c => c.PhoneNumber).NotEmpty()
                                    .Matches(@"^+?\d{10,15}$").WithMessage("Please enter a valid phone number (should be between 10 and 15 digits, starting with '+' if present).");
-        RuleFor(c => c.IsActive).NotEmpty();
-
         RuleFor(c => c.Photo).NotEmpty()
-                             .Matches(@".(jpg|jpeg|png|gif)$").WithMessage("Please provide a valid photo file (jpg, jpeg, png, gif).");
-        RuleFor(c => c.Position).NotEmpty().MinimumLength(2).MaximumLength(50);
+                            .Matches(@".(jpg|jpeg|png|gif)$").WithMessage("Please provide a valid photo file (jpg, jpeg, png, gif).");
+        RuleFor(c => c.Position).NotEmpty().Length(2, 50);
         RuleFor(c => c.TotalDebt).GreaterThanOrEqualTo(0);
         RuleFor(c => c.UserId).NotEmpty();
+        RuleFor(c => c.IsActive).NotEmpty();
     }
 
     private bool ValidateTurkishIdentityNumber(string identityNumber)
@@ -35,6 +34,5 @@ public class CreateMemberCommandValidator : AbstractValidator<CreateMemberComman
 
         return lastDigit == identityNumber[10] - '0';
     }
-
 
 }

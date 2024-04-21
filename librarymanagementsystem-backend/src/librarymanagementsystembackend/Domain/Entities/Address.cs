@@ -14,6 +14,6 @@ public class Address : Entity<Guid>
     public string Description { get; set; }
     public virtual Street Street { get; set; }
     public virtual Branch Branch { get; set; } //?
-    public virtual ICollection<Member> Members { get; set; } 
+    public virtual ICollection<MemberAddress> MemberAddresses { get; set; } 
 
 }
