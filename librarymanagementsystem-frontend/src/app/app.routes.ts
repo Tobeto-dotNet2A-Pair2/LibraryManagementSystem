@@ -10,8 +10,8 @@ import { AddBranchFormComponent } from './features/pages/branches/add-branch-for
 import { BranchListComponent } from './features/pages/branches/branch-list/branch-list.component';
 
 export const routes: Routes = [
-  { path: '', redirectTo: 'adminpage', pathMatch: 'full' },
-  // { path: 'homepage', component: HomepageComponent },
+  { path: '', redirectTo: 'auth', pathMatch: 'full' },
+   { path: 'auth', component: AuthComponent },
   // { path: 'homepage', component: AdminLayoutComponent },
 
   // { path: 'adminpage', component: AdminLayoutComponent, canActivate: [authGuard] },
