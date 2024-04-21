@@ -9,8 +9,8 @@ import { MaterialListComponent } from './features/pages/materials/material-list/
 import { MemberListComponent } from './features/pages/members/member-list/member-list.component';
 
 export const routes: Routes = [
-  { path: '', redirectTo: 'adminpage', pathMatch: 'full' },
-  // { path: 'homepage', component: HomepageComponent },
+  { path: '', redirectTo: 'auth', pathMatch: 'full' },
+   { path: 'auth', component: AuthComponent },
   // { path: 'homepage', component: AdminLayoutComponent },
 
   // { path: 'adminpage', component: AdminLayoutComponent, canActivate: [authGuard] },
