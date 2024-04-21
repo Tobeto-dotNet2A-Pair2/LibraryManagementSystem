@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
 })
 export abstract class BaseService {
 
-  constructor(private httpClient: HttpClient) {}
+  constructor(protected httpClient: HttpClient) {}
 
   protected get<T>(url: string): Observable<T> {
     return this.httpClient.get<T>(url);
@@ -25,3 +25,4 @@ export abstract class BaseService {
     return this.httpClient.delete<T>(url);
   }
 }
+
