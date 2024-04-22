@@ -1,4 +1,4 @@
-<form [ngClass]="{'signin': showRegisterForm}" [formGroup]="registerForm" >
+<form [ngClass]="{'signin': showRegisterForm}" [formGroup]="registerForm" (submit)="onSubmit()" >
     <h2>Üye Ol</h2>
     <div class="inputbox">
         <input formControlName="firstName" type="text" required>
@@ -18,9 +18,18 @@
     <input type="text" formControlName="phoneNumber" (input)="maskPhoneNumber($event)" required>
     <label for="phoneNumber">Telefon</label>
   </div>
-    <div class="inputbox">
-        <input formControlName="email" type="email" required>
-        <label for="">Email</label>
+  <div class="inputbox">
+    <input formControlName="email" type="email" required>
+    <label for="email">Email</label>
+</div>
+   
+     
+        
+        <div *ngIf="registerForm.get('email')?.invalid && (registerForm.get('email')?.dirty || registerForm.get('email')?.touched)">
+            <div *ngIf="registerForm.get('email')?.errors?.['email']">
+              Geçerli bir e-posta adresi giriniz.
+            </div>
+        
     </div>
 
     <div class="inputbox">
@@ -33,9 +42,10 @@
         <div *ngIf="registerForm.hasError('passwordMismatch') && registerForm.get('confirmPassword')?.touched">
           Şifreler eşleşmiyor.
         </div>
-      </div>
-    <button>Üye Ol</button>
+    </div>
+    <button type="submit">Üye Ol</button>
     <div class="register">
         <p>Hesabın var mı?<a href="#" (click)="callLoginHandler(); $event.preventDefault();"> giriş yap</a></p>
     </div>
+
 </form>

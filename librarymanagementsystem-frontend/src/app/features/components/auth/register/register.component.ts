@@ -39,7 +39,7 @@ export class RegisterComponent {
       lastName: ["", Validators.required],
       tc: ["", [Validators.required, Validators.minLength(11), Validators.maxLength(11), Validators.pattern('^[0-9]*$')]],
       phoneNumber: ["", [Validators.required, Validators.pattern('^[0-9]*$')]],
-      email: ["", Validators.required],
+      email: ["", Validators.required, Validators.email],
       password: ["", Validators.required],
       confirmPassword: ["", Validators.required]
     }, {
@@ -56,7 +56,7 @@ export class RegisterComponent {
       formGroup.get('confirmPassword')?.setErrors(null);
     }
   }
-
+  
 
   maskTcNumber(event: Event): void {
     const value = (event.target as HTMLInputElement).value;
@@ -66,6 +66,14 @@ export class RegisterComponent {
   maskPhoneNumber(event: Event): void {
     const value = (event.target as HTMLInputElement).value;
     this.registerForm.get('phoneNumber')?.setValue(this.maskService.maskPhoneNumber(value));
+  }
+  onSubmit() {
+    if (this.registerForm.valid) {
+      console.log("Form is valid. Submitting...");
+    } else {
+      console.log("Form is invalid. Cannot submit.");
+    }
+
   }
   register(){
     if(this.registerForm.valid){
@@ -84,6 +92,10 @@ export class RegisterComponent {
         })
     }
   }
+
+  
+
+
 }
 
 
