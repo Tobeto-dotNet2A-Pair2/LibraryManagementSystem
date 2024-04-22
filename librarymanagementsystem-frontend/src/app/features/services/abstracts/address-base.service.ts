@@ -7,31 +7,41 @@ import { UpdatedAddressResponse } from '../../models/responses/addresses/updated
 import { GetByIdAddressResponse } from '../../models/responses/addresses/get-by-id-address-response';
 import { GetListAddressResponse } from '../../models/responses/addresses/get-list-address-response';
 import { DeletedAddressResponse } from '../../models/responses/addresses/deleted-address-response';
+import { environment } from '../../../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
-export abstract class AddressBaseService extends BaseService{
+export class AddressBaseService extends BaseService {
+  private apiUrl = environment.API_URL;
+  private addressEndpoint = environment.addressEndpoint;
 
-  constructor(httpClient: HttpClient) {
+  constructor(protected override httpClient: HttpClient) {
     super(httpClient);
   }
 
-   getAddressById(id: string): Observable<GetByIdAddressResponse>{
-  return this.httpClient.get<GetByIdAddressResponse>('/api/Addresses/${id}');
+   getAddressById(id: string): Observable<GetByIdAddressResponse> {
+    const url = `${this.apiUrl}${this.addressEndpoint}/${id}`;
+    return this.httpClient.get<GetByIdAddressResponse>(url);
   }
 
-   createAddress(data: any): Observable<CreatedAddressResponse>{
-    return this.httpClient.post<CreatedAddressResponse>('/api/Addresses', data);
-   }
-   updateAddress(id: string, data: any): Observable<UpdatedAddressResponse>{
-    return this.httpClient.put<UpdatedAddressResponse>(`/api/Addresses/$/{id}`, data);
-   }
-   deleteAddress(id: string): Observable<DeletedAddressResponse>{
-    return this.httpClient.delete<DeletedAddressResponse>(`/api/Addresses/${id}`);
-   }
-   getListAddress(): Observable<GetListAddressResponse[]>{
-    return this.httpClient.get<GetListAddressResponse[]>('/api/Addresses');
-   }
-}
+ createAddress(data: any): Observable<CreatedAddressResponse> {
+    const url = `${this.apiUrl}${this.addressEndpoint}`;
+    return this.httpClient.post<CreatedAddressResponse>(url, data);
+  }
 
+  updateAddress(id: string, data: any): Observable<UpdatedAddressResponse> {
+    const url = `${this.apiUrl}${this.addressEndpoint}/${id}`;
+    return this.httpClient.put<UpdatedAddressResponse>(url, data);
+  }
+
+  deleteAddress(id: string): Observable<DeletedAddressResponse> {
+    const url = `${this.apiUrl}${this.addressEndpoint}/${id}`;
+    return this.httpClient.delete<DeletedAddressResponse>(url);
+  }
+
+  getListAddress(): Observable<GetListAddressResponse[]> {
+    const url = `${this.apiUrl}${this.addressEndpoint}`;
+    return this.httpClient.get<GetListAddressResponse[]>(url);
+  }
+}

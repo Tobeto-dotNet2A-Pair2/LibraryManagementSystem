@@ -1,40 +1,39 @@
-<form [ngClass]="{'signin': showRegisterForm}" >
+<form [ngClass]="{'signin': showRegisterForm}" [formGroup]="registerForm" >
     <h2>Üye Ol</h2>
     <div class="inputbox">
-        <!-- <ion-icon name="mail-outline"></ion-icon> -->
-        <input type="text" required>
+        <input formControlName="firstName" type="text" required>
         <label for="">İsim</label>
     </div>
     <div class="inputbox">
-        <!-- <ion-icon name="mail-outline"></ion-icon> -->
-        <input type="text" required>
+        <input formControlName="lastName" type="text" required>
         <label for="">Soyisim</label>
     </div>
     <div class="inputbox">
-        <!-- <ion-icon name="mail-outline"></ion-icon> -->
-        <input type="number" required>
-        <label for="">TC</label>
-    </div>
+        <input type="text" formControlName="tc" (input)="maskTcNumber($event)" required>
+        <label for="tc">TC</label>
+      </div>
+    
+   
+ <div class="inputbox">
+    <input type="text" formControlName="phoneNumber" (input)="maskPhoneNumber($event)" required>
+    <label for="phoneNumber">Telefon</label>
+  </div>
     <div class="inputbox">
-        <!-- <ion-icon name="mail-outline"></ion-icon> -->
-        <input type="phone" required>
-        <label for="">Telefon</label>
-    </div>
-    <div class="inputbox">
-        <!-- <ion-icon name="mail-outline"></ion-icon> -->
-        <input type="email" required>
+        <input formControlName="email" type="email" required>
         <label for="">Email</label>
     </div>
+
     <div class="inputbox">
-        <!-- <ion-icon name="lock-closed-outline"></ion-icon> -->
-        <input type="password" required>
-        <label for="">Şifre</label>
-    </div>
-    <div class="inputbox">
-        <!-- <ion-icon name="lock-closed-outline"></ion-icon> -->
-        <input type="password" required>
-        <label for="">Tekrar Şifre</label>
-    </div>
+        <input formControlName="password" type="password" required>
+        <label for="password">Şifre</label>
+      </div>
+      <div class="inputbox">
+        <input formControlName="confirmPassword" type="password" required>
+        <label for="confirmPassword">Tekrar Şifre</label>
+        <div *ngIf="registerForm.hasError('passwordMismatch') && registerForm.get('confirmPassword')?.touched">
+          Şifreler eşleşmiyor.
+        </div>
+      </div>
     <button>Üye Ol</button>
     <div class="register">
         <p>Hesabın var mı?<a href="#" (click)="callLoginHandler(); $event.preventDefault();"> giriş yap</a></p>
