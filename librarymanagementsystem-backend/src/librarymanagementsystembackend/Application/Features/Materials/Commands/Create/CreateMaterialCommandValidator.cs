@@ -6,16 +6,11 @@ public class CreateMaterialCommandValidator : AbstractValidator<CreateMaterialCo
 {
     public CreateMaterialCommandValidator()
     {
-        RuleFor(c => c.Name).NotEmpty().MinimumLength(1);
-
-        RuleFor(c => c.Description).MaximumLength(400)
-            .When(c => !string.IsNullOrEmpty(c.Description));
-
-        RuleFor(c => c.PublicationDate).NotEmpty().GreaterThan(DateTime.MinValue.Date)
-            .LessThanOrEqualTo(DateTime.Now.Date);
-
-        RuleFor(c => c.PunishmentAmount).NotEmpty().GreaterThanOrEqualTo(0);
+        RuleFor(c => c.Name).NotEmpty();
+        RuleFor(c => c.Description).NotEmpty();
+        RuleFor(c => c.PublicationDate).NotEmpty();
+        RuleFor(c => c.PunishmentAmount).NotEmpty();
         RuleFor(c => c.IsBorrowable).NotEmpty();
-        RuleFor(c => c.BorrowDay).Must((c, borrowDay) => !c.IsBorrowable || borrowDay > 0);
+        RuleFor(c => c.BorrowDay).NotEmpty();
     }
 }

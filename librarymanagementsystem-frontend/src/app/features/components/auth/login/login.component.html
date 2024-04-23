@@ -1,0 +1,20 @@
+<form [ngClass]="{'login': showLoginForm}" [formGroup]="loginForm">
+    <h2>Hoş Geldin</h2>
+    <div class="inputbox">
+        <input type="email" required formControlName="email">
+        <label for="">Email</label>
+    </div>
+    <div class="inputbox">
+        <input type="password" required formControlName="password" >
+        <label for="">Şifre</label>
+    </div>
+    <div class="forget">
+        <label for=""><input type="checkbox">Beni Hatırla </label>
+      
+    </div>
+    
+    <button  (click)="login()">Giriş Yap</button>
+    <div class="register" >
+        <p>Hesabın yok mu? <a href="#"  (click)="callRegisterHandler(); $event.preventDefault();">Üye ol</a></p>
+    </div>
+</form>

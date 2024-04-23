@@ -119,6 +119,9 @@ public static class PersistenceServiceRegistration
         services.AddScoped<IStreetRepository, StreetRepository>();
         services.AddScoped<ITranslatorRepository, TranslatorRepository>();
         services.AddScoped<ITranslatorMaterialRepository, TranslatorMaterialRepository>();
+        services.AddScoped<IGenreRepository, GenreRepository>();
+        services.AddScoped<IMaterialGenreRepository, MaterialGenreRepository>();
+        services.AddScoped<IMaterialRepository, MaterialRepository>();
         return services;
     }
 }
