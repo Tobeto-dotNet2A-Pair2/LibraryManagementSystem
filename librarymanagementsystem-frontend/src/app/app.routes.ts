@@ -7,6 +7,7 @@ import { DashboardComponent } from './features/pages/dashboard/dashboard.compone
 import { BranchComponent } from './features/pages/branch/branch.component';
 import { MaterialListComponent } from './features/pages/materials/material-list/material-list.component';
 import { MemberListComponent } from './features/pages/members/member-list/member-list.component';
+import { AddMaterialFormComponent } from './features/pages/materials/add-material-form/add-material-form.component';
 
 export const routes: Routes = [
   { path: '', redirectTo: 'adminpage', pathMatch: 'full' },
@@ -19,11 +20,13 @@ export const routes: Routes = [
     component: AdminLayoutComponent,
     // canActivate: [authGuard],
     children: [
-      { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
-      { path: 'dashboard', component: DashboardComponent },
+      {path: '', redirectTo: 'dashboard', pathMatch: 'full'},
+      {path: 'dashboard', component: DashboardComponent},
       {path: 'branches', component:BranchComponent},
       {path: 'material-lists', component:MaterialListComponent },
-      {path: 'members', component:MemberListComponent}
+      {path: 'members', component:MemberListComponent},
+      {path: 'add-material-form', component:AddMaterialFormComponent}
+
     ]
   }
 ];
