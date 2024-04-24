@@ -12,7 +12,7 @@ import { environment } from '../../../../environments/environment';
 @Injectable({
   providedIn: 'root'
 })
-export class AddressBaseService extends BaseService {
+export class AddressBaseService {
   private apiUrl = environment.API_URL;
   private addressEndpoint = environment.addressEndpoint;
 
