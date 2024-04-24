@@ -1,1 +1,78 @@
-<p>add-member-form works!</p>
+<div class="card">
+  <div class="modal-body py-10 px-lg-17">
+    <form [formGroup]="memberForm">
+      <div class="fv-row mb-7 fv-plugins-icon-container">
+        <!--begin::Label-->
+        <label class="required fs-6 fw-semibold mb-2">İsim</label>
+        <!--end::Label-->
+
+        <!--begin::Input-->
+        <input
+          type="text"
+          class="form-control form-control-solid"
+          formControlName="firstName"
+          placeholder=""
+          name="name"
+          value="Sean Bean"
+        />
+        <!--end::Input-->
+        <div
+          class="fv-plugins-message-container fv-plugins-message-container--enabled invalid-feedback"
+        ></div>
+      </div>
+      <div class="fv-row mb-7 fv-plugins-icon-container">
+        <!--begin::Label-->
+        <label class="required fs-6 fw-semibold mb-2">Soyisim</label>
+        <!--end::Label-->
+
+        <!--begin::Input-->
+        <input
+          type="text"
+          class="form-control form-control-solid"
+          formControlName="lastName"
+          placeholder=""
+          name="name"
+          value="Sean Bean"
+        />
+        <!--end::Input-->
+        <div
+          class="fv-plugins-message-container fv-plugins-message-container--enabled invalid-feedback"
+        ></div>
+      </div>
+      <div class="fv-row mb-7 fv-plugins-icon-container">
+        <!--begin::Label-->
+        <label class="required fs-6 fw-semibold mb-2">TC</label>
+        <!--end::Label-->
+
+        <!--begin::Input-->
+        <input
+          type="text"
+          class="form-control form-control-solid"
+          placeholder=""
+          formControlName="tc"
+          name="name"
+          value="Sean Bean"
+        />
+        <!--end::Input-->
+        <div
+          class="fv-plugins-message-container fv-plugins-message-container--enabled invalid-feedback"
+        ></div>
+      </div>
+      <div class="form-floating mb-7">
+        <select
+          class="form-select form-select-solid"
+          id="floatingSelect1"
+          aria-label="Floating label select example"
+          formControlName="position"
+        >
+          <option selected>admin</option>
+          <option value="1">member</option>
+        </select>
+        <label for="floatingSelect1">Pozisyon</label>
+      </div>
+      <button (click)="onSubmit()" href="#" class="btn btn-success">
+        Ekle
+      </button>
+    </form>
+  </div>
+</div>
