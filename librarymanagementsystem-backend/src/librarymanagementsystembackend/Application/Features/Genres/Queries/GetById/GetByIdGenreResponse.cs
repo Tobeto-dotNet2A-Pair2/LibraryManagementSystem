@@ -5,5 +5,5 @@ namespace Application.Features.Genres.Queries.GetById;
 public class GetByIdGenreResponse : IResponse
 {
     public Guid Id { get; set; }
-    public string GenreName { get; set; }
+    public string Name { get; set; }
 }

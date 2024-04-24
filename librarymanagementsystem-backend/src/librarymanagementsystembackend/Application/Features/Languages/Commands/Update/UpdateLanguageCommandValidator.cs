@@ -7,6 +7,6 @@ public class UpdateLanguageCommandValidator : AbstractValidator<UpdateLanguageCo
     public UpdateLanguageCommandValidator()
     {
         RuleFor(c => c.Id).NotEmpty();
-        RuleFor(c => c.LanguageName).NotEmpty().Length(2, 150);
+        RuleFor(c => c.Name).NotEmpty();
     }
 }

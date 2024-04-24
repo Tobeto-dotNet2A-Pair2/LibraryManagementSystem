@@ -7,7 +7,7 @@ public class UpdatePublisherCommandValidator : AbstractValidator<UpdatePublisher
     public UpdatePublisherCommandValidator()
     {
         RuleFor(c => c.Id).NotEmpty();
-        RuleFor(c => c.PublisherName).NotEmpty().Length(2, 150);
-        RuleFor(c => c.PublicationPlace).NotEmpty().Length(2, 150);
+        RuleFor(c => c.Name).NotEmpty();
+        RuleFor(c => c.PublicationPlace).NotEmpty();
     }
 }

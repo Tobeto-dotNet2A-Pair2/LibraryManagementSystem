@@ -11,7 +11,7 @@ public class GenreConfiguration : IEntityTypeConfiguration<Genre>
         builder.ToTable("Genres").HasKey(g => g.Id);
 
         builder.Property(g => g.Id).HasColumnName("Id").IsRequired();
-        builder.Property(g => g.GenreName).HasColumnName("GenreName");
+        builder.Property(g => g.Name).HasColumnName("Name");
         builder.Property(g => g.CreatedDate).HasColumnName("CreatedDate").IsRequired();
         builder.Property(g => g.UpdatedDate).HasColumnName("UpdatedDate");
         builder.Property(g => g.DeletedDate).HasColumnName("DeletedDate");

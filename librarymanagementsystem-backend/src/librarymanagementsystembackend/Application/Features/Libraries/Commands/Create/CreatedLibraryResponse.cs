@@ -5,5 +5,5 @@ namespace Application.Features.Libraries.Commands.Create;
 public class CreatedLibraryResponse : IResponse
 {
     public Guid Id { get; set; }
-    public string LibraryName { get; set; }
+    public string Name { get; set; }
 }

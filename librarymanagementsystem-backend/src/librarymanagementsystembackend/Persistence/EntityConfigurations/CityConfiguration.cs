@@ -11,12 +11,10 @@ public class CityConfiguration : IEntityTypeConfiguration<City>
         builder.ToTable("Cities").HasKey(c => c.Id);
 
         builder.Property(c => c.Id).HasColumnName("Id").IsRequired();
-        builder.Property(c => c.CityName).HasColumnName("CityName");
+        builder.Property(c => c.Name).HasColumnName("Name");
         builder.Property(c => c.CreatedDate).HasColumnName("CreatedDate").IsRequired();
         builder.Property(c => c.UpdatedDate).HasColumnName("UpdatedDate");
         builder.Property(c => c.DeletedDate).HasColumnName("DeletedDate");
-
-        builder.HasMany(c => c.Districts);
 
         builder.HasQueryFilter(c => !c.DeletedDate.HasValue);
     }

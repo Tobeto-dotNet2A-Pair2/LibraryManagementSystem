@@ -15,7 +15,7 @@ namespace Application.Features.Penalties.Commands.Update;
 public class UpdatePenaltyCommand : IRequest<UpdatedPenaltyResponse>, ISecuredRequest, ICacheRemoverRequest, ILoggableRequest, ITransactionalRequest
 {
     public Guid Id { get; set; }
-    public decimal? TotalMaterialPenalty { get; set; }
+    public decimal TotalMaterialDebt { get; set; }
     public int DayDelay { get; set; }
     public Guid BorrowedMaterialId { get; set; }
 

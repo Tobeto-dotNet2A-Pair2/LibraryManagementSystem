@@ -14,7 +14,7 @@ namespace Application.Features.Libraries.Commands.Create;
 
 public class CreateLibraryCommand : IRequest<CreatedLibraryResponse>, ISecuredRequest, ICacheRemoverRequest, ILoggableRequest, ITransactionalRequest
 {
-    public string LibraryName { get; set; }
+    public string Name { get; set; }
 
     public string[] Roles => [Admin, Write, LibrariesOperationClaims.Create];
 

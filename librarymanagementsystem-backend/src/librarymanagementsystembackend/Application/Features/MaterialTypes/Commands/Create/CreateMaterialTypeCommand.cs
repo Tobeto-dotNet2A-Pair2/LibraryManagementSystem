@@ -14,8 +14,8 @@ namespace Application.Features.MaterialTypes.Commands.Create;
 
 public class CreateMaterialTypeCommand : IRequest<CreatedMaterialTypeResponse>, ISecuredRequest, ICacheRemoverRequest, ILoggableRequest, ITransactionalRequest
 {
-    public string MaterialTypeName { get; set; }
-    public string MaterialTypeCategory { get; set; }
+    public string Name { get; set; }
+    public MaterialFormat MaterialFormat { get; set; }
 
     public string[] Roles => [Admin, Write, MaterialTypesOperationClaims.Create];
 
