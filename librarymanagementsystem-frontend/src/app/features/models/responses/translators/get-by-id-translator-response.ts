@@ -1,4 +1,4 @@
 export interface GetByIdTranslatorResponse {
-	translatorName: string;
+	name: string;
 	description: string;
 }

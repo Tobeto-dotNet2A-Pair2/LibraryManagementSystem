@@ -14,7 +14,7 @@ namespace Application.Features.Publishers.Commands.Create;
 
 public class CreatePublisherCommand : IRequest<CreatedPublisherResponse>, ISecuredRequest, ICacheRemoverRequest, ILoggableRequest, ITransactionalRequest
 {
-    public string PublisherName { get; set; }
+    public string Name { get; set; }
     public string PublicationPlace { get; set; }
 
     public string[] Roles => [Admin, Write, PublishersOperationClaims.Create];

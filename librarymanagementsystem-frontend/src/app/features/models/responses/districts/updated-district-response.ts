@@ -1,6 +1,6 @@
 export interface UpdatedDistrictResponse {
 	id: string;
-	districtName: string;
+	name: string;
 	cityId: string;
     updatedDate: Date;
 }

@@ -14,7 +14,7 @@ namespace Application.Features.Translators.Commands.Create;
 
 public class CreateTranslatorCommand : IRequest<CreatedTranslatorResponse>, ISecuredRequest, ICacheRemoverRequest, ILoggableRequest, ITransactionalRequest
 {
-    public string TranslatorName { get; set; }
+    public string Name { get; set; }
     public string Description { get; set; }
 
     public string[] Roles => [Admin, Write, TranslatorsOperationClaims.Create];

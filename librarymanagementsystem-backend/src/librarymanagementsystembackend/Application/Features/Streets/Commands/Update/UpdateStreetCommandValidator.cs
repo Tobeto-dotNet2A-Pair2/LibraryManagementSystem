@@ -7,7 +7,7 @@ public class UpdateStreetCommandValidator : AbstractValidator<UpdateStreetComman
     public UpdateStreetCommandValidator()
     {
         RuleFor(c => c.Id).NotEmpty();
-        RuleFor(c => c.StreetName).NotEmpty().Length(2, 100).Matches("^[a-zA-Z?ü?öç?Ü??ÖÇ ]+$");
+        RuleFor(c => c.Name).NotEmpty().Length(2, 300);
         RuleFor(c => c.NeighborhoodId).NotEmpty();
     }
 }

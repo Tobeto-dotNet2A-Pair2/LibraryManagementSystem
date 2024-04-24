@@ -1,4 +1,4 @@
 export interface CreateFavoriteListRequest {
-	listName: string;
+	name: string;
 	memberId: string;
 }

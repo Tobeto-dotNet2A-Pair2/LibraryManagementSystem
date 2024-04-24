@@ -7,7 +7,7 @@ public class UpdateFavoriteListCommandValidator : AbstractValidator<UpdateFavori
     public UpdateFavoriteListCommandValidator()
     {
         RuleFor(c => c.Id).NotEmpty();
-        RuleFor(c => c.ListName).NotEmpty().Length(2, 150);
+        RuleFor(c => c.Name).NotEmpty();
         RuleFor(c => c.MemberId).NotEmpty();
     }
 }

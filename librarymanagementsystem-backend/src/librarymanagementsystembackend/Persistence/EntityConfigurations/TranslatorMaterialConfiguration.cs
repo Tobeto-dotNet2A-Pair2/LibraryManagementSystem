@@ -17,9 +17,6 @@ public class TranslatorMaterialConfiguration : IEntityTypeConfiguration<Translat
         builder.Property(tm => tm.UpdatedDate).HasColumnName("UpdatedDate");
         builder.Property(tm => tm.DeletedDate).HasColumnName("DeletedDate");
 
-        builder.HasOne(tm => tm.Translator);
-        builder.HasOne(tm => tm.Material);
-
         builder.HasQueryFilter(tm => !tm.DeletedDate.HasValue);
     }
 }

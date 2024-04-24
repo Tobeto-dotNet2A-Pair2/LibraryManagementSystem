@@ -7,7 +7,7 @@ public class CreateAddressCommandValidator : AbstractValidator<CreateAddressComm
     public CreateAddressCommandValidator()
     {
         RuleFor(c => c.StreetId).NotEmpty();
-        RuleFor(c => c.AddressName).NotEmpty().Length(2, 50);
-        RuleFor(c => c.Description).NotEmpty().Length(2, 200);
+        RuleFor(c => c.Name).NotEmpty().Length(2, 50);
+        RuleFor(c => c.Description).Length(2, 50);
     }
 }

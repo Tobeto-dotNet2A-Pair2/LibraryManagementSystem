@@ -1,8 +1,8 @@
 export interface UpdateBranchRequest {
 	id: string;
-	branchName: string;
+	name: string;
 	workingHours: string;
-	telephone: string;
+	phoneNumber: string;
 	webSiteUrl: string;
 	addressId: string;
 	libraryId: string;

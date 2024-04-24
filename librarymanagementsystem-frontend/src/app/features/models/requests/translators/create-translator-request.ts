@@ -1,4 +1,4 @@
 export interface CreateTranslatorRequest {
-	translatorName: string;
+	name: string;
 	description: string;
 }

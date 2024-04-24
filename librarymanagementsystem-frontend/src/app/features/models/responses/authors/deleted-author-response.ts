@@ -2,6 +2,6 @@ export interface DeletedAuthorResponse {
     id: string;
 	firstName: string;
 	lastName: string;
-	authorCountry: string;
+	country: string;
     deletedDate: Date;
 }

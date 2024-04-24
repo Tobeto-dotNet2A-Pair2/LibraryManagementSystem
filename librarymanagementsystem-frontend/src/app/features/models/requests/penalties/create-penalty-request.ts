@@ -1,5 +1,5 @@
 export interface CreatePenaltyRequest {
-	totalMaterialPenalty: number;
+	totalMaterialDebt: number;
 	dayDelay: number;
 	borrowedMaterialId: string;
 }

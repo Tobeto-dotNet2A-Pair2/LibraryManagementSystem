@@ -5,5 +5,5 @@ namespace Application.Features.Cities.Queries.GetById;
 public class GetByIdCityResponse : IResponse
 {
     public Guid Id { get; set; }
-    public string CityName { get; set; }
+    public string Name { get; set; }
 }

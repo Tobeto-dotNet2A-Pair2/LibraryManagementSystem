@@ -6,3 +6,4 @@ export interface CreateLocationRequest {
 	floor: string;
 	fullLocationMap: string;
 }
+

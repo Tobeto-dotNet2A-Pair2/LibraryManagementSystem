@@ -1,5 +1,5 @@
 export interface CreatedMaterialPropertyResponse {
 	id: string;
-	materialPropertyName: string;
+	name: string;
     createdDate: Date;
 }

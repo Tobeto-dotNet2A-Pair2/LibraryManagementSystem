@@ -1,6 +1,6 @@
 export interface DeletedPublisherResponse {
 	id: string;
-	publisherName: string;
+	name: string;
 	publicationPlace: string;
     deletedDate: Date;
 }

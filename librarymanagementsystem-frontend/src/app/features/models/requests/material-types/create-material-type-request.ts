@@ -1,4 +1,4 @@
 export interface CreateMaterialTypeRequest {
-	materialTypeName: string;
-	materialTypeCategory: string;
+	name: string;
+	materialFormat: number;
 }

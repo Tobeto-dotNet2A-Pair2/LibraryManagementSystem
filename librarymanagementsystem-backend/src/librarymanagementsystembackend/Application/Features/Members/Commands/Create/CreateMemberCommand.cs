@@ -16,13 +16,14 @@ public class CreateMemberCommand : IRequest<CreatedMemberResponse>, ISecuredRequ
 {
     public string FirstName { get; set; }
     public string LastName { get; set; }
-    public string TC { get; set; }
+    public string NationalIdentity { get; set; }
+    public DateTime BirthDate { get; set; }
     public string PhoneNumber { get; set; }
-    public string Photo { get; set; }
+    public string ProfilePicture { get; set; }
     public string? Position { get; set; }
     public decimal TotalDebt { get; set; }
-    public Guid UserId { get; set; }
     public bool IsActive { get; set; }
+    public Guid UserId { get; set; }
 
     public string[] Roles => [Admin, Write, MembersOperationClaims.Create];
 

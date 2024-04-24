@@ -1,5 +1,5 @@
 export interface CreatedLanguageResponse {
 	id: string;
-	languageName: string;
+	name: string;
     createdDate: Date;
 }

@@ -46,6 +46,9 @@ public class BaseDbContext : DbContext
     public DbSet<MemberNotification> MemberNotifications { get; set; }
     public DbSet<PublisherMaterial> PublisherMaterials { get; set; }
     public DbSet<TranslatorMaterial> TranslatorMaterials { get; set; }
+    public DbSet<Genre> Genres { get; set; }
+    public DbSet<MaterialGenre> MaterialGenres { get; set; }
+    public DbSet<MaterialImage> MaterialImages { get; set; }
 
     public BaseDbContext(DbContextOptions dbContextOptions, IConfiguration configuration)
         : base(dbContextOptions)

@@ -21,8 +21,6 @@ public class LocationConfiguration : IEntityTypeConfiguration<Location>
         builder.Property(l => l.UpdatedDate).HasColumnName("UpdatedDate");
         builder.Property(l => l.DeletedDate).HasColumnName("DeletedDate");
 
-        builder.HasOne(l => l.MaterialCopy);
-
         builder.HasQueryFilter(l => !l.DeletedDate.HasValue);
     }
 }

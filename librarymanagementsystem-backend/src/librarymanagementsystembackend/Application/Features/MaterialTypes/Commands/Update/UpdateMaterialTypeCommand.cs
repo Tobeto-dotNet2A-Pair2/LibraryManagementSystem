@@ -9,14 +9,15 @@ using NArchitecture.Core.Application.Pipelines.Logging;
 using NArchitecture.Core.Application.Pipelines.Transaction;
 using MediatR;
 using static Application.Features.MaterialTypes.Constants.MaterialTypesOperationClaims;
+using Domain.Enums;
 
 namespace Application.Features.MaterialTypes.Commands.Update;
 
 public class UpdateMaterialTypeCommand : IRequest<UpdatedMaterialTypeResponse>, ISecuredRequest, ICacheRemoverRequest, ILoggableRequest, ITransactionalRequest
 {
     public Guid Id { get; set; }
-    public string MaterialTypeName { get; set; }
-    public string MaterialTypeCategory { get; set; }
+    public string Name { get; set; }
+    public MaterialFormat MaterialFormat { get; set; }
 
     public string[] Roles => [Admin, Write, MaterialTypesOperationClaims.Update];
 

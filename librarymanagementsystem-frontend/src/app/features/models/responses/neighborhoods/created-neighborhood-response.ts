@@ -1,6 +1,6 @@
 export interface CreatedNeighborhoodResponse {
 	id: string;
-	neighborhoodName: string;
+	name: string;
 	districtId: string;
     createdDate: Date;
 }

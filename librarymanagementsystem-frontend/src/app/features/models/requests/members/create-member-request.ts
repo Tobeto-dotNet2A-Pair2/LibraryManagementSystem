@@ -1,11 +1,13 @@
 export interface CreateMemberRequest {
 	firstName: string;
 	lastName: string;
-	tc: string;
+	nationalIdentity: string;
+	birthDate: string;
 	phoneNumber: string;
-	photo: string;
+	profilePicture: string;
 	position: string;
 	totalDebt: number;
-	userId: string;
 	isActive: boolean;
+	userId: string;
 }
+

@@ -1,4 +1,4 @@
 export interface CreatePublisherRequest {
-	publisherName: string;
+	name: string;
 	publicationPlace: string;
 }

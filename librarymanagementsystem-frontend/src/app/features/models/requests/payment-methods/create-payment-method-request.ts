@@ -1,4 +1,4 @@
 export interface CreatePaymentMethodRequest {
 	branchId: string;
-	paymentMethodName: string;
+	name: string;
 }

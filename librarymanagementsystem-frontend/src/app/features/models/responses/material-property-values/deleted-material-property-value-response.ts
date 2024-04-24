@@ -1,6 +1,6 @@
-export interface DeletedMaterialProperty {
+export interface DeletedMaterialPropertyValueResponse {
 	id: string;
-	materialPropertyValueName: string;
+	content: string;
 	materialId: string;
 	materialTypeId: string;
 	materialPropertyId: string;

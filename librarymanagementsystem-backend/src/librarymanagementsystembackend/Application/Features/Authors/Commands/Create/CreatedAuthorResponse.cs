@@ -7,5 +7,5 @@ public class CreatedAuthorResponse : IResponse
     public Guid Id { get; set; }
     public string FirstName { get; set; }
     public string LastName { get; set; }
-    public string AuthorCountry { get; set; }
+    public string Country { get; set; }
 }

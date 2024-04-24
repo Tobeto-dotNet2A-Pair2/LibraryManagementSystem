@@ -9,15 +9,19 @@ public class UpdateMemberCommandValidator : AbstractValidator<UpdateMemberComman
         RuleFor(c => c.Id).NotEmpty();
         RuleFor(c => c.FirstName).NotEmpty().Length(2, 150);
         RuleFor(c => c.LastName).NotEmpty().Length(2, 150);
-        RuleFor(c => c.TC).NotEmpty().Must(ValidateTurkishIdentityNumber);
+        RuleFor(c => c.NationalIdentity).NotEmpty().Must(ValidateTurkishIdentityNumber);
+        RuleFor(c => c.BirthDate).NotEmpty();
         RuleFor(c => c.PhoneNumber).NotEmpty()
                                    .Matches(@"^+?\d{10,15}$").WithMessage("Please enter a valid phone number (should be between 10 and 15 digits, starting with '+' if present).");
-        RuleFor(c => c.Photo).NotEmpty()
-                            .Matches(@".(jpg|jpeg|png|gif)$").WithMessage("Please provide a valid photo file (jpg, jpeg, png, gif).");
+        RuleFor(c => c.ProfilePicture).NotEmpty()
+                                      .Must((c, profilePicture) => profilePicture != null && profilePicture.Length <= 8 * 1024 * 1024)
+                                      .WithMessage("Profile picture cannot be empty and must be less than 8 MB.")
+                                      .Matches(@".(jpg|jpeg|png|gif)$")
+                                      .WithMessage("Please provide a valid photo file (jpg, jpeg, png, gif).");
         RuleFor(c => c.Position).NotEmpty().Length(2, 50);
-        RuleFor(c => c.TotalDebt).GreaterThanOrEqualTo(0);
-        RuleFor(c => c.UserId).NotEmpty();
+        RuleFor(c => c.TotalDebt).NotEmpty().GreaterThanOrEqualTo(0);
         RuleFor(c => c.IsActive).NotEmpty();
+        RuleFor(c => c.UserId).NotEmpty();
     }
 
     private bool ValidateTurkishIdentityNumber(string identityNumber)

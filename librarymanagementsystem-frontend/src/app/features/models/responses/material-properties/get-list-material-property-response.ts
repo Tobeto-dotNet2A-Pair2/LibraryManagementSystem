@@ -1,4 +1,4 @@
 export interface GetListMaterialPropertyResponse {
 	id: string;
-	materialPropertyName: string;
+	name: string;
 }

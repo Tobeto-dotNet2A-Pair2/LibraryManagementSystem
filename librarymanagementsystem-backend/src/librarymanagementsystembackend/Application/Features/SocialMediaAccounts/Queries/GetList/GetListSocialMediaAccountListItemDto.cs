@@ -6,6 +6,6 @@ public class GetListSocialMediaAccountListItemDto : IDto
 {
     public Guid Id { get; set; }
     public Guid BranchId { get; set; }
-    public string SocialMediaAccountLogo { get; set; }
-    public string? SocialMediaAccountUrl { get; set; }
+    public string Logo { get; set; }
+    public string Url { get; set; }
 }
