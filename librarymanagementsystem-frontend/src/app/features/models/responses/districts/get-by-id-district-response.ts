@@ -1,5 +1,5 @@
 export interface GetByIdDistrictResponse {
 	id: string;
-	districtName: string;
+	name: string;
 	cityId: string;
 }

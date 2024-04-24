@@ -1,5 +1,5 @@
 export interface DeletedLanguageResponse {
 	id: string;
-	languageName: string;
+	name: string;
     deletedDate: Date;
 }

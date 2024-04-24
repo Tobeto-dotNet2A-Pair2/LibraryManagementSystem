@@ -1,5 +1,5 @@
 export interface DeletedTranslatorResponse {
-	translatorName: string;
+	name: string;
 	description: string;
     deletedDate: Date;
 }

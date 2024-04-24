@@ -1,8 +1,9 @@
 export interface UpdateBorrowedMaterialRequest {
 	id: string;
-	borrowDate: string;
+	borrowedDate: string;
 	returnDate: string;
 	isReturned: boolean;
 	memberId: string;
 	materialCopyId: string;
 }
+

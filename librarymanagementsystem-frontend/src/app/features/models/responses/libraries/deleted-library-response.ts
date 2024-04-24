@@ -1,5 +1,5 @@
 export interface DeletedLibraryResponse {
 	id: string;
-	libraryName: string;
+	name: string;
     deletedDate: Date;
 }

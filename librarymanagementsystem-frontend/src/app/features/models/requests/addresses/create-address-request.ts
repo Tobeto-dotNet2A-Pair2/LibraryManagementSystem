@@ -1,5 +1,6 @@
 export interface CreateAddressRequest {
 	streetId: string;
-	addressName: string;
+	name: string;
 	description: string;
 }
+

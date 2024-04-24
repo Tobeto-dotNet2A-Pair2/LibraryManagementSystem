@@ -1,5 +1,5 @@
 export interface GetListFavoriteListResponse {
 	id: string;
-	listName: string;
+	name: string;
 	memberId: string;
 }

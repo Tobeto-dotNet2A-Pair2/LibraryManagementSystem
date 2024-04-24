@@ -1,5 +1,5 @@
 export interface GetByIdPublisherResponse {
 	id: string;
-	publisherName: string;
+	name: string;
 	publicationPlace: string;
 }

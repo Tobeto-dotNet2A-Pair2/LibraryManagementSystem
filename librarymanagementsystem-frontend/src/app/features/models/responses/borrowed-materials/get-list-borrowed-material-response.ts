@@ -1,6 +1,6 @@
 export interface GetListBorrowedMaterialResponse {
 	id: string;
-	borrowDate: string;
+	borrowedDate: string;
 	returnDate: string;
 	isReturned: boolean;
 	memberId: string;

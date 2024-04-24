@@ -1,6 +1,6 @@
 export interface CreatedFavoriteListResponse {
 	id: string;
-	listName: string;
+	name: string;
 	memberId: string;
     createdDate: Date;
 }

@@ -1,4 +1,4 @@
 export interface CreateDistrictRequest {
-	districtName: string;
+	name: string;
 	cityId: string;
 }

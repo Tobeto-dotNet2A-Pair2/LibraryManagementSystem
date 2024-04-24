@@ -1,7 +1,7 @@
 export interface DeletedSocialMediaAccountResponse {
 	id: string;
 	branchId: string;
-	socialMediaAccountLogo: string;
-	socialMediaAccountUrl: string;
+	logo: string;
+	url: string;
     deletedDate: Date;
 }
