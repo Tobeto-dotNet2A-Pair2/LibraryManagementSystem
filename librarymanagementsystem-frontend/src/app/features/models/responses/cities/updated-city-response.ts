@@ -1,5 +1,5 @@
 export interface UpdatedCityResponse {
 	id: string;
-	cityName: string;
+	name: string;
     updatedDate: Date;
 }

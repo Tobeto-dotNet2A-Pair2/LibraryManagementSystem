@@ -1,4 +1,4 @@
 export interface GetListTranslatorResponse {
-	translatorName: string;
+	name: string;
 	description: string;
 }

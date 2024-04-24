@@ -1,6 +1,6 @@
 export interface DeletedDistrictResponse {
 	id: string;
-	districtName: string;
+	name: string;
 	cityId: string;
     deletedDate: Date;
 }

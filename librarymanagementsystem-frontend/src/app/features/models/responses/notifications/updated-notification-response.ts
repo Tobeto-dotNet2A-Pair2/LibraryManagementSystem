@@ -1,7 +1,7 @@
 export interface UpdatedNotificationResponse {
 	id: string;
-	notificationType: string;
-	notificationDate: string;
+	type: string;
+	sendingDate: string;
 	message: string;
 	status: string;
     updatedDate: Date;

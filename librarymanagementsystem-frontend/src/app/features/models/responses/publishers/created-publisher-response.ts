@@ -1,6 +1,6 @@
 export interface CreatedPublisherResponse {
 	id: string;
-	publisherName: string;
+	name: string;
 	publicationPlace: string;
     createdDate: Date;
 }

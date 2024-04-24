@@ -1,5 +1,5 @@
 export interface GetListNeighborhoodResponse {
 	id: string;
-	neighborhoodName: string;
+	name: string;
 	districtId: string;
 }

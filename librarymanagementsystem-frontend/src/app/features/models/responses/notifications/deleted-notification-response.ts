@@ -1,7 +1,7 @@
 export interface DeletedNotificationResponse {
 	id: string;
-	notificationType: string;
-	notificationDate: string;
+	type: string;
+	sendingDate: string;
 	message: string;
 	status: string;
     deletedDate: Date;

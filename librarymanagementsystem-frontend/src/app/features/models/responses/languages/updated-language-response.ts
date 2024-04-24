@@ -1,5 +1,5 @@
 export interface UpdatedLanguageResponse {
 	id: string;
-	languageName: string;
+	name: string;
     updatedDate: Date;
 }
