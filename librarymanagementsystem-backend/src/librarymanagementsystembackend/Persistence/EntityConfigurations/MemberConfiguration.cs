@@ -18,7 +18,7 @@ public class MemberConfiguration : IEntityTypeConfiguration<Member>
         builder.Property(m => m.PhoneNumber).HasColumnName("PhoneNumber");
         builder.Property(m => m.ProfilePicture).HasColumnName("ProfilePicture");
         builder.Property(m => m.Position).HasColumnName("Position");
-        builder.Property(m => m.TotalDebt).HasColumnName("TotalDebt");
+        builder.Property(m => m.TotalDebt).HasColumnName("TotalDebt").HasPrecision(18, 2); 
         builder.Property(m => m.IsActive).HasColumnName("IsActive");
         builder.Property(m => m.UserId).HasColumnName("UserId");
         builder.Property(m => m.CreatedDate).HasColumnName("CreatedDate").IsRequired();
