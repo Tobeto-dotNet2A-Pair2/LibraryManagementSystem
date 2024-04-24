@@ -16,10 +16,10 @@ import { AddressBaseService } from '../abstracts/address-base.service';
 export class AddressService extends AddressBaseService 
  {
 
-  constructor(httpClient: HttpClient) {
-    //
-    super(httpClient);
-  }
+  // constructor(httpClient: HttpClient) {
+  //   //
+  //   super(httpClient);
+  // }
   
   // override getAddressById(id: string): Observable<GetByIdAddressResponse> {
 
