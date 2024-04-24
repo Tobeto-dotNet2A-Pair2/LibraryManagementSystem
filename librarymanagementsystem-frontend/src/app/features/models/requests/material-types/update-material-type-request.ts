@@ -1,5 +1,5 @@
 export interface UpdateMaterialTypeRequest {
 	id: string;
-	materialTypeName: string;
-	materialTypeCategory: string;
+	name: string;
+	materialFormat: number;
 }

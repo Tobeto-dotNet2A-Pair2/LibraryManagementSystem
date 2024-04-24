@@ -1,5 +1,5 @@
 export interface UpdateTranslatorRequest {
 	id: string;
-	translatorName: string;
+	name: string;
 	description: string;
 }

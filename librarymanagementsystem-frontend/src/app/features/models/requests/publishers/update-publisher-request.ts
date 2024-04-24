@@ -1,5 +1,5 @@
 export interface UpdatePublisherRequest {
 	id: string;
-	publisherName: string;
+	name: string;
 	publicationPlace: string;
 }

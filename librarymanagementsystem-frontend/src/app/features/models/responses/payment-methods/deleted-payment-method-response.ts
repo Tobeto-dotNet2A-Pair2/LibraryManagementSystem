@@ -1,6 +1,6 @@
 export interface DeletedPaymentMethodResponse {
 	id: string;
 	branchId: string;
-	paymentMethodName: string;
+	name: string;
     deletedDate: Date;
 }

@@ -1,6 +1,6 @@
 export interface UpdatedMaterialTypeResponse {
 	id: string;
-	materialTypeName: string;
-	materialTypeCategory: string;
+	name: string;
+	materialFormat: number;
     updatedDate: Date;
 }

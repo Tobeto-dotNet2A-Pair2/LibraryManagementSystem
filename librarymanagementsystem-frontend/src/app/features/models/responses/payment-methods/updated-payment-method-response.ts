@@ -1,6 +1,6 @@
 export interface UpdatedPaymentMethodResponse {
 	id: string;
 	branchId: string;
-	paymentMethodName: string;
+	name: string;
     updatedDate: Date;
 }

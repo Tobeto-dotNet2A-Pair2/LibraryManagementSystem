@@ -1,5 +1,5 @@
 export interface DeletedMaterialPropertyResponse {
 	id: string;
-	materialPropertyName: string;
+	name: string;
     deletedDate: Date;
 }

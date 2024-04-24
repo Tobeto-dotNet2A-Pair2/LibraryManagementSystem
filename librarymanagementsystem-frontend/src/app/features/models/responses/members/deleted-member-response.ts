@@ -2,12 +2,13 @@ export interface DeletedMemberResponse {
 	id: string;
 	firstName: string;
 	lastName: string;
-	tc: string;
+	nationalIdentity: string;
+	birthDate: string;
 	phoneNumber: string;
-	photo: string;
+	profilePicture: string;
 	position: string;
 	totalDebt: number;
-	userId: string;
 	isActive: boolean;
+	userId: string;
     deletedDate: Date;
 }

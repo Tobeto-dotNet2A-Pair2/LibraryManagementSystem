@@ -1,3 +1,3 @@
 export interface CreateLibraryRequest {
-	libraryName: string;
+	name: string;
 }

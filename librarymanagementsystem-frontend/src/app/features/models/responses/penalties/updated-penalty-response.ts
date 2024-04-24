@@ -1,6 +1,6 @@
 export interface UpdatedPenaltyResponse {
 	id: string;
-	totalMaterialPenalty: number;
+	totalMaterialDebt: number;
 	dayDelay: number;
 	borrowedMaterialId: string;
     updatedDate: Date;

@@ -1,4 +1,4 @@
 export interface GetByIdLanguageResponse {
 	id: string;
-	languageName: string;
+	name: string;
 }

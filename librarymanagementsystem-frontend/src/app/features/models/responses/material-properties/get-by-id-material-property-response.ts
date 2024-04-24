@@ -1,4 +1,4 @@
 export interface GetByIdMaterialPropertyResponse {
 	id: string;
-	materialPropertyName: string;
+	name: string;
 }

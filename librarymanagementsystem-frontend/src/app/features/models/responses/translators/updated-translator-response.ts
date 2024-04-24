@@ -1,5 +1,5 @@
 export interface UpdatedTranslatorResponse {
-	translatorName: string;
+	name: string;
 	description: string;
     updatedDate: Date;
 }

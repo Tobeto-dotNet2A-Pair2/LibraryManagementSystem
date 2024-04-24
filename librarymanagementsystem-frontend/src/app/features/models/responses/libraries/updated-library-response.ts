@@ -1,5 +1,5 @@
 export interface UpdatedLibraryResponse {
 	id: string;
-	libraryName: string;
+	name: string;
     updatedDate: Date;
 }

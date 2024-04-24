@@ -1,6 +1,6 @@
 export interface DeletedMaterialTypeResponse {
 	id: string;
-	materialTypeName: string;
-	materialTypeCategory: string;
+	name: string;
+	materialFormat: number;
     deletedDate: Date;
 }

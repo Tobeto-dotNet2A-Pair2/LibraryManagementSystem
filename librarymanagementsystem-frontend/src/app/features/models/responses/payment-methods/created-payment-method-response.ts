@@ -1,6 +1,6 @@
 export interface CreatedPaymentMethodResponse {
 	id: string;
 	branchId: string;
-	paymentMethodName: string;
+	name: string;
     createdDate: Date;
 }
