@@ -7,6 +7,6 @@ public class UpdateLibraryCommandValidator : AbstractValidator<UpdateLibraryComm
     public UpdateLibraryCommandValidator()
     {
         RuleFor(c => c.Id).NotEmpty();
-        RuleFor(c => c.Name).NotEmpty();
+        RuleFor(c => c.Name).NotEmpty().Length(2, 150);
     }
 }

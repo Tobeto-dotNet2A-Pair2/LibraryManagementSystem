@@ -6,7 +6,7 @@ public class CreateStreetCommandValidator : AbstractValidator<CreateStreetComman
 {
     public CreateStreetCommandValidator()
     {
-        RuleFor(c => c.Name).NotEmpty();
+        RuleFor(c => c.Name).NotEmpty().Length(2, 300);
         RuleFor(c => c.NeighborhoodId).NotEmpty();
     }
 }

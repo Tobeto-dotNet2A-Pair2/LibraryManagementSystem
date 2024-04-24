@@ -6,6 +6,6 @@ public class CreateMaterialPropertyCommandValidator : AbstractValidator<CreateMa
 {
     public CreateMaterialPropertyCommandValidator()
     {
-        RuleFor(c => c.Name).NotEmpty();
+        RuleFor(c => c.Name).NotEmpty().Length(2, 150);
     }
 }

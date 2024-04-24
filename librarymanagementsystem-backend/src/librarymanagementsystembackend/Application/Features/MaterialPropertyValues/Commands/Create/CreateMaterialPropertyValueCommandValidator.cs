@@ -6,7 +6,7 @@ public class CreateMaterialPropertyValueCommandValidator : AbstractValidator<Cre
 {
     public CreateMaterialPropertyValueCommandValidator()
     {
-        RuleFor(c => c.Content).NotEmpty();
+        RuleFor(c => c.Content).NotEmpty().Length(2, 150);
         RuleFor(c => c.MaterialId).NotEmpty();
         RuleFor(c => c.MaterialTypeId).NotEmpty();
         RuleFor(c => c.MaterialPropertyId).NotEmpty();

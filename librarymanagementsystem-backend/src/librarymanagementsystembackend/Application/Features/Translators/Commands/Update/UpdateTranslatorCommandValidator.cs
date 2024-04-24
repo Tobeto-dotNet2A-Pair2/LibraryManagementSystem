@@ -7,7 +7,7 @@ public class UpdateTranslatorCommandValidator : AbstractValidator<UpdateTranslat
     public UpdateTranslatorCommandValidator()
     {
         RuleFor(c => c.Id).NotEmpty();
-        RuleFor(c => c.Name).NotEmpty();
-        RuleFor(c => c.Description).NotEmpty();
+        RuleFor(c => c.Name).NotEmpty().Length(2, 150);
+        RuleFor(c => c.Description).NotEmpty().Length(2, 500);
     }
 }

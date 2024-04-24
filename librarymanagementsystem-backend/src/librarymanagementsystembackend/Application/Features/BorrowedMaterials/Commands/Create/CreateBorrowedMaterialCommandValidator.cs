@@ -6,8 +6,8 @@ public class CreateBorrowedMaterialCommandValidator : AbstractValidator<CreateBo
 {
     public CreateBorrowedMaterialCommandValidator()
     {
-        RuleFor(c => c.BorrowedDate).NotEmpty();
-        RuleFor(c => c.ReturnDate).NotEmpty();
+        RuleFor(c => c.BorrowedDate).NotEmpty().GreaterThanOrEqualTo(DateTime.Now.Date);
+        RuleFor(c => c.ReturnDate).NotEmpty().GreaterThan(c => c.BorrowedDate);
         RuleFor(c => c.IsReturned).NotEmpty();
         RuleFor(c => c.MemberId).NotEmpty();
         RuleFor(c => c.MaterialCopyId).NotEmpty();

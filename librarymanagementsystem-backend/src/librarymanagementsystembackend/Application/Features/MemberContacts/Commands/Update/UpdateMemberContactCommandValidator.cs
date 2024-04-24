@@ -7,9 +7,9 @@ public class UpdateMemberContactCommandValidator : AbstractValidator<UpdateMembe
     public UpdateMemberContactCommandValidator()
     {
         RuleFor(c => c.Id).NotEmpty();
-        RuleFor(c => c.AskLibrarianTopic).NotEmpty();
-        RuleFor(c => c.AskLibrarianDescription).NotEmpty();
-        RuleFor(c => c.Message).NotEmpty();
+        RuleFor(c => c.AskLibrarianTopic).NotEmpty().Length(2, 150);
+        RuleFor(c => c.AskLibrarianDescription).NotEmpty().Length(2, 1000);
+        RuleFor(c => c.Message).NotEmpty().Length(2, 1000);
         RuleFor(c => c.MemberId).NotEmpty();
         RuleFor(c => c.LibraryId).NotEmpty();
     }

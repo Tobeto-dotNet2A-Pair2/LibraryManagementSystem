@@ -6,7 +6,7 @@ public class CreatePublisherCommandValidator : AbstractValidator<CreatePublisher
 {
     public CreatePublisherCommandValidator()
     {
-        RuleFor(c => c.Name).NotEmpty();
-        RuleFor(c => c.PublicationPlace).NotEmpty();
+        RuleFor(c => c.Name).NotEmpty().Length(2, 150);
+        RuleFor(c => c.PublicationPlace).NotEmpty().Length(2, 150);
     }
 }
