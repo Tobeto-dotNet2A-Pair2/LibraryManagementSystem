@@ -1,22 +1,33 @@
 ﻿using NArchitecture.Core.Persistence.Repositories;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Domain.Entities;
 public class Member:Entity<Guid>
 {
     public string FirstName { get; set; }
     public string LastName { get; set; }
-    public string TC { get; set; }
+    public string NationalIdentity { get; set; }
     public string PhoneNumber { get; set; }
-    public string Photo { get; set; }
+    public string ProfilePicture { get; set; }
     public string? Position { get; set; }
     public decimal TotalDebt { get; set; }
+    public bool IsActive { get; set; }
     public Guid UserId { get; set; }
-    public bool isActive { get; set; }
+
+
+    public Member() { }
+
+    public Member(string firstName, string lastName, string nationalIdentity, string phoneNumber, string profilePicture, string? position, decimal totalDebt, bool ısActive, Guid userId)
+    {
+        FirstName = firstName;
+        LastName = lastName;
+        NationalIdentity = nationalIdentity;
+        PhoneNumber = phoneNumber;
+        ProfilePicture = profilePicture;
+        Position = position;
+        TotalDebt = totalDebt;
+        IsActive = ısActive;
+        UserId = userId;
+    }
 
     public virtual User User { get; set; }
     public virtual ICollection<MemberAddress> MemberAddresses { get; set; }
@@ -26,9 +37,5 @@ public class Member:Entity<Guid>
 
     public virtual ICollection<FavoriteList> FavoriteLists { get; set; }
 
-
-
-
-    //Role entity prop
 
 }
