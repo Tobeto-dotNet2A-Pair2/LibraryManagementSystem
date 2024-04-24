@@ -9,6 +9,7 @@ using NArchitecture.Core.Application.Pipelines.Logging;
 using NArchitecture.Core.Application.Pipelines.Transaction;
 using MediatR;
 using static Application.Features.MaterialTypes.Constants.MaterialTypesOperationClaims;
+using Domain.Enums;
 
 namespace Application.Features.MaterialTypes.Commands.Update;
 

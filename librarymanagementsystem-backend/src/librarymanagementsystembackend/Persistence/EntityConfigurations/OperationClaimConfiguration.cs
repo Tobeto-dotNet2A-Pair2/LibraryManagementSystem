@@ -44,6 +44,7 @@ using Application.Features.PublisherMaterials.Constants;
 using Application.Features.TranslatorMaterials.Constants;
 using Application.Features.Genres.Constants;
 using Application.Features.MaterialGenres.Constants;
+using Application.Features.MaterialImages.Constants;
 
 
 
@@ -2029,6 +2030,34 @@ public class OperationClaimConfiguration : IEntityTypeConfiguration<OperationCla
                 new() { Id = ++lastId, Name = TranslatorMaterialsOperationClaims.Create },
                 new() { Id = ++lastId, Name = TranslatorMaterialsOperationClaims.Update },
                 new() { Id = ++lastId, Name = TranslatorMaterialsOperationClaims.Delete },
+            ]
+        );
+        #endregion
+        
+        
+        #region MaterialImages
+        featureOperationClaims.AddRange(
+            [
+                new() { Id = ++lastId, Name = MaterialImagesOperationClaims.Admin },
+                new() { Id = ++lastId, Name = MaterialImagesOperationClaims.Read },
+                new() { Id = ++lastId, Name = MaterialImagesOperationClaims.Write },
+                new() { Id = ++lastId, Name = MaterialImagesOperationClaims.Create },
+                new() { Id = ++lastId, Name = MaterialImagesOperationClaims.Update },
+                new() { Id = ++lastId, Name = MaterialImagesOperationClaims.Delete },
+            ]
+        );
+        #endregion
+        
+        
+        #region Materials
+        featureOperationClaims.AddRange(
+            [
+                new() { Id = ++lastId, Name = MaterialsOperationClaims.Admin },
+                new() { Id = ++lastId, Name = MaterialsOperationClaims.Read },
+                new() { Id = ++lastId, Name = MaterialsOperationClaims.Write },
+                new() { Id = ++lastId, Name = MaterialsOperationClaims.Create },
+                new() { Id = ++lastId, Name = MaterialsOperationClaims.Update },
+                new() { Id = ++lastId, Name = MaterialsOperationClaims.Delete },
             ]
         );
         #endregion

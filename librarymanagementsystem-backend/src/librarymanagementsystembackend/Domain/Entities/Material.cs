@@ -29,4 +29,5 @@ public class Material : Entity<Guid>
     public virtual ICollection<MaterialPropertyValue> MaterialPropertyValues { get; set; }
 
     public virtual ICollection<MaterialGenre> MaterialGenres { get; set; }
+    public virtual ICollection<MaterialImage> MaterialImages { get; set; }
 }

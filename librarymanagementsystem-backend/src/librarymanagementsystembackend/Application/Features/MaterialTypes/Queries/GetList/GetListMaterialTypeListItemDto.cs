@@ -1,3 +1,4 @@
+using Domain.Enums;
 using NArchitecture.Core.Application.Dtos;
 
 namespace Application.Features.MaterialTypes.Queries.GetList;

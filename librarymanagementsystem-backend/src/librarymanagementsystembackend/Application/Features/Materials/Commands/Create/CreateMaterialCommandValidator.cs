@@ -13,3 +13,4 @@ public class CreateMaterialCommandValidator : AbstractValidator<CreateMaterialCo
         RuleFor(c => c.BorrowDay).NotEmpty();
     }
 }
+
