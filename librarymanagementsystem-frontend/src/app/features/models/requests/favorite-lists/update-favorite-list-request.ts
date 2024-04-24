@@ -1,5 +1,5 @@
 export interface UpdateFavoriteListRequest {
 	id: string;
-	listName: string;
+	name: string;
 	memberId: string;
 }

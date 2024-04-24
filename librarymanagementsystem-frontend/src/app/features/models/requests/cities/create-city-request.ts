@@ -1,3 +1,3 @@
 export interface CreateCityRequest {
-	cityName: string;
+	name: string;
 }

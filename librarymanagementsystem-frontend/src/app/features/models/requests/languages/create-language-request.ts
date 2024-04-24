@@ -1,3 +1,3 @@
 export interface CreateLanguageRequest {
-	languageName: string;
+	name: string;
 }

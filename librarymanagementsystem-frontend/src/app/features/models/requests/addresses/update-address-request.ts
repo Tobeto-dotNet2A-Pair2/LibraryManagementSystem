@@ -1,6 +1,6 @@
 export interface UpdateAddressRequest {
 	id: string;
 	streetId: string;
-	addressName: string;
+	name: string;
 	description: string;
 }

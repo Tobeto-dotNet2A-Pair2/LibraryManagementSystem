@@ -1,4 +1,4 @@
 export interface CreateStreetRequest {
-	streetName: string;
+	name: string;
 	neighborhoodId: string;
 }
