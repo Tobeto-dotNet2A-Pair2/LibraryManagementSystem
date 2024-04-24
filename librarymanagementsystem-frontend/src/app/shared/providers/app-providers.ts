@@ -13,8 +13,6 @@ export function getAppProviders(){
         useClass:AuthService
     };
 
-
-
     return [
         authServiceProviders,
         provideRouter(routes),

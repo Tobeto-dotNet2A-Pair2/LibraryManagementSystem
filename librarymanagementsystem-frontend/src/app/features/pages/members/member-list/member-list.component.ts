@@ -19,10 +19,10 @@ export class MemberListComponent implements OnInit {
   ngOnInit(): void {
     this.getMember();
   }
-  
+  //${environment.API_URL}/members?PageIndex=1&PageSize=1
   getMember() {
     // backend'e istek atıp verileri çek
-    this.httpClient.get<CreateMemberRequest[]>(`${environment.API_URL}/members?PageIndex=1&PageSize=1`).subscribe({
+    this.httpClient.get<CreateMemberRequest[]>(`http://localhost:60805/api/Members?PageIndex=1&PageSize=1`).subscribe({
       next: (response: CreateMemberRequest[]) => {
         console.log('Backendden cevap geldi:', response);
         this.memberList = response;
