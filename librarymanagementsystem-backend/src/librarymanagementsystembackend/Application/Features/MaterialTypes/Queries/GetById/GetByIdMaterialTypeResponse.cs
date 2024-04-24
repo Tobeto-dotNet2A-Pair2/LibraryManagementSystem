@@ -1,3 +1,4 @@
+using Domain.Enums;
 using NArchitecture.Core.Application.Responses;
 
 namespace Application.Features.MaterialTypes.Queries.GetById;
