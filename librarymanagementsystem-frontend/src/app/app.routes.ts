@@ -6,9 +6,13 @@ import { AdminLayoutComponent } from './shared/layouts/admin-layout/admin-layout
 import { DashboardComponent } from './features/pages/dashboard/dashboard.component';
 import { MaterialListComponent } from './features/pages/materials/material-list/material-list.component';
 import { MemberListComponent } from './features/pages/members/member-list/member-list.component';
+import { AddBranchFormComponent } from './features/pages/branches/add-branch-form/add-branch-form.component';
+import { BranchListComponent } from './features/pages/branches/branch-list/branch-list.component';
+import { AddMaterialFormComponent } from './features/pages/materials/add-material-form/add-material-form.component';
+
 
 export const routes: Routes = [
-  { path: '', redirectTo: 'adminpage', pathMatch: 'full' },
+  { path: '', redirectTo: 'auth', pathMatch: 'full' },
    { path: 'auth', component: AuthComponent },
    {path: 'homepage', component:HomepageComponent},
   // { path: 'homepage', component: AdminLayoutComponent },
@@ -21,9 +25,13 @@ export const routes: Routes = [
     children: [
       { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
       { path: 'dashboard', component: DashboardComponent },
-      {path: 'branches', component:BranchComponent},
-      {path: 'material-lists', component:MaterialListComponent },
-      {path: 'members', component:MemberListComponent}
-    ]
-  }
+      { path: 'material-lists', component: MaterialListComponent },
+      { path: 'member-lists', component: MemberListComponent },
+   
+      { path: 'add-branches', component: AddBranchFormComponent },
+      { path: 'branch-lists', component: BranchListComponent },
+      { path: 'add-material-forms', component: AddMaterialFormComponent },
+      
+    ],
+  },
 ];

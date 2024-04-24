@@ -7,7 +7,7 @@ public class UpdateMaterialPropertyValueCommandValidator : AbstractValidator<Upd
     public UpdateMaterialPropertyValueCommandValidator()
     {
         RuleFor(c => c.Id).NotEmpty();
-        RuleFor(c => c.MaterialPropertyValueName).NotEmpty().Length(2, 150);
+        RuleFor(c => c.Content).NotEmpty().Length(2, 150);
         RuleFor(c => c.MaterialId).NotEmpty();
         RuleFor(c => c.MaterialTypeId).NotEmpty();
         RuleFor(c => c.MaterialPropertyId).NotEmpty();

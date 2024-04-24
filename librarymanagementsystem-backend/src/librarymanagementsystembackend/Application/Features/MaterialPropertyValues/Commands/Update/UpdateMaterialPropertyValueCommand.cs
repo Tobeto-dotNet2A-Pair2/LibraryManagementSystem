@@ -15,7 +15,7 @@ namespace Application.Features.MaterialPropertyValues.Commands.Update;
 public class UpdateMaterialPropertyValueCommand : IRequest<UpdatedMaterialPropertyValueResponse>, ISecuredRequest, ICacheRemoverRequest, ILoggableRequest, ITransactionalRequest
 {
     public Guid Id { get; set; }
-    public string MaterialPropertyValueName { get; set; }
+    public string Content { get; set; }
     public Guid MaterialId { get; set; }
     public Guid MaterialTypeId { get; set; }
     public Guid MaterialPropertyId { get; set; }

@@ -11,15 +11,11 @@ public class DistrictConfiguration : IEntityTypeConfiguration<District>
         builder.ToTable("Districts").HasKey(d => d.Id);
 
         builder.Property(d => d.Id).HasColumnName("Id").IsRequired();
-        builder.Property(d => d.DistrictName).HasColumnName("DistrictName");
+        builder.Property(d => d.Name).HasColumnName("Name");
         builder.Property(d => d.CityId).HasColumnName("CityId");
         builder.Property(d => d.CreatedDate).HasColumnName("CreatedDate").IsRequired();
         builder.Property(d => d.UpdatedDate).HasColumnName("UpdatedDate");
         builder.Property(d => d.DeletedDate).HasColumnName("DeletedDate");
-
-        builder.HasOne(d => d.City);
-        builder.HasMany(d => d.Neighborhoods);
-        
 
         builder.HasQueryFilter(d => !d.DeletedDate.HasValue);
     }

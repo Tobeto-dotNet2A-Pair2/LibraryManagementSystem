@@ -6,7 +6,7 @@ public class CreateNeighborhoodCommandValidator : AbstractValidator<CreateNeighb
 {
     public CreateNeighborhoodCommandValidator()
     {
-        RuleFor(c => c.NeighborhoodName).NotEmpty().Length(2, 150);
+        RuleFor(c => c.Name).NotEmpty().Length(2, 150);
         RuleFor(c => c.DistrictId).NotEmpty();
     }
 }

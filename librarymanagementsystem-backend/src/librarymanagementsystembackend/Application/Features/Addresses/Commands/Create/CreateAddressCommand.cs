@@ -15,7 +15,7 @@ namespace Application.Features.Addresses.Commands.Create;
 public class CreateAddressCommand : IRequest<CreatedAddressResponse>, ISecuredRequest, ICacheRemoverRequest, ILoggableRequest, ITransactionalRequest
 {
     public Guid StreetId { get; set; }
-    public string AddressName { get; set; }
+    public string Name { get; set; }
     public string Description { get; set; }
 
     public string[] Roles => [Admin, Write, AddressesOperationClaims.Create];

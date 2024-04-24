@@ -5,5 +5,5 @@ namespace Application.Features.Languages.Commands.Update;
 public class UpdatedLanguageResponse : IResponse
 {
     public Guid Id { get; set; }
-    public string LanguageName { get; set; }
+    public string Name { get; set; }
 }

@@ -7,9 +7,7 @@ public class UpdatePenaltyCommandValidator : AbstractValidator<UpdatePenaltyComm
     public UpdatePenaltyCommandValidator()
     {
         RuleFor(c => c.Id).NotEmpty();
-        RuleFor(c => c.TotalMaterialPenalty).NotEmpty().GreaterThan(0)
-                   .When(c => c.TotalMaterialPenalty.HasValue);
-
+        RuleFor(c => c.TotalMaterialDebt).NotEmpty();
         RuleFor(c => c.DayDelay).NotEmpty().GreaterThan(0);
         RuleFor(c => c.BorrowedMaterialId).NotEmpty();
     }

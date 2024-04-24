@@ -15,7 +15,7 @@ namespace Application.Features.Libraries.Commands.Update;
 public class UpdateLibraryCommand : IRequest<UpdatedLibraryResponse>, ISecuredRequest, ICacheRemoverRequest, ILoggableRequest, ITransactionalRequest
 {
     public Guid Id { get; set; }
-    public string LibraryName { get; set; }
+    public string Name { get; set; }
 
     public string[] Roles => [Admin, Write, LibrariesOperationClaims.Update];
 

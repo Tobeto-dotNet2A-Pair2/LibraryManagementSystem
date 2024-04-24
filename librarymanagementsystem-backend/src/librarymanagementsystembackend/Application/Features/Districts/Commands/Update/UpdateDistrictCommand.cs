@@ -15,7 +15,7 @@ namespace Application.Features.Districts.Commands.Update;
 public class UpdateDistrictCommand : IRequest<UpdatedDistrictResponse>, ISecuredRequest, ICacheRemoverRequest, ILoggableRequest, ITransactionalRequest
 {
     public Guid Id { get; set; }
-    public string DistrictName { get; set; }
+    public string Name { get; set; }
     public Guid CityId { get; set; }
 
     public string[] Roles => [Admin, Write, DistrictsOperationClaims.Update];
