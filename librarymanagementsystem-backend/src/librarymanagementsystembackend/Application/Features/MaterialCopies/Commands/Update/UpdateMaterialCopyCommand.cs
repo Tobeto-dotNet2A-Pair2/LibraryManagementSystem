@@ -12,7 +12,7 @@ using static Application.Features.MaterialCopies.Constants.MaterialCopiesOperati
 
 namespace Application.Features.MaterialCopies.Commands.Update;
 
-public class UpdateMaterialCopyCommand : IRequest<UpdatedMaterialCopyResponse>, ISecuredRequest, ICacheRemoverRequest, ILoggableRequest, ITransactionalRequest
+public class UpdateMaterialCopyCommand : IRequest<UpdatedMaterialCopyResponse>, ICacheRemoverRequest, ILoggableRequest, ITransactionalRequest // ISecuredRequest,
 {
     public Guid Id { get; set; }
     public DateTime DateReceipt { get; set; }
