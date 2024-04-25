@@ -4,12 +4,13 @@ import { TokenService } from '../services/token.service';
 
 export const authInterceptor: HttpInterceptorFn = (req, next) => {
   const tokenService = inject(TokenService);
-
-  let newRequest = req.clone({
-    setHeaders: { Authorization: 'Bearer ' + tokenService.getToken() },
+ const token = tokenService.getToken();
+ 
+ const authRequest = req.clone({
+    setHeaders: { Authorization: `Bearer ${token}` },
+   
   });
-
-  return next(newRequest);
+  return next(authRequest);
 };
 
 // localStorage

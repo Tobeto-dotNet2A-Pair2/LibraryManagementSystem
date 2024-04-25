@@ -9,7 +9,7 @@ import { MemberListComponent } from './features/pages/members/member-list/member
 import { AddBranchFormComponent } from './features/pages/branches/add-branch-form/add-branch-form.component';
 import { BranchListComponent } from './features/pages/branches/branch-list/branch-list.component';
 import { AddMaterialFormComponent } from './features/pages/materials/add-material-form/add-material-form.component';
-import { AddMemberFormComponent } from './features/pages/members/add-member-form/add-member-form.component';
+import { roleGuard } from './core/guards/role.guard';
 
 export const routes: Routes = [
   { path: '', redirectTo: 'auth', pathMatch: 'full' },
@@ -25,10 +25,9 @@ export const routes: Routes = [
     data:{requiredRoles:['Admin']},
     children: [
       { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
-      { path: 'dashboard', component: MemberListComponent },
+      { path: 'dashboard', component: DashboardComponent },
       { path: 'material-lists', component: MaterialListComponent },
       { path: 'member-lists', component: MemberListComponent },
-      {path : 'add-member-forms', component:AddMemberFormComponent},
       { path: 'add-branches', component: AddBranchFormComponent },
       { path: 'branch-lists', component: BranchListComponent },
       { path: 'add-material-forms', component: AddMaterialFormComponent },
