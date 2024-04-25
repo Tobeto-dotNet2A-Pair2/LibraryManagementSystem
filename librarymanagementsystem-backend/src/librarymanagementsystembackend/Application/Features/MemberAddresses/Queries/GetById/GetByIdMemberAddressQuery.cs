@@ -9,7 +9,7 @@ using static Application.Features.MemberAddresses.Constants.MemberAddressesOpera
 
 namespace Application.Features.MemberAddresses.Queries.GetById;
 
-public class GetByIdMemberAddressQuery : IRequest<GetByIdMemberAddressResponse>, ISecuredRequest
+public class GetByIdMemberAddressQuery : IRequest<GetByIdMemberAddressResponse> //, ISecuredRequest
 {
     public Guid Id { get; set; }
 

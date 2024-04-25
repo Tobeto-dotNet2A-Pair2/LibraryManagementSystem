@@ -12,7 +12,7 @@ using static Application.Features.MemberAddresses.Constants.MemberAddressesOpera
 
 namespace Application.Features.MemberAddresses.Queries.GetList;
 
-public class GetListMemberAddressQuery : IRequest<GetListResponse<GetListMemberAddressListItemDto>>, ISecuredRequest, ICachableRequest
+public class GetListMemberAddressQuery : IRequest<GetListResponse<GetListMemberAddressListItemDto>>, ICachableRequest // ISecuredRequest,
 {
     public PageRequest PageRequest { get; set; }
 

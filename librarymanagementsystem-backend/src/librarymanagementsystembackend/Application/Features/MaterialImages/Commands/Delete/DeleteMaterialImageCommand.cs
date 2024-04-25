@@ -13,7 +13,7 @@ using static Application.Features.MaterialImages.Constants.MaterialImagesOperati
 
 namespace Application.Features.MaterialImages.Commands.Delete;
 
-public class DeleteMaterialImageCommand : IRequest<DeletedMaterialImageResponse>, ISecuredRequest, ICacheRemoverRequest, ILoggableRequest, ITransactionalRequest
+public class DeleteMaterialImageCommand : IRequest<DeletedMaterialImageResponse>, ICacheRemoverRequest, ILoggableRequest, ITransactionalRequest // ISecuredRequest,
 {
     public Guid Id { get; set; }
 

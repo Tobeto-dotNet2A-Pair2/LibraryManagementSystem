@@ -13,7 +13,7 @@ using static Application.Features.MaterialProperties.Constants.MaterialPropertie
 
 namespace Application.Features.MaterialProperties.Commands.Delete;
 
-public class DeleteMaterialPropertyCommand : IRequest<DeletedMaterialPropertyResponse>, ISecuredRequest, ICacheRemoverRequest, ILoggableRequest, ITransactionalRequest
+public class DeleteMaterialPropertyCommand : IRequest<DeletedMaterialPropertyResponse>, ICacheRemoverRequest, ILoggableRequest, ITransactionalRequest // ISecuredRequest,
 {
     public Guid Id { get; set; }
 

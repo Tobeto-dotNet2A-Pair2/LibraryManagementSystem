@@ -12,7 +12,7 @@ using static Application.Features.MaterialPropertyValues.Constants.MaterialPrope
 
 namespace Application.Features.MaterialPropertyValues.Commands.Create;
 
-public class CreateMaterialPropertyValueCommand : IRequest<CreatedMaterialPropertyValueResponse>, ISecuredRequest, ICacheRemoverRequest, ILoggableRequest, ITransactionalRequest
+public class CreateMaterialPropertyValueCommand : IRequest<CreatedMaterialPropertyValueResponse>, ICacheRemoverRequest, ILoggableRequest, ITransactionalRequest // ISecuredRequest,
 {
     public string Content { get; set; }
     public Guid MaterialId { get; set; }

@@ -9,7 +9,7 @@ using static Application.Features.MaterialPropertyValues.Constants.MaterialPrope
 
 namespace Application.Features.MaterialPropertyValues.Queries.GetById;
 
-public class GetByIdMaterialPropertyValueQuery : IRequest<GetByIdMaterialPropertyValueResponse>, ISecuredRequest
+public class GetByIdMaterialPropertyValueQuery : IRequest<GetByIdMaterialPropertyValueResponse> //, ISecuredRequest
 {
     public Guid Id { get; set; }
 
