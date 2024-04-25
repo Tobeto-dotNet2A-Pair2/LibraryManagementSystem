@@ -12,7 +12,7 @@ import { AddMaterialFormComponent } from './features/pages/materials/add-materia
 
 
 export const routes: Routes = [
-  { path: '', redirectTo: 'auth', pathMatch: 'full' },
+  { path: '', redirectTo: 'adminpage', pathMatch: 'full' },
    { path: 'auth', component: AuthComponent },
    {path: 'homepage', component:HomepageComponent},
   // { path: 'homepage', component: AdminLayoutComponent },
