@@ -12,7 +12,7 @@ using static Application.Features.Materials.Constants.MaterialsOperationClaims;
 
 namespace Application.Features.Materials.Commands.Update;
 
-public class UpdateMaterialCommand : IRequest<UpdatedMaterialResponse>, ISecuredRequest, ICacheRemoverRequest, ILoggableRequest, ITransactionalRequest
+public class UpdateMaterialCommand : IRequest<UpdatedMaterialResponse>, ICacheRemoverRequest, ILoggableRequest, ITransactionalRequest //ISecuredRequest
 {
     public Guid Id { get; set; }
     public string Name { get; set; }

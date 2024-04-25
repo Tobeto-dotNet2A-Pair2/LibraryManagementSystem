@@ -9,7 +9,7 @@ using static Application.Features.BorrowedMaterials.Constants.BorrowedMaterialsO
 
 namespace Application.Features.BorrowedMaterials.Queries.GetById;
 
-public class GetByIdBorrowedMaterialQuery : IRequest<GetByIdBorrowedMaterialResponse>, ISecuredRequest
+public class GetByIdBorrowedMaterialQuery : IRequest<GetByIdBorrowedMaterialResponse> //, ISecuredRequest
 {
     public Guid Id { get; set; }
 
