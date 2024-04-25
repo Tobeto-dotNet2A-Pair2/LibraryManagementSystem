@@ -13,6 +13,7 @@ public class GetByIdMemberQuery : IRequest<GetByIdMemberResponse>, ISecuredReque
 {
     public Guid Id { get; set; }
 
+    // role yorum
     public string[] Roles => [Admin, Read];
 
     public class GetByIdMemberQueryHandler : IRequestHandler<GetByIdMemberQuery, GetByIdMemberResponse>
@@ -31,6 +32,7 @@ public class GetByIdMemberQuery : IRequest<GetByIdMemberResponse>, ISecuredReque
         public async Task<GetByIdMemberResponse> Handle(GetByIdMemberQuery request, CancellationToken cancellationToken)
         {
             Member? member = await _memberRepository.GetAsync(predicate: m => m.Id == request.Id, cancellationToken: cancellationToken);
+            //, include: i => i.Include(x => x.?));
             await _memberBusinessRules.MemberShouldExistWhenSelected(member);
 
             GetByIdMemberResponse response = _mapper.Map<GetByIdMemberResponse>(member);

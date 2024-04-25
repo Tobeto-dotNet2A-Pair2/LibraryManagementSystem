@@ -12,7 +12,7 @@ using static Application.Features.Members.Constants.MembersOperationClaims;
 
 namespace Application.Features.Members.Commands.Create;
 
-public class CreateMemberCommand : IRequest<CreatedMemberResponse>, ISecuredRequest, ICacheRemoverRequest, ILoggableRequest, ITransactionalRequest
+public class CreateMemberCommand : IRequest<CreatedMemberResponse>, ICacheRemoverRequest, ILoggableRequest, ITransactionalRequest
 {
     public string FirstName { get; set; }
     public string LastName { get; set; }
@@ -25,7 +25,7 @@ public class CreateMemberCommand : IRequest<CreatedMemberResponse>, ISecuredRequ
     public bool IsActive { get; set; }
     public Guid UserId { get; set; }
 
-    public string[] Roles => [Admin, Write, MembersOperationClaims.Create];
+   // public string[] Roles => [Admin, Write, MembersOperationClaims.Create];
 
     public bool BypassCache { get; }
     public string? CacheKey { get; }
