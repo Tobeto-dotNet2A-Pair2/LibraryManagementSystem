@@ -1,5 +1,5 @@
 export interface CreateBorrowedMaterialRequest {
-	borrowDate: string;
+	borrowedDate: string;
 	returnDate: string;
 	isReturned: boolean;
 	memberId: string;

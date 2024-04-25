@@ -1,5 +1,5 @@
 export interface UpdateStreetRequest {
 	id: string;
-	streetName: string;
+	name: string;
 	neighborhoodId: string;
 }

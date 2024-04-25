@@ -15,7 +15,7 @@ namespace Application.Features.Genres.Commands.Update;
 public class UpdateGenreCommand : IRequest<UpdatedGenreResponse>, ISecuredRequest, ICacheRemoverRequest, ILoggableRequest, ITransactionalRequest
 {
     public Guid Id { get; set; }
-    public string GenreName { get; set; }
+    public string Name { get; set; }
 
     public string[] Roles => [Admin, Write, GenresOperationClaims.Update];
 

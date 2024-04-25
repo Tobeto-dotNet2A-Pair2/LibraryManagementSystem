@@ -5,5 +5,5 @@ namespace Application.Features.Languages.Queries.GetById;
 public class GetByIdLanguageResponse : IResponse
 {
     public Guid Id { get; set; }
-    public string LanguageName { get; set; }
+    public string Name { get; set; }
 }

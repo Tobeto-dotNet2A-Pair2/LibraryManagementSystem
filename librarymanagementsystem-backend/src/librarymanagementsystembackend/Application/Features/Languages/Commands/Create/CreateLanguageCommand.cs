@@ -14,7 +14,7 @@ namespace Application.Features.Languages.Commands.Create;
 
 public class CreateLanguageCommand : IRequest<CreatedLanguageResponse>, ISecuredRequest, ICacheRemoverRequest, ILoggableRequest, ITransactionalRequest
 {
-    public string LanguageName { get; set; }
+    public string Name { get; set; }
 
     public string[] Roles => [Admin, Write, LanguagesOperationClaims.Create];
 

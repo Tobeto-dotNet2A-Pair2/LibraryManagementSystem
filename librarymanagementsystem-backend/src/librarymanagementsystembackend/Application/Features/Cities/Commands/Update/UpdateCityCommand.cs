@@ -15,7 +15,7 @@ namespace Application.Features.Cities.Commands.Update;
 public class UpdateCityCommand : IRequest<UpdatedCityResponse>, ISecuredRequest, ICacheRemoverRequest, ILoggableRequest, ITransactionalRequest
 {
     public Guid Id { get; set; }
-    public string CityName { get; set; }
+    public string Name { get; set; }
 
     public string[] Roles => [Admin, Write, CitiesOperationClaims.Update];
 

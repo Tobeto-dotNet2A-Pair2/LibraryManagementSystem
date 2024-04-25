@@ -16,7 +16,7 @@ public class CreateAuthorCommand : IRequest<CreatedAuthorResponse>, ISecuredRequ
 {
     public string FirstName { get; set; }
     public string LastName { get; set; }
-    public string AuthorCountry { get; set; }
+    public string Country { get; set; }
 
     public string[] Roles => [Admin, Write, AuthorsOperationClaims.Create];
 

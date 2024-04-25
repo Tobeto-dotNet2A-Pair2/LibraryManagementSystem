@@ -1,5 +1,5 @@
 export interface CreatedTranslatorResponse {
-	translatorName: string;
+	name: string;
 	description: string;
     createdDate: Date;
 }

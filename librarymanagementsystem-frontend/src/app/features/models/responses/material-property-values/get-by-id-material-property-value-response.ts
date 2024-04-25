@@ -1,6 +1,6 @@
-export interface GetByIdMaterialProperty {
+export interface GetByIdMaterialPropertyValueResponse {
 	id: string;
-	materialPropertyValueName: string;
+	content: string;
 	materialId: string;
 	materialTypeId: string;
 	materialPropertyId: string;

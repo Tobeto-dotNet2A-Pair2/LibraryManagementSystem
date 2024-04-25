@@ -17,10 +17,6 @@ public class LanguageMaterialConfiguration : IEntityTypeConfiguration<LanguageMa
         builder.Property(lm => lm.UpdatedDate).HasColumnName("UpdatedDate");
         builder.Property(lm => lm.DeletedDate).HasColumnName("DeletedDate");
 
-
-        builder.HasOne(lm => lm.Material);
-        builder.HasOne(lm => lm.Language);
-
         builder.HasQueryFilter(lm => !lm.DeletedDate.HasValue);
     }
 }

@@ -14,7 +14,7 @@ namespace Application.Features.FavoriteLists.Commands.Create;
 
 public class CreateFavoriteListCommand : IRequest<CreatedFavoriteListResponse>, ISecuredRequest, ICacheRemoverRequest, ILoggableRequest, ITransactionalRequest
 {
-    public string ListName { get; set; }
+    public string Name { get; set; }
     public Guid MemberId { get; set; }
 
     public string[] Roles => [Admin, Write, FavoriteListsOperationClaims.Create];

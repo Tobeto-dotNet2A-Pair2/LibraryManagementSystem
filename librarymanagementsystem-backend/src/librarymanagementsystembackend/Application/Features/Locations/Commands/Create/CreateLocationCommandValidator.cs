@@ -11,6 +11,6 @@ public class CreateLocationCommandValidator : AbstractValidator<CreateLocationCo
         RuleFor(c => c.Shelf).Length(2, 50);
         RuleFor(c => c.Corridor).Length(2, 50);
         RuleFor(c => c.Floor).Length(2, 50);
-        RuleFor(c => c.FullLocationMap).Length(2,50);
+        RuleFor(c => c.FullLocationMap).Length(2, 50);
     }
 }

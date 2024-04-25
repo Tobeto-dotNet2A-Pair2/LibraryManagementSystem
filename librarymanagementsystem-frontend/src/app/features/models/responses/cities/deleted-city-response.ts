@@ -1,5 +1,5 @@
 export interface DeletedCityResponse {
 	id: string;
-	cityName: string;
+	name: string;
     deletedDate: Date;
 }

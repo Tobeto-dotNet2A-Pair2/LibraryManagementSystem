@@ -14,7 +14,7 @@ namespace Application.Features.Cities.Commands.Create;
 
 public class CreateCityCommand : IRequest<CreatedCityResponse>, ISecuredRequest, ICacheRemoverRequest, ILoggableRequest, ITransactionalRequest
 {
-    public string CityName { get; set; }
+    public string Name { get; set; }
 
     public string[] Roles => [Admin, Write, CitiesOperationClaims.Create];
 

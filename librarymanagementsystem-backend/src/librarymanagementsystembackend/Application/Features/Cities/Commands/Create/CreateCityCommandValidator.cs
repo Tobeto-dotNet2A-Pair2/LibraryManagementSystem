@@ -6,6 +6,6 @@ public class CreateCityCommandValidator : AbstractValidator<CreateCityCommand>
 {
     public CreateCityCommandValidator()
     {
-        RuleFor(c => c.CityName).NotEmpty().Length(2, 50);
+        RuleFor(c => c.Name).NotEmpty().Length(2, 50);
     }
 }

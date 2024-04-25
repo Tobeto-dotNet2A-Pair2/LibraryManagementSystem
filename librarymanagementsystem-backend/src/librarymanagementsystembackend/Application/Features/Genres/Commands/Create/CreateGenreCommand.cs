@@ -14,7 +14,7 @@ namespace Application.Features.Genres.Commands.Create;
 
 public class CreateGenreCommand : IRequest<CreatedGenreResponse>, ISecuredRequest, ICacheRemoverRequest, ILoggableRequest, ITransactionalRequest
 {
-    public string GenreName { get; set; }
+    public string Name { get; set; }
 
     public string[] Roles => [Admin, Write, GenresOperationClaims.Create];
 

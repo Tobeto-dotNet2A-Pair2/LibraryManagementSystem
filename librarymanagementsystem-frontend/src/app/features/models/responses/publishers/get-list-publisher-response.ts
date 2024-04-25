@@ -1,5 +1,5 @@
 export interface GetListPublisherResponse {
 	id: string;
-	publisherName: string;
+	name: string;
 	publicationPlace: string;
 }

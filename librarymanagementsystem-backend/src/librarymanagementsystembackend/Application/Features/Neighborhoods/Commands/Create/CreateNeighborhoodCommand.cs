@@ -14,7 +14,7 @@ namespace Application.Features.Neighborhoods.Commands.Create;
 
 public class CreateNeighborhoodCommand : IRequest<CreatedNeighborhoodResponse>, ISecuredRequest, ICacheRemoverRequest, ILoggableRequest, ITransactionalRequest
 {
-    public string NeighborhoodName { get; set; }
+    public string Name { get; set; }
     public Guid DistrictId { get; set; }
 
     public string[] Roles => [Admin, Write, NeighborhoodsOperationClaims.Create];

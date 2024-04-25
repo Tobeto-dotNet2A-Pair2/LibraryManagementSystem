@@ -14,7 +14,7 @@ namespace Application.Features.Streets.Commands.Create;
 
 public class CreateStreetCommand : IRequest<CreatedStreetResponse>, ISecuredRequest, ICacheRemoverRequest, ILoggableRequest, ITransactionalRequest
 {
-    public string StreetName { get; set; }
+    public string Name { get; set; }
     public Guid NeighborhoodId { get; set; }
 
     public string[] Roles => [Admin, Write, StreetsOperationClaims.Create];

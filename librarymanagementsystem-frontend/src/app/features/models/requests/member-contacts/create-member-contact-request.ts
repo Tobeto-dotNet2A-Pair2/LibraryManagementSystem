@@ -1,7 +1,7 @@
 export interface CreateMemberContactRequest {
 	askLibrarianTopic: string;
 	askLibrarianDescription: string;
-	messages: string;
+	message: string;
 	memberId: string;
 	libraryId: string;
 }

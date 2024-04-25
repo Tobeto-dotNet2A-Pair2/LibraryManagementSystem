@@ -1,6 +1,6 @@
 export interface UpdatedStreetResponse {
 	id: string;
-	streetName: string;
+	name: string;
 	neighborhoodId: string;
     updatedDate: Date;
 }
