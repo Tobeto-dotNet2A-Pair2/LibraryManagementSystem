@@ -12,6 +12,7 @@ import { AccessTokenModel } from '../../../features/models/responses/users/acces
 import { TokenModel } from '../../../features/models/responses/users/token-model';
 
 
+
 @Injectable({
   providedIn: 'root'
 })
@@ -23,8 +24,8 @@ export class AuthService extends AuthBaseService {
   claims:string[]=[]
 
 
-  public  apiUrl:string = `${environment.API_URL}/auth`;
-  constructor(public httpClient:HttpClient,public storageService:LocalStorageService) {super() }
+  private  apiUrl:string = `${environment.API_URL}/auth`;
+  constructor(private httpClient:HttpClient,private storageService:LocalStorageService) {super() }
 
   override register(userforRegisterRequest: UserForRegisterRequest)
       :Observable<UserForRegisterResponse> {
@@ -38,7 +39,7 @@ export class AuthService extends AuthBaseService {
     return this.httpClient.post<AccessTokenModel<TokenModel>>(`${this.apiUrl}/login`,userLoginRequest)
     .pipe(map(response=>{
         this.storageService.setToken(response.accessToken.token);
-        alert("Giriş yapıldı");
+      alert("Giriş yapıldı")
         return response;
       }
      
@@ -109,5 +110,6 @@ export class AuthService extends AuthBaseService {
     }
     return false;
   }
+  
   
 }

@@ -2,6 +2,7 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { CreateMemberRequest } from '../../../models/requests/members/create-member-request';
+import { environment } from '../../../../../environments/environment';
 
 @Component({
   selector: 'app-member-list',
@@ -18,10 +19,10 @@ export class MemberListComponent implements OnInit {
   ngOnInit(): void {
     this.getMember();
   }
-
+  //${environment.API_URL}/members?PageIndex=1&PageSize=1
   getMember() {
     // backend'e istek atıp verileri çek
-    this.httpClient.get<CreateMemberRequest[]>('api/members').subscribe({
+    this.httpClient.get<CreateMemberRequest[]>(`http://localhost:60805/api/Members?PageIndex=1&PageSize=1`).subscribe({
       next: (response: CreateMemberRequest[]) => {
         console.log('Backendden cevap geldi:', response);
         this.memberList = response;
@@ -35,9 +36,6 @@ export class MemberListComponent implements OnInit {
     });
   }
 
-  postToDo() {
-    let obj = {};
-    //this.httpClient.post('link', obj).subscribe();
-  }
+  
 
 }
