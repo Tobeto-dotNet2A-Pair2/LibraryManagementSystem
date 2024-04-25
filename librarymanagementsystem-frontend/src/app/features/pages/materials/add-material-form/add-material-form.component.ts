@@ -8,13 +8,20 @@ import { Component } from '@angular/core';
   styleUrl: './add-material-form.component.scss'
 })
 export class AddMaterialFormComponent {
-  isFormEnabled: boolean = true;
-
-  toggleForm(checked: boolean): void {
-    this.isFormEnabled = checked;
+  openModal(modalId: string): void {
+    const modalDiv = document.getElementById(modalId);
+    if (modalDiv) {
+      modalDiv.style.display = "block";
+    } else {
+      console.error("Modal with id '" + modalId + "' not found.");
+    }
   }
-
-  submitForm(): void {
-    // Form submit işlemleri buraya gelecek
+  closeModal(modalId: string): void {
+    const modalDiv = document.getElementById(modalId);
+    if (modalDiv) {
+      modalDiv.style.display = "none";
+    } else {
+      console.error("Modal with id '" + modalId + "' not found.");
+    }
   }
 }
