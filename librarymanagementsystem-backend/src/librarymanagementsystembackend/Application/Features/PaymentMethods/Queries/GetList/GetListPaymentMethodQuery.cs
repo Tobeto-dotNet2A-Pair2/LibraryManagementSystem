@@ -12,7 +12,7 @@ using static Application.Features.PaymentMethods.Constants.PaymentMethodsOperati
 
 namespace Application.Features.PaymentMethods.Queries.GetList;
 
-public class GetListPaymentMethodQuery : IRequest<GetListResponse<GetListPaymentMethodListItemDto>>, ISecuredRequest, ICachableRequest
+public class GetListPaymentMethodQuery : IRequest<GetListResponse<GetListPaymentMethodListItemDto>>, ICachableRequest // ISecuredRequest,
 {
     public PageRequest PageRequest { get; set; }
 

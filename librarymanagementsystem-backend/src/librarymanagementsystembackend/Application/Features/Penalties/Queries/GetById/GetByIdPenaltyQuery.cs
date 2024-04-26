@@ -9,7 +9,7 @@ using static Application.Features.Penalties.Constants.PenaltiesOperationClaims;
 
 namespace Application.Features.Penalties.Queries.GetById;
 
-public class GetByIdPenaltyQuery : IRequest<GetByIdPenaltyResponse>, ISecuredRequest
+public class GetByIdPenaltyQuery : IRequest<GetByIdPenaltyResponse> // , ISecuredRequest
 {
     public Guid Id { get; set; }
 

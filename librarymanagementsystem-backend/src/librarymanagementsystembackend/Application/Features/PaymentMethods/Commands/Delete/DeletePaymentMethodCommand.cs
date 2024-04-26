@@ -13,7 +13,7 @@ using static Application.Features.PaymentMethods.Constants.PaymentMethodsOperati
 
 namespace Application.Features.PaymentMethods.Commands.Delete;
 
-public class DeletePaymentMethodCommand : IRequest<DeletedPaymentMethodResponse>, ISecuredRequest, ICacheRemoverRequest, ILoggableRequest, ITransactionalRequest
+public class DeletePaymentMethodCommand : IRequest<DeletedPaymentMethodResponse>, ICacheRemoverRequest, ILoggableRequest, ITransactionalRequest //ISecuredRequest,
 {
     public Guid Id { get; set; }
 

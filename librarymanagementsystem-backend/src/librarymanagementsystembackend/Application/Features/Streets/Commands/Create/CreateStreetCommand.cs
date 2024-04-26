@@ -12,7 +12,7 @@ using static Application.Features.Streets.Constants.StreetsOperationClaims;
 
 namespace Application.Features.Streets.Commands.Create;
 
-public class CreateStreetCommand : IRequest<CreatedStreetResponse>, ISecuredRequest, ICacheRemoverRequest, ILoggableRequest, ITransactionalRequest
+public class CreateStreetCommand : IRequest<CreatedStreetResponse>, ICacheRemoverRequest, ILoggableRequest, ITransactionalRequest // ISecuredRequest, 
 {
     public string Name { get; set; }
     public Guid NeighborhoodId { get; set; }
