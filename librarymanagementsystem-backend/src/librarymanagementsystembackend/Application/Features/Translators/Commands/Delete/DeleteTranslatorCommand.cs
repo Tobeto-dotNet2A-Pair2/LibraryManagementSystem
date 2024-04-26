@@ -13,7 +13,7 @@ using static Application.Features.Translators.Constants.TranslatorsOperationClai
 
 namespace Application.Features.Translators.Commands.Delete;
 
-public class DeleteTranslatorCommand : IRequest<DeletedTranslatorResponse>, ISecuredRequest, ICacheRemoverRequest, ILoggableRequest, ITransactionalRequest
+public class DeleteTranslatorCommand : IRequest<DeletedTranslatorResponse>, ICacheRemoverRequest, ILoggableRequest, ITransactionalRequest // ISecuredRequest,
 {
     public Guid Id { get; set; }
 

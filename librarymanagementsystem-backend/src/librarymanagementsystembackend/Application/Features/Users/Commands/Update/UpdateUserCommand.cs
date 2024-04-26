@@ -10,7 +10,7 @@ using static Application.Features.Users.Constants.UsersOperationClaims;
 
 namespace Application.Features.Users.Commands.Update;
 
-public class UpdateUserCommand : IRequest<UpdatedUserResponse>, ISecuredRequest
+public class UpdateUserCommand : IRequest<UpdatedUserResponse> //, ISecuredRequest
 {
     public Guid Id { get; set; }
     public string FirstName { get; set; }
