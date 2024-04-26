@@ -8,16 +8,16 @@ public class Member:Entity<Guid>
     public string NationalIdentity { get; set; }
     public DateTime BirthDate { get; set; }
     public string PhoneNumber { get; set; }
-    public string ProfilePicture { get; set; }
+    public string? ProfilePicture { get; set; }
     public string? Position { get; set; }
     public decimal TotalDebt { get; set; }
-    public bool IsActive { get; set; }
+    public bool IsActive { get; set; } = true;
     public Guid UserId { get; set; }
 
 
     public Member() { }
 
-    public Member(string firstName, string lastName, string nationalIdentity, DateTime birthDate, string phoneNumber, string profilePicture, string? position, decimal totalDebt, bool isActive, Guid userId)
+    public Member(string firstName, string lastName, string nationalIdentity, DateTime birthDate, string phoneNumber, string? profilePicture, string? position, decimal totalDebt, bool isActive, Guid userId)
     {
         FirstName = firstName;
         LastName = lastName;

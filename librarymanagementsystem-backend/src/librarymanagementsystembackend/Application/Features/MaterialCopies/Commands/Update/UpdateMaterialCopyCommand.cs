@@ -12,7 +12,7 @@ using static Application.Features.MaterialCopies.Constants.MaterialCopiesOperati
 
 namespace Application.Features.MaterialCopies.Commands.Update;
 
-public class UpdateMaterialCopyCommand : IRequest<UpdatedMaterialCopyResponse>, ICacheRemoverRequest, ILoggableRequest, ITransactionalRequest // ISecuredRequest,
+public class UpdateMaterialCopyCommand : IRequest<UpdatedMaterialCopyResponse>, ICacheRemoverRequest, ILoggableRequest, ITransactionalRequest //ISecuredRequest,
 {
     public Guid Id { get; set; }
     public DateTime DateReceipt { get; set; }
@@ -21,7 +21,7 @@ public class UpdateMaterialCopyCommand : IRequest<UpdatedMaterialCopyResponse>, 
     public bool IsReservable { get; set; }
     public Guid MaterialId { get; set; }
     public Guid BranchId { get; set; }
-    public Guid LocationId { get; set; }
+    public Guid? LocationId { get; set; }
 
     public string[] Roles => [Admin, Write, MaterialCopiesOperationClaims.Update];
 

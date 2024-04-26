@@ -81,10 +81,7 @@ public class RegisterCommand : IRequest<RegisteredResponse>, ITransactionalReque
             member.LastName = request.RegisterDto.LastName;
             member.NationalIdentity = request.RegisterDto.NationalIdentity;
             member.PhoneNumber = request.RegisterDto.PhoneNumber;
-            member.ProfilePicture = request.RegisterDto.ProfilePicture;
-
-
-
+            
             await _memberService.AddAsync(member);
 
 

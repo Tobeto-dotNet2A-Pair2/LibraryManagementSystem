@@ -7,7 +7,7 @@ public class UpdateMaterialCopyCommandValidator : AbstractValidator<UpdateMateri
     public UpdateMaterialCopyCommandValidator()
     {
         RuleFor(c => c.Id).NotEmpty();
-        RuleFor(c => c.DateReceipt).NotEmpty().GreaterThanOrEqualTo(DateTime.Now.Date);
+        RuleFor(c => c.DateReceipt).NotEmpty().GreaterThanOrEqualTo(DateTime.Now.Date); 
         RuleFor(c => c.Status).NotEmpty();
         RuleFor(c => c.IsReserved).NotEmpty();
         RuleFor(c => c.IsReservable).NotEmpty();
