@@ -12,7 +12,7 @@ using static Application.Features.MaterialImages.Constants.MaterialImagesOperati
 
 namespace Application.Features.MaterialImages.Commands.Create;
 
-public class CreateMaterialImageCommand : IRequest<CreatedMaterialImageResponse>, ISecuredRequest, ICacheRemoverRequest, ILoggableRequest, ITransactionalRequest
+public class CreateMaterialImageCommand : IRequest<CreatedMaterialImageResponse>, ICacheRemoverRequest, ILoggableRequest, ITransactionalRequest // ISecuredRequest,
 {
     public string Url { get; set; }
     public Guid MaterialId { get; set; }

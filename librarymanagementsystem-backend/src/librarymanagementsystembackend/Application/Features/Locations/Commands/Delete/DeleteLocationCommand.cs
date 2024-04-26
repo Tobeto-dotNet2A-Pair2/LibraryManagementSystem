@@ -13,7 +13,7 @@ using static Application.Features.Locations.Constants.LocationsOperationClaims;
 
 namespace Application.Features.Locations.Commands.Delete;
 
-public class DeleteLocationCommand : IRequest<DeletedLocationResponse>, ISecuredRequest, ICacheRemoverRequest, ILoggableRequest, ITransactionalRequest
+public class DeleteLocationCommand : IRequest<DeletedLocationResponse>, ICacheRemoverRequest, ILoggableRequest, ITransactionalRequest //ISecuredRequest,
 {
     public Guid Id { get; set; }
 

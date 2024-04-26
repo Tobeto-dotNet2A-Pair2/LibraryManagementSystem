@@ -13,7 +13,7 @@ using static Application.Features.AuthorMaterials.Constants.AuthorMaterialsOpera
 
 namespace Application.Features.AuthorMaterials.Commands.Delete;
 
-public class DeleteAuthorMaterialCommand : IRequest<DeletedAuthorMaterialResponse>, ISecuredRequest, ICacheRemoverRequest, ILoggableRequest, ITransactionalRequest
+public class DeleteAuthorMaterialCommand : IRequest<DeletedAuthorMaterialResponse>, ICacheRemoverRequest, ILoggableRequest, ITransactionalRequest // ISecuredRequest,
 {
     public Guid Id { get; set; }
 

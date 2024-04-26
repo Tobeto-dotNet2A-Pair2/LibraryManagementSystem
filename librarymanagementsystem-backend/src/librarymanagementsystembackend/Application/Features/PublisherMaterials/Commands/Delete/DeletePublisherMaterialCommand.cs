@@ -13,7 +13,7 @@ using static Application.Features.PublisherMaterials.Constants.PublisherMaterial
 
 namespace Application.Features.PublisherMaterials.Commands.Delete;
 
-public class DeletePublisherMaterialCommand : IRequest<DeletedPublisherMaterialResponse>, ISecuredRequest, ICacheRemoverRequest, ILoggableRequest, ITransactionalRequest
+public class DeletePublisherMaterialCommand : IRequest<DeletedPublisherMaterialResponse>, ICacheRemoverRequest, ILoggableRequest, ITransactionalRequest //ISecuredRequest,
 {
     public Guid Id { get; set; }
 

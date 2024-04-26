@@ -9,7 +9,7 @@ using static Application.Features.Members.Constants.MembersOperationClaims;
 
 namespace Application.Features.Members.Queries.GetById;
 
-public class GetByIdMemberQuery : IRequest<GetByIdMemberResponse>, ISecuredRequest
+public class GetByIdMemberQuery : IRequest<GetByIdMemberResponse>//, ISecuredRequest
 {
     public Guid Id { get; set; }
 

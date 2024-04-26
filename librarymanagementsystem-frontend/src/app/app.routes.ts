@@ -9,19 +9,21 @@ import { MemberListComponent } from './features/pages/members/member-list/member
 import { AddBranchFormComponent } from './features/pages/branches/add-branch-form/add-branch-form.component';
 import { BranchListComponent } from './features/pages/branches/branch-list/branch-list.component';
 import { AddMaterialFormComponent } from './features/pages/materials/add-material-form/add-material-form.component';
-
+import { roleGuard } from './core/guards/role.guard';
+import { MainLayoutComponent } from './shared/layouts/main-layout/main-layout.component';
 
 export const routes: Routes = [
   { path: '', redirectTo: 'adminpage', pathMatch: 'full' },
    { path: 'auth', component: AuthComponent },
-   {path: 'homepage', component:HomepageComponent},
+   {path: 'homepage', component:MainLayoutComponent},
   // { path: 'homepage', component: AdminLayoutComponent },
 
   // { path: 'adminpage', component: AdminLayoutComponent, canActivate: [authGuard] },
   {
     path: 'adminpage',
     component: AdminLayoutComponent,
-    // canActivate: [authGuard],
+    canActivate: [roleGuard],
+    data:{requiredRoles:['Admin']},
     children: [
       { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
       { path: 'dashboard', component: DashboardComponent },

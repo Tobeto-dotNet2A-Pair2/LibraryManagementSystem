@@ -10,7 +10,7 @@ public class CreatedMemberResponse : IResponse
     public string NationalIdentity { get; set; }
     public DateTime BirthDate { get; set; }
     public string PhoneNumber { get; set; }
-    public string ProfilePicture { get; set; }
+    public string? ProfilePicture { get; set; }
     public string? Position { get; set; }
     public decimal TotalDebt { get; set; }
     public bool IsActive { get; set; }

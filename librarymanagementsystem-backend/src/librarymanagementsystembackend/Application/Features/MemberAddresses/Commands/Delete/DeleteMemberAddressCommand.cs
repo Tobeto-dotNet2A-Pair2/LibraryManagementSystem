@@ -13,7 +13,7 @@ using static Application.Features.MemberAddresses.Constants.MemberAddressesOpera
 
 namespace Application.Features.MemberAddresses.Commands.Delete;
 
-public class DeleteMemberAddressCommand : IRequest<DeletedMemberAddressResponse>, ISecuredRequest, ICacheRemoverRequest, ILoggableRequest, ITransactionalRequest
+public class DeleteMemberAddressCommand : IRequest<DeletedMemberAddressResponse>, ICacheRemoverRequest, ILoggableRequest, ITransactionalRequest // ISecuredRequest,
 {
     public Guid Id { get; set; }
 

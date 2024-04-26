@@ -9,7 +9,7 @@ using NArchitecture.Core.Security.Enums;
 
 namespace Application.Features.Auth.Commands.VerifyOtpAuthenticator;
 
-public class VerifyOtpAuthenticatorCommand : IRequest, ISecuredRequest
+public class VerifyOtpAuthenticatorCommand : IRequest //, ISecuredRequest
 {
     public Guid UserId { get; set; }
     public string ActivationCode { get; set; }

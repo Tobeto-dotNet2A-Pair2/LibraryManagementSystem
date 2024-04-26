@@ -9,7 +9,7 @@ using static Application.Features.Branches.Constants.BranchesOperationClaims;
 
 namespace Application.Features.Branches.Queries.GetById;
 
-public class GetByIdBranchQuery : IRequest<GetByIdBranchResponse>, ISecuredRequest
+public class GetByIdBranchQuery : IRequest<GetByIdBranchResponse> //, ISecuredRequest
 {
     public Guid Id { get; set; }
 

@@ -13,7 +13,7 @@ using static Application.Features.Genres.Constants.GenresOperationClaims;
 
 namespace Application.Features.Genres.Commands.Delete;
 
-public class DeleteGenreCommand : IRequest<DeletedGenreResponse>, ISecuredRequest, ICacheRemoverRequest, ILoggableRequest, ITransactionalRequest
+public class DeleteGenreCommand : IRequest<DeletedGenreResponse>, ICacheRemoverRequest, ILoggableRequest, ITransactionalRequest //ISecuredRequest,
 {
     public Guid Id { get; set; }
 

@@ -13,7 +13,7 @@ using static Application.Features.SocialMediaAccounts.Constants.SocialMediaAccou
 
 namespace Application.Features.SocialMediaAccounts.Commands.Delete;
 
-public class DeleteSocialMediaAccountCommand : IRequest<DeletedSocialMediaAccountResponse>, ISecuredRequest, ICacheRemoverRequest, ILoggableRequest, ITransactionalRequest
+public class DeleteSocialMediaAccountCommand : IRequest<DeletedSocialMediaAccountResponse>, ICacheRemoverRequest, ILoggableRequest, ITransactionalRequest // ISecuredRequest,
 {
     public Guid Id { get; set; }
 

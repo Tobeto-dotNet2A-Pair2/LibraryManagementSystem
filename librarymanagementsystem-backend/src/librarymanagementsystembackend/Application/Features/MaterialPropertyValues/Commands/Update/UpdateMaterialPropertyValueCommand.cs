@@ -12,7 +12,7 @@ using static Application.Features.MaterialPropertyValues.Constants.MaterialPrope
 
 namespace Application.Features.MaterialPropertyValues.Commands.Update;
 
-public class UpdateMaterialPropertyValueCommand : IRequest<UpdatedMaterialPropertyValueResponse>, ISecuredRequest, ICacheRemoverRequest, ILoggableRequest, ITransactionalRequest
+public class UpdateMaterialPropertyValueCommand : IRequest<UpdatedMaterialPropertyValueResponse>, ICacheRemoverRequest, ILoggableRequest, ITransactionalRequest //ISecuredRequest,
 {
     public Guid Id { get; set; }
     public string Content { get; set; }

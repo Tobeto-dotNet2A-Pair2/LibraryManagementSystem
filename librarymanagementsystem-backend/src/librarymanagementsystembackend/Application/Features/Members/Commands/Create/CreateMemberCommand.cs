@@ -12,14 +12,14 @@ using static Application.Features.Members.Constants.MembersOperationClaims;
 
 namespace Application.Features.Members.Commands.Create;
 
-public class CreateMemberCommand : IRequest<CreatedMemberResponse>, ISecuredRequest, ICacheRemoverRequest, ILoggableRequest, ITransactionalRequest
+public class CreateMemberCommand : IRequest<CreatedMemberResponse>, ICacheRemoverRequest, ILoggableRequest, ITransactionalRequest //ISecuredRequest,
 {
     public string FirstName { get; set; }
     public string LastName { get; set; }
     public string NationalIdentity { get; set; }
     public DateTime BirthDate { get; set; }
     public string PhoneNumber { get; set; }
-    public string ProfilePicture { get; set; }
+    public string? ProfilePicture { get; set; }
     public string? Position { get; set; }
     public decimal TotalDebt { get; set; }
     public bool IsActive { get; set; }

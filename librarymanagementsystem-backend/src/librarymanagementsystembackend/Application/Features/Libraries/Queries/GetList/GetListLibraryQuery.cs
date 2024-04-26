@@ -12,7 +12,7 @@ using static Application.Features.Libraries.Constants.LibrariesOperationClaims;
 
 namespace Application.Features.Libraries.Queries.GetList;
 
-public class GetListLibraryQuery : IRequest<GetListResponse<GetListLibraryListItemDto>>, ISecuredRequest, ICachableRequest
+public class GetListLibraryQuery : IRequest<GetListResponse<GetListLibraryListItemDto>>, ICachableRequest // ISecuredRequest,
 {
     public PageRequest PageRequest { get; set; }
 

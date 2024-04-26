@@ -11,5 +11,5 @@ public class UpdatedMaterialCopyResponse : IResponse
     public bool IsReservable { get; set; }
     public Guid MaterialId { get; set; }
     public Guid BranchId { get; set; }
-    public Guid LocationId { get; set; }
+    public Guid? LocationId { get; set; }
 }
