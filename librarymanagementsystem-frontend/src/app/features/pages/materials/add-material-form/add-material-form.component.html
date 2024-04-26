@@ -1,8 +1,9 @@
 <div class="row">
   <!--1.Sutun-->
   <form class="col-md-4" action="">
-    <!--begin::Input group-->
+    <!--begin::Input group Dropdown-Select-->
     <div class="form-group">
+      <!--Material Start-->
       <div class="form-floating">
         <select
           class="form-select"
@@ -16,82 +17,33 @@
         </select>
         <label for="floatingSelect">Materyal Seç</label>
       </div>
+      <!--end::Input group Dropdown-Select-->
       <br />
-      <div class="form-check">
-        <input
-          class="form-check-input"
-          type="checkbox"
-          value=""
-          id="yeniMateryal"
-        />
-        <label class="form-check-label" for="flexCheckDefault">
-          Yeni Materyal
-        </label>
-      </div>
-    </div>
-    <!--end::Input group-->
-    <br /><br />
-    <div class="form-group">
-      <div class="input-group mb-5">
-        <span class="input-group-text" id="basic-addon1">Materyal Adı</span>
-        <input
-          id="name"
-          type="text"
-          class="form-control"
-          placeholder="MaterialName"
-          aria-label="MaterialName"
-          aria-describedby="basic-addon1"
-        />
-      </div>
-      <!--begin::Input group-->
-      <div class="form-floating">
-        <textarea
-          class="form-control"
-          placeholder="Description"
-          id="description"
-          style="height: 100px"
-        ></textarea>
-        <label for="floatingTextarea2">Açıklama</label>
-      </div>
+      <a
+        id="btnAddMaterial"
+        class="btn btn-info"
+        (click)="openModal('materialModal')"
+        >Yeni Materyal</a
+      >
       <br />
-      <!--end::Input group-->
-      <div class="form-check">
-        <input
-          class="form-check-input"
-          type="checkbox"
-          value=""
-          id="isBorrowable"
-        />
-        <label class="form-check-label" for="flexCheckDefault">
-          Ödünç Alınabilir
-        </label>
-      </div>
-      <div class="input-group mb-5">
-        <span class="input-group-text" id="basic-addon1">Ödünç Gün Sayısı</span>
-        <input
-          id="borrowDay"
-          type="text"
-          class="form-control"
-          placeholder="0"
-          aria-label="BorrowDay"
-          aria-describedby="basic-addon1"
-        />
-      </div>
-      <div class="input-group mb-5">
-        <span class="input-group-text">Ceza Ücreti: ₺</span>
-        <input
-          id="penaltyAmount"
-          type="text"
-          class="form-control"
-          aria-label="Amount (to the nearest dollar)"
-        />
-        <span class="input-group-text">.00</span>
-      </div>
-      <a id="btnSave" class="btn btn-primary">Ekle</a>
-      <a id="btnCancel" class="btn btn-secondary">İptal</a>
+      <!--Material End-->
+      <!--MaterialCopy Start-->
+      <br />
+      <a
+        id="btnAddMaterialCopy"
+        class="btn btn-info"
+        (click)="openModal('materialCopyModal')"
+        >Yeni Materyal Kopyası</a
+      >
+      <br />
+      <!--MaterialCopy End-->
     </div>
   </form>
   <!--2.Sutun-->
+  <form action="" class="col-md-4">
+    <div class="form-group"></div>
+  </form>
+  <!--3.Sutun-->
   <!--Author Start-->
   <form action="" class="col-md-4">
     <div class="form-group">
@@ -117,32 +69,291 @@
       >
     </div>
     <!--Autor End-->
+    <br />
     <!--Publisher Start-->
     <div class="form-group">
-        <div class="form-floating">
-          <select
-            class="form-select"
-            id="floatingSelect"
-            aria-label="Floating label select example"
-          >
-            <option selected>Bir Yayın Evi Seç</option>
-            <option value="1">Yayın Evi 1</option>
-            <option value="2">Yayın Evi 2</option>
-            <option value="3">Yayın Evi 3</option>
-          </select>
-          <label for="floatingSelect">Yayın Evi Seç</label>
-        </div>
-        <br />
-        <a
-          id="btnAddPublisher"
-          class="btn btn-info"
-          (click)="openModal('publisherModal')"
-          >Yeni Yayın Evi</a
+      <div class="form-floating">
+        <select
+          class="form-select"
+          id="floatingSelect"
+          aria-label="Floating label select example"
         >
+          <option selected>Bir Yayın Evi Seç</option>
+          <option value="1">Yayın Evi 1</option>
+          <option value="2">Yayın Evi 2</option>
+          <option value="3">Yayın Evi 3</option>
+        </select>
+        <label for="floatingSelect">Yayın Evi Seç</label>
       </div>
+      <br />
+      <a
+        id="btnAddPublisher"
+        class="btn btn-info"
+        (click)="openModal('publisherModal')"
+        >Yeni Yayın Evi</a
+      >
+    </div>
+    <!--Publisher End-->
+    <br />
+    <!--Translator Start-->
+    <div class="form-group">
+      <div class="form-floating">
+        <select
+          class="form-select"
+          id="floatingSelect"
+          aria-label="Floating label select example"
+        >
+          <option selected>Bir Çevirmen Seç</option>
+          <option value="1">Çevirmen 1</option>
+          <option value="2">Çevirmen 2</option>
+          <option value="3">Çevirmen 3</option>
+        </select>
+        <label for="floatingSelect">Çevirmen Seç</label>
+      </div>
+      <br />
+      <a
+        id="btnAddTranslator"
+        class="btn btn-info"
+        (click)="openModal('translatorModal')"
+        >Yeni Çevirmen</a
+      >
+    </div>
+    <br />
+    <!--Translator End-->
+    <br />
+    <!--Language Start-->
+    <div class="form-group">
+      <div class="form-floating">
+        <select
+          class="form-select"
+          id="floatingSelect"
+          aria-label="Floating label select example"
+        >
+          <option selected>Bir Dil Seç</option>
+          <option value="1">Dil 1</option>
+          <option value="2">Dil 2</option>
+          <option value="3">Dil 3</option>
+        </select>
+        <label for="floatingSelect">Dil Seç</label>
+      </div>
+      <br />
+      <a
+        id="btnAddLanguage"
+        class="btn btn-info"
+        (click)="openModal('languageModal')"
+        >Yeni Dil</a
+      >
+    </div>
+    <br />
+    <!--Language End-->
   </form>
 </div>
-
+<!--MODALLAR - MODALS-->
+<!--Material Modal -- materyal ekle modalı-->
+<div id="materialModal" class="modal" tabindex="-1">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Materyal Ekle</h5>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+          (click)="closeModal('materialModal')"
+        ></button>
+      </div>
+      <!--body -->
+      <div class="modal-body">
+        <form class="form-group">
+          <div class="input-group mb-5">
+            <span class="input-group-text" id="basic-addon1">Materyal Adı</span>
+            <input
+              id="name"
+              type="text"
+              class="form-control"
+              placeholder="MaterialName"
+              aria-label="MaterialName"
+              aria-describedby="basic-addon1"
+            />
+          </div>
+          <!--begin::Input group-->
+          <div class="form-floating">
+            <textarea
+              class="form-control"
+              placeholder="Description"
+              id="description"
+              style="height: 100px"
+            ></textarea>
+            <label for="floatingTextarea2">Açıklama</label>
+          </div>
+          <br />
+          <!--end::Input group-->
+          <div class="form-check">
+            <input
+              class="form-check-input"
+              type="checkbox"
+              value=""
+              id="isBorrowable"
+            />
+            <label class="form-check-label" for="flexCheckDefault">
+              Ödünç Alınabilir
+            </label>
+          </div>
+          <div class="input-group mb-5">
+            <span class="input-group-text" id="basic-addon1"
+              >Ödünç Gün Sayısı</span
+            >
+            <input
+              id="borrowDay"
+              type="number"
+              class="form-control"
+              placeholder="0"
+              aria-label="BorrowDay"
+              aria-describedby="basic-addon1"
+            />
+          </div>
+          <div class="input-group mb-5">
+            <span class="input-group-text">Ceza Ücreti: ₺</span>
+            <input
+              id="penaltyAmount"
+              type="text"
+              class="form-control"
+              aria-label="Amount (to the nearest dollar)"
+            />
+            <span class="input-group-text">.00</span>
+          </div>
+        </form>
+      </div>
+      <!--body end-->
+      <div class="modal-footer">
+        <button
+          type="button"
+          class="btn btn-secondary"
+          data-bs-dismiss="modal"
+          (click)="closeModal('materialModal')"
+        >
+          Close
+        </button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!--Material Modal -- materyal ekle Sonu-->
+<!--MaterialCopy Modal -- materyalKopyası ekle modalı-->
+<div id="materialCopyModal" class="modal" tabindex="-1">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Yazar Ekle</h5>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+          (click)="closeModal('materialCopyModal')"
+        ></button>
+      </div>
+      <!--body -->
+      <div class="modal-body">
+        <form class="form-group">
+          <div class="form-floating">
+            <select
+              class="form-select"
+              id="floatingSelect"
+              aria-label="Floating label select example"
+            >
+              <option selected>Bir Materyal Seç</option>
+              <option value="1">Materyal 1</option>
+              <option value="2">Materyal 2</option>
+              <option value="3">Materyal 3</option>
+            </select>
+            <label for="floatingSelect">Materyal Seç</label>
+          </div>
+          <br>
+          <div class="form-floating">
+            <select
+              class="form-select"
+              id="floatingSelect"
+              aria-label="Floating label select example"
+            >
+              <option selected>Bir Branch Seç</option>
+              <option value="1">Branch 1</option>
+              <option value="2">Branch 2</option>
+              <option value="3">Branch 3</option>
+            </select>
+            <label for="floatingSelect">Branch Seç</label>
+          </div>
+          <br>
+          <div class="form-floating">
+            <select
+              class="form-select"
+              id="floatingSelect"
+              aria-label="Floating label select example"
+            >
+              <option selected>Bir Materyal Lokasyonu Seç</option>
+              <option value="1">Materyal Lokasyonu 1</option>
+              <option value="2">Materyal Lokasyonu 2</option>
+              <option value="3">Materyal Lokasyonu 3</option>
+            </select>
+            <label for="floatingSelect">Materyal Lokasyonu Seç</label>
+          </div>
+          <br>
+          <div class="input-group mb-5">
+            <span class="input-group-text" id="basic-addon1">Status</span>
+            <input
+              id="status"
+              type="text"
+              class="form-control"
+              placeholder="Status"
+              aria-label="Status"
+              aria-describedby="basic-addon1"
+            />
+          </div>
+     
+          <div class="form-check">
+            <input
+              class="form-check-input"
+              type="checkbox"
+              value=""
+              id="isReservable"
+            />
+            <label class="form-check-label" for="flexCheckDefault">
+              Ayırtılabilir
+            </label>
+          </div>
+          <br><br>
+          <div class="form-check">
+            <input
+              class="form-check-input"
+              type="checkbox"
+              value=""
+              id="isReserved"
+            />
+            <label class="form-check-label" for="flexCheckDefault">
+              Ayrıldı
+            </label>
+          </div>
+         
+        </form>
+      </div>
+      <!--body end-->
+      <div class="modal-footer">
+        <button
+          type="button"
+          class="btn btn-secondary"
+          data-bs-dismiss="modal"
+          (click)="closeModal('materialCopylModal')"
+        >
+          Close
+        </button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!--MaterialCopy Modal -- materyal ekle Sonu-->
 <!--Author Modal -- yazar ekle modalı-->
 <div id="authorModal" class="modal" tabindex="-1">
   <div class="modal-dialog">
@@ -159,7 +370,7 @@
       </div>
       <!--body -->
       <div class="modal-body">
-        <form class="form-group">
+        <form action="">
           <div class="input-group mb-5">
             <span class="input-group-text" id="basic-addon1">Adı</span>
             <input
@@ -195,6 +406,7 @@
           </div>
         </form>
       </div>
+      <!--body end-->
       <div class="modal-footer">
         <button
           type="button"
@@ -209,60 +421,163 @@
     </div>
   </div>
 </div>
-<!--Author Modal yazar ekle Sonu-->
-<!--Author Modal -- yazar ekle modalı-->
+<!--Author Modal -- yazar ekle Sonu-->
+<!--Publisher Modal -- yayınEvi ekle modalı-->
 <div id="publisherModal" class="modal" tabindex="-1">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title">Yayın Evi Ekle</h5>
-          <button
-            type="button"
-            class="btn-close"
-            data-bs-dismiss="modal"
-            aria-label="Close"
-            (click)="closeModal('publisherModal')"
-          ></button>
-        </div>
-        <!--body -->
-        <div class="modal-body">
-          <form class="form-group">
-            <div class="input-group mb-5">
-              <span class="input-group-text" id="basic-addon1">Adı</span>
-              <input
-                id="name"
-                type="text"
-                class="form-control"
-                placeholder="Name"
-                aria-label="Name"
-                aria-describedby="basic-addon1"
-              />
-            </div>
-            <div class="input-group mb-5">
-              <span class="input-group-text" id="basic-addon1">Yayın Yeri</span>
-              <input
-                id="publicationPlace"
-                type="text"
-                class="form-control"
-                placeholder="PublicationPlace"
-                aria-label="PublicationPlace"
-                aria-describedby="basic-addon1"
-              />
-            </div>
-          </form>
-        </div>
-        <div class="modal-footer">
-          <button
-            type="button"
-            class="btn btn-secondary"
-            data-bs-dismiss="modal"
-            (click)="closeModal('publisherModal')"
-          >
-            Close
-          </button>
-          <button type="button" class="btn btn-primary">Save changes</button>
-        </div>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Yayın Evi Ekle</h5>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+          (click)="closeModal('publisherModal')"
+        ></button>
+      </div>
+      <!--body -->
+      <div class="modal-body">
+        <form class="form-group">
+          <div class="input-group mb-5">
+            <span class="input-group-text" id="basic-addon1">Adı</span>
+            <input
+              id="name"
+              type="text"
+              class="form-control"
+              placeholder="Name"
+              aria-label="Name"
+              aria-describedby="basic-addon1"
+            />
+          </div>
+          <div class="input-group mb-5">
+            <span class="input-group-text" id="basic-addon1">Yayın Yeri</span>
+            <input
+              id="publicationPlace"
+              type="text"
+              class="form-control"
+              placeholder="PublicationPlace"
+              aria-label="PublicationPlace"
+              aria-describedby="basic-addon1"
+            />
+          </div>
+        </form>
+      </div>
+      <!--body end-->
+      <div class="modal-footer">
+        <button
+          type="button"
+          class="btn btn-secondary"
+          data-bs-dismiss="modal"
+          (click)="closeModal('publisherModal')"
+        >
+          Close
+        </button>
+        <button type="button" class="btn btn-primary">Save changes</button>
       </div>
     </div>
   </div>
-  <!--Author Modal yazar ekle Sonu-->
+</div>
+<!--Publisher Modal End -- yayın evi ekle Sonu-->
+<!--Translator Modal -- çevirmen ekle modalı-->
+<div id="translatorModal" class="modal" tabindex="-1">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Çevirmen Ekle</h5>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+          (click)="closeModal('translatorModal')"
+        ></button>
+      </div>
+      <!--body -->
+      <div class="modal-body">
+        <form class="form-group">
+          <div class="input-group mb-5">
+            <span class="input-group-text" id="basic-addon1">Adı</span>
+            <input
+              id="name"
+              type="text"
+              class="form-control"
+              placeholder="Name"
+              aria-label="Name"
+              aria-describedby="basic-addon1"
+            />
+          </div>
+          <div class="form-floating">
+            <textarea
+              class="form-control"
+              placeholder="Description"
+              id="description"
+              style="height: 100px"
+            ></textarea>
+            <label for="floatingTextarea2">Açıklama</label>
+          </div>
+          <br />
+        </form>
+      </div>
+      <!--body end-->
+      <div class="modal-footer">
+        <button
+          type="button"
+          class="btn btn-secondary"
+          data-bs-dismiss="modal"
+          (click)="closeModal('translatorModal')"
+        >
+          Close
+        </button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!--Translator Modal End -- çevirmen ekle Sonu-->
+<!--Language Modal -- dil ekle modalı-->
+<div id="languageModal" class="modal" tabindex="-1">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Dil Ekle</h5>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+          (click)="closeModal('languageModal')"
+        ></button>
+      </div>
+      <!--body -->
+      <div class="modal-body">
+        <form class="form-group">
+          <div class="input-group mb-5">
+            <span class="input-group-text" id="basic-addon1">Adı</span>
+            <input
+              id="name"
+              type="text"
+              class="form-control"
+              placeholder="Name"
+              aria-label="Name"
+              aria-describedby="basic-addon1"
+            />
+          </div>
+        </form>
+      </div>
+      <!--body end-->
+      <div class="modal-footer">
+        <button
+          type="button"
+          class="btn btn-secondary"
+          data-bs-dismiss="modal"
+          (click)="closeModal('languageModal')"
+        >
+          Close
+        </button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!--Language Modal End -- dil ekle Sonu-->

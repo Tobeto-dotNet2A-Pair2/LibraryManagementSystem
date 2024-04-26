@@ -1,9 +1,11 @@
+import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
+import { FormGroup, FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-add-material-form',
   standalone: true,
-  imports: [],
+  imports: [CommonModule,FormsModule],
   templateUrl: './add-material-form.component.html',
   styleUrl: './add-material-form.component.scss'
 })
@@ -16,6 +18,7 @@ export class AddMaterialFormComponent {
       console.error("Modal with id '" + modalId + "' not found.");
     }
   }
+
   closeModal(modalId: string): void {
     const modalDiv = document.getElementById(modalId);
     if (modalDiv) {
@@ -24,4 +27,6 @@ export class AddMaterialFormComponent {
       console.error("Modal with id '" + modalId + "' not found.");
     }
   }
+
+
 }
