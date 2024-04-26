@@ -9,7 +9,7 @@ using static Application.Features.FavoriteListMaterials.Constants.FavoriteListMa
 
 namespace Application.Features.FavoriteListMaterials.Queries.GetById;
 
-public class GetByIdFavoriteListMaterialQuery : IRequest<GetByIdFavoriteListMaterialResponse>, ISecuredRequest
+public class GetByIdFavoriteListMaterialQuery : IRequest<GetByIdFavoriteListMaterialResponse> //, ISecuredRequest
 {
     public Guid Id { get; set; }
 

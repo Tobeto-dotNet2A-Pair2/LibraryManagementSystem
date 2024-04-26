@@ -12,7 +12,7 @@ using static Application.Features.MaterialPropertyValues.Constants.MaterialPrope
 
 namespace Application.Features.MaterialPropertyValues.Queries.GetList;
 
-public class GetListMaterialPropertyValueQuery : IRequest<GetListResponse<GetListMaterialPropertyValueListItemDto>>, ISecuredRequest, ICachableRequest
+public class GetListMaterialPropertyValueQuery : IRequest<GetListResponse<GetListMaterialPropertyValueListItemDto>>, ICachableRequest //ISecuredRequest,
 {
     public PageRequest PageRequest { get; set; }
 

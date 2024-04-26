@@ -12,7 +12,7 @@ using static Application.Features.FavoriteLists.Constants.FavoriteListsOperation
 
 namespace Application.Features.FavoriteLists.Queries.GetList;
 
-public class GetListFavoriteListQuery : IRequest<GetListResponse<GetListFavoriteListListItemDto>>, ISecuredRequest, ICachableRequest
+public class GetListFavoriteListQuery : IRequest<GetListResponse<GetListFavoriteListListItemDto>>, ICachableRequest //ISecuredRequest,
 {
     public PageRequest PageRequest { get; set; }
 

@@ -12,7 +12,7 @@ using static Application.Features.MemberContacts.Constants.MemberContactsOperati
 
 namespace Application.Features.MemberContacts.Commands.Create;
 
-public class CreateMemberContactCommand : IRequest<CreatedMemberContactResponse>, ISecuredRequest, ICacheRemoverRequest, ILoggableRequest, ITransactionalRequest
+public class CreateMemberContactCommand : IRequest<CreatedMemberContactResponse>, ICacheRemoverRequest, ILoggableRequest, ITransactionalRequest // ISecuredRequest,
 {
     public string AskLibrarianTopic { get; set; }
     public string AskLibrarianDescription { get; set; }

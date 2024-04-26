@@ -13,7 +13,7 @@ using static Application.Features.FavoriteListMaterials.Constants.FavoriteListMa
 
 namespace Application.Features.FavoriteListMaterials.Commands.Delete;
 
-public class DeleteFavoriteListMaterialCommand : IRequest<DeletedFavoriteListMaterialResponse>, ISecuredRequest, ICacheRemoverRequest, ILoggableRequest, ITransactionalRequest
+public class DeleteFavoriteListMaterialCommand : IRequest<DeletedFavoriteListMaterialResponse>, ICacheRemoverRequest, ILoggableRequest, ITransactionalRequest // ISecuredRequest,
 {
     public Guid Id { get; set; }
 

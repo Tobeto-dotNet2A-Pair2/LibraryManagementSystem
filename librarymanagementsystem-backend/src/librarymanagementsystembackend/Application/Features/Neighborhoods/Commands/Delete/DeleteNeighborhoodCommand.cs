@@ -13,7 +13,7 @@ using static Application.Features.Neighborhoods.Constants.NeighborhoodsOperation
 
 namespace Application.Features.Neighborhoods.Commands.Delete;
 
-public class DeleteNeighborhoodCommand : IRequest<DeletedNeighborhoodResponse>, ISecuredRequest, ICacheRemoverRequest, ILoggableRequest, ITransactionalRequest
+public class DeleteNeighborhoodCommand : IRequest<DeletedNeighborhoodResponse>, ICacheRemoverRequest, ILoggableRequest, ITransactionalRequest // ISecuredRequest,
 {
     public Guid Id { get; set; }
 

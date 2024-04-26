@@ -9,7 +9,7 @@ using static Application.Features.TranslatorMaterials.Constants.TranslatorMateri
 
 namespace Application.Features.TranslatorMaterials.Queries.GetById;
 
-public class GetByIdTranslatorMaterialQuery : IRequest<GetByIdTranslatorMaterialResponse>, ISecuredRequest
+public class GetByIdTranslatorMaterialQuery : IRequest<GetByIdTranslatorMaterialResponse> //, ISecuredRequest
 {
     public Guid Id { get; set; }
 

@@ -12,7 +12,7 @@ using static Application.Features.BorrowedMaterials.Constants.BorrowedMaterialsO
 
 namespace Application.Features.BorrowedMaterials.Queries.GetList;
 
-public class GetListBorrowedMaterialQuery : IRequest<GetListResponse<GetListBorrowedMaterialListItemDto>>, ISecuredRequest, ICachableRequest
+public class GetListBorrowedMaterialQuery : IRequest<GetListResponse<GetListBorrowedMaterialListItemDto>>, ICachableRequest //ISecuredRequest,
 {
     public PageRequest PageRequest { get; set; }
 

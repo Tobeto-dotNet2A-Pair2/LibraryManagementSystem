@@ -12,7 +12,7 @@ using static Application.Features.MaterialGenres.Constants.MaterialGenresOperati
 
 namespace Application.Features.MaterialGenres.Queries.GetList;
 
-public class GetListMaterialGenreQuery : IRequest<GetListResponse<GetListMaterialGenreListItemDto>>, ISecuredRequest, ICachableRequest
+public class GetListMaterialGenreQuery : IRequest<GetListResponse<GetListMaterialGenreListItemDto>>, ICachableRequest // ISecuredRequest,
 {
     public PageRequest PageRequest { get; set; }
 
