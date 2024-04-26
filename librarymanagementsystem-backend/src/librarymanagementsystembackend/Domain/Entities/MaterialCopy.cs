@@ -9,19 +9,19 @@ public class MaterialCopy : Entity<Guid>
     public bool IsReservable { get; set; } 
     public Guid MaterialId { get; set; }
     public Guid BranchId { get; set; }
-    public Guid LocationId { get; set; }
+    public Guid? LocationId { get; set; }
 
     public MaterialCopy()
     {
         
     }
 
-    public MaterialCopy(DateTime dateReceipt, string status, bool ısReserved, bool ısReservable, Guid materialId, Guid branchId, Guid locationId)
+    public MaterialCopy(DateTime dateReceipt, string status, bool isReserved, bool isReservable, Guid materialId, Guid branchId, Guid locationId)
     {
         DateReceipt = dateReceipt;
         Status = status;
-        IsReserved = ısReserved;
-        IsReservable = ısReservable;
+        IsReserved = isReserved;
+        IsReservable = isReservable;
         MaterialId = materialId;
         BranchId = branchId;
         LocationId = locationId;

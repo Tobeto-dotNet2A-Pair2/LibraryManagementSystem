@@ -12,7 +12,7 @@ using Persistence.Contexts;
 namespace Persistence.Migrations
 {
     [DbContext(typeof(BaseDbContext))]
-    [Migration("20240424190152_init")]
+    [Migration("20240426170407_init")]
     partial class init
     {
         /// <inheritdoc />
@@ -666,7 +666,7 @@ namespace Persistence.Migrations
                         .HasColumnType("bit")
                         .HasColumnName("IsReserved");
 
-                    b.Property<Guid>("LocationId")
+                    b.Property<Guid?>("LocationId")
                         .HasColumnType("uniqueidentifier")
                         .HasColumnName("LocationId");
 
@@ -688,7 +688,8 @@ namespace Persistence.Migrations
                     b.HasIndex("BranchId");
 
                     b.HasIndex("LocationId")
-                        .IsUnique();
+                        .IsUnique()
+                        .HasFilter("[LocationId] IS NOT NULL");
 
                     b.HasIndex("MaterialId");
 
@@ -923,7 +924,6 @@ namespace Persistence.Migrations
                         .HasColumnName("Position");
 
                     b.Property<string>("ProfilePicture")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)")
                         .HasColumnName("ProfilePicture");
 
@@ -6249,6 +6249,78 @@ namespace Persistence.Migrations
                             Id = 845,
                             CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Name = "Materials.Delete"
+                        },
+                        new
+                        {
+                            Id = 846,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "Members.Admin"
+                        },
+                        new
+                        {
+                            Id = 847,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "Members.Read"
+                        },
+                        new
+                        {
+                            Id = 848,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "Members.Write"
+                        },
+                        new
+                        {
+                            Id = 849,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "Members.Create"
+                        },
+                        new
+                        {
+                            Id = 850,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "Members.Update"
+                        },
+                        new
+                        {
+                            Id = 851,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "Members.Delete"
+                        },
+                        new
+                        {
+                            Id = 852,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "MaterialCopies.Admin"
+                        },
+                        new
+                        {
+                            Id = 853,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "MaterialCopies.Read"
+                        },
+                        new
+                        {
+                            Id = 854,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "MaterialCopies.Write"
+                        },
+                        new
+                        {
+                            Id = 855,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "MaterialCopies.Create"
+                        },
+                        new
+                        {
+                            Id = 856,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "MaterialCopies.Update"
+                        },
+                        new
+                        {
+                            Id = 857,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "MaterialCopies.Delete"
                         });
                 });
 
@@ -6686,12 +6758,12 @@ namespace Persistence.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("42402058-2ffe-4066-bc92-fc138c84e7c0"),
+                            Id = new Guid("a2fc4113-455f-40a4-a6f5-38135909f17e"),
                             AuthenticatorType = 0,
                             CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Email = "narch@kodlama.io",
-                            PasswordHash = new byte[] { 4, 35, 249, 193, 31, 3, 244, 66, 219, 28, 173, 235, 70, 184, 222, 148, 210, 113, 226, 112, 9, 85, 3, 76, 247, 245, 225, 25, 8, 46, 238, 71, 66, 90, 152, 145, 249, 124, 50, 209, 41, 119, 121, 190, 185, 149, 179, 177, 68, 216, 196, 99, 222, 116, 2, 239, 246, 45, 1, 160, 35, 178, 160, 33 },
-                            PasswordSalt = new byte[] { 249, 108, 211, 100, 97, 43, 39, 169, 93, 184, 119, 213, 21, 123, 131, 181, 96, 142, 58, 213, 59, 145, 55, 199, 184, 233, 190, 152, 139, 47, 173, 131, 85, 9, 35, 244, 36, 4, 108, 230, 107, 159, 7, 239, 152, 52, 202, 251, 14, 255, 153, 22, 214, 161, 126, 192, 219, 110, 194, 187, 197, 73, 191, 54, 234, 162, 31, 110, 35, 80, 113, 8, 114, 43, 44, 160, 131, 91, 128, 239, 120, 177, 168, 253, 81, 242, 104, 30, 140, 229, 31, 79, 62, 54, 13, 9, 76, 172, 146, 118, 133, 130, 174, 119, 32, 11, 193, 236, 214, 226, 77, 243, 50, 8, 70, 214, 184, 237, 242, 4, 155, 84, 240, 125, 111, 0, 187, 141 }
+                            PasswordHash = new byte[] { 121, 173, 188, 19, 186, 232, 189, 85, 45, 203, 31, 127, 181, 109, 219, 5, 104, 165, 24, 201, 226, 213, 127, 63, 163, 133, 2, 61, 150, 90, 8, 33, 40, 4, 32, 137, 241, 55, 154, 69, 12, 91, 81, 91, 104, 232, 138, 3, 90, 212, 57, 47, 164, 49, 158, 43, 89, 62, 76, 200, 139, 64, 159, 23 },
+                            PasswordSalt = new byte[] { 244, 217, 250, 190, 24, 93, 87, 11, 147, 223, 123, 104, 88, 80, 164, 108, 27, 241, 161, 147, 140, 14, 53, 139, 132, 194, 35, 8, 109, 16, 71, 219, 236, 178, 88, 147, 173, 48, 233, 136, 193, 200, 28, 203, 107, 60, 210, 42, 245, 146, 10, 130, 206, 36, 195, 223, 205, 28, 131, 75, 43, 143, 44, 187, 150, 242, 6, 171, 82, 96, 203, 103, 64, 109, 229, 190, 227, 168, 194, 251, 55, 230, 216, 97, 88, 95, 245, 19, 136, 83, 10, 115, 169, 164, 77, 2, 169, 209, 116, 93, 110, 87, 65, 102, 58, 13, 46, 86, 6, 198, 237, 195, 21, 182, 186, 2, 151, 29, 112, 13, 44, 7, 198, 102, 200, 75, 23, 129 }
                         });
                 });
 
@@ -6733,10 +6805,10 @@ namespace Persistence.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("d5fc57e2-3789-49e8-ba41-43759abf74ac"),
+                            Id = new Guid("f5516e84-9339-4ed4-aabb-b7ecd499cc05"),
                             CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             OperationClaimId = 1,
-                            UserId = new Guid("42402058-2ffe-4066-bc92-fc138c84e7c0")
+                            UserId = new Guid("a2fc4113-455f-40a4-a6f5-38135909f17e")
                         });
                 });
 
@@ -6889,9 +6961,7 @@ namespace Persistence.Migrations
 
                     b.HasOne("Domain.Entities.Location", "Location")
                         .WithOne("MaterialCopy")
-                        .HasForeignKey("Domain.Entities.MaterialCopy", "LocationId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("Domain.Entities.MaterialCopy", "LocationId");
 
                     b.HasOne("Domain.Entities.Material", "Material")
                         .WithMany("MaterialCopies")

@@ -159,6 +159,8 @@ public static class PersistenceServiceRegistration
         services.AddScoped<ITranslatorMaterialRepository, TranslatorMaterialRepository>();
         services.AddScoped<IMaterialImageRepository, MaterialImageRepository>();
         services.AddScoped<IMaterialRepository, MaterialRepository>();
+        services.AddScoped<IMemberRepository, MemberRepository>();
+        services.AddScoped<IMaterialCopyRepository, MaterialCopyRepository>();
         return services;
     }
 }
