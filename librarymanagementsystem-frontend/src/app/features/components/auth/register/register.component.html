@@ -1,4 +1,4 @@
-<form [ngClass]="{'signin': showRegisterForm}" [formGroup]="registerForm" (submit)="onSubmit()" >
+<form [ngClass]="{'signin': showRegisterForm}" [formGroup]="registerForm"  >
     <h2>Üye Ol</h2>
     <div class="inputbox">
         <input formControlName="firstName" type="text" required>
@@ -43,7 +43,7 @@
           Şifreler eşleşmiyor.
         </div>
     </div>
-    <button type="submit">Üye Ol</button>
+    <button (click)="register()">Üye Ol</button>
     <div class="register">
         <p>Hesabın var mı?<a href="#" (click)="callLoginHandler(); $event.preventDefault();"> giriş yap</a></p>
     </div>

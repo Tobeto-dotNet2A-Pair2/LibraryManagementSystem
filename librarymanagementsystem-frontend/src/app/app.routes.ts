@@ -13,7 +13,7 @@ import { roleGuard } from './core/guards/role.guard';
 import { MainLayoutComponent } from './shared/layouts/main-layout/main-layout.component';
 
 export const routes: Routes = [
-  { path: '', redirectTo: 'homepage', pathMatch: 'full' },
+  { path: '', redirectTo: 'auth', pathMatch: 'full' },
    { path: 'auth', component: AuthComponent },
    {path: 'homepage', component:MainLayoutComponent},
   // { path: 'homepage', component: AdminLayoutComponent },

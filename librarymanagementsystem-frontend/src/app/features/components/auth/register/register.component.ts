@@ -4,6 +4,7 @@ import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angula
 import { AuthService } from '../../../../core/services/concretes/auth.service';
 import { Router } from '@angular/router';
 import { MaskService } from '../../../../shared/services/mask.service';
+import { UserForRegisterRequest } from '../../../models/requests/users/user-for-register-request';
 
 @Component({
   selector: 'app-register',
@@ -66,29 +67,34 @@ export class RegisterComponent {
   maskPhoneNumber(event: Event): void {
     const value = (event.target as HTMLInputElement).value;
     this.registerForm.get('phoneNumber')?.setValue(this.maskService.maskPhoneNumber(value));
+    console.log("mask");
+  //   }
   }
-  onSubmit() {
-    if (this.registerForm.valid) {
-      console.log("Form is valid. Submitting...");
-    } else {
-      console.log("Form is invalid. Cannot submit.");
-    }
+  
+  // onSubmit() {
+  //   if (this.registerForm.valid) {
+  //     console.log("Form is valid. Submitting...");
+  //   } else {
+  //     console.log("Form is invalid. Cannot submit.");
+  //   }
 
-  }
+  // }
   register(){
+    console.log("register içinde");
     if(this.registerForm.valid){
       console.log(this.registerForm.value);
-      let registerModel = Object.assign({},this.registerForm.value);
+      let registerModel:UserForRegisterRequest = Object.assign({},this.registerForm.value);
       this.authService.register(registerModel).subscribe((response)=>{
         alert("Kayıt Başarılı")
-        this.router.navigate(['login']);
+        this.router.navigate(['/login']);
       }, (errorResponse: any) => { 
-          errorResponse.error.Errors.forEach((error: any) => {
-            console.error(`Property: ${error.Property}`);
-            error.Errors.forEach((errorMessage: string) => {
-              alert(`Error: ${errorMessage}`);
-            });
-          });
+          // errorResponse.error.Errors.forEach((error: any) => {
+          //   console.error(`Property: ${error.Property}`);
+          //   error.Errors.forEach((errorMessage: string) => {
+          //     alert(`Error: ${errorMessage}`);
+          //   });
+          // });
+          alert(`Error: ${errorResponse.errorMessage}`);
         })
     }
   }

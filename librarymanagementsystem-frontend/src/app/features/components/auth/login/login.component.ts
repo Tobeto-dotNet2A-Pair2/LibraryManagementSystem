@@ -47,7 +47,7 @@ export class LoginComponent {
         complete:()=>{
           alert("Giriş Yapıldı");
           setTimeout(()=>{
-            this.router.navigate(["/adminpage"]);
+            this.router.navigate(["/homepage"]);
           },2000)
         }
       })
