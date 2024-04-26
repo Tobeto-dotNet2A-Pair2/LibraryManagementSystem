@@ -1,13 +1,44 @@
-  .footer {
-    background-color: #333;
-    color: #fff;
-    padding: 20px;
-    text-align: center;
-    position: fixed;
-    bottom: 0;
-    width: 100%;
+@import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css');
 
-    @media screen and (max-width: 768px) {
-        position: static;
+.footer {
+  background-color: #20232a; /* Angular Saul temasına benzer bir arka plan rengi */
+  color: #61dafb; /* Yazı rengi */
+  padding: 5px;
+  text-align: center;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 16px;
+
+  .icon-link {
+    font-size: 5px; /* İkon boyutunu daha büyük yap */
+    display: inline-block;
+    position: relative;
+    margin-right: 10px;
+
+    &::before {
+      content: attr(data-social);
+      position: absolute;
+      top: -30px;
+      left: 50%;
+      transform: translateX(-50%);
+      background-color: rgba(0, 0, 0, 0.8);
+      color: #fff;
+      padding: 3px 8px;
+      border-radius: 5px;
+      z-index: 1;
+      white-space: nowrap;
+      font-size: 14px;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s ease;
     }
+
+    &:hover::before {
+      opacity: 1;
+    }
+  }
 }
