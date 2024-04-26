@@ -15,32 +15,11 @@ import { AddressBaseService } from '../abstracts/address-base.service';
 
 export class AddressService extends AddressBaseService 
  {
+  // override getList(): Observable<GetListAddressResponse[]> {
+  //   throw new Error('Method not implemented.');
+  // }
+  // override getById(): Observable<GetByIdAddressResponse> {
+  //   throw new Error('Method not implemented.');
+  // }
 
-  // constructor(httpClient: HttpClient) {
-  //   //
-  //   super(httpClient);
-  // }
-  
-  // override getAddressById(id: string): Observable<GetByIdAddressResponse> {
-
-  //   return this.httpClient.get<GetByIdAddressResponse>('/api/Addresses/${id}');
-    
-  // }
-  // override createAddress(data: any): Observable<CreatedAddressResponse> {
-  //   return this.post<CreatedAddressResponse>('/api/Addresses', data);
-
- 
-  // }
-  // override updateAddress(id: string, data: any): Observable<UpdatedAddressResponse> {
-  //   return this.put<UpdatedAddressResponse>(`/api/Addresses/$/{id}`, data);
-
-  // }
-  // override deleteAddress(id: string): Observable<DeletedAddressResponse> {
-  //   return this.delete<DeletedAddressResponse>(`/api/Addresses/${id}`);
-    
-  // }
-  // override getListAddress(): Observable<GetListAddressResponse[]> {
-  //   return this.get<GetListAddressResponse[]>('/api/Addresses');
-  
-  // }
 }

@@ -10,11 +10,12 @@ import { AddBranchFormComponent } from './features/pages/branches/add-branch-for
 import { BranchListComponent } from './features/pages/branches/branch-list/branch-list.component';
 import { AddMaterialFormComponent } from './features/pages/materials/add-material-form/add-material-form.component';
 import { roleGuard } from './core/guards/role.guard';
+import { MainLayoutComponent } from './shared/layouts/main-layout/main-layout.component';
 
 export const routes: Routes = [
-  { path: '', redirectTo: 'auth', pathMatch: 'full' },
+  { path: '', redirectTo: 'homepage', pathMatch: 'full' },
    { path: 'auth', component: AuthComponent },
-   {path: 'homepage', component:HomepageComponent},
+   {path: 'homepage', component:MainLayoutComponent},
   // { path: 'homepage', component: AdminLayoutComponent },
 
   // { path: 'adminpage', component: AdminLayoutComponent, canActivate: [authGuard] },
