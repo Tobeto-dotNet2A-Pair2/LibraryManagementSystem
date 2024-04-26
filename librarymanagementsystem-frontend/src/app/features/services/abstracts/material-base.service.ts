@@ -10,10 +10,14 @@ import { CreateMaterialRequest } from '../../models/requests/materials/create-ma
 )
 export abstract class MaterialBaseService {
 
-  abstract getList(): Observable<GetListMaterialResponse>;
+  abstract getList(): Observable<GetListMaterialResponse[]>;
 
   abstract getById(): Observable<GetByIdMaterialResponse>;
 
   abstract addMaterial(createdMaterialRequest:CreateMaterialRequest):Observable<CreatedMaterialResponse>;
+
+  //abstract GetListAll():  Observable<MaterialListItemDto>;
+ 
+
 
 }
