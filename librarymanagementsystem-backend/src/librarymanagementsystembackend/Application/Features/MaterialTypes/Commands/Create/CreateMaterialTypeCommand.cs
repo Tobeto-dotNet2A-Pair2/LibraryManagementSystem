@@ -13,7 +13,7 @@ using Domain.Enums;
 
 namespace Application.Features.MaterialTypes.Commands.Create;
 
-public class CreateMaterialTypeCommand : IRequest<CreatedMaterialTypeResponse>, ISecuredRequest, ICacheRemoverRequest, ILoggableRequest, ITransactionalRequest
+public class CreateMaterialTypeCommand : IRequest<CreatedMaterialTypeResponse>, ICacheRemoverRequest, ILoggableRequest, ITransactionalRequest // ISecuredRequest,
 {
     public string Name { get; set; }
     public MaterialFormat MaterialFormat { get; set; }

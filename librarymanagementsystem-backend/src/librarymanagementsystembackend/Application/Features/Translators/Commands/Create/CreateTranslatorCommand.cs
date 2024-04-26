@@ -12,7 +12,7 @@ using static Application.Features.Translators.Constants.TranslatorsOperationClai
 
 namespace Application.Features.Translators.Commands.Create;
 
-public class CreateTranslatorCommand : IRequest<CreatedTranslatorResponse>, ISecuredRequest, ICacheRemoverRequest, ILoggableRequest, ITransactionalRequest
+public class CreateTranslatorCommand : IRequest<CreatedTranslatorResponse>, ICacheRemoverRequest, ILoggableRequest, ITransactionalRequest // ISecuredRequest,
 {
     public string Name { get; set; }
     public string Description { get; set; }

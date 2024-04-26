@@ -9,7 +9,7 @@ using static Application.Features.Libraries.Constants.LibrariesOperationClaims;
 
 namespace Application.Features.Libraries.Queries.GetById;
 
-public class GetByIdLibraryQuery : IRequest<GetByIdLibraryResponse>, ISecuredRequest
+public class GetByIdLibraryQuery : IRequest<GetByIdLibraryResponse> // , ISecuredRequest
 {
     public Guid Id { get; set; }
 

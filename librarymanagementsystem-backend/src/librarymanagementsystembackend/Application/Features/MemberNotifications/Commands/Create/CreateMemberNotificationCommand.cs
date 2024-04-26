@@ -12,7 +12,7 @@ using static Application.Features.MemberNotifications.Constants.MemberNotificati
 
 namespace Application.Features.MemberNotifications.Commands.Create;
 
-public class CreateMemberNotificationCommand : IRequest<CreatedMemberNotificationResponse>, ISecuredRequest, ICacheRemoverRequest, ILoggableRequest, ITransactionalRequest
+public class CreateMemberNotificationCommand : IRequest<CreatedMemberNotificationResponse>, ICacheRemoverRequest, ILoggableRequest, ITransactionalRequest // ISecuredRequest,
 {
     public Guid MemberId { get; set; }
     public Guid NotificationId { get; set; }

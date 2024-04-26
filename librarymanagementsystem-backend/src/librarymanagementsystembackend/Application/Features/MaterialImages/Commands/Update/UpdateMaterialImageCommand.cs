@@ -12,7 +12,7 @@ using static Application.Features.MaterialImages.Constants.MaterialImagesOperati
 
 namespace Application.Features.MaterialImages.Commands.Update;
 
-public class UpdateMaterialImageCommand : IRequest<UpdatedMaterialImageResponse>, ISecuredRequest, ICacheRemoverRequest, ILoggableRequest, ITransactionalRequest
+public class UpdateMaterialImageCommand : IRequest<UpdatedMaterialImageResponse>, ICacheRemoverRequest, ILoggableRequest, ITransactionalRequest // ISecuredRequest,
 {
     public Guid Id { get; set; }
     public string Url { get; set; }

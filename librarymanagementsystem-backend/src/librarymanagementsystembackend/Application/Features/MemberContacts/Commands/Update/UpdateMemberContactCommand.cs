@@ -12,7 +12,7 @@ using static Application.Features.MemberContacts.Constants.MemberContactsOperati
 
 namespace Application.Features.MemberContacts.Commands.Update;
 
-public class UpdateMemberContactCommand : IRequest<UpdatedMemberContactResponse>, ISecuredRequest, ICacheRemoverRequest, ILoggableRequest, ITransactionalRequest
+public class UpdateMemberContactCommand : IRequest<UpdatedMemberContactResponse>, ICacheRemoverRequest, ILoggableRequest, ITransactionalRequest //ISecuredRequest,
 {
     public Guid Id { get; set; }
     public string AskLibrarianTopic { get; set; }

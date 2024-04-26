@@ -13,7 +13,7 @@ using static Application.Features.LanguageMaterials.Constants.LanguageMaterialsO
 
 namespace Application.Features.LanguageMaterials.Commands.Delete;
 
-public class DeleteLanguageMaterialCommand : IRequest<DeletedLanguageMaterialResponse>, ISecuredRequest, ICacheRemoverRequest, ILoggableRequest, ITransactionalRequest
+public class DeleteLanguageMaterialCommand : IRequest<DeletedLanguageMaterialResponse>, ICacheRemoverRequest, ILoggableRequest, ITransactionalRequest //ISecuredRequest,
 {
     public Guid Id { get; set; }
 

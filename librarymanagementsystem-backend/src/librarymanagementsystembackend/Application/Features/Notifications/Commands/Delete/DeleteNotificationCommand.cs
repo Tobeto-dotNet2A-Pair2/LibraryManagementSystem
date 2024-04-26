@@ -13,7 +13,7 @@ using static Application.Features.Notifications.Constants.NotificationsOperation
 
 namespace Application.Features.Notifications.Commands.Delete;
 
-public class DeleteNotificationCommand : IRequest<DeletedNotificationResponse>, ISecuredRequest, ICacheRemoverRequest, ILoggableRequest, ITransactionalRequest
+public class DeleteNotificationCommand : IRequest<DeletedNotificationResponse>, ICacheRemoverRequest, ILoggableRequest, ITransactionalRequest //ISecuredRequest,
 {
     public Guid Id { get; set; }
 

@@ -12,7 +12,7 @@ using static Application.Features.Materials.Constants.MaterialsOperationClaims;
 
 namespace Application.Features.Materials.Commands.Create;
 
-public class CreateMaterialCommand : IRequest<CreatedMaterialResponse>, ISecuredRequest, ICacheRemoverRequest, ILoggableRequest, ITransactionalRequest
+public class CreateMaterialCommand : IRequest<CreatedMaterialResponse>, ICacheRemoverRequest, ILoggableRequest, ITransactionalRequest //ISecuredRequest
 {
     public string Name { get; set; }
     public string Description { get; set; }

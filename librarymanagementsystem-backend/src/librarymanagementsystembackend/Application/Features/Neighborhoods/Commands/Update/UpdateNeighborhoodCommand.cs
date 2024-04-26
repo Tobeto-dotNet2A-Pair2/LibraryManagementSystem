@@ -12,7 +12,7 @@ using static Application.Features.Neighborhoods.Constants.NeighborhoodsOperation
 
 namespace Application.Features.Neighborhoods.Commands.Update;
 
-public class UpdateNeighborhoodCommand : IRequest<UpdatedNeighborhoodResponse>, ISecuredRequest, ICacheRemoverRequest, ILoggableRequest, ITransactionalRequest
+public class UpdateNeighborhoodCommand : IRequest<UpdatedNeighborhoodResponse>, ICacheRemoverRequest, ILoggableRequest, ITransactionalRequest //ISecuredRequest,
 {
     public Guid Id { get; set; }
     public string Name { get; set; }

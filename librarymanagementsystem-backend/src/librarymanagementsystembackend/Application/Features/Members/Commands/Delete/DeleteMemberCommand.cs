@@ -13,7 +13,7 @@ using static Application.Features.Members.Constants.MembersOperationClaims;
 
 namespace Application.Features.Members.Commands.Delete;
 
-public class DeleteMemberCommand : IRequest<DeletedMemberResponse>, ISecuredRequest, ICacheRemoverRequest, ILoggableRequest, ITransactionalRequest
+public class DeleteMemberCommand : IRequest<DeletedMemberResponse>, ICacheRemoverRequest, ILoggableRequest, ITransactionalRequest // ISecuredRequest,
 {
     public Guid Id { get; set; }
 
