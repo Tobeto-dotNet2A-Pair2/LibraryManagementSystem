@@ -26,7 +26,7 @@ export class MemberListComponent implements OnInit {
   };
 
   constructor(private membersService: MembersService, private activatedRoute:ActivatedRoute) {}
-  readonly PAGE_SIZE=1;
+  readonly PAGE_SIZE=10;
   ngOnInit(): void {
     this.activatedRoute.params.subscribe(params=>{
       if(params["modelId"]){
