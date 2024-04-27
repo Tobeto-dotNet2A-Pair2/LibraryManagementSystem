@@ -1,19 +1,15 @@
-import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { FormsModule } from '@angular/forms';
-import { CreateMemberRequest } from '../../../models/requests/members/create-member-request';
-import { environment } from '../../../../../environments/environment';
-import { CreateCityRequest } from '../../../models/requests/cities/create-city-request';
 import { CommonModule } from '@angular/common';
 import { MemberListDto } from '../../../models/responses/members/member-list-item-dto';
 import { MembersService } from '../../../../core/services/concretes/members.service';
 import { ActivatedRoute } from '@angular/router';
 import { PageRequest } from '../../../../core/models/page/page-request';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-member-list',
   standalone: true,
-  imports: [CommonModule ],
+  imports: [CommonModule , FormsModule],
   templateUrl: './member-list.component.html',
   styleUrl: './member-list.component.scss',
 })
@@ -30,12 +26,12 @@ export class MemberListComponent implements OnInit {
   };
 
   constructor(private membersService: MembersService, private activatedRoute:ActivatedRoute) {}
-  readonly PAGE_SIZE=6;
+  readonly PAGE_SIZE=1;
   ngOnInit(): void {
     this.activatedRoute.params.subscribe(params=>{
       if(params["modelId"]){
-        this.getMemberListByModel({page:0,pageSize:this.PAGE_SIZE},params["modelId"])
-      }else{this.getList({page:0,pageSize:this.PAGE_SIZE})}
+        this.getMemberListByModel({pageIndex:0,pageSize:this.PAGE_SIZE},params["modelId"])
+      }else{this.getList({pageIndex:0,pageSize:this.PAGE_SIZE})}
     })
    
   }
@@ -45,6 +41,7 @@ export class MemberListComponent implements OnInit {
       this.memberList=response;
       console.log(this.memberList)
       this.updateCurrentPageNumber();
+     
     })
     
   }
@@ -59,56 +56,47 @@ export class MemberListComponent implements OnInit {
     const nextPageIndex = this.memberList.index+1;
     const pageSize = this.memberList.size;
 
-    this.getList({page:nextPageIndex,pageSize})
+    this.getList({pageIndex:nextPageIndex,pageSize})
     this.updateCurrentPageNumber();
-  }
+   
+  }//Sonraki sayfaya gitme fonksiyonu
   onPreviousPageClicked():void{
     const previousPageIndex = this.memberList.index-1;
     const pageSize = this.memberList.size;
-    this.getList({page:previousPageIndex,pageSize});
+    this.getList({pageIndex:previousPageIndex,pageSize});
     this.updateCurrentPageNumber();
-  }
+    console.log("current"+this.currentPageNumber)
+  }//Önceki sayfaya git
 
   updateCurrentPageNumber():void{
     this.currentPageNumber=this.memberList.index+1;
   }
-  // getMembers(): void {
-  //   this.membersService.getList({ page: 0, pageSize: 10 })
-  //     .subscribe({
-  //       next: (response: MemberListDto[]) => {
-  //         console.log('Backendden cevap geldi:', response);
-  //         this.memberList = response;
-  //       },
-  //       error: (error) => {
-  //         console.log('Backendden hatalı cevap geldi:', error);
-  //       },
-  //       complete: () => {
-  //         console.log('Backend isteği sonlandı.');
-  //       },
-  //     });
-  // }
 
-  // pageIndex: number = 0;
-  // pageSize: number = 10;
+  isPreviousDisabled(): boolean {
+    return !this.memberList.hasPrevious;
+  }//Eğer önceki sayfa yoksa disabled classı ekle
 
-  // getMember() {
-  //   this.httpClient
-  //     .get<CreateMemberRequest[]>(
-  //       `${environment.API_URL}/members?PageIndex=${this.pageIndex}&PageSize=${this.pageSize}`
-  //     )
-  //     .subscribe({
-  //       next: (response: CreateMemberRequest[]) => {
-  //         console.log('Backendden cevap geldi:', response);
-  //         this.memberList = response;
-          
-  //       },
-  //       error: (error) => {
-  //         console.log('Backendden hatalı cevap geldi:', error);
-  //       },
-  //       complete: () => {
-  //         console.log('Backend isteği sonlandı.');
-  //       },
-  //     });
-  // }
+  isNextDisabled(): boolean {
+    return !this.memberList.hasNext;
+  }//Eğer sonraki sayfa yoksa butonu disabled yap
+
+  getPageNumbers(): number[] {
+    const totalPages = this.memberList.pages; // Toplam sayfa sayısı
+    const pageNumbers: number[] = [];
+    for (let i = 1; i <= totalPages; i++) {
+      pageNumbers.push(i);
+    }
+    return pageNumbers;
+  }//Sayfa sayılarını listeleme
+
+  onPageClicked(pageNumber: number): void {
   
+    this.getList({ pageIndex: pageNumber - 1, pageSize: this.PAGE_SIZE });
+    this.updateCurrentPageNumber();
+  }  // Sayfa numarasına göre ilgili sayfayı getir
+
+  onPageSizeChange(): void {
+    
+    this.getList({ pageIndex: 0, pageSize: this.PAGE_SIZE });
+  }// Sayfa boyutu değiştiğinde, veri listesini yeniden yükle
 }

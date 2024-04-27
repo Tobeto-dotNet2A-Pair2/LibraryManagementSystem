@@ -10,12 +10,12 @@ import { MemberListDto } from '../../../features/models/responses/members/member
   providedIn: 'root'
 })
 export class MembersService extends MemberBaseService {
-  private readonly apiUrl:string = `${environment.API_URL}/members?PageIndex=0&PageSize=10`
+  private readonly apiUrl:string = `${environment.API_URL}/Members`
   constructor(private httpClient:HttpClient) {super() }
   
   override getList(pageRequest: PageRequest): Observable<MemberListDto> {
     const newRequest :{[key:string]:string | number}={
-      page:pageRequest.page,
+      pageIndex:pageRequest.pageIndex,
       pageSize:pageRequest.pageSize
     };
 
@@ -24,7 +24,7 @@ export class MembersService extends MemberBaseService {
     }).pipe(
       map((response)=>{
         const newResponse:MemberListDto={
-          index:pageRequest.page,
+          index:pageRequest.pageIndex,
           size:pageRequest.pageSize,
           count:response.count,
           hasNext:response.hasNext,
@@ -40,7 +40,7 @@ export class MembersService extends MemberBaseService {
   
   override getMemberListByModelId(pageRequest: PageRequest,modelId:string): Observable<MemberListDto> {
     const newRequest :{[key:string]:string | number}={
-      page:pageRequest.page,
+      pageIndex:pageRequest.pageIndex,
       pageSize:pageRequest.pageSize,
       modelId:modelId
     };
@@ -50,7 +50,7 @@ export class MembersService extends MemberBaseService {
     }).pipe(
       map((response)=>{
         const newResponse:MemberListDto={
-          index:pageRequest.page,
+          index:pageRequest.pageIndex,
           size:pageRequest.pageSize,
           count:response.count,
           hasNext:response.hasNext,
