@@ -9,7 +9,7 @@ using static Application.Features.LanguageMaterials.Constants.LanguageMaterialsO
 
 namespace Application.Features.LanguageMaterials.Queries.GetById;
 
-public class GetByIdLanguageMaterialQuery : IRequest<GetByIdLanguageMaterialResponse>, ISecuredRequest
+public class GetByIdLanguageMaterialQuery : IRequest<GetByIdLanguageMaterialResponse> //, ISecuredRequest
 {
     public Guid Id { get; set; }
 

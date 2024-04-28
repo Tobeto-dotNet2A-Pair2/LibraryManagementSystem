@@ -12,7 +12,7 @@ using static Application.Features.Locations.Constants.LocationsOperationClaims;
 
 namespace Application.Features.Locations.Commands.Create;
 
-public class CreateLocationCommand : IRequest<CreatedLocationResponse>, ISecuredRequest, ICacheRemoverRequest, ILoggableRequest, ITransactionalRequest
+public class CreateLocationCommand : IRequest<CreatedLocationResponse>, ICacheRemoverRequest, ILoggableRequest, ITransactionalRequest // ISecuredRequest,
 {
     public string? ShelfLineNumber { get; set; }
     public string? ShelfFloor { get; set; }

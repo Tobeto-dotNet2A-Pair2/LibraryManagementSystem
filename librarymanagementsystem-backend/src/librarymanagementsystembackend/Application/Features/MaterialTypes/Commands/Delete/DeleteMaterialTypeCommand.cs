@@ -13,7 +13,7 @@ using static Application.Features.MaterialTypes.Constants.MaterialTypesOperation
 
 namespace Application.Features.MaterialTypes.Commands.Delete;
 
-public class DeleteMaterialTypeCommand : IRequest<DeletedMaterialTypeResponse>, ISecuredRequest, ICacheRemoverRequest, ILoggableRequest, ITransactionalRequest
+public class DeleteMaterialTypeCommand : IRequest<DeletedMaterialTypeResponse>, ICacheRemoverRequest, ILoggableRequest, ITransactionalRequest //ISecuredRequest,
 {
     public Guid Id { get; set; }
 

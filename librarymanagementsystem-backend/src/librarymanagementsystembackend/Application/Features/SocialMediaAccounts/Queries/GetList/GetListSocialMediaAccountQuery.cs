@@ -12,7 +12,7 @@ using static Application.Features.SocialMediaAccounts.Constants.SocialMediaAccou
 
 namespace Application.Features.SocialMediaAccounts.Queries.GetList;
 
-public class GetListSocialMediaAccountQuery : IRequest<GetListResponse<GetListSocialMediaAccountListItemDto>>, ISecuredRequest, ICachableRequest
+public class GetListSocialMediaAccountQuery : IRequest<GetListResponse<GetListSocialMediaAccountListItemDto>>, ICachableRequest // ISecuredRequest,
 {
     public PageRequest PageRequest { get; set; }
 

@@ -13,7 +13,7 @@ using static Application.Features.MemberNotifications.Constants.MemberNotificati
 
 namespace Application.Features.MemberNotifications.Commands.Delete;
 
-public class DeleteMemberNotificationCommand : IRequest<DeletedMemberNotificationResponse>, ISecuredRequest, ICacheRemoverRequest, ILoggableRequest, ITransactionalRequest
+public class DeleteMemberNotificationCommand : IRequest<DeletedMemberNotificationResponse>, ICacheRemoverRequest, ILoggableRequest, ITransactionalRequest // ISecuredRequest,
 {
     public Guid Id { get; set; }
 

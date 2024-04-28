@@ -9,7 +9,7 @@ using static Application.Features.Publishers.Constants.PublishersOperationClaims
 
 namespace Application.Features.Publishers.Queries.GetById;
 
-public class GetByIdPublisherQuery : IRequest<GetByIdPublisherResponse>, ISecuredRequest
+public class GetByIdPublisherQuery : IRequest<GetByIdPublisherResponse> //, ISecuredRequest
 {
     public Guid Id { get; set; }
 

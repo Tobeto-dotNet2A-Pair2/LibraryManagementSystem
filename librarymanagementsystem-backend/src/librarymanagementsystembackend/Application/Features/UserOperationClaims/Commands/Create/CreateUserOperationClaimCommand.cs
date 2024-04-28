@@ -9,7 +9,7 @@ using static Application.Features.UserOperationClaims.Constants.UserOperationCla
 
 namespace Application.Features.UserOperationClaims.Commands.Create;
 
-public class CreateUserOperationClaimCommand : IRequest<CreatedUserOperationClaimResponse>, ISecuredRequest
+public class CreateUserOperationClaimCommand : IRequest<CreatedUserOperationClaimResponse> //, ISecuredRequest
 {
     public Guid UserId { get; set; }
     public int OperationClaimId { get; set; }

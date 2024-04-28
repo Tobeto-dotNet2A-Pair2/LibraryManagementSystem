@@ -12,7 +12,7 @@ using static Application.Features.PublisherMaterials.Constants.PublisherMaterial
 
 namespace Application.Features.PublisherMaterials.Commands.Create;
 
-public class CreatePublisherMaterialCommand : IRequest<CreatedPublisherMaterialResponse>, ISecuredRequest, ICacheRemoverRequest, ILoggableRequest, ITransactionalRequest
+public class CreatePublisherMaterialCommand : IRequest<CreatedPublisherMaterialResponse>, ICacheRemoverRequest, ILoggableRequest, ITransactionalRequest // ISecuredRequest,
 {
     public Guid PublisherId { get; set; }
     public Guid MaterialId { get; set; }

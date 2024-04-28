@@ -7,6 +7,7 @@ using AutoMapper;
 using NArchitecture.Core.Application.Responses;
 using Domain.Entities;
 using NArchitecture.Core.Persistence.Paging;
+using Application.Features.Auth.Dtos;
 
 namespace Application.Features.Members.Profiles;
 
@@ -22,6 +23,8 @@ public class MappingProfiles : Profile
         CreateMap<Member, DeletedMemberResponse>().ReverseMap();
         CreateMap<Member, GetByIdMemberResponse>().ReverseMap();
         CreateMap<Member, GetListMemberListItemDto>().ReverseMap();
+
+        CreateMap<Member, RegisterDto>().ReverseMap();
         CreateMap<IPaginate<Member>, GetListResponse<GetListMemberListItemDto>>().ReverseMap();
     }
 }

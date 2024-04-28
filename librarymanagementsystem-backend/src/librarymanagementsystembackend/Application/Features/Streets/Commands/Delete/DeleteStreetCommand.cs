@@ -13,7 +13,7 @@ using static Application.Features.Streets.Constants.StreetsOperationClaims;
 
 namespace Application.Features.Streets.Commands.Delete;
 
-public class DeleteStreetCommand : IRequest<DeletedStreetResponse>, ISecuredRequest, ICacheRemoverRequest, ILoggableRequest, ITransactionalRequest
+public class DeleteStreetCommand : IRequest<DeletedStreetResponse>, ICacheRemoverRequest, ILoggableRequest, ITransactionalRequest // ISecuredRequest,
 {
     public Guid Id { get; set; }
 

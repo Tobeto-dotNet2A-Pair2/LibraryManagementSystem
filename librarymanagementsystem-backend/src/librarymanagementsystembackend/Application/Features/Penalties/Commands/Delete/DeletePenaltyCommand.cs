@@ -13,7 +13,7 @@ using static Application.Features.Penalties.Constants.PenaltiesOperationClaims;
 
 namespace Application.Features.Penalties.Commands.Delete;
 
-public class DeletePenaltyCommand : IRequest<DeletedPenaltyResponse>, ISecuredRequest, ICacheRemoverRequest, ILoggableRequest, ITransactionalRequest
+public class DeletePenaltyCommand : IRequest<DeletedPenaltyResponse>, ICacheRemoverRequest, ILoggableRequest, ITransactionalRequest // ISecuredRequest,
 {
     public Guid Id { get; set; }
 

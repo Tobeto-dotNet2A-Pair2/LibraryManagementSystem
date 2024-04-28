@@ -12,7 +12,7 @@ using static Application.Features.PublisherMaterials.Constants.PublisherMaterial
 
 namespace Application.Features.PublisherMaterials.Queries.GetList;
 
-public class GetListPublisherMaterialQuery : IRequest<GetListResponse<GetListPublisherMaterialListItemDto>>, ISecuredRequest, ICachableRequest
+public class GetListPublisherMaterialQuery : IRequest<GetListResponse<GetListPublisherMaterialListItemDto>>, ICachableRequest //ISecuredRequest,
 {
     public PageRequest PageRequest { get; set; }
 

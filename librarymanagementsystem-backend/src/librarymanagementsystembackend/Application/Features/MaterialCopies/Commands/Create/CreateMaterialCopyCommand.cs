@@ -12,7 +12,7 @@ using static Application.Features.MaterialCopies.Constants.MaterialCopiesOperati
 
 namespace Application.Features.MaterialCopies.Commands.Create;
 
-public class CreateMaterialCopyCommand : IRequest<CreatedMaterialCopyResponse>, ISecuredRequest, ICacheRemoverRequest, ILoggableRequest, ITransactionalRequest
+public class CreateMaterialCopyCommand : IRequest<CreatedMaterialCopyResponse>, ICacheRemoverRequest, ILoggableRequest, ITransactionalRequest // ISecuredRequest,
 {
     public DateTime DateReceipt { get; set; }
     public string Status { get; set; }
@@ -20,7 +20,7 @@ public class CreateMaterialCopyCommand : IRequest<CreatedMaterialCopyResponse>, 
     public bool IsReservable { get; set; }
     public Guid MaterialId { get; set; }
     public Guid BranchId { get; set; }
-    public Guid LocationId { get; set; }
+    public Guid? LocationId { get; set; }
 
     public string[] Roles => [Admin, Write, MaterialCopiesOperationClaims.Create];
 

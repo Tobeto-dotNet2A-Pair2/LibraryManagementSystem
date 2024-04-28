@@ -12,7 +12,7 @@ using static Application.Features.Publishers.Constants.PublishersOperationClaims
 
 namespace Application.Features.Publishers.Commands.Create;
 
-public class CreatePublisherCommand : IRequest<CreatedPublisherResponse>, ISecuredRequest, ICacheRemoverRequest, ILoggableRequest, ITransactionalRequest
+public class CreatePublisherCommand : IRequest<CreatedPublisherResponse>, ICacheRemoverRequest, ILoggableRequest, ITransactionalRequest // ISecuredRequest,
 {
     public string Name { get; set; }
     public string PublicationPlace { get; set; }

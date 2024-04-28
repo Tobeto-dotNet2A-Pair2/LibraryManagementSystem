@@ -231,6 +231,8 @@ public static class ApplicationServiceRegistration
         services.AddScoped<ITranslatorMaterialService, TranslatorMaterialManager>();
         services.AddScoped<IMaterialImageService, MaterialImageManager>();
         services.AddScoped<IMaterialService, MaterialManager>();
+        services.AddScoped<IMemberService, MemberManager>();
+        services.AddScoped<IMaterialCopyService, MaterialCopyManager>();
         return services;
     }
 

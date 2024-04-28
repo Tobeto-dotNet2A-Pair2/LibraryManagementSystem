@@ -12,7 +12,7 @@ using static Application.Features.Genres.Constants.GenresOperationClaims;
 
 namespace Application.Features.Genres.Queries.GetList;
 
-public class GetListGenreQuery : IRequest<GetListResponse<GetListGenreListItemDto>>, ISecuredRequest, ICachableRequest
+public class GetListGenreQuery : IRequest<GetListResponse<GetListGenreListItemDto>>, ICachableRequest // ISecuredRequest,
 {
     public PageRequest PageRequest { get; set; }
 

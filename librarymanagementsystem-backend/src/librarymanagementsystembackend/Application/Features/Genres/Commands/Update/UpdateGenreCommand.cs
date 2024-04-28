@@ -12,7 +12,7 @@ using static Application.Features.Genres.Constants.GenresOperationClaims;
 
 namespace Application.Features.Genres.Commands.Update;
 
-public class UpdateGenreCommand : IRequest<UpdatedGenreResponse>, ISecuredRequest, ICacheRemoverRequest, ILoggableRequest, ITransactionalRequest
+public class UpdateGenreCommand : IRequest<UpdatedGenreResponse>, ICacheRemoverRequest, ILoggableRequest, ITransactionalRequest //ISecuredRequest,
 {
     public Guid Id { get; set; }
     public string Name { get; set; }
