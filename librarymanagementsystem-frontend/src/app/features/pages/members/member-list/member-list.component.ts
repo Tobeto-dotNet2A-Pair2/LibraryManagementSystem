@@ -2,14 +2,14 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MemberListDto } from '../../../models/responses/members/member-list-item-dto';
 import { MembersService } from '../../../../core/services/concretes/members.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, RouterModule } from '@angular/router';
 import { PageRequest } from '../../../../core/models/page/page-request';
 import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-member-list',
   standalone: true,
-  imports: [CommonModule , FormsModule],
+  imports: [CommonModule , FormsModule, RouterModule],
   templateUrl: './member-list.component.html',
   styleUrl: './member-list.component.scss',
 })

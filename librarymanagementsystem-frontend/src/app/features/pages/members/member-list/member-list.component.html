@@ -15,11 +15,7 @@
             rowspan="1"
             colspan="1"
             style="width: 29.9px"
-            aria-label="
-															
-																
-															
-														"
+            aria-label=""
           >
             <div
               class="form-check form-check-sm form-check-custom form-check-solid me-3"
@@ -98,6 +94,7 @@
             Actions
           </th>
         </tr>
+        
       </thead>
       <tbody class="fw-semibold text-gray-600"  >
         <tr class="odd" *ngFor="let member of memberList.items">
@@ -134,12 +131,18 @@
           /></ng-template>
           </td>
           <td data-order="2020-12-14T20:43:00+03:00">{{member.totalDebt}}</td>
+          <td>
+            <div class="menu-item px-3">
+              <a href="#" class="menu-link px-3" (click)="$event.preventDefault();" [routerLink]="['/member-profile', member.id]">View</a>
+            </div>
+          </td>
           <td class="text-end">
             <a
               href="#"
               class="btn btn-sm btn-light btn-flex btn-center btn-active-light-primary"
               data-kt-menu-trigger="click"
               data-kt-menu-placement="bottom-end"
+              (click)="$event.preventDefault();"
               >Actions <i class="ki-duotone ki-down fs-5 ms-1"></i
             ></a>
             <!--begin::Menu-->
@@ -149,7 +152,7 @@
             >
               <!--begin::Menu item-->
               <div class="menu-item px-3">
-                <a href="#" class="menu-link px-3">View</a>
+                <a href="#" class="menu-link px-3" (click)="$event.preventDefault();" [routerLink]="['/member-profile', member.id]">View</a>
               </div>
               <!--end::Menu item-->
               <!--begin::Menu item-->
@@ -165,11 +168,13 @@
             </div>
             <!--end::Menu-->
           </td>
+          
         </tr>
       </tbody>
     </table>
   </div>
   <div class="row">
+    
     <div
       class="col-sm-12 col-md-5 d-flex align-items-center justify-content-center justify-content-md-start"
     >
@@ -182,7 +187,7 @@
             [(ngModel)]="PAGE_SIZE"
             (ngModelChange)="onPageSizeChange()"
           >
-            <option value={{PAGE_SIZE}}>{{PAGE_SIZE}}</option>
+            <option value="10">10</option>
             <option value="20">20</option>
             <option value="50">50</option>
             <option value="100">100</option>
