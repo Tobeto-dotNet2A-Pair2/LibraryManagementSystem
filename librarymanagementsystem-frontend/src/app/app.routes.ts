@@ -14,7 +14,7 @@ import { MainLayoutComponent } from './shared/layouts/main-layout/main-layout.co
 import { MemberProfileComponent } from './features/pages/members/member-profile/member-profile.component';
 
 export const routes: Routes = [
-  { path: '', redirectTo: 'auth', pathMatch: 'full' },
+  { path: '', redirectTo: 'adminpage', pathMatch: 'full' },
    { path: 'auth', component: AuthComponent },
    {path: 'homepage', component:MainLayoutComponent},
   // { path: 'homepage', component: AdminLayoutComponent },
@@ -23,7 +23,7 @@ export const routes: Routes = [
   {
     path: 'adminpage',
     component: AdminLayoutComponent,
-    canActivate: [roleGuard],
+    //canActivate: [roleGuard],
     data:{requiredRoles:['Admin']},
     children: [
       { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
