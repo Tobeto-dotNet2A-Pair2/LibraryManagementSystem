@@ -14,7 +14,7 @@ export class MaskService {
 
   maskPhoneNumber(value: string): string {
     let maskedValue = value.replace(/\D/g, '');
-    const maxLength = 12;
+    const maxLength = 11;
     maskedValue = maskedValue.slice(0, maxLength);
     maskedValue = maskedValue.replace(/(\d{3})(\d{3})(\d{4})/, '($1) $2-$3');
     return maskedValue;

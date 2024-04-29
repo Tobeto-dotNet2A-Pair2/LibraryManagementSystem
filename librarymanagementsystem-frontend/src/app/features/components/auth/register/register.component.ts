@@ -4,6 +4,8 @@ import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angula
 import { AuthService } from '../../../../core/services/concretes/auth.service';
 import { Router } from '@angular/router';
 import { MaskService } from '../../../../shared/services/mask.service';
+import { UserForRegisterRequest } from '../../../models/requests/users/user-for-register-request';
+import { UserRequest } from '../../../models/requests/users/user-request';
 
 @Component({
   selector: 'app-register',
@@ -15,12 +17,10 @@ import { MaskService } from '../../../../shared/services/mask.service';
 export class RegisterComponent {
   @Input() showRegisterForm: boolean = false;
   @Output() loginClicked = new EventEmitter<void>();
-
  
   callLoginHandler() {
-    this.loginClicked.emit();
+    this.loginClicked.emit();  // Giriş sayfasını aç
   }
-
   
   registerForm!:FormGroup
   constructor(
@@ -37,11 +37,13 @@ export class RegisterComponent {
     this.registerForm = this.formBuilder.group({
       firstName: ["", Validators.required],
       lastName: ["", Validators.required],
-      tc: ["", [Validators.required, Validators.minLength(11), Validators.maxLength(11), Validators.pattern('^[0-9]*$')]],
-      phoneNumber: ["", [Validators.required, Validators.pattern('^[0-9]*$')]],
-      email: ["", Validators.required, Validators.email],
+      // nationalIdentity: ["", [Validators.required, Validators.minLength(11), Validators.maxLength(11), Validators.pattern('^[0-9]*$')]],
+      // phoneNumber: ["", [Validators.required, Validators.pattern('^[0-9]*$')]],
+      phoneNumber: ["", [Validators.required]],
+      nationalIdentity: ["", [Validators.required]],
+      email: ["", Validators.required],
       password: ["", Validators.required],
-      confirmPassword: ["", Validators.required]
+      confirmPassword: ["" ]
     }, {
       validators: this.passwordMatchValidator 
     });
@@ -56,11 +58,11 @@ export class RegisterComponent {
       formGroup.get('confirmPassword')?.setErrors(null);
     }
   }
-  
+
 
   maskTcNumber(event: Event): void {
     const value = (event.target as HTMLInputElement).value;
-    this.registerForm.get('tc')?.setValue(this.maskService.maskTcNumber(value));
+    this.registerForm.get('nationalIdentity')?.setValue(this.maskService.maskTcNumber(value));
   }
   
   maskPhoneNumber(event: Event): void {
@@ -77,13 +79,33 @@ export class RegisterComponent {
   }
   register(){
     if(this.registerForm.valid){
+      console.log("register1  içinde");
       console.log(this.registerForm.value);
-      let registerModel = Object.assign({},this.registerForm.value);
+  
+      // let registerModel = Object.assign({},this.registerForm.value);
+     
+      const registerModel: UserForRegisterRequest<UserRequest> = {
+        user: {
+          email: this.registerForm.value.email,
+          password: this.registerForm.value.password
+        },
+        firstName: this.registerForm.value.firstName,
+        lastName: this.registerForm.value.lastName,
+        nationalIdentity: this.registerForm.value.nationalIdentity,
+        phoneNumber: this.registerForm.value.phoneNumber,
+      };
+      console.log(registerModel, "Model içinde");
       this.authService.register(registerModel).subscribe((response)=>{
-        alert("Kayıt Başarılı")
-        this.router.navigate(['login']);
+        alert("Kayıt Başarılı");
+
+        //Kayıt başarılı ise formu temzile ve giriş formunu aç
+        this.registerForm.reset();
+        this.callLoginHandler();
+        //
+       
       }, (errorResponse: any) => { 
           errorResponse.error.Errors.forEach((error: any) => {
+            console.error("Kayıt hatası:", errorResponse);
             console.error(`Property: ${error.Property}`);
             error.Errors.forEach((errorMessage: string) => {
               alert(`Error: ${errorMessage}`);
@@ -93,39 +115,9 @@ export class RegisterComponent {
     }
   }
 
-  
-
-
 }
 
 
 
 
-
-  // maskTcNumber(event: any) {
-  //   const input = event.target as HTMLInputElement;
-  //   let value = input.value.replace(/\D/g, '');
-  //   const maxLength = 11;
-  //   value = value.slice(0, maxLength);
-  
-  //   input.value = value;
-  //   this.registerForm.patchValue({ tc: value });
-  
-  //   if (value.trim() === '') {
-  //     this.registerForm.get('tc')?.markAsTouched();
-  //   }
-  // }
-  // maskPhoneNumber(event: any) {
-  //   const input = event.target as HTMLInputElement;
-  //   let value = input.value.replace(/\D/g, '');
-  //   const maxLength = 12;
-  //   value = value.slice(0, maxLength);
-  //   const maskedValue = value.replace(/(\d{3})(\d{3})(\d{4})/, '($1) $2-$3');
-  //   input.value = maskedValue;
-  //   this.registerForm.patchValue({ phoneNumber: value });
-
-  //   if (value.trim() === '') {
-  //     this.registerForm.get('phoneNumber')?.markAsTouched();
-  //   }
-  // }
 

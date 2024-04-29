@@ -18,8 +18,8 @@ export class LoginComponent {
 
   // constructor() {}
 
-  callRegisterHandler() {
-    this.registerClicked.emit();
+  callRegisterHandler() { //Register sayfasına gecmesini saglar
+    this.registerClicked.emit(); 
   }
 
   loginForm!: FormGroup
