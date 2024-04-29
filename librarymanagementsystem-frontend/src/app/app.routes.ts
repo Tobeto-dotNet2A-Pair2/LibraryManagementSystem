@@ -11,9 +11,10 @@ import { BranchListComponent } from './features/pages/branches/branch-list/branc
 import { AddMaterialFormComponent } from './features/pages/materials/add-material-form/add-material-form.component';
 import { roleGuard } from './core/guards/role.guard';
 import { MainLayoutComponent } from './shared/layouts/main-layout/main-layout.component';
+import { MemberProfileComponent } from './features/pages/members/member-profile/member-profile.component';
 
 export const routes: Routes = [
-  { path: '', redirectTo: 'adminpage', pathMatch: 'full' },
+  { path: '', redirectTo: 'auth', pathMatch: 'full' },
    { path: 'auth', component: AuthComponent },
    {path: 'homepage', component:MainLayoutComponent},
   // { path: 'homepage', component: AdminLayoutComponent },
@@ -29,10 +30,10 @@ export const routes: Routes = [
       { path: 'dashboard', component: DashboardComponent },
       { path: 'material-lists', component: MaterialListComponent },
       { path: 'member-lists', component: MemberListComponent },
-   
       { path: 'add-branches', component: AddBranchFormComponent },
       { path: 'branch-lists', component: BranchListComponent },
       { path: 'add-material-forms', component: AddMaterialFormComponent },
+      { path: 'member-profile/:id', component: MemberProfileComponent }
       
     ],
   },
