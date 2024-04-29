@@ -12,11 +12,11 @@ using static Application.Features.PaymentMethods.Constants.PaymentMethodsOperati
 
 namespace Application.Features.PaymentMethods.Commands.Update;
 
-public class UpdatePaymentMethodCommand : IRequest<UpdatedPaymentMethodResponse>, ISecuredRequest, ICacheRemoverRequest, ILoggableRequest, ITransactionalRequest
+public class UpdatePaymentMethodCommand : IRequest<UpdatedPaymentMethodResponse>, ICacheRemoverRequest, ILoggableRequest, ITransactionalRequest //ISecuredRequest,
 {
     public Guid Id { get; set; }
+    public string Name { get; set; }
     public Guid BranchId { get; set; }
-    public string PaymentMethodName { get; set; }
 
     public string[] Roles => [Admin, Write, PaymentMethodsOperationClaims.Update];
 

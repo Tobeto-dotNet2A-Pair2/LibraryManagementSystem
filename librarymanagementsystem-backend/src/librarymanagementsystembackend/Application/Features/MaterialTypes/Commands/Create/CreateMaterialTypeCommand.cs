@@ -9,13 +9,14 @@ using NArchitecture.Core.Application.Pipelines.Logging;
 using NArchitecture.Core.Application.Pipelines.Transaction;
 using MediatR;
 using static Application.Features.MaterialTypes.Constants.MaterialTypesOperationClaims;
+using Domain.Enums;
 
 namespace Application.Features.MaterialTypes.Commands.Create;
 
-public class CreateMaterialTypeCommand : IRequest<CreatedMaterialTypeResponse>, ISecuredRequest, ICacheRemoverRequest, ILoggableRequest, ITransactionalRequest
+public class CreateMaterialTypeCommand : IRequest<CreatedMaterialTypeResponse>, ICacheRemoverRequest, ILoggableRequest, ITransactionalRequest // ISecuredRequest,
 {
-    public string MaterialTypeName { get; set; }
-    public string MaterialTypeCategory { get; set; }
+    public string Name { get; set; }
+    public MaterialFormat MaterialFormat { get; set; }
 
     public string[] Roles => [Admin, Write, MaterialTypesOperationClaims.Create];
 

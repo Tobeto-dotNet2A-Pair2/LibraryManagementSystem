@@ -12,7 +12,7 @@ using static Application.Features.MaterialCopies.Constants.MaterialCopiesOperati
 
 namespace Application.Features.MaterialCopies.Queries.GetList;
 
-public class GetListMaterialCopyQuery : IRequest<GetListResponse<GetListMaterialCopyListItemDto>>, ISecuredRequest, ICachableRequest
+public class GetListMaterialCopyQuery : IRequest<GetListResponse<GetListMaterialCopyListItemDto>>, ICachableRequest //ISecuredRequest,
 {
     public PageRequest PageRequest { get; set; }
 

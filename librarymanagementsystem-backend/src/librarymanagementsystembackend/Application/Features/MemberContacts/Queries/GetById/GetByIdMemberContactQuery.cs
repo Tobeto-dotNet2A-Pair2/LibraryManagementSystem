@@ -9,7 +9,7 @@ using static Application.Features.MemberContacts.Constants.MemberContactsOperati
 
 namespace Application.Features.MemberContacts.Queries.GetById;
 
-public class GetByIdMemberContactQuery : IRequest<GetByIdMemberContactResponse>, ISecuredRequest
+public class GetByIdMemberContactQuery : IRequest<GetByIdMemberContactResponse> //, ISecuredRequest
 {
     public Guid Id { get; set; }
 

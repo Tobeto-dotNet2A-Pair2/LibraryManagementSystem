@@ -12,10 +12,10 @@ using static Application.Features.Languages.Constants.LanguagesOperationClaims;
 
 namespace Application.Features.Languages.Commands.Update;
 
-public class UpdateLanguageCommand : IRequest<UpdatedLanguageResponse>, ISecuredRequest, ICacheRemoverRequest, ILoggableRequest, ITransactionalRequest
+public class UpdateLanguageCommand : IRequest<UpdatedLanguageResponse>, ICacheRemoverRequest, ILoggableRequest, ITransactionalRequest // ISecuredRequest,
 {
     public Guid Id { get; set; }
-    public string LanguageName { get; set; }
+    public string Name { get; set; }
 
     public string[] Roles => [Admin, Write, LanguagesOperationClaims.Update];
 

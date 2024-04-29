@@ -13,7 +13,7 @@ using static Application.Features.Publishers.Constants.PublishersOperationClaims
 
 namespace Application.Features.Publishers.Commands.Delete;
 
-public class DeletePublisherCommand : IRequest<DeletedPublisherResponse>, ISecuredRequest, ICacheRemoverRequest, ILoggableRequest, ITransactionalRequest
+public class DeletePublisherCommand : IRequest<DeletedPublisherResponse>, ICacheRemoverRequest, ILoggableRequest, ITransactionalRequest //ISecuredRequest,
 {
     public Guid Id { get; set; }
 

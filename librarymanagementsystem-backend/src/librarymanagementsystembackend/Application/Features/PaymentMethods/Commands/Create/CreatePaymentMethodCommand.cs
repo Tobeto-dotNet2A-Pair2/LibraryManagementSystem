@@ -12,10 +12,10 @@ using static Application.Features.PaymentMethods.Constants.PaymentMethodsOperati
 
 namespace Application.Features.PaymentMethods.Commands.Create;
 
-public class CreatePaymentMethodCommand : IRequest<CreatedPaymentMethodResponse>, ISecuredRequest, ICacheRemoverRequest, ILoggableRequest, ITransactionalRequest
+public class CreatePaymentMethodCommand : IRequest<CreatedPaymentMethodResponse>, ICacheRemoverRequest, ILoggableRequest, ITransactionalRequest //  ISecuredRequest,
 {
+    public string Name { get; set; }
     public Guid BranchId { get; set; }
-    public string PaymentMethodName { get; set; }
 
     public string[] Roles => [Admin, Write, PaymentMethodsOperationClaims.Create];
 

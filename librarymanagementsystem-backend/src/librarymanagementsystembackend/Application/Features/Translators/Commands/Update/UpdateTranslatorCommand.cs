@@ -12,10 +12,10 @@ using static Application.Features.Translators.Constants.TranslatorsOperationClai
 
 namespace Application.Features.Translators.Commands.Update;
 
-public class UpdateTranslatorCommand : IRequest<UpdatedTranslatorResponse>, ISecuredRequest, ICacheRemoverRequest, ILoggableRequest, ITransactionalRequest
+public class UpdateTranslatorCommand : IRequest<UpdatedTranslatorResponse>, ICacheRemoverRequest, ILoggableRequest, ITransactionalRequest //ISecuredRequest,
 {
     public Guid Id { get; set; }
-    public string TranslatorName { get; set; }
+    public string Name { get; set; }
     public string Description { get; set; }
 
     public string[] Roles => [Admin, Write, TranslatorsOperationClaims.Update];

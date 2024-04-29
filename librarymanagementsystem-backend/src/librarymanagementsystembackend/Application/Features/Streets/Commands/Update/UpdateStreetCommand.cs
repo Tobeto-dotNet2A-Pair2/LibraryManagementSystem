@@ -12,10 +12,10 @@ using static Application.Features.Streets.Constants.StreetsOperationClaims;
 
 namespace Application.Features.Streets.Commands.Update;
 
-public class UpdateStreetCommand : IRequest<UpdatedStreetResponse>, ISecuredRequest, ICacheRemoverRequest, ILoggableRequest, ITransactionalRequest
+public class UpdateStreetCommand : IRequest<UpdatedStreetResponse>, ICacheRemoverRequest, ILoggableRequest, ITransactionalRequest // ISecuredRequest,
 {
     public Guid Id { get; set; }
-    public string StreetName { get; set; }
+    public string Name { get; set; }
     public Guid NeighborhoodId { get; set; }
 
     public string[] Roles => [Admin, Write, StreetsOperationClaims.Update];

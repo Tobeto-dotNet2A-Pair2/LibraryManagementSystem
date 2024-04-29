@@ -12,7 +12,7 @@ using static Application.Features.Authors.Constants.AuthorsOperationClaims;
 
 namespace Application.Features.Authors.Queries.GetList;
 
-public class GetListAuthorQuery : IRequest<GetListResponse<GetListAuthorListItemDto>>, ISecuredRequest, ICachableRequest
+public class GetListAuthorQuery : IRequest<GetListResponse<GetListAuthorListItemDto>>, ICachableRequest // ISecuredRequest,
 {
     public PageRequest PageRequest { get; set; }
 

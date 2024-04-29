@@ -12,9 +12,9 @@ using static Application.Features.BorrowedMaterials.Constants.BorrowedMaterialsO
 
 namespace Application.Features.BorrowedMaterials.Commands.Create;
 
-public class CreateBorrowedMaterialCommand : IRequest<CreatedBorrowedMaterialResponse>, ISecuredRequest, ICacheRemoverRequest, ILoggableRequest, ITransactionalRequest
+public class CreateBorrowedMaterialCommand : IRequest<CreatedBorrowedMaterialResponse>, ICacheRemoverRequest, ILoggableRequest, ITransactionalRequest //ISecuredRequest,
 {
-    public DateTime BorrowDate { get; set; }
+    public DateTime BorrowedDate { get; set; }
     public DateTime ReturnDate { get; set; }
     public bool IsReturned { get; set; }
     public Guid MemberId { get; set; }

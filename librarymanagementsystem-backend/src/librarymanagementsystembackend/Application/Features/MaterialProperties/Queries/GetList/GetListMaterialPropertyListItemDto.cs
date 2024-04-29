@@ -5,5 +5,5 @@ namespace Application.Features.MaterialProperties.Queries.GetList;
 public class GetListMaterialPropertyListItemDto : IDto
 {
     public Guid Id { get; set; }
-    public string MaterialPropertyName { get; set; }
+    public string Name { get; set; }
 }

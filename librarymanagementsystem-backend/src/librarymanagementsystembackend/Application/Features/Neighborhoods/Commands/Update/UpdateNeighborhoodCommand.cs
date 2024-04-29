@@ -12,10 +12,10 @@ using static Application.Features.Neighborhoods.Constants.NeighborhoodsOperation
 
 namespace Application.Features.Neighborhoods.Commands.Update;
 
-public class UpdateNeighborhoodCommand : IRequest<UpdatedNeighborhoodResponse>, ISecuredRequest, ICacheRemoverRequest, ILoggableRequest, ITransactionalRequest
+public class UpdateNeighborhoodCommand : IRequest<UpdatedNeighborhoodResponse>, ICacheRemoverRequest, ILoggableRequest, ITransactionalRequest //ISecuredRequest,
 {
     public Guid Id { get; set; }
-    public string NeighborhoodName { get; set; }
+    public string Name { get; set; }
     public Guid DistrictId { get; set; }
 
     public string[] Roles => [Admin, Write, NeighborhoodsOperationClaims.Update];

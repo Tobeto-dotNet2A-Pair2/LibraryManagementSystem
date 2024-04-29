@@ -11,14 +11,12 @@ public class MaterialTypeConfiguration : IEntityTypeConfiguration<MaterialType>
         builder.ToTable("MaterialTypes").HasKey(mt => mt.Id);
 
         builder.Property(mt => mt.Id).HasColumnName("Id").IsRequired();
-        builder.Property(mt => mt.MaterialTypeName).HasColumnName("MaterialTypeName");
-        builder.Property(mt => mt.MaterialTypeCategory).HasColumnName("MaterialTypeCategory");
+        builder.Property(mt => mt.Name).HasColumnName("Name");
+        builder.Property(mt => mt.MaterialFormat).HasColumnName("MaterialFormat");
         builder.Property(mt => mt.CreatedDate).HasColumnName("CreatedDate").IsRequired();
         builder.Property(mt => mt.UpdatedDate).HasColumnName("UpdatedDate");
         builder.Property(mt => mt.DeletedDate).HasColumnName("DeletedDate");
 
-
-        builder.HasMany(mt => mt.MaterialPropertyValues);
         builder.HasQueryFilter(mt => !mt.DeletedDate.HasValue);
     }
 }

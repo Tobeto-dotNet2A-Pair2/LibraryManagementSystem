@@ -5,5 +5,5 @@ namespace Application.Features.MaterialProperties.Queries.GetById;
 public class GetByIdMaterialPropertyResponse : IResponse
 {
     public Guid Id { get; set; }
-    public string MaterialPropertyName { get; set; }
+    public string Name { get; set; }
 }

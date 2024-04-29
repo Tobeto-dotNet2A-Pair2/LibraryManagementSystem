@@ -1,0 +1,51 @@
+<form [ngClass]="{'signin': showRegisterForm}" [formGroup]="registerForm" (submit)="onSubmit()" >
+    <h2>Üye Ol</h2>
+    <div class="inputbox">
+        <input formControlName="firstName" type="text" required>
+        <label for="">İsim</label>
+    </div>
+    <div class="inputbox">
+        <input formControlName="lastName" type="text" required>
+        <label for="">Soyisim</label>
+    </div>
+    <div class="inputbox">
+        <input type="text" formControlName="tc" (input)="maskTcNumber($event)" required>
+        <label for="tc">TC</label>
+      </div>
+    
+   
+ <div class="inputbox">
+    <input type="text" formControlName="phoneNumber" (input)="maskPhoneNumber($event)" required>
+    <label for="phoneNumber">Telefon</label>
+  </div>
+  <div class="inputbox">
+    <input formControlName="email" type="email" required>
+    <label for="email">Email</label>
+</div>
+   
+     
+        
+        <div *ngIf="registerForm.get('email')?.invalid && (registerForm.get('email')?.dirty || registerForm.get('email')?.touched)">
+            <div *ngIf="registerForm.get('email')?.errors?.['email']">
+              Geçerli bir e-posta adresi giriniz.
+            </div>
+        
+    </div>
+
+    <div class="inputbox">
+        <input formControlName="password" type="password" required>
+        <label for="password">Şifre</label>
+      </div>
+      <div class="inputbox">
+        <input formControlName="confirmPassword" type="password" required>
+        <label for="confirmPassword">Tekrar Şifre</label>
+        <div *ngIf="registerForm.hasError('passwordMismatch') && registerForm.get('confirmPassword')?.touched">
+          Şifreler eşleşmiyor.
+        </div>
+    </div>
+    <button type="submit">Üye Ol</button>
+    <div class="register">
+        <p>Hesabın var mı?<a href="#" (click)="callLoginHandler(); $event.preventDefault();"> giriş yap</a></p>
+    </div>
+
+</form>

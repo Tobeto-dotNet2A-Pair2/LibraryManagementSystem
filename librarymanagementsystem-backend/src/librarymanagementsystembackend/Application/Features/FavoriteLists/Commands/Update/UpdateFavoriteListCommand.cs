@@ -12,10 +12,10 @@ using static Application.Features.FavoriteLists.Constants.FavoriteListsOperation
 
 namespace Application.Features.FavoriteLists.Commands.Update;
 
-public class UpdateFavoriteListCommand : IRequest<UpdatedFavoriteListResponse>, ISecuredRequest, ICacheRemoverRequest, ILoggableRequest, ITransactionalRequest
+public class UpdateFavoriteListCommand : IRequest<UpdatedFavoriteListResponse>, ICacheRemoverRequest, ILoggableRequest, ITransactionalRequest //ISecuredRequest,
 {
     public Guid Id { get; set; }
-    public string ListName { get; set; }
+    public string Name { get; set; }
     public Guid MemberId { get; set; }
 
     public string[] Roles => [Admin, Write, FavoriteListsOperationClaims.Update];

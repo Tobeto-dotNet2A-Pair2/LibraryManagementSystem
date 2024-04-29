@@ -9,7 +9,7 @@ using static Application.Features.MaterialCopies.Constants.MaterialCopiesOperati
 
 namespace Application.Features.MaterialCopies.Queries.GetById;
 
-public class GetByIdMaterialCopyQuery : IRequest<GetByIdMaterialCopyResponse>, ISecuredRequest
+public class GetByIdMaterialCopyQuery : IRequest<GetByIdMaterialCopyResponse>//, ISecuredRequest
 {
     public Guid Id { get; set; }
 

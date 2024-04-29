@@ -12,15 +12,15 @@ using static Application.Features.Locations.Constants.LocationsOperationClaims;
 
 namespace Application.Features.Locations.Commands.Update;
 
-public class UpdateLocationCommand : IRequest<UpdatedLocationResponse>, ISecuredRequest, ICacheRemoverRequest, ILoggableRequest, ITransactionalRequest
+public class UpdateLocationCommand : IRequest<UpdatedLocationResponse>, ICacheRemoverRequest, ILoggableRequest, ITransactionalRequest //ISecuredRequest,
 {
     public Guid Id { get; set; }
-    public string ShelfLineNumber { get; set; }
-    public string ShelfFloor { get; set; }
-    public string Shelf { get; set; }
-    public string Corridor { get; set; }
-    public string Floor { get; set; }
-    public string FullLocationMap { get; set; }
+    public string? ShelfLineNumber { get; set; }
+    public string? ShelfFloor { get; set; }
+    public string? Shelf { get; set; }
+    public string? Corridor { get; set; }
+    public string? Floor { get; set; }
+    public string? FullLocationMap { get; set; }
 
     public string[] Roles => [Admin, Write, LocationsOperationClaims.Update];
 

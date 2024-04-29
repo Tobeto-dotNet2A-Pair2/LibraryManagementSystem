@@ -1,15 +1,13 @@
 ﻿using NArchitecture.Core.Persistence.Repositories;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Domain.Entities;
 public class Library: Entity<Guid>
 {
-    public string LibraryName { get; set; }
-   
+    public string Name { get; set; }
+    public Library() { }
+
+    public Library(string name) {  Name = name; }
+
     public virtual MemberContact MemberContact { get; set; }
     public virtual ICollection<Branch> Branches { get; set; }
 

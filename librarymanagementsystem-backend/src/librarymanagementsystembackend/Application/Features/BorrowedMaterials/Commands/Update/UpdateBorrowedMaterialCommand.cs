@@ -12,10 +12,10 @@ using static Application.Features.BorrowedMaterials.Constants.BorrowedMaterialsO
 
 namespace Application.Features.BorrowedMaterials.Commands.Update;
 
-public class UpdateBorrowedMaterialCommand : IRequest<UpdatedBorrowedMaterialResponse>, ISecuredRequest, ICacheRemoverRequest, ILoggableRequest, ITransactionalRequest
+public class UpdateBorrowedMaterialCommand : IRequest<UpdatedBorrowedMaterialResponse>, ICacheRemoverRequest, ILoggableRequest, ITransactionalRequest // ISecuredRequest,
 {
     public Guid Id { get; set; }
-    public DateTime BorrowDate { get; set; }
+    public DateTime BorrowedDate { get; set; }
     public DateTime ReturnDate { get; set; }
     public bool IsReturned { get; set; }
     public Guid MemberId { get; set; }

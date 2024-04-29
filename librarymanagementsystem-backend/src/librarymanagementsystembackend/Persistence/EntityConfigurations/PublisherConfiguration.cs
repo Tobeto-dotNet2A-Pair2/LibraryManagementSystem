@@ -11,14 +11,12 @@ public class PublisherConfiguration : IEntityTypeConfiguration<Publisher>
         builder.ToTable("Publishers").HasKey(p => p.Id);
 
         builder.Property(p => p.Id).HasColumnName("Id").IsRequired();
-        builder.Property(p => p.PublisherName).HasColumnName("PublisherName");
+        builder.Property(p => p.Name).HasColumnName("Name");
         builder.Property(p => p.PublicationPlace).HasColumnName("PublicationPlace");
         builder.Property(p => p.CreatedDate).HasColumnName("CreatedDate").IsRequired();
         builder.Property(p => p.UpdatedDate).HasColumnName("UpdatedDate");
         builder.Property(p => p.DeletedDate).HasColumnName("DeletedDate");
 
-
-        builder.HasMany(p => p.Materials);
         builder.HasQueryFilter(p => !p.DeletedDate.HasValue);
     }
 }

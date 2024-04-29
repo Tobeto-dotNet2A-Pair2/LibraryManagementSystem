@@ -12,11 +12,11 @@ using static Application.Features.Branches.Constants.BranchesOperationClaims;
 
 namespace Application.Features.Branches.Commands.Create;
 
-public class CreateBranchCommand : IRequest<CreatedBranchResponse>, ISecuredRequest, ICacheRemoverRequest, ILoggableRequest, ITransactionalRequest
+public class CreateBranchCommand : IRequest<CreatedBranchResponse>, ICacheRemoverRequest, ILoggableRequest, ITransactionalRequest //ISecuredRequest,
 {
-    public string BranchName { get; set; }
+    public string Name { get; set; }
     public DateTime WorkingHours { get; set; }
-    public string Telephone { get; set; }
+    public string PhoneNumber { get; set; }
     public string? WebSiteUrl { get; set; }
     public Guid AddressId { get; set; }
     public Guid LibraryId { get; set; }

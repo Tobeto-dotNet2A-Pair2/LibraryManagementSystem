@@ -12,7 +12,7 @@ using static Application.Features.Publishers.Constants.PublishersOperationClaims
 
 namespace Application.Features.Publishers.Queries.GetList;
 
-public class GetListPublisherQuery : IRequest<GetListResponse<GetListPublisherListItemDto>>, ISecuredRequest, ICachableRequest
+public class GetListPublisherQuery : IRequest<GetListResponse<GetListPublisherListItemDto>>, ICachableRequest // ISecuredRequest,
 {
     public PageRequest PageRequest { get; set; }
 

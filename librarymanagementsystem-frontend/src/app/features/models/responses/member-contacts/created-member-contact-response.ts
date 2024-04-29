@@ -1,0 +1,9 @@
+export interface CreatedMemberContactResponse {
+	id: string;
+	askLibrarianTopic: string;
+	askLibrarianDescription: string;
+	message: string;
+	memberId: string;
+	libraryId: string;
+    createdDate: Date;
+}

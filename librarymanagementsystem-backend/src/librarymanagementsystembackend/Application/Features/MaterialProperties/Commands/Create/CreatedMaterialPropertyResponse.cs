@@ -5,5 +5,5 @@ namespace Application.Features.MaterialProperties.Commands.Create;
 public class CreatedMaterialPropertyResponse : IResponse
 {
     public Guid Id { get; set; }
-    public string MaterialPropertyName { get; set; }
+    public string Name { get; set; }
 }

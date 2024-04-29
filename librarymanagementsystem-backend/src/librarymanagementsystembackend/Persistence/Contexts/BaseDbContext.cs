@@ -39,6 +39,16 @@ public class BaseDbContext : DbContext
     public DbSet<MaterialPropertyValue> MaterialPropertyValues { get; set; }
     public DbSet<MaterialType> MaterialTypes { get; set; }
     public DbSet<MemberContact> MemberContacts { get; set; }
+    public DbSet<AuthorMaterial> AuthorMaterials { get; set; }
+    public DbSet<FavoriteListMaterial> FavoriteListMaterials { get; set; }
+    public DbSet<LanguageMaterial> LanguageMaterials { get; set; }
+    public DbSet<MemberAddress> MemberAddresses { get; set; }
+    public DbSet<MemberNotification> MemberNotifications { get; set; }
+    public DbSet<PublisherMaterial> PublisherMaterials { get; set; }
+    public DbSet<TranslatorMaterial> TranslatorMaterials { get; set; }
+    public DbSet<Genre> Genres { get; set; }
+    public DbSet<MaterialGenre> MaterialGenres { get; set; }
+    public DbSet<MaterialImage> MaterialImages { get; set; }
 
     public BaseDbContext(DbContextOptions dbContextOptions, IConfiguration configuration)
         : base(dbContextOptions)

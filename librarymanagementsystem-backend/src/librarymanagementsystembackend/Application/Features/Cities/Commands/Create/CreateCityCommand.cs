@@ -12,9 +12,9 @@ using static Application.Features.Cities.Constants.CitiesOperationClaims;
 
 namespace Application.Features.Cities.Commands.Create;
 
-public class CreateCityCommand : IRequest<CreatedCityResponse>, ISecuredRequest, ICacheRemoverRequest, ILoggableRequest, ITransactionalRequest
+public class CreateCityCommand : IRequest<CreatedCityResponse>, ICacheRemoverRequest, ILoggableRequest, ITransactionalRequest //ISecuredRequest,
 {
-    public string CityName { get; set; }
+    public string Name { get; set; }
 
     public string[] Roles => [Admin, Write, CitiesOperationClaims.Create];
 

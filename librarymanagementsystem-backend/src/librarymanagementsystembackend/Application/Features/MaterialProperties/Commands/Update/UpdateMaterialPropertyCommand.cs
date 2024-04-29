@@ -12,10 +12,10 @@ using static Application.Features.MaterialProperties.Constants.MaterialPropertie
 
 namespace Application.Features.MaterialProperties.Commands.Update;
 
-public class UpdateMaterialPropertyCommand : IRequest<UpdatedMaterialPropertyResponse>, ISecuredRequest, ICacheRemoverRequest, ILoggableRequest, ITransactionalRequest
+public class UpdateMaterialPropertyCommand : IRequest<UpdatedMaterialPropertyResponse>, ICacheRemoverRequest, ILoggableRequest, ITransactionalRequest //ISecuredRequest,
 {
     public Guid Id { get; set; }
-    public string MaterialPropertyName { get; set; }
+    public string Name { get; set; }
 
     public string[] Roles => [Admin, Write, MaterialPropertiesOperationClaims.Update];
 

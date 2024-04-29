@@ -1,17 +1,19 @@
 ﻿using NArchitecture.Core.Persistence.Repositories;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Domain.Entities;
 public class Street : Entity<Guid>
 {
-    public string StreetName { get; set; }
-
+    public string Name { get; set; }
     public Guid NeighborhoodId { get; set; }
+    public Street() { }
 
-    public virtual ICollection <Address> Addresses { get; set; } 
+    public Street(string name, Guid neighborhoodId)
+    {
+        Name = name;
+        NeighborhoodId = neighborhoodId;
+    }
+
     public virtual Neighborhood Neighborhood { get; set; }
+    public virtual ICollection<Address> Addresses { get; set; }
+   
 }

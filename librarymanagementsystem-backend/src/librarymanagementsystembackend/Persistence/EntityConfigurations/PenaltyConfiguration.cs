@@ -11,15 +11,12 @@ public class PenaltyConfiguration : IEntityTypeConfiguration<Penalty>
         builder.ToTable("Penalties").HasKey(p => p.Id);
 
         builder.Property(p => p.Id).HasColumnName("Id").IsRequired();
-        builder.Property(p => p.TotalMaterialPenalty).HasColumnName("TotalMaterialPenalty");
+        builder.Property(p => p.TotalMaterialDebt).HasColumnName("TotalMaterialDebt").HasPrecision(18, 2); 
         builder.Property(p => p.DayDelay).HasColumnName("DayDelay");
         builder.Property(p => p.BorrowedMaterialId).HasColumnName("BorrowedMaterialId");
         builder.Property(p => p.CreatedDate).HasColumnName("CreatedDate").IsRequired();
         builder.Property(p => p.UpdatedDate).HasColumnName("UpdatedDate");
         builder.Property(p => p.DeletedDate).HasColumnName("DeletedDate");
-
-
-        builder.HasOne(p => p.BorrowedMaterial);
 
         builder.HasQueryFilter(p => !p.DeletedDate.HasValue);
     }

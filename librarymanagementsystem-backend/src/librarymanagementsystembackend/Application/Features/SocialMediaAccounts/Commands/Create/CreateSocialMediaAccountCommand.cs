@@ -12,11 +12,11 @@ using static Application.Features.SocialMediaAccounts.Constants.SocialMediaAccou
 
 namespace Application.Features.SocialMediaAccounts.Commands.Create;
 
-public class CreateSocialMediaAccountCommand : IRequest<CreatedSocialMediaAccountResponse>, ISecuredRequest, ICacheRemoverRequest, ILoggableRequest, ITransactionalRequest
+public class CreateSocialMediaAccountCommand : IRequest<CreatedSocialMediaAccountResponse>, ICacheRemoverRequest, ILoggableRequest, ITransactionalRequest // ISecuredRequest,
 {
     public Guid BranchId { get; set; }
-    public string SocialMediaAccountLogo { get; set; }
-    public string? SocialMediaAccountUrl { get; set; }
+    public string Logo { get; set; }
+    public string Url { get; set; }
 
     public string[] Roles => [Admin, Write, SocialMediaAccountsOperationClaims.Create];
 

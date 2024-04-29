@@ -6,9 +6,10 @@ public class CreateMemberContactCommandValidator : AbstractValidator<CreateMembe
 {
     public CreateMemberContactCommandValidator()
     {
-        RuleFor(c => c.AskLibrarianTopic).NotEmpty().MinimumLength(2).MaximumLength(150);
-        RuleFor(c => c.AskLibrarianDescription).NotEmpty().MinimumLength(2).MaximumLength(1000);
-        RuleFor(c => c.Messages).NotEmpty().MinimumLength(2).MaximumLength(1000);
+        RuleFor(c => c.AskLibrarianTopic).NotEmpty().Length(2, 150);
+        RuleFor(c => c.AskLibrarianDescription).NotEmpty().Length(2, 1000);
+        RuleFor(c => c.Message).NotEmpty().Length(2, 1000);
         RuleFor(c => c.MemberId).NotEmpty();
+        RuleFor(c => c.LibraryId).NotEmpty();
     }
 }

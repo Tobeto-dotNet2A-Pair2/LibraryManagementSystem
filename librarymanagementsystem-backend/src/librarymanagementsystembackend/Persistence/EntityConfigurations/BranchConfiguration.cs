@@ -11,9 +11,9 @@ public class BranchConfiguration : IEntityTypeConfiguration<Branch>
         builder.ToTable("Branches").HasKey(b => b.Id);
 
         builder.Property(b => b.Id).HasColumnName("Id").IsRequired();
-        builder.Property(b => b.BranchName).HasColumnName("BranchName");
+        builder.Property(b => b.Name).HasColumnName("Name");
         builder.Property(b => b.WorkingHours).HasColumnName("WorkingHours");
-        builder.Property(b => b.Telephone).HasColumnName("Telephone");
+        builder.Property(b => b.PhoneNumber).HasColumnName("PhoneNumber");
         builder.Property(b => b.WebSiteUrl).HasColumnName("WebSiteUrl");
         builder.Property(b => b.AddressId).HasColumnName("AddressId");
         builder.Property(b => b.LibraryId).HasColumnName("LibraryId");
@@ -21,12 +21,6 @@ public class BranchConfiguration : IEntityTypeConfiguration<Branch>
         builder.Property(b => b.UpdatedDate).HasColumnName("UpdatedDate");
         builder.Property(b => b.DeletedDate).HasColumnName("DeletedDate");
 
-
-        builder.HasMany(b => b.MaterialCopies);
-        builder.HasOne(b => b.Address);
-        builder.HasOne(b => b.Library);
-        builder.HasMany(b => b.PaymentMethods);
-        builder.HasMany(b => b.SocialMediaAccounts);
         builder.HasQueryFilter(b => !b.DeletedDate.HasValue);
     }
 }

@@ -12,9 +12,9 @@ using static Application.Features.Penalties.Constants.PenaltiesOperationClaims;
 
 namespace Application.Features.Penalties.Commands.Create;
 
-public class CreatePenaltyCommand : IRequest<CreatedPenaltyResponse>, ISecuredRequest, ICacheRemoverRequest, ILoggableRequest, ITransactionalRequest
+public class CreatePenaltyCommand : IRequest<CreatedPenaltyResponse>, ICacheRemoverRequest, ILoggableRequest, ITransactionalRequest //ISecuredRequest,
 {
-    public decimal? TotalMaterialPenalty { get; set; }
+    public decimal TotalMaterialDebt { get; set; }
     public int DayDelay { get; set; }
     public Guid BorrowedMaterialId { get; set; }
 

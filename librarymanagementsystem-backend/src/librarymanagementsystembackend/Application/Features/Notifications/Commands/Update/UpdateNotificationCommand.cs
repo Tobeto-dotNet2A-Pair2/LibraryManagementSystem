@@ -12,11 +12,11 @@ using static Application.Features.Notifications.Constants.NotificationsOperation
 
 namespace Application.Features.Notifications.Commands.Update;
 
-public class UpdateNotificationCommand : IRequest<UpdatedNotificationResponse>, ISecuredRequest, ICacheRemoverRequest, ILoggableRequest, ITransactionalRequest
+public class UpdateNotificationCommand : IRequest<UpdatedNotificationResponse>, ICacheRemoverRequest, ILoggableRequest, ITransactionalRequest //ISecuredRequest,
 {
     public Guid Id { get; set; }
-    public string NotificationType { get; set; }
-    public DateTime NotificationDate { get; set; }
+    public string Type { get; set; }
+    public DateTime SendingDate { get; set; }
     public string Message { get; set; }
     public string Status { get; set; }
 

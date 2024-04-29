@@ -12,12 +12,12 @@ using static Application.Features.SocialMediaAccounts.Constants.SocialMediaAccou
 
 namespace Application.Features.SocialMediaAccounts.Commands.Update;
 
-public class UpdateSocialMediaAccountCommand : IRequest<UpdatedSocialMediaAccountResponse>, ISecuredRequest, ICacheRemoverRequest, ILoggableRequest, ITransactionalRequest
+public class UpdateSocialMediaAccountCommand : IRequest<UpdatedSocialMediaAccountResponse>, ICacheRemoverRequest, ILoggableRequest, ITransactionalRequest //ISecuredRequest,
 {
     public Guid Id { get; set; }
     public Guid BranchId { get; set; }
-    public string SocialMediaAccountLogo { get; set; }
-    public string? SocialMediaAccountUrl { get; set; }
+    public string Logo { get; set; }
+    public string Url { get; set; }
 
     public string[] Roles => [Admin, Write, SocialMediaAccountsOperationClaims.Update];
 

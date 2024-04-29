@@ -12,11 +12,11 @@ using static Application.Features.Authors.Constants.AuthorsOperationClaims;
 
 namespace Application.Features.Authors.Commands.Create;
 
-public class CreateAuthorCommand : IRequest<CreatedAuthorResponse>, ISecuredRequest, ICacheRemoverRequest, ILoggableRequest, ITransactionalRequest
+public class CreateAuthorCommand : IRequest<CreatedAuthorResponse>, ICacheRemoverRequest, ILoggableRequest, ITransactionalRequest // ISecuredRequest,
 {
     public string FirstName { get; set; }
     public string LastName { get; set; }
-    public string AuthorCountry { get; set; }
+    public string Country { get; set; }
 
     public string[] Roles => [Admin, Write, AuthorsOperationClaims.Create];
 

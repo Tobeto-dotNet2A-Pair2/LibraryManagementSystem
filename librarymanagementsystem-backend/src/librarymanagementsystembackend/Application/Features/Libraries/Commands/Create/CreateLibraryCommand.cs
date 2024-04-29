@@ -12,9 +12,9 @@ using static Application.Features.Libraries.Constants.LibrariesOperationClaims;
 
 namespace Application.Features.Libraries.Commands.Create;
 
-public class CreateLibraryCommand : IRequest<CreatedLibraryResponse>, ISecuredRequest, ICacheRemoverRequest, ILoggableRequest, ITransactionalRequest
+public class CreateLibraryCommand : IRequest<CreatedLibraryResponse>, ICacheRemoverRequest, ILoggableRequest, ITransactionalRequest // ISecuredRequest,
 {
-    public string LibraryName { get; set; }
+    public string Name { get; set; }
 
     public string[] Roles => [Admin, Write, LibrariesOperationClaims.Create];
 
