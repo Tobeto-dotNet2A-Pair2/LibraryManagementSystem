@@ -1,5 +1,7 @@
 using Application.Features.Addresses.Constants;
+using Application.Features.Addresses.Dtos;
 using Application.Features.Addresses.Rules;
+using Application.Features.MaterialProperties.Queries.GetList;
 using Application.Services.Repositories;
 using AutoMapper;
 using Domain.Entities;
@@ -14,7 +16,14 @@ namespace Application.Features.Addresses.Commands.Create;
 
 public class CreateAddressCommand : IRequest<CreatedAddressResponse>, ICacheRemoverRequest, ILoggableRequest, ITransactionalRequest // ISecuredRequest,
 {
+    public CreateAddressCommand()
+    {
+        District = new CreateAddressDistrictDto();
+    }
     public Guid StreetId { get; set; }
+    public CreateAddressDistrictDto District { get; set; }
+    
+    public CreateAddressDistrictDto District2 { get; set; }
     public string Name { get; set; }
     public string Description { get; set; }
 

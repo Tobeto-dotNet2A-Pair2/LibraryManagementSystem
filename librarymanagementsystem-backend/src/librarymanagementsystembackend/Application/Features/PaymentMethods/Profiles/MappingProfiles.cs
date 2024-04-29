@@ -1,3 +1,4 @@
+using Application.Features.Branches.Commands.Create;
 using Application.Features.PaymentMethods.Commands.Create;
 using Application.Features.PaymentMethods.Commands.Delete;
 using Application.Features.PaymentMethods.Commands.Update;
@@ -23,5 +24,10 @@ public class MappingProfiles : Profile
         CreateMap<PaymentMethod, GetByIdPaymentMethodResponse>().ReverseMap();
         CreateMap<PaymentMethod, GetListPaymentMethodListItemDto>().ReverseMap();
         CreateMap<IPaginate<PaymentMethod>, GetListResponse<GetListPaymentMethodListItemDto>>().ReverseMap();
+
+        //Örnek
+        CreateMap<PaymentMethod, PaymentMethodDto>()
+            .ForMember(a => a.Name, src => src.MapFrom(a => a.Name))
+            .ForMember(a=> a.Branch,src=> src.MapFrom(a=> a.Branch));
     }
 }

@@ -14,12 +14,21 @@ namespace Application.Features.Branches.Commands.Create;
 
 public class CreateBranchCommand : IRequest<CreatedBranchResponse>, ICacheRemoverRequest, ILoggableRequest, ITransactionalRequest //ISecuredRequest,
 {
+    public CreateBranchCommand()
+    {
+        PaymentMethods = new List<PaymentMethodDto>();
+    }
     public string Name { get; set; }
     public DateTime WorkingHours { get; set; }
     public string PhoneNumber { get; set; }
     public string? WebSiteUrl { get; set; }
     public Guid AddressId { get; set; }
     public Guid LibraryId { get; set; }
+    
+    //Liste
+    public List<PaymentMethodDto> PaymentMethods { get; set; }
+    // Tekil
+    public AddressDto Address { get; set; }
 
     public string[] Roles => [Admin, Write, BranchesOperationClaims.Create];
 
@@ -44,6 +53,12 @@ public class CreateBranchCommand : IRequest<CreatedBranchResponse>, ICacheRemove
         public async Task<CreatedBranchResponse> Handle(CreateBranchCommand request, CancellationToken cancellationToken)
         {
             Branch branch = _mapper.Map<Branch>(request);
+            
+            /// Address mapping
+           branch.Address = _mapper.Map<Address>(request.Address);
+            
+            ///Payment Mapping
+            branch.PaymentMethods = _mapper.Map<List<PaymentMethod>>(request.PaymentMethods);
 
             await _branchRepository.AddAsync(branch);
 
