@@ -1,16 +1,16 @@
-<form [ngClass]="{'signin': showRegisterForm}" [formGroup]="registerForm" (submit)="onSubmit()" >
+<form [ngClass]="{'signin': showRegisterForm}" [formGroup]="registerForm" (submit)="register()" >
     <h2>Üye Ol</h2>
     <div class="inputbox">
         <input formControlName="firstName" type="text" required>
-        <label for="">İsim</label>
+        <label for="firstName">İsim</label>
     </div>
     <div class="inputbox">
         <input formControlName="lastName" type="text" required>
-        <label for="">Soyisim</label>
+        <label for="lastName">Soyisim</label>
     </div>
     <div class="inputbox">
-        <input type="text" formControlName="tc" (input)="maskTcNumber($event)" required>
-        <label for="tc">TC</label>
+        <input type="text" formControlName="nationalIdentity" (input)="maskTcNumber($event)" required>
+        <label for="nationalIdentity">TC</label>
       </div>
     
    

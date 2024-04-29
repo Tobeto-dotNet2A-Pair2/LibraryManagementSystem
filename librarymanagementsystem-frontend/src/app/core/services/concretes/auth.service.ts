@@ -10,6 +10,7 @@ import { UserForRegisterResponse } from '../../../features/models/responses/user
 import { UserForLoginRequest } from '../../../features/models/requests/users/user-for-login-request';
 import { AccessTokenModel } from '../../../features/models/responses/users/access-token-model';
 import { TokenModel } from '../../../features/models/responses/users/token-model';
+import { UserRequest } from '../../../features/models/requests/users/user-request';
 
 
 
@@ -24,19 +25,20 @@ export class AuthService extends AuthBaseService {
   claims:string[]=[]
 
 
-  private  apiUrl:string = `${environment.API_URL}/auth`;
+  private  apiUrl:string = `${environment.API_URL}/Auth`;
   constructor(private httpClient:HttpClient,private storageService:LocalStorageService) {super() }
 
-  override register(userforRegisterRequest: UserForRegisterRequest)
+  override register(userforRegisterRequest: UserForRegisterRequest<UserRequest>)
       :Observable<UserForRegisterResponse> {
-    return this.httpClient.post<UserForRegisterResponse>(`${this.apiUrl}/register`,userforRegisterRequest)
+     
+    return this.httpClient.post<UserForRegisterResponse>(`${this.apiUrl}/Register`,userforRegisterRequest)
   }
 
   login(userLoginRequest:UserForLoginRequest)
-                        :Observable<AccessTokenModel<TokenModel>>
+      :Observable<AccessTokenModel<TokenModel>>
 
   {
-    return this.httpClient.post<AccessTokenModel<TokenModel>>(`${this.apiUrl}/login`,userLoginRequest)
+    return this.httpClient.post<AccessTokenModel<TokenModel>>(`${this.apiUrl}/Login`,userLoginRequest)
     .pipe(map(response=>{
         this.storageService.setToken(response.accessToken.token);
       alert("Giriş yapıldı")
