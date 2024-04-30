@@ -1,5 +1,6 @@
 using Application.Features.MaterialImages.Constants;
 using Application.Features.MaterialImages.Rules;
+using Application.Services.ImageService;
 using Application.Services.Repositories;
 using AutoMapper;
 using Domain.Entities;
@@ -8,13 +9,14 @@ using NArchitecture.Core.Application.Pipelines.Caching;
 using NArchitecture.Core.Application.Pipelines.Logging;
 using NArchitecture.Core.Application.Pipelines.Transaction;
 using MediatR;
+using Microsoft.AspNetCore.Http;
 using static Application.Features.MaterialImages.Constants.MaterialImagesOperationClaims;
 
 namespace Application.Features.MaterialImages.Commands.Create;
 
 public class CreateMaterialImageCommand : IRequest<CreatedMaterialImageResponse>, ICacheRemoverRequest, ILoggableRequest, ITransactionalRequest // ISecuredRequest,
 {
-    public string Url { get; set; }
+    public IFormFile Image { get; set; }
     public Guid MaterialId { get; set; }
 
     public string[] Roles => [Admin, Write, MaterialImagesOperationClaims.Create];
@@ -28,18 +30,27 @@ public class CreateMaterialImageCommand : IRequest<CreatedMaterialImageResponse>
         private readonly IMapper _mapper;
         private readonly IMaterialImageRepository _materialImageRepository;
         private readonly MaterialImageBusinessRules _materialImageBusinessRules;
+        private readonly ImageServiceBase _imageServiceBase;
 
         public CreateMaterialImageCommandHandler(IMapper mapper, IMaterialImageRepository materialImageRepository,
-                                         MaterialImageBusinessRules materialImageBusinessRules)
+                                         MaterialImageBusinessRules materialImageBusinessRules, ImageServiceBase imageServiceBase)
         {
             _mapper = mapper;
             _materialImageRepository = materialImageRepository;
             _materialImageBusinessRules = materialImageBusinessRules;
+            _imageServiceBase = imageServiceBase;
         }
 
         public async Task<CreatedMaterialImageResponse> Handle(CreateMaterialImageCommand request, CancellationToken cancellationToken)
         {
-            MaterialImage materialImage = _mapper.Map<MaterialImage>(request);
+            string url = await _imageServiceBase.UploadAsync(request.Image);
+
+
+            MaterialImage materialImage = new MaterialImage()
+            {
+                Url = url,
+                MaterialId = request.MaterialId
+            };
 
             await _materialImageRepository.AddAsync(materialImage);
 

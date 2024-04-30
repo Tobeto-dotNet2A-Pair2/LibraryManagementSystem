@@ -5,11 +5,12 @@ import { UserForRegisterResponse } from '../../../features/models/responses/user
 import { UserForLoginRequest } from '../../../features/models/requests/users/user-for-login-request';
 import { AccessTokenModel } from '../../../features/models/responses/users/access-token-model';
 import { TokenModel } from '../../../features/models/responses/users/token-model';
+import { UserRequest } from '../../../features/models/requests/users/user-request';
 
 @Injectable()
 export abstract class AuthBaseService {
   abstract register(
-    userforRegisterRequest: UserForRegisterRequest
+    userforRegisterRequest: UserForRegisterRequest<UserRequest>
   ): Observable<UserForRegisterResponse>;
   abstract login(
     userLoginRequest: UserForLoginRequest
