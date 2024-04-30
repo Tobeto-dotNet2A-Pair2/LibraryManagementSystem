@@ -125,7 +125,7 @@
             />
             <ng-template #defaultImage>
             <img
-            src='assets/images/user.png'
+            src='assets/media/avatars/blank.png'
             class="w-35px me-3"
             alt=""
           /></ng-template>
@@ -133,7 +133,7 @@
           <td data-order="2020-12-14T20:43:00+03:00">{{member.totalDebt}}</td>
           <td>
             <div class="menu-item px-3">
-              <a href="#" class="menu-link px-3" (click)="$event.preventDefault();" [routerLink]="['/member-profile', member.id]">View</a>
+              <a href="#" class="menu-link px-3" (click)="$event.preventDefault();" [routerLink]="['/adminpage/member-profile', member.id]">View</a>
             </div>
           </td>
           <td class="text-end">

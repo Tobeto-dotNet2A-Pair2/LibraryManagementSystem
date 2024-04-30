@@ -43,7 +43,7 @@
         <!--end::Quick links-->
         <!--begin::User menu-->
         <div class="app-navbar-item ms-3 ms-lg-4 me-lg-2" [class.hide-content]="!isToken()" id="kt_header_user_menu_toggle">
-          <app-header-item-usermenu/>
+          <app-header-item-usermenu (logout)="logout()"/>
         </div>
         <!--end::User menu-->
         <!--begin::Action-->
