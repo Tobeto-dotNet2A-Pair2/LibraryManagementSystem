@@ -9,12 +9,12 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace WebAPI.Controllers;
 
-[Route("api/[controller]")]
+[Route("api/[controller]/[action]")]
 [ApiController]
 public class MaterialImagesController : BaseController
 {
     [HttpPost]
-    public async Task<IActionResult> Add([FromBody] CreateMaterialImageCommand createMaterialImageCommand)
+    public async Task<IActionResult> Add([FromForm] CreateMaterialImageCommand createMaterialImageCommand)
     {
         CreatedMaterialImageResponse response = await Mediator.Send(createMaterialImageCommand);
 
