@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 import { AuthBaseService } from '../abstracts/auth-base.service';
 import { Observable, catchError, map } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
@@ -11,8 +11,7 @@ import { UserForLoginRequest } from '../../../features/models/requests/users/use
 import { AccessTokenModel } from '../../../features/models/responses/users/access-token-model';
 import { TokenModel } from '../../../features/models/responses/users/token-model';
 import { UserRequest } from '../../../features/models/requests/users/user-request';
-
-
+import { ToastrService } from 'ngx-toastr';
 
 @Injectable({
   providedIn: 'root'
@@ -23,31 +22,38 @@ export class AuthService extends AuthBaseService {
   token:any;
   jwtHelper:JwtHelperService = new JwtHelperService;
   claims:string[]=[]
-
+  //toaster=inject(ToastrService);
 
   private  apiUrl:string = `${environment.API_URL}/Auth`;
-  constructor(private httpClient:HttpClient,private storageService:LocalStorageService) {super() }
+
+  constructor(
+    private httpClient:HttpClient,
+    private storageService:LocalStorageService,
+    private toastr: ToastrService) {super() }
 
   override register(userforRegisterRequest: UserForRegisterRequest<UserRequest>)
       :Observable<UserForRegisterResponse> {
-     
+
     return this.httpClient.post<UserForRegisterResponse>(`${this.apiUrl}/Register`,userforRegisterRequest)
   }
 
-  login(userLoginRequest:UserForLoginRequest)
-      :Observable<AccessTokenModel<TokenModel>>
-
-  {
+  login(userLoginRequest:UserForLoginRequest) :Observable<AccessTokenModel<TokenModel>>{
     return this.httpClient.post<AccessTokenModel<TokenModel>>(`${this.apiUrl}/Login`,userLoginRequest)
     .pipe(map(response=>{
         this.storageService.setToken(response.accessToken.token);
-      alert("Giriş yapıldı")
+        //this.toaster.success("Başarılı ","Giriş Yapıldı");
+        //alert("Giriş yapıldı")
         return response;
-      }
-     
-    ),catchError(responseError=>{
-      alert(responseError.error)
-      throw responseError;
+      }),
+    // catchError(responseError=>{
+    //   alert(responseError.error)
+    //   throw responseError;})
+
+    catchError(error => {
+       // Hata durumunda uygun işlemi yap
+       this.toastr.error('Lütfen giriş bilgilerini doğru şekilde doldurun.', 'Hata');
+        // Hata nesnesini tekrar fırlat
+        throw error;
     })
     )
   }

@@ -10,10 +10,12 @@ import { MaterialBaseService } from './features/services/abstracts/material-base
 import { MaterialService } from './features/services/concretes/material.service';
 import { MaterialCopyBaseService } from './features/services/abstracts/material-copy-base.service';
 import { MaterialCopyService } from './features/services/concretes/material-copy.service';
+import { provideToastr } from 'ngx-toastr';
 
 export const appConfig: ApplicationConfig = {
   providers: [getAppProviders(),
           provideRouter(routes),
+          provideToastr(),
           HttpClientModule,
           HttpClient,
             {
