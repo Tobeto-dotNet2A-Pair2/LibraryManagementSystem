@@ -4,7 +4,7 @@ import { CommonModule } from '@angular/common';
 import { LocalStorageService } from '../../../core/services/concretes/local-storage.service';
 import { HeaderItemFavoriesComponent } from '../header-item-favories/header-item-favories.component';
 import { HeaderItemUsermenuComponent } from '../header-item-usermenu/header-item-usermenu.component';
-import { RouterModule } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-header',
@@ -15,10 +15,15 @@ import { RouterModule } from '@angular/router';
 })
 export class HeaderComponent {
 
-  constructor(private localStorageService: LocalStorageService) {}
+  constructor(private localStorageService: LocalStorageService, private router: Router) {}
 
   isToken(): boolean {
     const token = this.localStorageService.getToken();
     return !!token; 
   }
+  logout(): void {
+    this.localStorageService.removeToken();
+    this.router.navigate(['/auth']);
+  }
+
 }

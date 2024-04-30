@@ -29,21 +29,26 @@
                     <!--begin::Info-->
                     <div class="d-flex flex-wrap fw-semibold fs-6 mb-4 pe-2">
                         <a href="#" class="d-flex align-items-center text-gray-400 text-hover-primary me-5 mb-2">
-                        <i class="ki-duotone ki-profile-circle fs-4 me-1">
+                            <i class="fa-solid fa-user fs-3 me-2">
                             <span class="path1"></span>
                             <span class="path2"></span>
                             <span class="path3"></span>
                         </i> {{ member.position ? member.position : 'Belirtilmemiş' }}</a>
                         <a href="#" class="d-flex align-items-center text-gray-400 text-hover-primary me-5 mb-2">
-                        <i class="fa-solid fa-id-card">
+                        <i class="fa-solid fa-id-card fs-3 me-2">
                             <span class="path1"></span>
                             <span class="path2"></span>
                         </i> {{ member.nationalIdentity }}</a>
-                        <a href="#" class="d-flex align-items-center text-gray-400 text-hover-primary mb-2">
-                            <i class="fa-solid fa-phone">
+                        <a href="#" class="d-flex align-items-center text-gray-400 text-hover-primary me-5  mb-2">
+                            <i class="fa-solid fa-phone fs-3 me-2">
                             <span class="path1"></span>
                             <span class="path2"></span>
                         </i>   {{member.phoneNumber}}</a>
+                        <a href="#" class="d-flex align-items-center text-gray-400 text-hover-primary mb-2">
+                            <i class="fa-solid fa-envelope fs-4 me-2">
+                            <span class="path1"></span>
+                            <span class="path2"></span>
+                        </i>{{userByIdList[0].email}}</a>
                   
                     </div>
                     <!--end::Info-->
@@ -66,7 +71,7 @@
                             </div>
                             <!--end::Number-->
                             <!--begin::Label-->
-                            <div class="fw-semibold fs-6 text-gray-400">Borç {{userByIdList[0].email}}</div>
+                            <div class="fw-semibold fs-6 text-gray-400">Borç</div>
                             <!--end::Label-->
                         </div>
                         <!--end::Stat-->

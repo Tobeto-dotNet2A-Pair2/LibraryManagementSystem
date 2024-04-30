@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { GetByIdMemberResponse } from '../../../models/responses/members/get-by-id-member-response';
 import { HttpClientModule } from '@angular/common/http';
-import {MemberGetbyidService} from '../../../../features/services/concretes/member-getbyid.service'
+import { MemberGetbyidService } from '../../../../features/services/concretes/member-getbyid.service';
 import { UserGetByIdResponse } from '../../../models/responses/users/user-getbyid';
 import { UserGetbyidService } from '../../../services/concretes/user-getbyid.service';
 
@@ -16,9 +16,9 @@ import { UserGetbyidService } from '../../../services/concretes/user-getbyid.ser
 })
 export class MemberProfileComponent implements OnInit {
   memberId!: string;
-  userById!:string;
+  userById!: string;
   memberByIdList: GetByIdMemberResponse[] = [];
- 
+
   userByIdList: UserGetByIdResponse[] = [];
 
   constructor(
@@ -28,10 +28,10 @@ export class MemberProfileComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.route.params.subscribe(params => {
+    this.route.params.subscribe((params) => {
       this.memberId = params['id'];
       this.getMemberById();
-      this.getUserId();
+      // this.getUserId();
     });
   }
 
@@ -40,6 +40,22 @@ export class MemberProfileComponent implements OnInit {
       next: (response: GetByIdMemberResponse) => {
         console.log('Backendden cevap geldi:', response);
         this.memberByIdList = [response];
+        if (this.memberByIdList.length > 0) {
+          this.userGetByIdService
+            .getUserById(this.memberByIdList[0].userId)
+            .subscribe({
+              next: (response: UserGetByIdResponse) => {
+                console.log('User ID:', response.id);
+                this.userByIdList = [response];
+              },
+              error: (error) => {
+                console.log('Backendden hatalı cevap geldi:', error);
+              },
+              complete: () => {
+                console.log('Backend isteği sonlandı.');
+              },
+            });
+        }
       },
       error: (error) => {
         console.log('Backendden hatalı cevap geldi:', error);
@@ -50,19 +66,20 @@ export class MemberProfileComponent implements OnInit {
     });
   }
 
-  getUserId(): void {
-    this.userGetByIdService.getUserById('bbbe358f-c023-49da-c89d-08dc6786575e').subscribe({
-      next: (response: UserGetByIdResponse) => {
-        console.log('User ID:', response.id);
-        this.userByIdList = [response];
-      },
-      error: (error) => {
-        console.log('Backendden hatalı cevap geldi:', error);
-      },
-      complete: () => {
-        console.log('Backend isteği sonlandı.');
-      },
-    });
-  }
-  
+  // getUserId(): void {
+  //   this.userGetByIdService
+  //     .getUserById('bbbe358f-c023-49da-c89d-08dc6786575e')
+  //     .subscribe({
+  //       next: (response: UserGetByIdResponse) => {
+  //         console.log('User ID:', response.id);
+  //         this.userByIdList = [response];
+  //       },
+  //       error: (error) => {
+  //         console.log('Backendden hatalı cevap geldi:', error);
+  //       },
+  //       complete: () => {
+  //         console.log('Backend isteği sonlandı.');
+  //       },
+  //     });
+  // }
 }
