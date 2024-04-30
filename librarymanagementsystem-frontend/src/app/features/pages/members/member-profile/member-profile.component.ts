@@ -2,8 +2,10 @@ import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { GetByIdMemberResponse } from '../../../models/responses/members/get-by-id-member-response';
-import { HttpClient, HttpClientModule } from '@angular/common/http';
-import { environment } from '../../../../../environments/environment';
+import { HttpClientModule } from '@angular/common/http';
+import {MemberGetbyidService} from '../../../../features/services/concretes/member-getbyid.service'
+import { UserGetByIdResponse } from '../../../models/responses/users/user-getbyid';
+import { UserGetbyidService } from '../../../services/concretes/user-getbyid.service';
 
 @Component({
   selector: 'app-member-profile',
@@ -14,25 +16,30 @@ import { environment } from '../../../../../environments/environment';
 })
 export class MemberProfileComponent implements OnInit {
   memberId!: string;
+  userById!:string;
   memberByIdList: GetByIdMemberResponse[] = [];
-  constructor(private httpClient: HttpClient, private route: ActivatedRoute ) {}
+ 
+  userByIdList: UserGetByIdResponse[] = [];
+
+  constructor(
+    private route: ActivatedRoute,
+    private memberGetByIdService: MemberGetbyidService,
+    private userGetByIdService: UserGetbyidService
+  ) {}
 
   ngOnInit(): void {
     this.route.params.subscribe(params => {
       this.memberId = params['id'];
-      console.log('Member ID:', this.memberId);
+      this.getMemberById();
+      this.getUserId();
     });
-
-    this.getMemberById();
-    
   }
 
-  getMemberById() {
-    // backend'e istek atıp verileri çek
-    this.httpClient.get<GetByIdMemberResponse>(`${environment.API_URL}/Members/${this.memberId}`).subscribe({
+  getMemberById(): void {
+    this.memberGetByIdService.getMemberById(this.memberId).subscribe({
       next: (response: GetByIdMemberResponse) => {
         console.log('Backendden cevap geldi:', response);
-        this.memberByIdList =[response];
+        this.memberByIdList = [response];
       },
       error: (error) => {
         console.log('Backendden hatalı cevap geldi:', error);
@@ -42,4 +49,20 @@ export class MemberProfileComponent implements OnInit {
       },
     });
   }
+
+  getUserId(): void {
+    this.userGetByIdService.getUserById('bbbe358f-c023-49da-c89d-08dc6786575e').subscribe({
+      next: (response: UserGetByIdResponse) => {
+        console.log('User ID:', response.id);
+        this.userByIdList = [response];
+      },
+      error: (error) => {
+        console.log('Backendden hatalı cevap geldi:', error);
+      },
+      complete: () => {
+        console.log('Backend isteği sonlandı.');
+      },
+    });
+  }
+  
 }
