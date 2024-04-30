@@ -1,0 +1,43 @@
+<!-- add-library.component.html -->
+<p>add-library-works!</p>
+
+<!-- Modal -->
+<div class="container">
+  <h2>Add Library</h2>
+  <form [formGroup]="libraryForm" (ngSubmit)="onSubmit()">
+    <div class="mb-3">
+      <label for="name" class="form-label">Library Name</label>
+      <input type="text" class="form-control" id="name" formControlName="name">
+      <div class="invalid-feedback" *ngIf="libraryForm.controls['name'].errors && libraryForm.controls['name'].touched">
+        Please provide a valid name.
+      </div>
+    </div>
+    <button type="submit" class="btn btn-primary" [disabled]="libraryForm.invalid">Submit</button>
+  </form>
+
+  <hr>
+<!-- Library List 
+
+  <h2>Library List</h2>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>Library Name</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let library of libraries; let i = index">
+        <td>{{ i + 1 }}</td>
+        <td>{{ library.name }}</td>
+        <td>
+          <button class="btn btn-primary" (click)="viewLibraryDetails(library.id)">View Details</button>
+          <button class="btn btn-danger" (click)="deleteLibrary(library.id)">Delete</button>
+          <button class="btn btn-info" (click)="updateLibrary(library.id)">Update</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+-->
