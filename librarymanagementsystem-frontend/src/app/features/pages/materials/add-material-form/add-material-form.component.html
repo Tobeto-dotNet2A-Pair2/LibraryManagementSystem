@@ -19,18 +19,6 @@
       </div>
       <!--end::Input group Dropdown-Select-->
 
-
-      <div class="dropdown-select" (click)="toggleDropdown()">
-        <span class="current">{{ selectedOption.displayText }}</span>
-        <div class="list" *ngIf="isOpen">
-          <input #txtSearchValue class="dd-searchbox" type="text" (input)="filterOptions(txtSearchValue.value)" placeholder="Search...">
-          <ul>
-            <li *ngFor="let option of options" [hidden]="option.hidden" (click)="onSelect(option)">
-              {{ option.displayText }}
-            </li>
-          </ul>
-        </div>
-      </div>
       
 
 
