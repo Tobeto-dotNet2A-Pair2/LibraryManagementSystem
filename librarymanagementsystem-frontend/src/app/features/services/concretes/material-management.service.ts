@@ -38,7 +38,15 @@ export class MaterialManagementService  {
           })
         );
       }
-
+      getAllMaterials(): Observable<GetListMaterialResponse[]> {
+        return this.httpClient.get<GetListMaterialResponse[]>(`${this.materialApiUrl}/GetAll`).pipe(
+          catchError((error) => {
+            this.toastr.error("An unexpected error occurred while fetching the list of Materials.", "Error");
+            console.error(error);
+            return throwError(error);
+          })
+        );
+      }
 
 
 

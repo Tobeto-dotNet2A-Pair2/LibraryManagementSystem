@@ -19,5 +19,5 @@ export class MaterialService extends MaterialBaseService {
   override addMaterial(createdMaterialRequest: CreateMaterialRequest): Observable<CreatedMaterialResponse> {
     throw new Error('Method not implemented.');
   }
-
+  
  }

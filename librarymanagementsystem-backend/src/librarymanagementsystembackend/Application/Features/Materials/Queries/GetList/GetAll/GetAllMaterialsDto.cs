@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Application.Features.Materials.Queries.GetList.GetAll;
+﻿namespace Application.Features.Materials.Queries.GetList.GetAll;
 public class GetAllMaterialsDto
 {
     public Guid Id { get; set; }

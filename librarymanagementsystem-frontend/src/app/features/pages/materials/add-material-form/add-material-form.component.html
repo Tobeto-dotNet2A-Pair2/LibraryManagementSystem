@@ -11,9 +11,7 @@
           aria-label="Floating label select example"
         >
           <option selected>Bir Materyal Seç</option>
-          <option value="1">Materyal 1</option>
-          <option value="2">Materyal 2</option>
-          <option value="3">Materyal 3</option>
+          <option *ngFor="let material of materialList" [value]="material.id">{{material.name}}</option>
         </select>
         <label for="floatingSelect">Materyal Seç</label>
       </div>
@@ -197,7 +195,7 @@
       </div>
       <!--body -->
       <div class="modal-body">
-        <form [formGroup]="materialForm" (ngSubmit)="onSubmit()">
+        <form [formGroup]="materialForm" (ngSubmit)="onSubmitMaterialForm()">
           <div class="input-group mb-5">
             <span class="input-group-text" id="basic-addon1">Materyal Adı</span>
             <input

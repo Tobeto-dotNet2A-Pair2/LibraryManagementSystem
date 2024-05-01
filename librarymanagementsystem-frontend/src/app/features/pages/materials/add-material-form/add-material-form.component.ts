@@ -38,17 +38,6 @@ export class AddMaterialFormComponent implements OnInit {
   materialList: any[] = [];
   materialForm!: FormGroup;
 
-  constructor(
-    private managementService: MaterialManagementService,
-    private toastr: ToastrService
-  ) {}
-
-  //Functions
-  ngOnInit(): void {
-    //this.getAllMaterials();
-    this.createMaterialForm();
-  }
-
   private createMaterialForm(): void {
     this.materialForm = new FormGroup({
       name: new FormControl('', [Validators.required]),
@@ -59,7 +48,21 @@ export class AddMaterialFormComponent implements OnInit {
     });
   }
 
-  onSubmit(): void {
+  constructor(
+    private managementService: MaterialManagementService,
+    private toastr: ToastrService
+  ) {}
+
+  //Functions
+  ngOnInit(): void {
+    //this.getAllMaterials();
+    this.createMaterialForm();
+    this.getMaterialList();
+  }
+
+
+
+  onSubmitMaterialForm(): void {
     if (this.materialForm.invalid) {
       return;
     }
@@ -85,6 +88,18 @@ export class AddMaterialFormComponent implements OnInit {
       },
       (error) => {
         this.toastr.error('An error occurred while adding the material.');
+        console.error(error);
+      }
+    );
+  }
+
+  getMaterialList(): void {
+    this.managementService.getAllMaterials().subscribe(
+      (response) => {
+        this.materialList = response;
+      },
+      (error) => {
+        this.toastr.error('An error occurred while fetching the material list.', "Error");
         console.error(error);
       }
     );

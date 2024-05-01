@@ -10,16 +10,16 @@ namespace Application.Features.Materials.Queries.GetList.GetAll;
 public class GetAllMaterialsQuery : IRequest<List<GetAllMaterialsDto>>
 {
     public bool BypassCache { get; }
-    public string? CacheKey => $"GetAllMaterialsQuery";
+    public string? CacheKey => $"GetAllMaterials";
     public string? CacheGroupKey => "GetMaterials";
     public TimeSpan? SlidingExpiration { get; }
 
-    public class GetAllMaterialsQueryHandler : IRequestHandler<GetAllMaterialsQuery, List<GetAllMaterialsDto>>
+    public class GetAllMaterialsHandler : IRequestHandler<GetAllMaterialsQuery, List<GetAllMaterialsDto>>
     {
         private readonly IMaterialRepository _materialRepository;
         private readonly IMapper _mapper;
 
-        public GetAllMaterialsQueryHandler(IMaterialRepository materialRepository, IMapper mapper)
+        public GetAllMaterialsHandler(IMaterialRepository materialRepository, IMapper mapper)
         {
             _materialRepository = materialRepository;
             _mapper = mapper;
