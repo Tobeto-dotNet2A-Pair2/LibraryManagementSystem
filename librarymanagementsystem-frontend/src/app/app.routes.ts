@@ -6,12 +6,13 @@ import { AdminLayoutComponent } from './shared/layouts/admin-layout/admin-layout
 import { DashboardComponent } from './features/pages/dashboard/dashboard.component';
 import { MaterialListComponent } from './features/pages/materials/material-list/material-list.component';
 import { MemberListComponent } from './features/pages/members/member-list/member-list.component';
-import { AddBranchFormComponent } from './features/pages/branches/add-branch-form/add-branch-form.component';
 import { BranchListComponent } from './features/pages/branches/branch-list/branch-list.component';
 import { AddMaterialFormComponent } from './features/pages/materials/add-material-form/add-material-form.component';
 import { roleGuard } from './core/guards/role.guard';
 import { MainLayoutComponent } from './shared/layouts/main-layout/main-layout.component';
 import { MemberProfileComponent } from './features/pages/members/member-profile/member-profile.component';
+import { AddLibraryComponent } from './features/pages/library/add-libray/add-library/add-library.component';
+import { AddBranchFormComponent } from './features/pages/branches/add-branch-form/add-branch-form.component';
 
 export const routes: Routes = [
   { path: '', redirectTo: 'adminpage', pathMatch: 'full' },
@@ -33,7 +34,8 @@ export const routes: Routes = [
       { path: 'add-branches', component: AddBranchFormComponent },
       { path: 'branch-lists', component: BranchListComponent },
       { path: 'add-material-forms', component: AddMaterialFormComponent },
-      { path: 'member-profile/:id', component: MemberProfileComponent }
+      { path: 'member-profile/:id', component: MemberProfileComponent },
+      { path: 'add-library', component: AddLibraryComponent }
       
     ],
   },

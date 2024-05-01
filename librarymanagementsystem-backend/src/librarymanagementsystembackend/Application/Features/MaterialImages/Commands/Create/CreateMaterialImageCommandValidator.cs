@@ -6,7 +6,7 @@ public class CreateMaterialImageCommandValidator : AbstractValidator<CreateMater
 {
     public CreateMaterialImageCommandValidator()
     {
-        RuleFor(c => c.Url).NotEmpty();
+        RuleFor(c => c.Image).NotEmpty();
         RuleFor(c => c.MaterialId).NotEmpty();
     }
 }

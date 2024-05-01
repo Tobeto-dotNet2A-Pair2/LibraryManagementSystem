@@ -1,6 +1,7 @@
 using Application.Features.MaterialImages.Constants;
 using Application.Features.MaterialImages.Constants;
 using Application.Features.MaterialImages.Rules;
+using Application.Services.ImageService;
 using Application.Services.Repositories;
 using AutoMapper;
 using Domain.Entities;
@@ -28,13 +29,15 @@ public class DeleteMaterialImageCommand : IRequest<DeletedMaterialImageResponse>
         private readonly IMapper _mapper;
         private readonly IMaterialImageRepository _materialImageRepository;
         private readonly MaterialImageBusinessRules _materialImageBusinessRules;
+        private readonly ImageServiceBase _imageServiceBase;
 
         public DeleteMaterialImageCommandHandler(IMapper mapper, IMaterialImageRepository materialImageRepository,
-                                         MaterialImageBusinessRules materialImageBusinessRules)
+                                         MaterialImageBusinessRules materialImageBusinessRules, ImageServiceBase imageServiceBase)
         {
             _mapper = mapper;
             _materialImageRepository = materialImageRepository;
             _materialImageBusinessRules = materialImageBusinessRules;
+            _imageServiceBase = imageServiceBase;
         }
 
         public async Task<DeletedMaterialImageResponse> Handle(DeleteMaterialImageCommand request, CancellationToken cancellationToken)
@@ -42,7 +45,10 @@ public class DeleteMaterialImageCommand : IRequest<DeletedMaterialImageResponse>
             MaterialImage? materialImage = await _materialImageRepository.GetAsync(predicate: mi => mi.Id == request.Id, cancellationToken: cancellationToken);
             await _materialImageBusinessRules.MaterialImageShouldExistWhenSelected(materialImage);
 
-            await _materialImageRepository.DeleteAsync(materialImage!);
+            materialImage!.DeletedDate = DateTime.UtcNow;
+            await _materialImageRepository.UpdateAsync(materialImage!);
+
+            await _imageServiceBase.DeleteAsync(materialImage!.Url);
 
             DeletedMaterialImageResponse response = _mapper.Map<DeletedMaterialImageResponse>(materialImage);
             return response;

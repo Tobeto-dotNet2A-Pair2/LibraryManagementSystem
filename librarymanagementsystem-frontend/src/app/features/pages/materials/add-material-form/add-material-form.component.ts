@@ -1,5 +1,8 @@
 import { CommonModule } from '@angular/common';
+import { CommonModule } from '@angular/common';
 import { Component, OnInit,Input,Output,EventEmitter } from '@angular/core';
+import { FormsModule } from '@angular/forms';
+import { RouterModule } from '@angular/router';
 import { FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MaterialManagementService } from '../../../services/concretes/material-management.service';
 import { MaterialListItemDto } from '../../../models/responses/materials/material-list-item-dto';
