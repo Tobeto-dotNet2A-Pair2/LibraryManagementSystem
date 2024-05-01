@@ -9,11 +9,13 @@ using NArchitecture.Core.Application.Pipelines.Logging;
 using NArchitecture.Core.Application.Pipelines.Transaction;
 using MediatR;
 using static Application.Features.Materials.Constants.MaterialsOperationClaims;
+using Application.Features.Materials.Queries.GetList;
 
 namespace Application.Features.Materials.Commands.Create;
 
 public class CreateMaterialCommand : IRequest<CreatedMaterialResponse>, ICacheRemoverRequest, ILoggableRequest, ITransactionalRequest //ISecuredRequest
 {
+    public GetListMaterialListItemDto GetListMaterialListItemDto {  get; set; }
     public string Name { get; set; }
     public string Description { get; set; }
     public decimal? PunishmentAmount { get; set; }

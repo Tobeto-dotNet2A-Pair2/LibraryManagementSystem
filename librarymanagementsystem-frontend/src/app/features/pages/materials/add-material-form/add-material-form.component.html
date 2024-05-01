@@ -18,6 +18,9 @@
         <label for="floatingSelect">Materyal Seç</label>
       </div>
       <!--end::Input group Dropdown-Select-->
+      <select [(ngModel)]="materialSelectObj.id" class="form-select">
+        <option *ngFor="let material of materialList" [value]="material.id">{{material.name}}</option>
+      </select>
       <br />
       <a
         id="btnAddMaterial"
@@ -146,9 +149,34 @@
     </div>
     <br />
     <!--Language End-->
+    <!--Location Start-->
+    <div class="form-group">
+      <div class="form-floating">
+        <select
+          class="form-select"
+          id="floatingSelect"
+          aria-label="Floating label select example"
+        >
+          <option selected>Bir Lokasyon Seç</option>
+          <option value="1">Lokasyon 1</option>
+          <option value="2">Lokasyon 2</option>
+          <option value="3">Lokasyon 3</option>
+        </select>
+        <label for="floatingSelect">Lokasyon Seç</label>
+      </div>
+      <br />
+      <a
+        id="btnAddLocation"
+        class="btn btn-info"
+        (click)="openModal('locationModal')"
+        >Yeni Lokasyon</a
+      >
+    </div>
+    <br />
+    <!--Location End-->
   </form>
 </div>
-<!--MODALLAR - MODALS-->
+<!--MODALS-->
 <!--Material Modal -- materyal ekle modalı-->
 <div id="materialModal" class="modal" tabindex="-1">
   <div class="modal-dialog">
@@ -171,6 +199,7 @@
             <input
               id="name"
               type="text"
+              [(ngModel)]="materialCreateObj.name"
               class="form-control"
               placeholder="MaterialName"
               aria-label="MaterialName"
@@ -184,6 +213,7 @@
               placeholder="Description"
               id="description"
               style="height: 100px"
+              [(ngModel)]="materialCreateObj.description"
             ></textarea>
             <label for="floatingTextarea2">Açıklama</label>
           </div>
@@ -195,6 +225,7 @@
               type="checkbox"
               value=""
               id="isBorrowable"
+              [(ngModel)]="materialCreateObj.isBorrowable"
             />
             <label class="form-check-label" for="flexCheckDefault">
               Ödünç Alınabilir
@@ -211,6 +242,7 @@
               placeholder="0"
               aria-label="BorrowDay"
               aria-describedby="basic-addon1"
+              [(ngModel)]="materialCreateObj.borrowDay"
             />
           </div>
           <div class="input-group mb-5">
@@ -220,6 +252,7 @@
               type="text"
               class="form-control"
               aria-label="Amount (to the nearest dollar)"
+              [(ngModel)]="materialCreateObj.penaltyAmount"
             />
             <span class="input-group-text">.00</span>
           </div>
@@ -235,7 +268,7 @@
         >
           Close
         </button>
-        <button type="button" class="btn btn-primary">Save changes</button>
+        <button type="button" class="btn btn-primary" >Save changes</button>
       </div>
     </div>
   </div>
@@ -271,7 +304,7 @@
             </select>
             <label for="floatingSelect">Materyal Seç</label>
           </div>
-          <br>
+          <br />
           <div class="form-floating">
             <select
               class="form-select"
@@ -285,7 +318,7 @@
             </select>
             <label for="floatingSelect">Branch Seç</label>
           </div>
-          <br>
+          <br />
           <div class="form-floating">
             <select
               class="form-select"
@@ -299,7 +332,7 @@
             </select>
             <label for="floatingSelect">Materyal Lokasyonu Seç</label>
           </div>
-          <br>
+          <br />
           <div class="input-group mb-5">
             <span class="input-group-text" id="basic-addon1">Status</span>
             <input
@@ -311,7 +344,7 @@
               aria-describedby="basic-addon1"
             />
           </div>
-     
+
           <div class="form-check">
             <input
               class="form-check-input"
@@ -323,7 +356,7 @@
               Ayırtılabilir
             </label>
           </div>
-          <br><br>
+          <br /><br />
           <div class="form-check">
             <input
               class="form-check-input"
@@ -335,7 +368,6 @@
               Ayrıldı
             </label>
           </div>
-         
         </form>
       </div>
       <!--body end-->
@@ -581,3 +613,108 @@
   </div>
 </div>
 <!--Language Modal End -- dil ekle Sonu-->
+<!--Location Modal -- dil ekle modalı-->
+<div id="locationModal" class="modal" tabindex="-1">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Dil Ekle</h5>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+          (click)="closeModal('locationModal')"
+        ></button>
+      </div>
+      <!--body -->
+      <div class="modal-body">
+        <form class="form-group">
+          <div class="input-group mb-5">
+            <span class="input-group-text" id="basic-addon1">Kat</span>
+            <input
+              id="floor"
+              type="text"
+              class="form-control"
+              placeholder="Floor"
+              aria-label="Floor"
+              aria-describedby="basic-addon1"
+            />
+          </div>
+          <div class="input-group mb-5">
+            <span class="input-group-text" id="basic-addon1">Koridor</span>
+            <input
+              id="corridor"
+              type="text"
+              class="form-control"
+              placeholder="Corridor"
+              aria-label="Corridor"
+              aria-describedby="basic-addon1"
+            />
+          </div>
+          <div class="input-group mb-5">
+            <span class="input-group-text" id="basic-addon1">Raf</span>
+            <input
+              id="shelf"
+              type="text"
+              class="form-control"
+              placeholder="Shelf"
+              aria-label="Shelf"
+              aria-describedby="basic-addon1"
+            />
+          </div>
+          <div class="input-group mb-5">
+            <span class="input-group-text" id="basic-addon1">RafKatı</span>
+            <input
+              id="shelfFloor"
+              type="text"
+              class="form-control"
+              placeholder="ShelfFloor"
+              aria-label="ShelfFloor"
+              aria-describedby="basic-addon1"
+            />
+          </div>
+          <div class="input-group mb-5">
+            <span class="input-group-text" id="basic-addon1"
+              >RafSıraNumarası</span
+            >
+            <input
+              id="shelfLineNumber"
+              type="text"
+              class="form-control"
+              placeholder="ShelfLineNumber"
+              aria-label="ShelfLineNumber"
+              aria-describedby="basic-addon1"
+            />
+          </div>
+          <div class="input-group mb-5">
+            <span class="input-group-text" id="basic-addon1"
+              >TamLokasyonHaritası</span
+            >
+            <input
+              id="fullLocationMap"
+              type="text"
+              class="form-control"
+              placeholder="FullLocationMap"
+              aria-label="FullLocationMap"
+              aria-describedby="basic-addon1"
+            />
+          </div>
+        </form>
+      </div>
+      <!--body end-->
+      <div class="modal-footer">
+        <button
+          type="button"
+          class="btn btn-secondary"
+          data-bs-dismiss="modal"
+          (click)="closeModal('locationModal')"
+        >
+          Close
+        </button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!--Location Modal End -- dil ekle Sonu-->
