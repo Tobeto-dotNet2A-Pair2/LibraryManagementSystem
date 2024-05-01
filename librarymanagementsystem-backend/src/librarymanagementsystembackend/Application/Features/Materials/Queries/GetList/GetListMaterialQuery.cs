@@ -38,7 +38,7 @@ public class GetListMaterialQuery : IRequest<GetListResponse<GetListMaterialList
         {
             IPaginate<Material> materials = await _materialRepository.GetListAsync(
                 index: request.PageRequest.PageIndex,
-                size: request.PageRequest.PageSize, 
+                size: request.PageRequest.PageSize,
                 cancellationToken: cancellationToken
             );
 

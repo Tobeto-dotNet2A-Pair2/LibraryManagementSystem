@@ -6,6 +6,7 @@ using Application.Features.Materials.Queries.GetList;
 using NArchitecture.Core.Application.Requests;
 using NArchitecture.Core.Application.Responses;
 using Microsoft.AspNetCore.Mvc;
+using Application.Features.Materials.Queries.GetList.GetAll;
 
 namespace WebAPI.Controllers;
 
@@ -49,6 +50,13 @@ public class MaterialsController : BaseController
     {
         GetListMaterialQuery getListMaterialQuery = new() { PageRequest = pageRequest };
         GetListResponse<GetListMaterialListItemDto> response = await Mediator.Send(getListMaterialQuery);
+        return Ok(response);
+    }
+
+    [HttpGet]
+    public async Task<IActionResult> GetAll([FromQuery] GetAllMaterialsQuery getAllMaterialsQuery)
+    {
+        List<GetAllMaterialsDto> response = await Mediator.Send(getAllMaterialsQuery);
         return Ok(response);
     }
 }

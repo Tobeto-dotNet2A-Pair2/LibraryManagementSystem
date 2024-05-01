@@ -18,6 +18,22 @@
         <label for="floatingSelect">Materyal Seç</label>
       </div>
       <!--end::Input group Dropdown-Select-->
+
+
+      <div class="dropdown-select" (click)="toggleDropdown()">
+        <span class="current">{{ selectedOption.displayText }}</span>
+        <div class="list" *ngIf="isOpen">
+          <input #txtSearchValue class="dd-searchbox" type="text" (input)="filterOptions(txtSearchValue.value)" placeholder="Search...">
+          <ul>
+            <li *ngFor="let option of options" [hidden]="option.hidden" (click)="onSelect(option)">
+              {{ option.displayText }}
+            </li>
+          </ul>
+        </div>
+      </div>
+      
+
+
       <select [(ngModel)]="materialSelectObj.id" class="form-select">
         <option *ngFor="let material of materialList" [value]="material.id">{{material.name}}</option>
       </select>
@@ -193,17 +209,17 @@
       </div>
       <!--body -->
       <div class="modal-body">
-        <form class="form-group">
+        <form [formGroup]="materialForm" (ngSubmit)="onSubmit()">
           <div class="input-group mb-5">
             <span class="input-group-text" id="basic-addon1">Materyal Adı</span>
             <input
               id="name"
               type="text"
-              [(ngModel)]="materialCreateObj.name"
               class="form-control"
               placeholder="MaterialName"
               aria-label="MaterialName"
               aria-describedby="basic-addon1"
+              formControlName="name"
             />
           </div>
           <!--begin::Input group-->
@@ -213,7 +229,7 @@
               placeholder="Description"
               id="description"
               style="height: 100px"
-              [(ngModel)]="materialCreateObj.description"
+              formControlName="description"
             ></textarea>
             <label for="floatingTextarea2">Açıklama</label>
           </div>
@@ -225,7 +241,7 @@
               type="checkbox"
               value=""
               id="isBorrowable"
-              [(ngModel)]="materialCreateObj.isBorrowable"
+              formControlName="isBorrowable"
             />
             <label class="form-check-label" for="flexCheckDefault">
               Ödünç Alınabilir
@@ -242,20 +258,21 @@
               placeholder="0"
               aria-label="BorrowDay"
               aria-describedby="basic-addon1"
-              [(ngModel)]="materialCreateObj.borrowDay"
+              formControlName="borrowDay"
             />
           </div>
           <div class="input-group mb-5">
-            <span class="input-group-text">Ceza Ücreti: ₺</span>
+            <span class="input-group-text">Günlük Ceza Miktarı: ₺</span>
             <input
-              id="penaltyAmount"
+              id="punishmentAmount"
               type="text"
               class="form-control"
               aria-label="Amount (to the nearest dollar)"
-              [(ngModel)]="materialCreateObj.penaltyAmount"
+              formControlName="punishmentAmount"
             />
             <span class="input-group-text">.00</span>
           </div>
+          <button type="submit" class="btn btn-primary">Submit</button>
         </form>
       </div>
       <!--body end-->
@@ -268,7 +285,7 @@
         >
           Close
         </button>
-        <button type="button" class="btn btn-primary" >Save changes</button>
+        <button type="button" class="btn btn-primary" >Submit</button>
       </div>
     </div>
   </div>
@@ -376,7 +393,7 @@
           type="button"
           class="btn btn-secondary"
           data-bs-dismiss="modal"
-          (click)="closeModal('materialCopylModal')"
+          (click)="closeModal('materialCopyModal')"
         >
           Close
         </button>
