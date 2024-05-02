@@ -3,6 +3,7 @@ using Application.Features.Materials.Commands.Delete;
 using Application.Features.Materials.Commands.Update;
 using Application.Features.Materials.Queries.GetById;
 using Application.Features.Materials.Queries.GetList;
+using Application.Features.Materials.Queries.GetList.GetAllForAdmin;
 using AutoMapper;
 using NArchitecture.Core.Application.Responses;
 using Domain.Entities;
@@ -23,5 +24,11 @@ public class MappingProfiles : Profile
         CreateMap<Material, GetByIdMaterialResponse>().ReverseMap();
         CreateMap<Material, GetListMaterialListItemDto>().ReverseMap();
         CreateMap<IPaginate<Material>, GetListResponse<GetListMaterialListItemDto>>().ReverseMap();
+
+        CreateMap<Material, GetAllMaterialsForAdminDto>()
+            .ForMember(x => x.ImageUrls,
+                src => src
+                    .MapFrom(a => a.MaterialImages
+                        .Select(b => b.Url)));
     }
 }
