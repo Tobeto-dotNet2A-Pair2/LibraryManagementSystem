@@ -5,15 +5,20 @@ import { MembersService } from '../../../../core/services/concretes/members.serv
 import { ActivatedRoute, RouterModule } from '@angular/router';
 import { PageRequest } from '../../../../core/models/page/page-request';
 import { FormsModule } from '@angular/forms';
+import { FilterMemberNamePipe } from '../../../../shared/pipes/filter-member-name.pipe';
+
+
 
 @Component({
-  selector: 'app-member-list',
-  standalone: true,
-  imports: [CommonModule , FormsModule, RouterModule],
-  templateUrl: './member-list.component.html',
-  styleUrl: './member-list.component.scss',
+    selector: 'app-member-list',
+    standalone: true,
+    templateUrl: './member-list.component.html',
+    styleUrl: './member-list.component.scss',
+    imports: [CommonModule, FormsModule, RouterModule,FilterMemberNamePipe]
 })
 export class MemberListComponent implements OnInit {
+
+  filterText: string ='';
   currentPageNumber!:number;
   memberList: MemberListDto={
     index:0,
@@ -25,6 +30,7 @@ export class MemberListComponent implements OnInit {
     items:[]
   };
 
+
   constructor(private membersService: MembersService, private activatedRoute:ActivatedRoute) {}
   readonly PAGE_SIZE=10;
   ngOnInit(): void {
@@ -33,7 +39,7 @@ export class MemberListComponent implements OnInit {
         this.getMemberListByModel({pageIndex:0,pageSize:this.PAGE_SIZE},params["modelId"])
       }else{this.getList({pageIndex:0,pageSize:this.PAGE_SIZE})}
     })
-   
+
   }
 
   getList(pageRequest:PageRequest){
@@ -99,4 +105,6 @@ export class MemberListComponent implements OnInit {
     
     this.getList({ pageIndex: 0, pageSize: this.PAGE_SIZE });
   }// Sayfa boyutu değiştiğinde, veri listesini yeniden yükle
+
+
 }
