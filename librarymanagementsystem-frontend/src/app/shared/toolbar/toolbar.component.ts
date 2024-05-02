@@ -14,8 +14,8 @@ import { filter } from 'rxjs/operators';
   styleUrl: './toolbar.component.scss',
 })
 export class ToolbarComponent implements OnInit {
-  activeRouteName: string = 'adminpage';
-  activeChildRouteName: string = 'dashboard';
+  activeRouteName: string = 'giriş';
+  activeChildRouteName: string = 'Hoş Geldin!';
 
   constructor(private route: ActivatedRoute, private router: Router) {}
 
