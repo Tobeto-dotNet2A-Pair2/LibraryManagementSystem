@@ -13,12 +13,18 @@ import { MainLayoutComponent } from './shared/layouts/main-layout/main-layout.co
 import { MemberProfileComponent } from './features/pages/members/member-profile/member-profile.component';
 import { AddLibraryComponent } from './features/pages/library/add-libray/add-library/add-library.component';
 import { AddBranchFormComponent } from './features/pages/branches/add-branch-form/add-branch-form.component';
+import { ContactComponent } from './features/pages/contact/contact.component';
 
 export const routes: Routes = [
   
-  { path: '', redirectTo: 'auth', pathMatch: 'full' },
+  { path: '', redirectTo: 'homepage', pathMatch: 'full' },
    { path: 'auth', component: AuthComponent },
-   {path: 'homepage', component:MainLayoutComponent},
+   {path: 'homepage',
+    component:MainLayoutComponent,
+    children: [
+      { path: '', component:HomepageComponent},
+      { path: 'contact', component: ContactComponent }]
+  },
   // { path: 'homepage', component: AdminLayoutComponent },
 
   // { path: 'adminpage', component: AdminLayoutComponent, canActivate: [authGuard] },
