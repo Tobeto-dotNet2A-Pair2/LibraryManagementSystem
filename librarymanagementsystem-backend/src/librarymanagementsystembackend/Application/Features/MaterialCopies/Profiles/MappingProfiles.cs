@@ -1,6 +1,7 @@
 using Application.Features.MaterialCopies.Commands.Create;
 using Application.Features.MaterialCopies.Commands.Delete;
 using Application.Features.MaterialCopies.Commands.Update;
+using Application.Features.MaterialCopies.Dtos;
 using Application.Features.MaterialCopies.Queries.GetById;
 using Application.Features.MaterialCopies.Queries.GetList;
 using AutoMapper;
@@ -23,5 +24,7 @@ public class MappingProfiles : Profile
         CreateMap<MaterialCopy, GetByIdMaterialCopyResponse>().ReverseMap();
         CreateMap<MaterialCopy, GetListMaterialCopyListItemDto>().ReverseMap();
         CreateMap<IPaginate<MaterialCopy>, GetListResponse<GetListMaterialCopyListItemDto>>().ReverseMap();
+
+        CreateMap<MaterialCopy, MaterialCopyForMaterialDetailDto>();
     }
 }
