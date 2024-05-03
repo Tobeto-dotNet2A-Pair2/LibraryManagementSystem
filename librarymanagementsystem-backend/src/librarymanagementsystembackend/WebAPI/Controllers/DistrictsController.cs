@@ -6,6 +6,8 @@ using Application.Features.Districts.Queries.GetList;
 using NArchitecture.Core.Application.Requests;
 using NArchitecture.Core.Application.Responses;
 using Microsoft.AspNetCore.Mvc;
+using Application.Features.Districts.Queries.GetDynamic;
+using NArchitecture.Core.Persistence.Dynamic;
 
 namespace WebAPI.Controllers;
 
@@ -49,6 +51,19 @@ public class DistrictsController : BaseController
     {
         GetListDistrictQuery getListDistrictQuery = new() { PageRequest = pageRequest };
         GetListResponse<GetListDistrictListItemDto> response = await Mediator.Send(getListDistrictQuery);
+        return Ok(response);
+    }
+
+
+    [HttpPost("Dynamic")]
+    public async Task<IActionResult> GetDynamic([FromQuery] PageRequest pageRequest, [FromBody] DynamicQuery dynamic)
+    {
+        GetDynamicQuery getDynamicQuery = new()
+        {
+            PageRequest = pageRequest,
+            Dynamic = dynamic
+        };
+        GetListResponse<GetDynamicDistrictResponse> response = await Mediator.Send(getDynamicQuery);
         return Ok(response);
     }
 }

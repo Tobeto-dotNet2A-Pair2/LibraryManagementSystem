@@ -6,6 +6,10 @@ using Application.Features.Streets.Queries.GetList;
 using NArchitecture.Core.Application.Requests;
 using NArchitecture.Core.Application.Responses;
 using Microsoft.AspNetCore.Mvc;
+using NArchitecture.Core.Persistence.Dynamic;
+using Application.Features.Streets.Queries.GetDynamic;
+using MediatR;
+
 
 namespace WebAPI.Controllers;
 
@@ -51,4 +55,20 @@ public class StreetsController : BaseController
         GetListResponse<GetListStreetListItemDto> response = await Mediator.Send(getListStreetQuery);
         return Ok(response);
     }
+
+    [HttpPost("Dynamic")]
+
+    public async Task<IActionResult> GetDynamic([FromQuery] PageRequest pageRequest, [FromBody] DynamicQuery dynamic)
+    {
+        GetDynamicQuery getDynamicQuery = new()
+        {
+            PageRequest = pageRequest,
+            Dynamic = dynamic
+        };
+        GetListResponse<GetDynamicStreetResponse> response = await Mediator.Send(getDynamicQuery);
+        return Ok(response);
+
+    }
+
+
 }

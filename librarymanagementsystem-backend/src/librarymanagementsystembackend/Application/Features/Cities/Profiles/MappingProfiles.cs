@@ -7,6 +7,7 @@ using AutoMapper;
 using NArchitecture.Core.Application.Responses;
 using Domain.Entities;
 using NArchitecture.Core.Persistence.Paging;
+using Application.Features.Cities.Queries.GetDynamic;
 
 namespace Application.Features.Cities.Profiles;
 
@@ -23,5 +24,10 @@ public class MappingProfiles : Profile
         CreateMap<City, GetByIdCityResponse>().ReverseMap();
         CreateMap<City, GetListCityListItemDto>().ReverseMap();
         CreateMap<IPaginate<City>, GetListResponse<GetListCityListItemDto>>().ReverseMap();
+
+
+
+        CreateMap<District, GetDynamicCityResponse>().ReverseMap();
+        CreateMap<IPaginate<District>, GetListResponse<GetDynamicCityResponse>>().ReverseMap();
     }
 }

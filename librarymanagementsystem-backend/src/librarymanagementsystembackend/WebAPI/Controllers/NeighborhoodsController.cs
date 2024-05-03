@@ -6,6 +6,8 @@ using Application.Features.Neighborhoods.Queries.GetList;
 using NArchitecture.Core.Application.Requests;
 using NArchitecture.Core.Application.Responses;
 using Microsoft.AspNetCore.Mvc;
+using Application.Features.Neighborhoods.Queries.GetDynamic;
+using NArchitecture.Core.Persistence.Dynamic;
 
 namespace WebAPI.Controllers;
 
@@ -20,6 +22,7 @@ public class NeighborhoodsController : BaseController
 
         return Created(uri: "", response);
     }
+
 
     [HttpPut]
     public async Task<IActionResult> Update([FromBody] UpdateNeighborhoodCommand updateNeighborhoodCommand)
@@ -50,5 +53,20 @@ public class NeighborhoodsController : BaseController
         GetListNeighborhoodQuery getListNeighborhoodQuery = new() { PageRequest = pageRequest };
         GetListResponse<GetListNeighborhoodListItemDto> response = await Mediator.Send(getListNeighborhoodQuery);
         return Ok(response);
+    }
+
+
+    [HttpPost("Dynamic")]
+    public async Task<IActionResult> GetDynamic([FromQuery] PageRequest pageRequest, [FromBody] DynamicQuery dynamic)
+    {
+        GetDynamicQuery getDynamicQuery = new()
+        {
+            PageRequest = pageRequest,
+            Dynamic = dynamic
+        };
+
+        GetListResponse<GetDynamicNeighborhoodResponse> response = await Mediator.Send(getDynamicQuery);
+        return Ok(response);
+
     }
 }
