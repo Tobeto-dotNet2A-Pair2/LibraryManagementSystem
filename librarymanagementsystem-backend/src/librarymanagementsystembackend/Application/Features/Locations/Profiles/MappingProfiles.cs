@@ -1,6 +1,7 @@
 using Application.Features.Locations.Commands.Create;
 using Application.Features.Locations.Commands.Delete;
 using Application.Features.Locations.Commands.Update;
+using Application.Features.Locations.Dtos;
 using Application.Features.Locations.Queries.GetById;
 using Application.Features.Locations.Queries.GetList;
 using AutoMapper;
@@ -23,5 +24,7 @@ public class MappingProfiles : Profile
         CreateMap<Location, GetByIdLocationResponse>().ReverseMap();
         CreateMap<Location, GetListLocationListItemDto>().ReverseMap();
         CreateMap<IPaginate<Location>, GetListResponse<GetListLocationListItemDto>>().ReverseMap();
+
+        CreateMap<Location, LocationForMaterialDetailDto>();
     }
 }

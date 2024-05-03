@@ -1,6 +1,7 @@
 using Application.Features.MaterialTypes.Commands.Create;
 using Application.Features.MaterialTypes.Commands.Delete;
 using Application.Features.MaterialTypes.Commands.Update;
+using Application.Features.MaterialTypes.Dtos;
 using Application.Features.MaterialTypes.Queries.GetById;
 using Application.Features.MaterialTypes.Queries.GetList;
 using AutoMapper;
@@ -23,5 +24,7 @@ public class MappingProfiles : Profile
         CreateMap<MaterialType, GetByIdMaterialTypeResponse>().ReverseMap();
         CreateMap<MaterialType, GetListMaterialTypeListItemDto>().ReverseMap();
         CreateMap<IPaginate<MaterialType>, GetListResponse<GetListMaterialTypeListItemDto>>().ReverseMap();
+
+        CreateMap<MaterialType, MaterialTypeForMaterialDetailDto>();
     }
 }

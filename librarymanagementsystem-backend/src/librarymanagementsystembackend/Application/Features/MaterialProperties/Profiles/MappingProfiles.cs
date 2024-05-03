@@ -1,6 +1,7 @@
 using Application.Features.MaterialProperties.Commands.Create;
 using Application.Features.MaterialProperties.Commands.Delete;
 using Application.Features.MaterialProperties.Commands.Update;
+using Application.Features.MaterialProperties.Dtos;
 using Application.Features.MaterialProperties.Queries.GetById;
 using Application.Features.MaterialProperties.Queries.GetList;
 using Application.Features.MaterialProperties.Queries.GetList.GetListAll;
@@ -24,6 +25,10 @@ public class MappingProfiles : Profile
         CreateMap<MaterialProperty, GetByIdMaterialPropertyResponse>().ReverseMap();
         CreateMap<MaterialProperty, GetListMaterialPropertyListItemDto>().ReverseMap();
         CreateMap<IPaginate<MaterialProperty>, GetListResponse<GetListMaterialPropertyListItemDto>>().ReverseMap();
+
+        CreateMap<MaterialProperty, MaterialPropertyForMaterialDetailDto>()
+            .ForMember(src => src.PropertyValue, opt => opt.
+                MapFrom(src => src.MaterialPropertyValue));
 
         CreateMap<MaterialProperty, GetListAllMaterialPropertyDto>();
     }

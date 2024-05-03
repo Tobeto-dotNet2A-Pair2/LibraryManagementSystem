@@ -1,6 +1,7 @@
 using Application.Features.Translators.Commands.Create;
 using Application.Features.Translators.Commands.Delete;
 using Application.Features.Translators.Commands.Update;
+using Application.Features.Translators.Dtos;
 using Application.Features.Translators.Queries.GetById;
 using Application.Features.Translators.Queries.GetList;
 using AutoMapper;
@@ -23,5 +24,7 @@ public class MappingProfiles : Profile
         CreateMap<Translator, GetByIdTranslatorResponse>().ReverseMap();
         CreateMap<Translator, GetListTranslatorListItemDto>().ReverseMap();
         CreateMap<IPaginate<Translator>, GetListResponse<GetListTranslatorListItemDto>>().ReverseMap();
+
+        CreateMap<Translator, TranslatorForMaterialDetailDto>();
     }
 }
