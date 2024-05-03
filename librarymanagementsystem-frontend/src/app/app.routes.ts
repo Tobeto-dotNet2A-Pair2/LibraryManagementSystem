@@ -15,6 +15,7 @@ import { AddLibraryComponent } from './features/pages/library/add-libray/add-lib
 import { AddBranchFormComponent } from './features/pages/branches/add-branch-form/add-branch-form.component';
 import { ContactComponent } from './features/pages/contact/contact.component';
 import { AboutUsComponent } from './features/pages/about-us/about-us.component';
+import { QuestionComponent } from './features/pages/question/question.component';
 
 export const routes: Routes = [
   
@@ -26,6 +27,8 @@ export const routes: Routes = [
       { path: '', component:HomepageComponent},
       { path: 'contact', component: ContactComponent },
       { path: 'aboutus', component: AboutUsComponent },
+      { path: 'questions', component: QuestionComponent },
+
 
     ]
   },
