@@ -12,9 +12,11 @@ export const roleGuard: CanActivateFn = (route, state) => {
   if (token == null) return false;
   let decodedToken = jwtDecode<any>(token);
   
+  let userRoles: string[] =
+  typeof decodedToken[JWT_ROLES] == typeof ''
+    ? [decodedToken[JWT_ROLES]]
+    : decodedToken[JWT_ROLES];
 
-
-  let userRoles: string[] = decodedToken[JWT_ROLES];
 
   let requiredRoles: string[] = route.data['requiredRoles'] || [];//data yoksa boş dön
 
