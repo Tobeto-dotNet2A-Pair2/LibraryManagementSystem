@@ -10,19 +10,14 @@
           id="floatingSelect"
           aria-label="Floating label select example"
         >
-          <option selected>Bir Materyal Seç</option>
-          <option *ngFor="let material of materialList" [value]="material.id">{{material.name}}</option>
+          <option selected></option>
+          <option *ngFor="let material of materialList" [value]="material.id">
+            {{ material.name }}
+          </option>
         </select>
         <label for="floatingSelect">Materyal Seç</label>
       </div>
       <!--end::Input group Dropdown-Select-->
-
-      
-
-
-      <select [(ngModel)]="materialSelectObj.id" class="form-select">
-        <option *ngFor="let material of materialList" [value]="material.id">{{material.name}}</option>
-      </select>
       <br />
       <a
         id="btnAddMaterial"
@@ -42,6 +37,32 @@
       >
       <br />
       <!--MaterialCopy End-->
+      <!--MaterialImage Start-->
+      <br />
+      <a
+        id="btnAddMaterialImage"
+        class="btn btn-info"
+        (click)="openModal('materialImageModal')"
+        >Yeni Materyal Fotoğrafı yükle</a
+      >
+      <br />
+      <!--MaterialImage End-->
+      <!--MaterialGenre Start-->
+      <br />
+      <a
+        id="btnAddMaterialGenre"
+        class="btn btn-info"
+        (click)="openModal('materialNewGenreModal')"
+        >Yeni tür/kategori ekle Opsiyonel</a
+      >
+      <br /><br />
+      <a
+        id="btnSelectMaterialGenre"
+        class="btn btn-warning"
+        (click)="openModal('materialGenreModal')"
+        >Material tür/kategori seç</a
+      >
+      <!--MaterialGenre End-->
     </div>
   </form>
   <!--2.Sutun-->
@@ -159,10 +180,13 @@
           id="floatingSelect"
           aria-label="Floating label select example"
         >
-          <option selected>Bir Lokasyon Seç</option>
-          <option value="1">Lokasyon 1</option>
-          <option value="2">Lokasyon 2</option>
-          <option value="3">Lokasyon 3</option>
+        <option selected></option>
+        <option
+          *ngFor="let location of locationList"
+          [value]="location.id"
+        >
+          {{ location.fullLocationMap }}
+        </option>
         </select>
         <label for="floatingSelect">Lokasyon Seç</label>
       </div>
@@ -271,7 +295,7 @@
         >
           Close
         </button>
-        <button type="button" class="btn btn-primary" >Submit</button>
+        <button type="button" class="btn btn-primary">Submit</button>
       </div>
     </div>
   </div>
@@ -293,49 +317,20 @@
       </div>
       <!--body -->
       <div class="modal-body">
-        <form class="form-group">
-          <div class="form-floating">
-            <select
-              class="form-select"
-              id="floatingSelect"
-              aria-label="Floating label select example"
-            >
-              <option selected>Bir Materyal Seç</option>
-              <option value="1">Materyal 1</option>
-              <option value="2">Materyal 2</option>
-              <option value="3">Materyal 3</option>
-            </select>
-            <label for="floatingSelect">Materyal Seç</label>
+        <form
+          [formGroup]="materialCopyForm"
+          (ngSubmit)="onSubmitMaterialCopyForm()"
+        >
+          <div class="mb-10">
+            <label for="" class="form-label">Date Receipt</label>
+            <input
+              class="form-control"
+              placeholder="Pick a date"
+              id="dateReceipt"
+              formControlName="dateReceipt"
+            />
           </div>
-          <br />
-          <div class="form-floating">
-            <select
-              class="form-select"
-              id="floatingSelect"
-              aria-label="Floating label select example"
-            >
-              <option selected>Bir Branch Seç</option>
-              <option value="1">Branch 1</option>
-              <option value="2">Branch 2</option>
-              <option value="3">Branch 3</option>
-            </select>
-            <label for="floatingSelect">Branch Seç</label>
-          </div>
-          <br />
-          <div class="form-floating">
-            <select
-              class="form-select"
-              id="floatingSelect"
-              aria-label="Floating label select example"
-            >
-              <option selected>Bir Materyal Lokasyonu Seç</option>
-              <option value="1">Materyal Lokasyonu 1</option>
-              <option value="2">Materyal Lokasyonu 2</option>
-              <option value="3">Materyal Lokasyonu 3</option>
-            </select>
-            <label for="floatingSelect">Materyal Lokasyonu Seç</label>
-          </div>
-          <br />
+
           <div class="input-group mb-5">
             <span class="input-group-text" id="basic-addon1">Status</span>
             <input
@@ -345,32 +340,88 @@
               placeholder="Status"
               aria-label="Status"
               aria-describedby="basic-addon1"
+              formControlName="status"
             />
           </div>
-
-          <div class="form-check">
-            <input
-              class="form-check-input"
-              type="checkbox"
-              value=""
-              id="isReservable"
-            />
-            <label class="form-check-label" for="flexCheckDefault">
-              Ayırtılabilir
-            </label>
-          </div>
-          <br /><br />
           <div class="form-check">
             <input
               class="form-check-input"
               type="checkbox"
               value=""
               id="isReserved"
+              formControlName="isReserved"
             />
             <label class="form-check-label" for="flexCheckDefault">
               Ayrıldı
             </label>
           </div>
+          <br />
+          <div class="form-check">
+            <input
+              class="form-check-input"
+              type="checkbox"
+              value=""
+              id="isReservable"
+              formControlName="isReservable"
+            />
+            <label class="form-check-label" for="flexCheckDefault">
+              Ayırtılabilir
+            </label>
+          </div>
+          <br />
+
+          <div class="form-floating">
+            <select
+              class="form-select"
+              id="floatingSelect"
+              aria-label="Floating label select example"
+              formControlName="materialId"
+            >
+              <option selected></option>
+              <option
+                *ngFor="let material of materialList"
+                [value]="material.id"
+              >
+                {{ material.name }}
+              </option>
+            </select>
+            <label for="floatingSelect">Materyal Seç</label>
+          </div>
+          <br />
+          <div class="form-floating">
+            <select
+              class="form-select"
+              id="floatingSelect"
+              aria-label="Floating label select example"
+              formControlName="branchId"
+            >
+              <option selected></option>
+              <option *ngFor="let branch of branchList" [value]="branch.id">
+                {{ branch.name }}
+              </option>
+            </select>
+            <label for="floatingSelect">Branch Seç</label>
+          </div>
+          <br />
+          <div class="form-floating">
+            <select
+              class="form-select"
+              id="floatingSelect"
+              aria-label="Floating label select example"
+              formControlName="locationId"
+            >
+              <option selected></option>
+              <option
+                *ngFor="let location of locationList"
+                [value]="location.id"
+              >
+                {{ location.fullLocationMap }}
+              </option>
+            </select>
+            <label for="floatingSelect">Materyal Lokasyonu Seç</label>
+          </div>
+          <br />
+          <button type="submit" class="btn btn-primary">Submit</button>
         </form>
       </div>
       <!--body end-->
@@ -389,6 +440,157 @@
   </div>
 </div>
 <!--MaterialCopy Modal -- materyal ekle Sonu-->
+<!--MaterialImage Modal -- materyal foto ekle modalı-->
+<div id="materialImageModal" class="modal" tabindex="-1">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Yazar Ekle</h5>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+          (click)="closeModal('materialImageModal')"
+        ></button>
+      </div>
+      <!--body -->
+      <div class="modal-body">
+        <!--begin::Form-->
+        <form
+          id="kt_docs_formvalidation_image_input"
+          class="form"
+          action="#"
+          autocomplete="off"
+        >
+          <!--begin::Input group-->
+          <div class="fv-row mb-7">
+            <!--begin::Label-->
+            <label class="d-block fw-semibold fs-6 mb-5">Image Input</label>
+            <!--end::Label-->
+
+            <!--begin::Image input-->
+            <div
+              class="image-input image-input-outline image-input-empty"
+              data-kt-image-input="true"
+              style="
+                background-image: url('assets/media/svg/avatars/blank.svg');
+              "
+            >
+              <!--begin::Preview existing avatar-->
+              <div class="image-input-wrapper w-125px h-125px"></div>
+              <!--end::Preview existing avatar-->
+
+              <!--begin::Label-->
+              <label
+                class="btn btn-icon btn-circle btn-active-color-primary w-25px h-25px bg-body shadow"
+                data-kt-image-input-action="change"
+                data-bs-toggle="tooltip"
+                title="Change avatar"
+              >
+                <i class="ki-duotone ki-pencil fs-6"
+                  ><span class="path1"></span><span class="path2"></span
+                ></i>
+
+                <!--begin::Inputs-->
+                <input type="file" name="avatar" accept=".png, .jpg, .jpeg" />
+                <input type="hidden" name="avatar_remove" />
+                <!--end::Inputs-->
+              </label>
+              <!--end::Label-->
+
+              <!--begin::Cancel-->
+              <span
+                class="btn btn-icon btn-circle btn-active-color-primary w-25px h-25px bg-body shadow"
+                data-kt-image-input-action="cancel"
+                data-bs-toggle="tooltip"
+                title="Cancel avatar"
+              >
+                <i class="ki-outline ki-cross fs-3"></i>
+              </span>
+              <!--end::Cancel-->
+
+              <!--begin::Remove-->
+              <span
+                class="btn btn-icon btn-circle btn-active-color-primary w-25px h-25px bg-body shadow"
+                data-kt-image-input-action="remove"
+                data-bs-toggle="tooltip"
+                title="Remove avatar"
+              >
+                <i class="ki-outline ki-cross fs-3"></i>
+              </span>
+              <!--end::Remove-->
+            </div>
+            <!--end::Image input-->
+
+            <!--begin::Hint-->
+            <div class="form-text">Allowed file types: png, jpg, jpeg.</div>
+            <!--end::Hint-->
+          </div>
+          <!--end::Input group-->
+          <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+        <!--end::Form-->
+      </div>
+      <!--body end-->
+      <div class="modal-footer">
+        <button
+          type="button"
+          class="btn btn-secondary"
+          data-bs-dismiss="modal"
+          (click)="closeModal('materialImageModal')"
+        >
+          Close
+        </button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!--MaterialImage Modal -- materyal foto Sonu-->
+<!--MaterialGenre Modal -- materyal tür seç modalı-->
+<div id="materialGenreModal" class="modal" tabindex="-1">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Yazar Ekle</h5>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+          (click)="closeModal('materialGenreModal')"
+        ></button>
+      </div>
+      <!--body -->
+      <div class="modal-body">
+        <form action="">
+          <div class="mb-10">
+            <label class="form-label">Materyal Tür/Kategori seç</label>
+            <input
+              class="form-control"
+              value="Korku, Fantastik, Bilim Kurgu"
+              id="genre_tagify"
+            />
+          </div>
+        </form>
+      </div>
+      <!--body end-->
+      <div class="modal-footer">
+        <button
+          type="button"
+          class="btn btn-secondary"
+          data-bs-dismiss="modal"
+          (click)="closeModal('materialGenreModal')"
+        >
+          Close
+        </button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!--MaterialGenre Modal -- materyal foto Sonu-->
 <!--Author Modal -- yazar ekle modalı-->
 <div id="authorModal" class="modal" tabindex="-1">
   <div class="modal-dialog">
@@ -632,7 +834,8 @@
       </div>
       <!--body -->
       <div class="modal-body">
-        <form class="form-group">
+        <form [formGroup]="locationForm"
+        (ngSubmit)="onSubmitLocationForm()">
           <div class="input-group mb-5">
             <span class="input-group-text" id="basic-addon1">Kat</span>
             <input
@@ -642,6 +845,7 @@
               placeholder="Floor"
               aria-label="Floor"
               aria-describedby="basic-addon1"
+              formControlName="floor"
             />
           </div>
           <div class="input-group mb-5">
@@ -653,6 +857,7 @@
               placeholder="Corridor"
               aria-label="Corridor"
               aria-describedby="basic-addon1"
+              formControlName="corridor"
             />
           </div>
           <div class="input-group mb-5">
@@ -664,6 +869,7 @@
               placeholder="Shelf"
               aria-label="Shelf"
               aria-describedby="basic-addon1"
+              formControlName="shelf"
             />
           </div>
           <div class="input-group mb-5">
@@ -675,6 +881,7 @@
               placeholder="ShelfFloor"
               aria-label="ShelfFloor"
               aria-describedby="basic-addon1"
+              formControlName="shelfFloor"
             />
           </div>
           <div class="input-group mb-5">
@@ -688,6 +895,7 @@
               placeholder="ShelfLineNumber"
               aria-label="ShelfLineNumber"
               aria-describedby="basic-addon1"
+              formControlName="shelfLineNumber"
             />
           </div>
           <div class="input-group mb-5">
@@ -701,8 +909,11 @@
               placeholder="FullLocationMap"
               aria-label="FullLocationMap"
               aria-describedby="basic-addon1"
+              formControlName="fullLocationMap"
             />
           </div>
+          <br />
+          <button type="submit" class="btn btn-primary">Submit</button>
         </form>
       </div>
       <!--body end-->

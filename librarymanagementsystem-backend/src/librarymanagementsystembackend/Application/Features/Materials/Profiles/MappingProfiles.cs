@@ -25,6 +25,6 @@ public class MappingProfiles : Profile
         CreateMap<Material, GetListMaterialListItemDto>().ReverseMap();
         CreateMap<IPaginate<Material>, GetListResponse<GetListMaterialListItemDto>>().ReverseMap();
 
-        CreateMap<Material, GetAllMaterialsDto>();
+        CreateMap<Material, GetAllMaterialsDto>().ReverseMap();
     }
 }

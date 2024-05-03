@@ -6,6 +6,8 @@ using Application.Features.Branches.Queries.GetList;
 using NArchitecture.Core.Application.Requests;
 using NArchitecture.Core.Application.Responses;
 using Microsoft.AspNetCore.Mvc;
+using Application.Features.Materials.Queries.GetList.GetAll;
+using Application.Features.Branches.Queries.GetList.GetAll;
 
 namespace WebAPI.Controllers;
 
@@ -49,6 +51,15 @@ public class BranchesController : BaseController
     {
         GetListBranchQuery getListBranchQuery = new() { PageRequest = pageRequest };
         GetListResponse<GetListBranchListItemDto> response = await Mediator.Send(getListBranchQuery);
+        return Ok(response);
+    }
+
+
+    [HttpGet]
+    [Route("GetAll")]
+    public async Task<IActionResult> GetAll([FromQuery] GetAllBranchesQuery getAllBranchesQuery)
+    {
+        List<GetAllBranchesDto> response = await Mediator.Send(getAllBranchesQuery);
         return Ok(response);
     }
 }
