@@ -14,6 +14,7 @@ import { MemberProfileComponent } from './features/pages/members/member-profile/
 import { AddLibraryComponent } from './features/pages/library/add-libray/add-library/add-library.component';
 import { AddBranchFormComponent } from './features/pages/branches/add-branch-form/add-branch-form.component';
 import { ContactComponent } from './features/pages/contact/contact.component';
+import { AboutUsComponent } from './features/pages/about-us/about-us.component';
 
 export const routes: Routes = [
   
@@ -23,7 +24,10 @@ export const routes: Routes = [
     component:MainLayoutComponent,
     children: [
       { path: '', component:HomepageComponent},
-      { path: 'contact', component: ContactComponent }]
+      { path: 'contact', component: ContactComponent },
+      { path: 'aboutus', component: AboutUsComponent },
+
+    ]
   },
   // { path: 'homepage', component: AdminLayoutComponent },
 
@@ -31,7 +35,7 @@ export const routes: Routes = [
   {
     path: 'adminpage',
     component: AdminLayoutComponent,
-    canActivate: [roleGuard],
+    // canActivate: [roleGuard],
     data:{requiredRoles:['Admin']},
     children: [
       { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
