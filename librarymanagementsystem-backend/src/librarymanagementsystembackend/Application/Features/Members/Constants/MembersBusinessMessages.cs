@@ -5,4 +5,5 @@ public static class MembersBusinessMessages
     public const string SectionName = "Member";
 
     public const string MemberNotExists = "MemberNotExists";
+    public const string MemberHaveDebt = "MemberHaveDebt";
 }

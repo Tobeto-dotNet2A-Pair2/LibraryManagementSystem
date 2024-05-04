@@ -1,5 +1,7 @@
+using Application.Features.Penalties.Dto;
 using Application.Features.Penalties.Rules;
 using Application.Services.Repositories;
+using AutoMapper;
 using NArchitecture.Core.Persistence.Paging;
 using Domain.Entities;
 using Microsoft.EntityFrameworkCore.Query;
@@ -11,11 +13,13 @@ public class PenaltyManager : IPenaltyService
 {
     private readonly IPenaltyRepository _penaltyRepository;
     private readonly PenaltyBusinessRules _penaltyBusinessRules;
+    private readonly IMapper _mapper;
 
-    public PenaltyManager(IPenaltyRepository penaltyRepository, PenaltyBusinessRules penaltyBusinessRules)
+    public PenaltyManager(IPenaltyRepository penaltyRepository, PenaltyBusinessRules penaltyBusinessRules, IMapper mapper)
     {
         _penaltyRepository = penaltyRepository;
         _penaltyBusinessRules = penaltyBusinessRules;
+        _mapper = mapper;
     }
 
     public async Task<Penalty?> GetAsync(
@@ -73,5 +77,12 @@ public class PenaltyManager : IPenaltyService
         Penalty deletedPenalty = await _penaltyRepository.DeleteAsync(penalty);
 
         return deletedPenalty;
+    }
+
+    public async Task<Penalty> CreateWhenRefund(CreatePenaltyWhenRefundDto createPenaltyWhenRefund)
+    {
+        var penalty = _mapper.Map<Penalty>(createPenaltyWhenRefund);
+        Penalty addedPenalty = await _penaltyRepository.AddAsync(penalty);
+        return addedPenalty;
     }
 }

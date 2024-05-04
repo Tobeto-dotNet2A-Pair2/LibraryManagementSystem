@@ -1,3 +1,4 @@
+using Application.Features.Penalties.Dto;
 using NArchitecture.Core.Persistence.Paging;
 using Domain.Entities;
 using Microsoft.EntityFrameworkCore.Query;
@@ -27,4 +28,6 @@ public interface IPenaltyService
     Task<Penalty> AddAsync(Penalty penalty);
     Task<Penalty> UpdateAsync(Penalty penalty);
     Task<Penalty> DeleteAsync(Penalty penalty, bool permanent = false);
+
+    Task<Penalty> CreateWhenRefund(CreatePenaltyWhenRefundDto createPenaltyWhenRefund);
 }

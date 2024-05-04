@@ -1,8 +1,13 @@
+using Application.Features.BorrowedMaterials.Dtos;
 using Application.Features.MaterialCopies.Rules;
 using Application.Services.Repositories;
+using AutoMapper;
+using AutoMapper.QueryableExtensions;
 using NArchitecture.Core.Persistence.Paging;
 using Domain.Entities;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Query;
+using System.Linq.Dynamic.Core;
 using System.Linq.Expressions;
 
 namespace Application.Services.MaterialCopies;
@@ -11,11 +16,13 @@ public class MaterialCopyManager : IMaterialCopyService
 {
     private readonly IMaterialCopyRepository _materialCopyRepository;
     private readonly MaterialCopyBusinessRules _materialCopyBusinessRules;
+    private readonly IMapper _mapper;
 
-    public MaterialCopyManager(IMaterialCopyRepository materialCopyRepository, MaterialCopyBusinessRules materialCopyBusinessRules)
+    public MaterialCopyManager(IMaterialCopyRepository materialCopyRepository, MaterialCopyBusinessRules materialCopyBusinessRules, IMapper mapper)
     {
         _materialCopyRepository = materialCopyRepository;
         _materialCopyBusinessRules = materialCopyBusinessRules;
+        _mapper = mapper;
     }
 
     public async Task<MaterialCopy?> GetAsync(
@@ -73,5 +80,27 @@ public class MaterialCopyManager : IMaterialCopyService
         MaterialCopy deletedMaterialCopy = await _materialCopyRepository.DeleteAsync(materialCopy);
 
         return deletedMaterialCopy;
+    }
+
+    public async Task<GetForBorrowDto> GetForBorrow(Guid id)
+    {
+        GetForBorrowDto? materialCopyForBorrow = await _materialCopyRepository.Query()
+            .Include(a => a.Material)
+            .ProjectTo<GetForBorrowDto>(_mapper.ConfigurationProvider)
+            .FirstOrDefaultAsync(a => a.Id == id);
+        
+        return materialCopyForBorrow!;
+    }
+
+    public async Task UpdateAfterRefund(Guid materialCopyId)
+    {
+      MaterialCopy materialCopy = await _materialCopyRepository.GetAsync(a => a.Id == materialCopyId);
+
+      materialCopy!.IsReserved = false;
+      materialCopy!.IsReservable = true;
+      materialCopy!.DateReceipt = DateTime.UtcNow;
+
+      await _materialCopyRepository.UpdateAsync(materialCopy);
+
     }
 }

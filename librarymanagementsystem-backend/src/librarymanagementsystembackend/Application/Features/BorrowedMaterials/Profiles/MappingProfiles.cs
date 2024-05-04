@@ -23,5 +23,13 @@ public class MappingProfiles : Profile
         CreateMap<BorrowedMaterial, GetByIdBorrowedMaterialResponse>().ReverseMap();
         CreateMap<BorrowedMaterial, GetListBorrowedMaterialListItemDto>().ReverseMap();
         CreateMap<IPaginate<BorrowedMaterial>, GetListResponse<GetListBorrowedMaterialListItemDto>>().ReverseMap();
+
+        CreateMap<CreateBorrowedMaterialCommand, BorrowedMaterial>()
+            .ForMember(a => a.BorrowedDate, opt => opt
+                .MapFrom(src => DateTime.UtcNow));
+
+        CreateMap<BorrowedMaterial, CreatedBorrowedMaterialResponse>();
+
+
     }
 }

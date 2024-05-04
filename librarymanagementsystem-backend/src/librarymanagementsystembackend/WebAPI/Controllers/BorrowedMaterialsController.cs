@@ -1,4 +1,5 @@
 using Application.Features.BorrowedMaterials.Commands.Create;
+using Application.Features.BorrowedMaterials.Commands.Create.Refund;
 using Application.Features.BorrowedMaterials.Commands.Delete;
 using Application.Features.BorrowedMaterials.Commands.Update;
 using Application.Features.BorrowedMaterials.Queries.GetById;
@@ -9,7 +10,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace WebAPI.Controllers;
 
-[Route("api/[controller]")]
+[Route("api/[controller]/[action]")]
 [ApiController]
 public class BorrowedMaterialsController : BaseController
 {
@@ -51,4 +52,14 @@ public class BorrowedMaterialsController : BaseController
         GetListResponse<GetListBorrowedMaterialListItemDto> response = await Mediator.Send(getListBorrowedMaterialQuery);
         return Ok(response);
     }
+    
+    
+    [HttpPost]
+    public async Task<IActionResult> Refund([FromBody] CreateRefundCommand createRefundCommand)
+    {
+        CreateRefundResponse response = await Mediator.Send(createRefundCommand);
+        return Ok(response);
+    }
+    
+    
 }

@@ -1,3 +1,4 @@
+using Application.Features.BorrowedMaterials.Dtos;
 using Application.Features.MaterialCopies.Commands.Create;
 using Application.Features.MaterialCopies.Commands.Delete;
 using Application.Features.MaterialCopies.Commands.Update;
@@ -26,5 +27,10 @@ public class MappingProfiles : Profile
         CreateMap<IPaginate<MaterialCopy>, GetListResponse<GetListMaterialCopyListItemDto>>().ReverseMap();
 
         CreateMap<MaterialCopy, MaterialCopyForMaterialDetailDto>();
+        CreateMap<MaterialCopy, GetForBorrowDto>()
+            .ForMember(a => a.BorrowDay, opt => opt
+                .MapFrom(a => a.Material.BorrowDay))
+            .ForMember(a => a.PunishmentAmount, opt => opt
+                .MapFrom(a => a.Material.PunishmentAmount));
     }
 }
