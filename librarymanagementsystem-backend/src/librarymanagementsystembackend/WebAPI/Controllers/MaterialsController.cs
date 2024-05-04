@@ -53,13 +53,14 @@ public class MaterialsController : BaseController
         GetListResponse<GetListMaterialListItemDto> response = await Mediator.Send(getListMaterialQuery);
         return Ok(response);
     }
-    
+    //ebruudan gelen---------------------
     [HttpGet]
-    public async Task<IActionResult> GetListForAdmin([FromQuery] GetAllMaterialsForAdminQuery getAllMaterialsForAdminQuery)
+    public async Task<IActionResult> GetListForAdmin([FromQuery] GetAllMaterialListAdminQuery getAllMaterialListAdminQuery)
     {
-        List<GetAllMaterialsForAdminDto> response = await Mediator.Send(getAllMaterialsForAdminQuery);
+        List<GetAllMaterialListAdminDto> response = await Mediator.Send(getAllMaterialListAdminQuery);
         return Ok(response);
     }
+
 
     [HttpGet]
     public async Task<IActionResult> GetDetailByIdForAdmin([FromQuery] GetDetailByIdForAdminQuery getDetailByIdForAdminQuery)

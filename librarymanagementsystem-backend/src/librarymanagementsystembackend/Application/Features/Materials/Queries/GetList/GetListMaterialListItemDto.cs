@@ -10,4 +10,11 @@ public class GetListMaterialListItemDto : IDto
     public decimal? PunishmentAmount { get; set; }
     public bool IsBorrowable { get; set; }
     public byte BorrowDay { get; set; }
+
+    //1.deneme-----
+    //Bu sekilde List<GetListMaterialImageListItemDto> ...olunca: tüm  MaterialImage tablosnunveriyordu.
+    //public List<GetListMaterialImageListItemDto> MaterialImages { get; set; } // MaterialImage'lerin listesi
+
+    //2.deneme---dogru cýktý
+    public List<string> ImageUrls { get; set; }
 }
