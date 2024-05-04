@@ -41,7 +41,7 @@ export class ToolbarComponent implements OnInit {
    if (this.activeChildRouteName=="") {
         this.activeChildRouteName = "Hoş Geldin"
        }
-      console.log(this.activeChildRouteName)
+      
   }
 
 }
