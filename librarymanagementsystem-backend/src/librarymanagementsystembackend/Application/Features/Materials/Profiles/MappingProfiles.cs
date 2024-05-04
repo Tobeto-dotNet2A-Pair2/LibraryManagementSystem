@@ -9,6 +9,7 @@ using AutoMapper;
 using NArchitecture.Core.Application.Responses;
 using Domain.Entities;
 using NArchitecture.Core.Persistence.Paging;
+using Application.Features.MaterialImages.Queries.GetList;
 
 namespace Application.Features.Materials.Profiles;
 
@@ -26,7 +27,22 @@ public class MappingProfiles : Profile
         CreateMap<Material, GetListMaterialListItemDto>().ReverseMap();
         CreateMap<IPaginate<Material>, GetListResponse<GetListMaterialListItemDto>>().ReverseMap();
 
-        CreateMap<Material, GetAllMaterialsForAdminDto>()
+        //1.deneme=List----burada  MaterialImages tüm tabloyu cýktý olarak veriyordu
+        //CreateMap<MaterialImage, GetListMaterialImageListItemDto>().ReverseMap(); // MaterialImage ile DTO arasýnda mapping
+        //CreateMap<Material, GetListMaterialListItemDto>()
+        //    .ForMember(dest => dest.MaterialImages, opt => opt.MapFrom(src => src.MaterialImages)) // MaterialImages özelliði ile eþleme
+        //    .ReverseMap();
+
+        //2.deneme=List---dogru cýktý veriyor
+        CreateMap<MaterialImage, GetListMaterialImageListItemDto>().ReverseMap(); // MaterialImage ile DTO arasýnda mapping
+        CreateMap<Material, GetListMaterialListItemDto>()
+      .ForMember(x => x.ImageUrls,
+               src => src
+                   .MapFrom(a => a.MaterialImages
+                       .Select(b => b.Url)));
+
+        //ebrudan gelen-------------------------------
+        CreateMap<Material, GetAllMaterialListAdminDto>()
             .ForMember(x => x.ImageUrls,
                 src => src
                     .MapFrom(a => a.MaterialImages

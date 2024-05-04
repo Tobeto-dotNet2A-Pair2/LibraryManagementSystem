@@ -9,33 +9,33 @@ using System.Linq.Dynamic.Core;
 
 namespace Application.Features.Materials.Queries.GetList.GetAllForAdmin;
 
-public class GetAllMaterialsForAdminQuery :IRequest<List<GetAllMaterialsForAdminDto>>
+public class GetAllMaterialListAdminQuery :IRequest<List<GetAllMaterialListAdminDto>>
 {
     public PageRequest PageRequest { get; set; }
     
-    public class GetAllMaterialsForAdminHandler : IRequestHandler<GetAllMaterialsForAdminQuery,List<GetAllMaterialsForAdminDto>>
+    public class GetAllMaterialListAdminHandler : IRequestHandler<GetAllMaterialListAdminQuery,List<GetAllMaterialListAdminDto>>
     {
         private readonly IMaterialRepository _materialRepository;
         private readonly IMapper _mapper;
         
-        public GetAllMaterialsForAdminHandler(IMaterialRepository materialRepository, IMapper mapper)
+        public GetAllMaterialListAdminHandler(IMaterialRepository materialRepository, IMapper mapper)
         {
             _materialRepository = materialRepository;
             _mapper = mapper;
         }
         
-        public async Task<List<GetAllMaterialsForAdminDto>> Handle(GetAllMaterialsForAdminQuery request, CancellationToken cancellationToken)
+        public async Task<List<GetAllMaterialListAdminDto>> Handle(GetAllMaterialListAdminQuery request, CancellationToken cancellationToken)
         {
             IQueryable<Material> query = _materialRepository.Query(); 
-            List<GetAllMaterialsForAdminDto> allMaterialsForAdmin = await query
+            List<GetAllMaterialListAdminDto> allMaterialListAdmin = await query
                 .Include(x => x.MaterialImages.Where(a => a.DeletedDate == null))
                 .Where(x => x.DeletedDate == null)
                 .OrderByDescending(b=>b.CreatedDate)
                 .Page(request.PageRequest.PageIndex, request.PageRequest.PageSize)
-                .ProjectTo<GetAllMaterialsForAdminDto>(_mapper.ConfigurationProvider)
+                .ProjectTo<GetAllMaterialListAdminDto>(_mapper.ConfigurationProvider)
                 .ToListAsync(cancellationToken);
 
-            return allMaterialsForAdmin;
+            return allMaterialListAdmin;
         }
     }
 }

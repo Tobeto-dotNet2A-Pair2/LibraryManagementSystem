@@ -1,7 +1,8 @@
 namespace Application.Features.Materials.Queries.GetList.GetAllForAdmin;
 
-public class GetAllMaterialsForAdminDto
+public class GetAllMaterialListAdminDto
 {
+    //ebru  deneme
     public List<string> ImageUrls { get; set; }
     public Guid Id { get; set; }
     public string Name { get; set; }
