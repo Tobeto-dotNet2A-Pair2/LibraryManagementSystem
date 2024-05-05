@@ -5,6 +5,8 @@ import { MaterialListBaseService } from '../abstracts/material-list-base.service
 import { PageRequest } from '../../../core/models/page/page-request';
 import { MaterialListDto } from '../../models/responses/materials/material-list-item-dto';
 import { Injectable } from '@angular/core';
+import { DeleteMaterialRequest } from '../../models/requests/materials/delete-material-request';
+import { DeletedMaterialResponse } from '../../models/responses/materials/deleted-material-response';
 
 
 
@@ -12,7 +14,7 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class MaterialListService extends MaterialListBaseService{
- private readonly apiUrl:string = `${environment.API_URL}/Materials/GetList`
+ private readonly apiUrl:string = `${environment.API_URL}/Materials`
   constructor(private httpClient:HttpClient) {super() }
 
   override getList(pageRequest: PageRequest): Observable<MaterialListDto> {
@@ -20,7 +22,7 @@ export class MaterialListService extends MaterialListBaseService{
       pageIndex:pageRequest.pageIndex,
       pageSize:pageRequest.pageSize
     };
-    return this.httpClient.get<MaterialListDto>(this.apiUrl,{
+    return this.httpClient.get<MaterialListDto>(`${this.apiUrl}/GetList`,{
       params:newRequest
     }).pipe(
       map((response)=>{
@@ -45,7 +47,7 @@ export class MaterialListService extends MaterialListBaseService{
       modelId:modelId
     };
  
-    return this.httpClient.get<MaterialListDto>(`${this.apiUrl}/getmaterialbymodel`,{
+    return this.httpClient.get<MaterialListDto>(`${this.apiUrl}/GetList/getmaterialbymodel`,{
       params:newRequest
     }).pipe(
       map((response)=>{
@@ -64,6 +66,7 @@ export class MaterialListService extends MaterialListBaseService{
   }
 
   
-
+  deleteMaterial(materialId: string): Observable<DeletedMaterialResponse> {
+    return this.httpClient.delete<DeletedMaterialResponse>(`${this.apiUrl}/Delete/${materialId}`);
+  }
 }
-

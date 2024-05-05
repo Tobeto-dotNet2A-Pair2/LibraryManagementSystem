@@ -5,6 +5,14 @@ import { MaterialListService } from '../../../services/concretes/material-list.s
 import { PageRequest } from '../../../../core/models/page/page-request';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import { UpdateMaterialRequest } from '../../../models/requests/materials/update-material-request';
+import { DeleteMaterialRequest } from '../../../models/requests/materials/delete-material-request';
+import { MaterialDetailDto } from '../../../models/responses/materials/material-detail-dto';
+import { DeletedMaterialResponse } from '../../../models/responses/materials/deleted-material-response';
+import { ToastrService } from 'ngx-toastr';
+
+
+
 
 @Component({
   selector: 'app-material-list',
@@ -15,6 +23,7 @@ import { CommonModule } from '@angular/common';
 })
 export class MaterialListComponent implements OnInit {
   currentPageNumber!:number; //null
+  material!:string;
   materialList: MaterialListDto={
     index:0,
     size:0,
@@ -25,8 +34,13 @@ export class MaterialListComponent implements OnInit {
     items:[]
   };
  
-  constructor(private materialListService: MaterialListService, private activatedRoute:ActivatedRoute) {}
+  constructor(
+    private materialListService: MaterialListService, 
+    private activatedRoute:ActivatedRoute,
+    private toastr: ToastrService
+  ) {}
   readonly PAGE_SIZE=2;
+  
   ngOnInit(): void {
     this.activatedRoute.params.subscribe(params=>{
       if(params["modelId"]){
@@ -98,6 +112,31 @@ export class MaterialListComponent implements OnInit {
     
     this.getList({ pageIndex: 0, pageSize: this.PAGE_SIZE });
   }// Sayfa boyutu değiştiğinde, veri listesini yeniden yükle
+
+//-----------------------------------------------------------
+
+  updateMaterial(material: UpdateMaterialRequest): void {
+    // Güncelleme işlemi burada yapılacak
+  }
+
+  // Ayrıntıları görme işlemini gerçekleştiren metod
+  viewDetails(): void {
+   
+  }
+
+  
+// onDeleteMaterial 
+onDeleteMaterial(materialId: string): void {
+  this.materialListService.deleteMaterial(materialId).subscribe(
+    () => {
+      this.toastr.success('Materyal başarılı bir şekilde silindi.', 'Başarılı');
+      console.log( "materiyal silidi.");
+      this.getList({ pageIndex: this.materialList.index, pageSize: this.PAGE_SIZE });
+    },
+    (error) => {
+      console.error('Silme hatası:', error);
+      this.toastr.error('Materyal silinirken bir hata oluştu.', 'Hata');
+    }
+  );
 }
-
-
+}
