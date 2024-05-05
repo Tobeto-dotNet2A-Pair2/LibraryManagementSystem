@@ -1,1 +1,105 @@
-<p>add-branch-form works!</p>
+<div class="container mt-4">
+    <h2>Şube İçin Adres Bilgileri</h2>
+  
+    <form (ngSubmit)="onSubmit()" #addressForm="ngForm">
+      <div class="form-group">
+        <label for="name">Adres Adı:</label>
+        <input
+          type="text"
+          id="name"
+          class="form-control"
+          [(ngModel)]="name"
+          name="name"
+          required
+        />
+      </div>
+  
+      <div class="form-group">
+        <label for="description">Adres Açıklaması:</label>
+        <textarea
+          id="description"
+          class="form-control"
+          [(ngModel)]="description"
+          name="description"
+          required
+        ></textarea>
+      </div>
+  
+      <div class="form-group">
+        <label for="city">Şehir:</label>
+        <select
+          id="city"
+          class="form-control"
+          [(ngModel)]="selectedCity"
+          (change)="loadDistricts()"
+          name="city"
+          required
+        >
+          <option *ngFor="let city of cities" [value]="city.id">
+            {{ city.name }}
+          </option>
+        </select>
+      </div>
+  
+      <div class="form-group">
+        <label for="district">İlçe:</label>
+        <select
+          id="district"
+          class="form-control"
+          [(ngModel)]="selectedDistrict"
+          (change)="loadNeighborhoods()"
+          name="district"
+          required
+          [disabled]="selectedCity == ''"
+        >
+          <option *ngFor="let district of districts" [value]="district.id">
+            {{ district.name }}
+          </option>
+        </select>
+      </div>
+  
+      <div class="form-group">
+        <label for="neighborhood">Mahalle:</label>
+        <select
+          id="neighborhood"
+          class="form-control"
+          [(ngModel)]="selectedNeighborhood"
+          (change)="loadStreets()"
+          name="neighborhood"
+          required
+          [disabled]="selectedDistrict == ''"
+        >
+          <option
+            *ngFor="let neighborhood of neighborhoods"
+            [value]="neighborhood.id"
+          >
+            {{ neighborhood.name }}
+          </option>
+        </select>
+      </div>
+  
+      <div class="form-group">
+        <label for="street">Sokak:</label>
+        <select
+          id="street"
+          class="form-control"
+          [(ngModel)]="selectedStreet"
+          name="street"
+          required
+          [disabled]="selectedNeighborhood == ''"
+        >
+          <option *ngFor="let street of streets" [value]="street.id">
+            {{ street.name }}
+          </option>
+        </select>
+      </div>
+  
+      <button
+        type="submit"
+        class="btn btn-primary"
+        [disabled]="!addressForm.valid"
+      >
+        Adresi Kaydet
+      </button>
+    </form>
+  </div>

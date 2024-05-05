@@ -17,7 +17,6 @@ export const roleGuard: CanActivateFn = (route, state) => {
     ? [decodedToken[JWT_ROLES]]
     : decodedToken[JWT_ROLES];
 
-
   let requiredRoles: string[] = route.data['requiredRoles'] || [];//data yoksa boş dön
 
   let hasRole = false;
