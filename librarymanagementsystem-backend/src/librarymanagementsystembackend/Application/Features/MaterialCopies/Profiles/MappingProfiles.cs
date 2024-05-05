@@ -1,4 +1,5 @@
 using Application.Features.BorrowedMaterials.Dtos;
+using Application.Features.BorrowedMaterials.Queries.GetListByMember;
 using Application.Features.MaterialCopies.Commands.Create;
 using Application.Features.MaterialCopies.Commands.Delete;
 using Application.Features.MaterialCopies.Commands.Update;
@@ -32,5 +33,7 @@ public class MappingProfiles : Profile
                 .MapFrom(a => a.Material.BorrowDay))
             .ForMember(a => a.PunishmentAmount, opt => opt
                 .MapFrom(a => a.Material.PunishmentAmount));
+
+        CreateMap<MaterialCopy, MaterialCopyForListBorrowedMaterialDto>();
     }
 }

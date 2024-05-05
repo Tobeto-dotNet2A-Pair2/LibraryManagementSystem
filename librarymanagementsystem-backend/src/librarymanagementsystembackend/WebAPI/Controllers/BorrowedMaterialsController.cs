@@ -4,6 +4,7 @@ using Application.Features.BorrowedMaterials.Commands.Delete;
 using Application.Features.BorrowedMaterials.Commands.Update;
 using Application.Features.BorrowedMaterials.Queries.GetById;
 using Application.Features.BorrowedMaterials.Queries.GetList;
+using Application.Features.BorrowedMaterials.Queries.GetListByMember;
 using NArchitecture.Core.Application.Requests;
 using NArchitecture.Core.Application.Responses;
 using Microsoft.AspNetCore.Mvc;
@@ -58,6 +59,14 @@ public class BorrowedMaterialsController : BaseController
     public async Task<IActionResult> Refund([FromBody] CreateRefundCommand createRefundCommand)
     {
         CreateRefundResponse response = await Mediator.Send(createRefundCommand);
+        return Ok(response);
+    }
+
+
+    [HttpGet("{id}")]
+    public async Task<IActionResult> GetListByMember([FromRoute] Guid id)
+    {
+        List<GetListBorrowedMaterialListByMemberResponse> response = await Mediator.Send(new GetBorrowedMaterialListByMemberQuery() {MemberId = id});
         return Ok(response);
     }
     

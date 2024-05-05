@@ -12,6 +12,7 @@ namespace Application.Features.Materials.Queries.GetList.GetAllForAdmin;
 public class GetAllMaterialsForAdminQuery :IRequest<List<GetAllMaterialsForAdminDto>>
 {
     public PageRequest PageRequest { get; set; }
+    public string SearchText { get; set; }
     
     public class GetAllMaterialsForAdminHandler : IRequestHandler<GetAllMaterialsForAdminQuery,List<GetAllMaterialsForAdminDto>>
     {
