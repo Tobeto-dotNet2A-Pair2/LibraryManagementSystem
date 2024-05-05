@@ -1,40 +1,30 @@
 import { Component } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
-import { CarouselModule } from 'ngx-owl-carousel-o';
-import { OwlOptions } from 'ngx-owl-carousel-o';
-
+import { MultiSelectModule } from 'primeng/multiselect';
 
 @Component({
   selector: 'app-dashboard',
   standalone: true,
-  imports: [ RouterModule,  CarouselModule ],
+  imports: [ RouterModule,  MultiSelectModule, FormsModule ],
   templateUrl: './dashboard.component.html',
   styleUrl: './dashboard.component.scss'
 })
 export class DashboardComponent {
-  customOptions: OwlOptions = {
-    loop: true,
-    mouseDrag: true,
-    touchDrag: true,
-    pullDrag: true,
-    autoplay:true,
-    dots: false,
-    navSpeed: 700,
-    navText: ['<', '>'],
-    responsive: {
-      0: {
-        items: 1
-      },
-      400: {
-        items: 2
-      },
-      740: {
-        items: 3
-      },
-      940: {
-        items: 3
-      }
-    },
-    nav: true
+ 
+  cities: any[]; // Şehirleri tutacak dizi
+  selectedCities: any[]; // Seçilen şehirleri tutacak dizi
+
+  constructor() {
+    // Şehirler dizisi oluşturuluyor
+    this.cities = [
+      { name: 'İstanbul' },
+      { name: 'Ankara' },
+      { name: 'İzmir' },
+      { name: 'Bursa' },
+      { name: 'Antalya' }
+    ];
+
+    this.selectedCities = []; // Seçilen şehirler dizisi başlangıçta boş olarak başlatılıyor
   }
 }

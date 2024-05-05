@@ -26,6 +26,7 @@
     "ngx-mask": "^17.0.7",
     "ngx-owl-carousel-o": "^17.0.0",
     "ngx-toastr": "^18.0.0",
+    "primeng": "^17.16.0",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.14.3"
