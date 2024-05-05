@@ -6,7 +6,7 @@ import { MultiSelectModule } from 'primeng/multiselect';
 @Component({
   selector: 'app-dashboard',
   standalone: true,
-  imports: [ RouterModule,  MultiSelectModule, FormsModule ],
+  imports: [ MultiSelectModule, FormsModule ],
   templateUrl: './dashboard.component.html',
   styleUrl: './dashboard.component.scss'
 })
