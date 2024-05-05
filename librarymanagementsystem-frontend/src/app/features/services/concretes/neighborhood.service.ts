@@ -1,19 +1,18 @@
 import { Injectable } from '@angular/core';
-import { NeigborhoodBaseService } from '../abstracts/neigborhood-base.service';
 import { Observable, filter } from 'rxjs';
 import { GetByIdNeighborhoodResponse } from '../../models/responses/neighborhoods/get-by-id-neighborhood-response';
 import { GetListNeighborhoodResponse } from '../../models/responses/neighborhoods/get-list-neighborhood-response';
 import { PageResponse } from '../../../core/models/page/page-response';
+import { NeighborhoodBaseService } from '../abstracts/neighborhood-base.service';
 
 @Injectable({
   providedIn: 'root'
 })
-export class NeigborhoodService extends NeigborhoodBaseService {
-
-
-  override getByIdNeigborhood(id: string): Observable<GetByIdNeighborhoodResponse> {
+export class NeigborhoodService extends NeighborhoodBaseService {
+  override getByIdStreet(id: string): Observable<GetByIdNeighborhoodResponse> {
     return this.httpClient.get<GetByIdNeighborhoodResponse>(`${this.apiUrl}/${id}`); 
   }
+
 
   getNeighborhoodsByDistrictId(
     districtId: string):
@@ -21,7 +20,7 @@ export class NeigborhoodService extends NeigborhoodBaseService {
     let request = {
       sort:[],
       filter:{
-        field:'districtId,cityId',
+        field:'districtId',
         operator: 'eq',
         value: districtId,
         logic: 'and',

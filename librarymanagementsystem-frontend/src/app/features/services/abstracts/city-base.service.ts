@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
-import { environment } from '../../../../environments/environment';
 import { GetByIdCityResponse } from '../../models/responses/cities/get-by-id-city-response';
 import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
+import { environment } from '../../../../environments/environment.development';
 
 @Injectable({
   providedIn: 'root'

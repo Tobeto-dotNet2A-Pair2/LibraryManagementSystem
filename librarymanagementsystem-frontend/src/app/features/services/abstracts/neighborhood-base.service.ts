@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { environment } from '../../../../environments/environment';
+import { environment } from '../../../../environments/environment.development';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { GetByIdNeighborhoodResponse } from '../../models/responses/neighborhoods/get-by-id-neighborhood-response';
@@ -7,9 +7,9 @@ import { GetByIdNeighborhoodResponse } from '../../models/responses/neighborhood
 @Injectable({
   providedIn: 'root'
 })
-export abstract class NeigborhoodBaseService {
+export abstract class NeighborhoodBaseService {
   protected  apiUrl:string = `${environment.API_URL}/Neighborhoods`;
   constructor(protected httpClient: HttpClient) { }
 
-  abstract getByIdNeigborhood(id:string): Observable<GetByIdNeighborhoodResponse>;
+  abstract getByIdStreet(id: string): Observable<GetByIdNeighborhoodResponse>;
 }

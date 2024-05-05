@@ -9,9 +9,10 @@ import { AddressService } from '../../../services/concretes/address.service';
 import { PageResponse } from '../../../../core/models/page/page-response';
 import { CityService } from '../../../services/concretes/city.service';
 import { DistrictService } from '../../../services/concretes/district.service';
-import { NeigborhoodService } from '../../../services/concretes/neigborhood.service';
+import { NeigborhoodService } from '../../../services/concretes/neighborhood.service';
 import { StreetService } from '../../../services/concretes/street.service';
-import { CreateAllAddressRequest } from '../../../models/requests/addresses/create-all-address-request';
+import { CreateAddressRequest } from '../../../models/requests/addresses/create-address-request';
+import { AddressListItemDto } from '../../../models/requests/addresses/address-list-item.dto';
 
 @Component({
   selector: 'app-add-branch-form',
@@ -46,14 +47,15 @@ export class AddBranchFormComponent implements OnInit {
     private districtService: DistrictService,
     private neighborhoodService: NeigborhoodService,
     private streetService: StreetService
+  
   ) {}
 
   ngOnInit(): void {
     this.createForm();
     this.loadCities();
-    this.loadDistricts();
-    this.loadNeighborhoods();
-    this.loadStreets();
+    // this.loadDistricts();
+    // this.loadNeighborhoods();
+    // this.loadStreets();
   }
 
   createForm() {
@@ -74,6 +76,7 @@ export class AddBranchFormComponent implements OnInit {
       .subscribe((data: PageResponse<GetListCityResponse>) => {
         this.cities = data.items;
       });
+      console.log('city içinde');
   }
   loadDistricts() {
     this.districtService
@@ -81,6 +84,7 @@ export class AddBranchFormComponent implements OnInit {
       .subscribe((data: PageResponse<GetListDistrictResponse>) => {
         this.districts = data.items;
       });
+      console.log('district içinde');
   }
 
   loadNeighborhoods() {
@@ -89,6 +93,7 @@ export class AddBranchFormComponent implements OnInit {
       .subscribe((data: PageResponse<GetListNeighborhoodResponse>) => {
         this.neighborhoods = data.items;
       });
+      console.log('neighborhood içinde');
   }
 
   loadStreets() {
@@ -97,32 +102,32 @@ export class AddBranchFormComponent implements OnInit {
       .subscribe((data: PageResponse<GetListStreetResponse>) => {
         this.streets = data.items;
       });
+      console.log('street içinde');
   }
 
   onSubmit() {
     if (this.addressForm.valid) {
-      const address = this.addressForm.value;
-      console.log('Address saved:', address);
-    } else {
-      console.error('Form is invalid');
-    }
-  }
-  address() {
-    if (this.addressForm.valid) {
-      const address = this.addressForm.value;
-      console.log('Address saved:', address);
-
-      const addressFormModel: CreateAllAddressRequest = {
+      const addressData: CreateAddressRequest<AddressListItemDto> = {
+        addressListItemDto: {
+          cityId: this.addressForm.value.cityId,
+          districtId: this.addressForm.value.districtId,
+          neighborhoodId: this.addressForm.value.neighborhoodId,  
+        },
+        streetId: this.addressForm.value.streetId,
         name: this.addressForm.value.name,
         description: this.addressForm.value.description,
-        cityId: this.addressForm.value.cityId,
-        districtId: this.addressForm.value.districtId,
-        neighborhoodId: this.addressForm.value.neighborhoodId,
-        streetId: this.addressForm.value.streetId,
       };
+
+      this.addressService.createAddress(addressData).subscribe(response => {
+        console.log('Address created successfully:', response);
+        this.addressForm.reset();
+      }, error => {
+        console.error('Error creating address:', error);
+      });
     } else {
       console.error('Form is invalid');
     }
   }
-
 }
+
+  

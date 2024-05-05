@@ -13,12 +13,13 @@ export class StreetService extends StreetBaseService {
     return this.httpClient.get<GetByIdStreetResponse>(`${this.apiUrl}/${id}`); 
   }
 
-  getStreetsByNeighborhoodId(neighborhoodId: string):
+  getStreetsByNeighborhoodId
+  (neighborhoodId: string):
    Observable<PageResponse<GetListStreetResponse>> {
     let request = {
       sort: [],
       filter: {
-        field: 'neigborhoodId',
+        field: 'neighborhoodId',
         operator: 'eq',
         value: neighborhoodId,
         logic: 'and',
