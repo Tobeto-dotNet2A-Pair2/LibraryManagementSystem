@@ -1,9 +1,12 @@
-<div class="row">
+<div class="row" >
   <!--1.Sutun-->
-  <form class="col-md-4" action="">
+  <form class="col-md-4 justify-content-start text-start">
+  <h5><strong>Materyal Özellikleri</strong></h5>
+<br>
     <!--begin::Input group Dropdown-Select-->
     <div class="form-group">
       <!--Material Start-->
+      <input type="text">
       <div class="form-floating">
         <select
           class="form-select"
@@ -66,12 +69,58 @@
     </div>
   </form>
   <!--2.Sutun-->
-  <form action="" class="col-md-4">
-    <div class="form-group"></div>
+  
+  <form action="" class="col-md-4 justify-content-center text-center">
+    <div><h5><strong>İlişkiler</strong></h5></div>
+    <br>
+    <div class="form-group">
+      <!--Material-Yazar Eşle Start-->
+      <a
+        id="btnRelateMaterialAuthor"
+        class="btn btn-primary"
+        (click)="openModal('authorMaterialModal')"
+        >Materyal-Yazar Eşle</a
+      >
+      <br />
+      <!--Material-Yazar Eşle End-->
+            <!--Material-YayınEvi Eşle Start-->
+            <br />
+            <a
+              id="btnRelateMaterialPublisher"
+              class="btn btn-primary"
+              (click)="openModal('publisherMaterialModal')"
+              >Materyal-YayınEvi Eşle</a
+            >
+            <br />
+            <!--Material-YayınEvi Eşle End-->
+      <!--Material-çevirmen Eşle Start-->
+      <br />
+      <a
+        id="btnRelateMaterialTranslator"
+        class="btn btn-primary"
+        (click)="openModal('translatorMaterialModal')"
+        >Materyal-Çevirmen Eşle</a
+      >
+      <br />
+      <!--Material-Çevirmen Eşle End-->
+
+      <!--Material-Dil Eşle Start-->
+      <br />
+      <a
+        id="btnRelateMaterialLanguage"
+        class="btn btn-primary"
+        (click)="openModal('languageMaterialModal')"
+        >Materyal-Dil Eşle</a
+      >
+      <br />
+      <!--Material-Dil Eşle End-->
+    </div>
   </form>
   <!--3.Sutun-->
   <!--Author Start-->
-  <form action="" class="col-md-4">
+  <form action="" class="col-md-4 justify-content-end text-end">
+    <h5><strong>Diğer Özellikler</strong></h5>
+    <br>
     <div class="form-group">
       <div class="form-floating">
         <select
@@ -79,10 +128,10 @@
           id="floatingSelect"
           aria-label="Floating label select example"
         >
-          <option selected>Bir Yazar Seç</option>
-          <option value="1">Yazar 1</option>
-          <option value="2">Yazar 2</option>
-          <option value="3">Yazar 3</option>
+        <option selected></option>
+        <option *ngFor="let author of authorList" [value]="author.id">
+          {{ author.firstName }} {{ author.lastName }}
+        </option>
         </select>
         <label for="floatingSelect">Yazar Seç</label>
       </div>
@@ -104,10 +153,10 @@
           id="floatingSelect"
           aria-label="Floating label select example"
         >
-          <option selected>Bir Yayın Evi Seç</option>
-          <option value="1">Yayın Evi 1</option>
-          <option value="2">Yayın Evi 2</option>
-          <option value="3">Yayın Evi 3</option>
+        <option selected></option>
+        <option *ngFor="let publisher of publisherList" [value]="publisher.id">
+          {{ publisher.name }}
+        </option>
         </select>
         <label for="floatingSelect">Yayın Evi Seç</label>
       </div>
@@ -129,10 +178,10 @@
           id="floatingSelect"
           aria-label="Floating label select example"
         >
-          <option selected>Bir Çevirmen Seç</option>
-          <option value="1">Çevirmen 1</option>
-          <option value="2">Çevirmen 2</option>
-          <option value="3">Çevirmen 3</option>
+        <option selected></option>
+        <option *ngFor="let translator of translatorList" [value]="translator.id">
+          {{ translator.name }}
+        </option>
         </select>
         <label for="floatingSelect">Çevirmen Seç</label>
       </div>
@@ -155,10 +204,10 @@
           id="floatingSelect"
           aria-label="Floating label select example"
         >
-          <option selected>Bir Dil Seç</option>
-          <option value="1">Dil 1</option>
-          <option value="2">Dil 2</option>
-          <option value="3">Dil 3</option>
+        <option selected></option>
+        <option *ngFor="let language of languageList" [value]="language.id">
+          {{ language.name }}
+        </option>
         </select>
         <label for="floatingSelect">Dil Seç</label>
       </div>
@@ -421,20 +470,19 @@
             <label for="floatingSelect">Materyal Lokasyonu Seç</label>
           </div>
           <br />
-          <button type="submit" class="btn btn-primary">Submit</button>
+          <button type="submit" class="btn btn-success">Submit</button>
         </form>
       </div>
       <!--body end-->
       <div class="modal-footer">
         <button
           type="button"
-          class="btn btn-secondary"
+          class="btn btn-danger"
           data-bs-dismiss="modal"
           (click)="closeModal('materialCopyModal')"
         >
           Close
         </button>
-        <button type="button" class="btn btn-primary">Save changes</button>
       </div>
     </div>
   </div>
@@ -445,7 +493,7 @@
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title">Yazar Ekle</h5>
+        <h5 class="modal-title">Materyal Kapak Resmi Ekle</h5>
         <button
           type="button"
           class="btn-close"
@@ -463,10 +511,25 @@
           action="#"
           autocomplete="off"
         >
+        <div class="form-floating">
+          <select
+            class="form-select"
+            id="floatingSelect"
+            aria-label="Floating label select example"
+            formControlName="materialId"
+          >
+            <option selected></option>
+            <option *ngFor="let material of materialList" [value]="material.id">
+              {{ material.name }}
+            </option>
+          </select>
+          <label for="floatingSelect">Materyal Seç</label>
+        </div>
+        <br>
           <!--begin::Input group-->
           <div class="fv-row mb-7">
             <!--begin::Label-->
-            <label class="d-block fw-semibold fs-6 mb-5">Image Input</label>
+            <label class="d-block fw-semibold fs-6 mb-5">Materyal Kapak Resmi</label>
             <!--end::Label-->
 
             <!--begin::Image input-->
@@ -528,7 +591,8 @@
             <!--end::Hint-->
           </div>
           <!--end::Input group-->
-          <button type="submit" class="btn btn-primary">Submit</button>
+
+          <button type="submit" class="btn btn-success">Submit</button>
         </form>
         <!--end::Form-->
       </div>
@@ -553,7 +617,7 @@
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title">Yazar Ekle</h5>
+        <h5 class="modal-title">Materyal Kategori/Tür Seç</h5>
         <button
           type="button"
           class="btn-close"
@@ -591,6 +655,269 @@
   </div>
 </div>
 <!--MaterialGenre Modal -- materyal foto Sonu-->
+
+
+<!--AuthorMaterial Modal -- materyal-yazar eşle modalı-->
+<div id="authorMaterialModal" class="modal" tabindex="-1">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Yazar Ekle</h5>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+          (click)="closeModal('authorMaterialModal')"
+        ></button>
+      </div>
+      <!--body -->
+      <div class="modal-body">
+        <form [formGroup]="authorMaterialForm" (ngSubmit)="onSubmitAuthorMaterialForm()">
+          <div class="form-floating">
+            <select
+              class="form-select"
+              id="floatingSelect"
+              aria-label="Floating label select example"
+              formControlName="materialId"
+            >
+              <option selected></option>
+              <option *ngFor="let material of materialList" [value]="material.id">
+                {{ material.name }}
+              </option>
+            </select>
+            <label for="floatingSelect">Materyal Seç</label>
+          </div>
+          <br>
+          <div class="form-floating">
+            <select
+              class="form-select"
+              id="floatingSelect"
+              aria-label="Floating label select example"
+              formControlName="authorId"
+            >
+            <option selected></option>
+            <option *ngFor="let author of authorList" [value]="author.id">
+              {{ author.firstName }} {{ author.lastName }}
+            </option>
+            </select>
+            <label for="floatingSelect">Yazar Seç</label>
+          </div>
+          <br>
+          <button type="submit" class="btn btn-success">Submit</button>
+        </form>
+      </div>
+      <!--body end-->
+      <div class="modal-footer">
+        <button
+          type="button"
+          class="btn btn-danger"
+          data-bs-dismiss="modal"
+          (click)="closeModal('authorMaterialModal')"
+        >
+          Close
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+<!--AuthorMaterial Modal -- yazar-materyal eşle Sonu-->
+<!--LanguageMaterial Modal -- materyal-dil eşle modalı-->
+<div id="languageMaterialModal" class="modal" tabindex="-1">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Yazar Ekle</h5>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+          (click)="closeModal('languageMaterialModal')"
+        ></button>
+      </div>
+      <!--body -->
+      <div class="modal-body">
+        <form [formGroup]="languageMaterialForm" (ngSubmit)="onSubmitLanguageMaterialForm()">
+          <div class="form-floating">
+            <select
+              class="form-select"
+              id="floatingSelect"
+              aria-label="Floating label select example"
+              formControlName="materialId"
+            >
+              <option selected></option>
+              <option *ngFor="let material of materialList" [value]="material.id">
+                {{ material.name }}
+              </option>
+            </select>
+            <label for="floatingSelect">Materyal Seç</label>
+          </div>
+          <br>
+          <div class="form-floating">
+            <select
+              class="form-select"
+              id="floatingSelect"
+              aria-label="Floating label select example"
+              formControlName="languageId"
+            >
+            <option selected></option>
+            <option *ngFor="let language of languageList" [value]="language.id">
+              {{ language.name }}
+            </option>
+            </select>
+            <label for="floatingSelect">Dil Seç</label>
+          </div>
+          <br>
+          <button type="submit" class="btn btn-success">Submit</button>
+        </form>
+      </div>
+      <!--body end-->
+      <div class="modal-footer">
+        <button
+          type="button"
+          class="btn btn-danger"
+          data-bs-dismiss="modal"
+          (click)="closeModal('languageMaterialModal')"
+        >
+          Close
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+<!--LanguageMaterial Modal -- dil-materyal eşle Sonu-->
+<!--PublisherMaterial Modal -- materyal-YayınEvi eşle modalı-->
+<div id="publisherMaterialModal" class="modal" tabindex="-1">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Yazar Ekle</h5>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+          (click)="closeModal('publisherMaterialModal')"
+        ></button>
+      </div>
+      <!--body -->
+      <div class="modal-body">
+        <form [formGroup]="publisherMaterialForm" (ngSubmit)="onSubmitPublisherMaterialForm()">
+          <div class="form-floating">
+            <select
+              class="form-select"
+              id="floatingSelect"
+              aria-label="Floating label select example"
+              formControlName="materialId"
+            >
+              <option selected></option>
+              <option *ngFor="let material of materialList" [value]="material.id">
+                {{ material.name }}
+              </option>
+            </select>
+            <label for="floatingSelect">Materyal Seç</label>
+          </div>
+          <br>
+          <div class="form-floating">
+            <select
+              class="form-select"
+              id="floatingSelect"
+              aria-label="Floating label select example"
+              formControlName="publisherId"
+            >
+            <option selected></option>
+            <option *ngFor="let publisher of publisherList" [value]="publisher.id">
+              {{ publisher.name }}
+            </option>
+            </select>
+            <label for="floatingSelect">Yayın Evi Seç</label>
+          </div>
+          <br>
+          <button type="submit" class="btn btn-success">Submit</button>
+        </form>
+      </div>
+      <!--body end-->
+      <div class="modal-footer">
+        <button
+          type="button"
+          class="btn btn-danger"
+          data-bs-dismiss="modal"
+          (click)="closeModal('publisherMaterialModal')"
+        >
+          Close
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+<!--PublisherMaterialModalMaterial Modal -- yayınEvi-materyal eşle Sonu-->
+<!--TranslatorMaterial Modal -- materyal-çevirmen eşle modalı-->
+<div id="translatorMaterialModal" class="modal" tabindex="-1">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Yazar Ekle</h5>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+          (click)="closeModal('translatorMaterialModal')"
+        ></button>
+      </div>
+      <!--body -->
+      <div class="modal-body">
+        <form [formGroup]="translatorMaterialForm" (ngSubmit)="onSubmitTranslatorMaterialForm()">
+          <div class="form-floating">
+            <select
+              class="form-select"
+              id="floatingSelect"
+              aria-label="Floating label select example"
+              formControlName="materialId"
+            >
+              <option selected></option>
+              <option *ngFor="let material of materialList" [value]="material.id">
+                {{ material.name }}
+              </option>
+            </select>
+            <label for="floatingSelect">Materyal Seç</label>
+          </div>
+          <br>
+          <div class="form-floating">
+            <select
+              class="form-select"
+              id="floatingSelect"
+              aria-label="Floating label select example"
+              formControlName="translatorId"
+            >
+            <option selected></option>
+            <option *ngFor="let translator of translatorList" [value]="translator.id">
+              {{ translator.name }}
+            </option>
+            </select>
+            <label for="floatingSelect">Dil Seç</label>
+          </div>
+          <br>
+          <button type="submit" class="btn btn-success">Submit</button>
+        </form>
+      </div>
+      <!--body end-->
+      <div class="modal-footer">
+        <button
+          type="button"
+          class="btn btn-danger"
+          data-bs-dismiss="modal"
+          (click)="closeModal('translatorMaterialModal')"
+        >
+          Close
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+<!--TranslatorMaterial Modal -- çevirmen-materyal eşle Sonu-->
+
 <!--Author Modal -- yazar ekle modalı-->
 <div id="authorModal" class="modal" tabindex="-1">
   <div class="modal-dialog">
@@ -607,7 +934,7 @@
       </div>
       <!--body -->
       <div class="modal-body">
-        <form action="">
+        <form [formGroup]="authorForm" (ngSubmit)="onSubmitAuthorForm()">
           <div class="input-group mb-5">
             <span class="input-group-text" id="basic-addon1">Adı</span>
             <input
@@ -617,6 +944,7 @@
               placeholder="FirstName"
               aria-label="FirstName"
               aria-describedby="basic-addon1"
+              formControlName="firstName"
             />
           </div>
           <div class="input-group mb-5">
@@ -628,6 +956,7 @@
               placeholder="Last Name"
               aria-label="LastName"
               aria-describedby="basic-addon1"
+              formControlName="lastName"
             />
           </div>
           <div class="input-group mb-5">
@@ -639,21 +968,23 @@
               placeholder="Country"
               aria-label="Country"
               aria-describedby="basic-addon1"
+              formControlName="country"
             />
           </div>
+          <br />
+          <button type="submit" class="btn btn-success">Submit</button>
         </form>
       </div>
       <!--body end-->
       <div class="modal-footer">
         <button
           type="button"
-          class="btn btn-secondary"
+          class="btn btn-danger"
           data-bs-dismiss="modal"
           (click)="closeModal('authorModal')"
         >
           Close
         </button>
-        <button type="button" class="btn btn-primary">Save changes</button>
       </div>
     </div>
   </div>
@@ -675,7 +1006,7 @@
       </div>
       <!--body -->
       <div class="modal-body">
-        <form class="form-group">
+        <form [formGroup]="publisherForm" (ngSubmit)="onSubmitPublisherForm()">
           <div class="input-group mb-5">
             <span class="input-group-text" id="basic-addon1">Adı</span>
             <input
@@ -685,6 +1016,7 @@
               placeholder="Name"
               aria-label="Name"
               aria-describedby="basic-addon1"
+              formControlName="name"
             />
           </div>
           <div class="input-group mb-5">
@@ -696,8 +1028,10 @@
               placeholder="PublicationPlace"
               aria-label="PublicationPlace"
               aria-describedby="basic-addon1"
+              formControlName="publicationPlace"
             />
           </div>
+          <button type="submit" class="btn btn-success">Submit</button>
         </form>
       </div>
       <!--body end-->
@@ -732,7 +1066,7 @@
       </div>
       <!--body -->
       <div class="modal-body">
-        <form class="form-group">
+        <form [formGroup]="translatorForm" (ngSubmit)="onSubmitTranslatorForm()">
           <div class="input-group mb-5">
             <span class="input-group-text" id="basic-addon1">Adı</span>
             <input
@@ -742,6 +1076,7 @@
               placeholder="Name"
               aria-label="Name"
               aria-describedby="basic-addon1"
+              formControlName="name"
             />
           </div>
           <div class="form-floating">
@@ -750,10 +1085,11 @@
               placeholder="Description"
               id="description"
               style="height: 100px"
+              formControlName="description"
             ></textarea>
             <label for="floatingTextarea2">Açıklama</label>
           </div>
-          <br />
+          <button type="submit" class="btn btn-success">Submit</button>
         </form>
       </div>
       <!--body end-->
@@ -788,7 +1124,7 @@
       </div>
       <!--body -->
       <div class="modal-body">
-        <form class="form-group">
+        <form [formGroup]="languageForm" (ngSubmit)="onSubmitLanguageForm()">
           <div class="input-group mb-5">
             <span class="input-group-text" id="basic-addon1">Adı</span>
             <input
@@ -798,8 +1134,10 @@
               placeholder="Name"
               aria-label="Name"
               aria-describedby="basic-addon1"
+              formControlName="name"
             />
           </div>
+          <button type="submit" class="btn btn-success">Submit</button>
         </form>
       </div>
       <!--body end-->
@@ -818,7 +1156,7 @@
   </div>
 </div>
 <!--Language Modal End -- dil ekle Sonu-->
-<!--Location Modal -- dil ekle modalı-->
+<!--Location Modal -- yer ekle modalı-->
 <div id="locationModal" class="modal" tabindex="-1">
   <div class="modal-dialog">
     <div class="modal-content">
@@ -931,4 +1269,4 @@
     </div>
   </div>
 </div>
-<!--Location Modal End -- dil ekle Sonu-->
+<!--Location Modal End -- yer ekle Sonu-->

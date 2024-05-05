@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Application.Features.Locations.Queries.GetList.GetAll;
+﻿namespace Application.Features.Locations.Queries.GetList.GetAll;
 public class GetAllLocationsDto
 {
     public Guid Id { get; set; }

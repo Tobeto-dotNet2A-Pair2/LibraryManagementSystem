@@ -7,6 +7,7 @@ using AutoMapper;
 using NArchitecture.Core.Application.Responses;
 using Domain.Entities;
 using NArchitecture.Core.Persistence.Paging;
+using Application.Features.Translators.Queries.GetList.GetAll;
 
 namespace Application.Features.Translators.Profiles;
 
@@ -23,5 +24,7 @@ public class MappingProfiles : Profile
         CreateMap<Translator, GetByIdTranslatorResponse>().ReverseMap();
         CreateMap<Translator, GetListTranslatorListItemDto>().ReverseMap();
         CreateMap<IPaginate<Translator>, GetListResponse<GetListTranslatorListItemDto>>().ReverseMap();
+
+        CreateMap<Translator, GetAllTranslatorsDto>().ReverseMap();
     }
 }

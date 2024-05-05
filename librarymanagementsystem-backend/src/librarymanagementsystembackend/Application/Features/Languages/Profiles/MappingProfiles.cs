@@ -7,6 +7,7 @@ using AutoMapper;
 using NArchitecture.Core.Application.Responses;
 using Domain.Entities;
 using NArchitecture.Core.Persistence.Paging;
+using Application.Features.Languages.Queries.GetList.GetAll;
 
 namespace Application.Features.Languages.Profiles;
 
@@ -23,5 +24,8 @@ public class MappingProfiles : Profile
         CreateMap<Language, GetByIdLanguageResponse>().ReverseMap();
         CreateMap<Language, GetListLanguageListItemDto>().ReverseMap();
         CreateMap<IPaginate<Language>, GetListResponse<GetListLanguageListItemDto>>().ReverseMap();
+
+        CreateMap<Language, GetAllLanguagesDto>().ReverseMap();
+
     }
 }
