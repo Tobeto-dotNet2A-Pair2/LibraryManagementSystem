@@ -10,6 +10,7 @@ using NArchitecture.Core.Application.Responses;
 using Domain.Entities;
 using NArchitecture.Core.Persistence.Paging;
 using Application.Features.MaterialImages.Queries.GetList;
+using Application.Features.Materials.Queries.GetList.GetAll;
 
 namespace Application.Features.Materials.Profiles;
 
@@ -27,14 +28,14 @@ public class MappingProfiles : Profile
         CreateMap<Material, GetListMaterialListItemDto>().ReverseMap();
         CreateMap<IPaginate<Material>, GetListResponse<GetListMaterialListItemDto>>().ReverseMap();
 
-        //1.deneme=List----burada  MaterialImages tüm tabloyu cýktý olarak veriyordu
-        //CreateMap<MaterialImage, GetListMaterialImageListItemDto>().ReverseMap(); // MaterialImage ile DTO arasýnda mapping
+        //1.deneme=List----burada  MaterialImages tï¿½m tabloyu cï¿½ktï¿½ olarak veriyordu
+        //CreateMap<MaterialImage, GetListMaterialImageListItemDto>().ReverseMap(); // MaterialImage ile DTO arasï¿½nda mapping
         //CreateMap<Material, GetListMaterialListItemDto>()
-        //    .ForMember(dest => dest.MaterialImages, opt => opt.MapFrom(src => src.MaterialImages)) // MaterialImages özelliði ile eþleme
+        //    .ForMember(dest => dest.MaterialImages, opt => opt.MapFrom(src => src.MaterialImages)) // MaterialImages ï¿½zelliï¿½i ile eï¿½leme
         //    .ReverseMap();
 
-        //2.deneme=List---dogru cýktý veriyor
-        CreateMap<MaterialImage, GetListMaterialImageListItemDto>().ReverseMap(); // MaterialImage ile DTO arasýnda mapping
+        //2.deneme=List---dogru cï¿½ktï¿½ veriyor
+        CreateMap<MaterialImage, GetListMaterialImageListItemDto>().ReverseMap(); // MaterialImage ile DTO arasï¿½nda mapping
         CreateMap<Material, GetListMaterialListItemDto>()
       .ForMember(x => x.ImageUrls,
                src => src
@@ -77,5 +78,7 @@ public class MappingProfiles : Profile
                 opt => opt
                     .MapFrom(dest => dest.MaterialPropertyValues.Select(a => a.MaterialProperty)));
 
+
+        CreateMap<Material, GetAllMaterialsDto>().ReverseMap();
     }
 }

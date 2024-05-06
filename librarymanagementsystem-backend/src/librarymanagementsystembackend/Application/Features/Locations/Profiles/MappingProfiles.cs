@@ -8,6 +8,7 @@ using AutoMapper;
 using NArchitecture.Core.Application.Responses;
 using Domain.Entities;
 using NArchitecture.Core.Persistence.Paging;
+using Application.Features.Locations.Queries.GetList.GetAll;
 
 namespace Application.Features.Locations.Profiles;
 
@@ -26,5 +27,7 @@ public class MappingProfiles : Profile
         CreateMap<IPaginate<Location>, GetListResponse<GetListLocationListItemDto>>().ReverseMap();
 
         CreateMap<Location, LocationForMaterialDetailDto>();
+
+        CreateMap<Location, GetAllLocationsDto>().ReverseMap();
     }
 }

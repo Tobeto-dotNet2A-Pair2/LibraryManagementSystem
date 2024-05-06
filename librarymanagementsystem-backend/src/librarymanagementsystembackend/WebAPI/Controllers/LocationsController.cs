@@ -6,6 +6,8 @@ using Application.Features.Locations.Queries.GetList;
 using NArchitecture.Core.Application.Requests;
 using NArchitecture.Core.Application.Responses;
 using Microsoft.AspNetCore.Mvc;
+using Application.Features.Materials.Queries.GetList.GetAll;
+using Application.Features.Locations.Queries.GetList.GetAll;
 
 namespace WebAPI.Controllers;
 
@@ -49,6 +51,15 @@ public class LocationsController : BaseController
     {
         GetListLocationQuery getListLocationQuery = new() { PageRequest = pageRequest };
         GetListResponse<GetListLocationListItemDto> response = await Mediator.Send(getListLocationQuery);
+        return Ok(response);
+    }
+
+
+    [HttpGet]
+    [Route("GetAll")]
+    public async Task<IActionResult> GetAll([FromQuery] GetAllLocationsQuery getAllLocationsQuery)
+    {
+        List<GetAllLocationsDto> response = await Mediator.Send(getAllLocationsQuery);
         return Ok(response);
     }
 }

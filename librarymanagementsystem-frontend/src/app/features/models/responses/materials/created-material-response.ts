@@ -1,3 +1,8 @@
+export interface ApiResponse<T>{
+	message?: string;
+	data: T;
+}
+
 export interface CreatedMaterialResponse {
 	id: string;
 	name: string;

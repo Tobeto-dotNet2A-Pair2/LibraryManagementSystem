@@ -15,8 +15,7 @@ import { AddLibraryComponent } from './features/pages/library/add-libray/add-lib
 import { AddBranchFormComponent } from './features/pages/branches/add-branch-form/add-branch-form.component';
 
 export const routes: Routes = [
-  
-  { path: '', redirectTo: 'auth', pathMatch: 'full' },
+  { path: '', redirectTo: 'adminpage', pathMatch: 'full' },
    { path: 'auth', component: AuthComponent },
    {path: 'homepage', component:MainLayoutComponent},
   // { path: 'homepage', component: AdminLayoutComponent },

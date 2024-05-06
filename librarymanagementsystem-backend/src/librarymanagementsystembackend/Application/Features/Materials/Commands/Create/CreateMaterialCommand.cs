@@ -9,6 +9,7 @@ using NArchitecture.Core.Application.Pipelines.Logging;
 using NArchitecture.Core.Application.Pipelines.Transaction;
 using MediatR;
 using static Application.Features.Materials.Constants.MaterialsOperationClaims;
+using Application.Features.Materials.Queries.GetList;
 
 namespace Application.Features.Materials.Commands.Create;
 
