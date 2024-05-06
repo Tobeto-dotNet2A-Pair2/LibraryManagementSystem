@@ -92,6 +92,16 @@ public class MaterialCopyManager : IMaterialCopyService
         return materialCopyForBorrow!;
     }
 
+    public async Task UpdateAfterBorrow(Guid materialCopyId)
+    {
+        MaterialCopy materialCopy = await _materialCopyRepository.GetAsync(a => a.Id == materialCopyId);
+
+        materialCopy!.IsReserved = true;
+        materialCopy!.IsReservable = false;
+        
+        await _materialCopyRepository.UpdateAsync(materialCopy);
+    }
+
     public async Task UpdateAfterRefund(Guid materialCopyId)
     {
       MaterialCopy materialCopy = await _materialCopyRepository.GetAsync(a => a.Id == materialCopyId);

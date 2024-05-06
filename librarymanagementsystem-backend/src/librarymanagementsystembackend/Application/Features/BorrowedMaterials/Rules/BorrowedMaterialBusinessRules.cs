@@ -63,7 +63,6 @@ public class BorrowedMaterialBusinessRules : BaseBusinessRules
         
         if(!memberHasSelectedMaterialCopy)
             await throwBusinessException(BorrowedMaterialsBusinessMessages.MemberHasNotThisMaterialCopy);
-
         
     }
 }

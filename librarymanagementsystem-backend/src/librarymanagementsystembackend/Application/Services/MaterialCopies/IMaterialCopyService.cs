@@ -30,6 +30,8 @@ public interface IMaterialCopyService
     Task<MaterialCopy> DeleteAsync(MaterialCopy materialCopy, bool permanent = false);
 
     Task<GetForBorrowDto> GetForBorrow(Guid id);
+    
+    Task UpdateAfterBorrow(Guid materialCopyId);
 
     Task UpdateAfterRefund(Guid materialCopyId);
 }

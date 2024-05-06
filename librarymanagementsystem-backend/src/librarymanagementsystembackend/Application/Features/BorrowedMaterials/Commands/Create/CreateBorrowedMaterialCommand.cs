@@ -65,6 +65,8 @@ public class CreateBorrowedMaterialCommand : IRequest<CreatedBorrowedMaterialRes
             await _borrowedMaterialRepository.AddAsync(borrowedMaterial);
             
             #endregion
+
+            await _materialCopyService.UpdateAfterBorrow(request.MaterialCopyId);
             
             #region Response
             
