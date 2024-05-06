@@ -1,6 +1,7 @@
 using Application.Features.MaterialImages.Commands.Create;
 using Application.Features.MaterialImages.Commands.Delete;
 using Application.Features.MaterialImages.Commands.Update;
+using Application.Features.MaterialImages.Dtos;
 using Application.Features.MaterialImages.Queries.GetById;
 using Application.Features.MaterialImages.Queries.GetList;
 using AutoMapper;
@@ -23,5 +24,7 @@ public class MappingProfiles : Profile
         CreateMap<MaterialImage, GetByIdMaterialImageResponse>().ReverseMap();
         CreateMap<MaterialImage, GetListMaterialImageListItemDto>().ReverseMap();
         CreateMap<IPaginate<MaterialImage>, GetListResponse<GetListMaterialImageListItemDto>>().ReverseMap();
+
+        CreateMap<MaterialImage, MaterialImageForMaterialDetailDto>();
     }
 }
