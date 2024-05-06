@@ -76,7 +76,11 @@ public class MappingProfiles : Profile
 
             .ForMember(src => src.MaterialProperties,
                 opt => opt
-                    .MapFrom(dest => dest.MaterialPropertyValues.Select(a => a.MaterialProperty)));
+                    .MapFrom(dest => dest.MaterialPropertyValues.Select(a => a.MaterialProperty)))
+
+            .ForMember(src => src.MaterialImages,
+                opt => opt
+                    .MapFrom(dest => dest.MaterialImages));
 
 
         CreateMap<Material, GetAllMaterialsDto>().ReverseMap();
