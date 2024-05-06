@@ -6,6 +6,7 @@ import {
   NavigationEnd,
 } from '@angular/router';
 import { filter } from 'rxjs/operators';
+
 @Component({
   selector: 'app-toolbar',
   standalone: true,
@@ -14,18 +15,33 @@ import { filter } from 'rxjs/operators';
   styleUrl: './toolbar.component.scss',
 })
 export class ToolbarComponent implements OnInit {
-  activeRouteName: string = 'adminpage';
-  activeChildRouteName: string = 'dashboard';
+  activeRouteName: string = 'giriş';
+  activeChildRouteName: string = 'Hoş Geldin!';
 
   constructor(private route: ActivatedRoute, private router: Router) {}
 
   ngOnInit(): void {
+    this.setActiveRouteNames(); // OnInit'de bir kere çağrılıyor
     this.router.events
       .pipe(filter((event) => event instanceof NavigationEnd))
       .subscribe(() => {
-        this.activeRouteName = this.route.snapshot.routeConfig?.path || '';
-        this.activeChildRouteName =
-          this.route.snapshot.firstChild?.routeConfig?.path || '';
+        this.setActiveRouteNames(); // Her NavigationEnd olayında çağrılıyor
       });
   }
+
+  setActiveRouteNames(): void {
+    this.activeRouteName = this.route.snapshot.routeConfig?.path || '';
+    
+    this.activeChildRouteName =
+      this.route.snapshot.firstChild?.routeConfig?.path || '';
+      if (this.activeChildRouteName.endsWith('/:id')) {
+        this.activeChildRouteName = this.activeChildRouteName.slice(0, -4); // Son 4 karakteri (/:id) kes
+
+      }
+   if (this.activeChildRouteName=="") {
+        this.activeChildRouteName = "Hoş Geldin"
+       }
+      
+  }
+
 }

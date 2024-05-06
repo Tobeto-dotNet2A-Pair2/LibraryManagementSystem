@@ -3,5 +3,14 @@ html, body {
     margin: 0;
     padding: 0;
 }  
+body a {
+    text-decoration: none;
+  }
 /*toast*/
 @import 'ngx-toastr/toastr';
+
+@import 'ngx-owl-carousel-o/lib/styles/scss/owl.carousel';
+@import 'ngx-owl-carousel-o/lib/styles/scss/owl.theme.default';
+
+@import "primeng/resources/themes/lara-light-blue/theme.css";
+@import "primeng/resources/primeng.css";

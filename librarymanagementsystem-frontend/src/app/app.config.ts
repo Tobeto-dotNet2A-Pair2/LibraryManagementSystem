@@ -18,13 +18,17 @@ import { NeigborhoodService } from './features/services/concretes/neighborhood.s
 import { NeighborhoodBaseService } from './features/services/abstracts/neighborhood-base.service';
 import { StreetBaseService } from './features/services/abstracts/street-base.service';
 import { StreetService } from './features/services/concretes/street.service';
+import { provideAnimations } from '@angular/platform-browser/animations';
+import { CarouselModule } from 'ngx-owl-carousel-o';
 
 export const appConfig: ApplicationConfig = {
   providers: [getAppProviders(),
           provideRouter(routes),
+          provideAnimations(),
           provideToastr(),
           importProvidersFrom(HttpClientModule),
           provideHttpClient(),
+          CarouselModule ,
           HttpClientModule,
           HttpClient,
             {
