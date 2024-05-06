@@ -1,3 +1,4 @@
+using Application.Features.BorrowedMaterials.Queries.GetListByMember;
 using Application.Features.Materials.Commands.Create;
 using Application.Features.Materials.Commands.Delete;
 using Application.Features.Materials.Commands.Update;
@@ -5,6 +6,7 @@ using Application.Features.Materials.Queries.GetById;
 using Application.Features.Materials.Queries.GetById.GetDetails;
 using Application.Features.Materials.Queries.GetList;
 using Application.Features.Materials.Queries.GetList.GetAllForAdmin;
+using Application.Features.Materials.Queries.GetList.GetAllForFrontEnd;
 using AutoMapper;
 using NArchitecture.Core.Application.Responses;
 using Domain.Entities;
@@ -48,6 +50,12 @@ public class MappingProfiles : Profile
                 src => src
                     .MapFrom(a => a.MaterialImages
                         .Select(b => b.Url)));
+        
+        CreateMap<Material, GetAllMaterialsForFrontEndResponse>()
+            .ForMember(x => x.ImageUrls,
+                src => src
+                    .MapFrom(a => a.MaterialImages
+                        .Select(b => b.Url)));
 
         CreateMap<Material, GetDetailByIdForAdminDto>()
             .ForMember(src => src.Authors,
@@ -81,6 +89,11 @@ public class MappingProfiles : Profile
             .ForMember(src => src.MaterialImages,
                 opt => opt
                     .MapFrom(dest => dest.MaterialImages));
+
+        CreateMap<Material, MaterialForListBorrowedMaterialDto>();
+        CreateMap<IPaginate<Material>, GetListResponse<GetAllMaterialsForFrontEndResponse>>().ReverseMap();
+        
+        CreateMap<IPaginate<Material>, GetListResponse<GetAllMaterialsForFrontEndResponse>>().ReverseMap();
 
 
         CreateMap<Material, GetAllMaterialsDto>().ReverseMap();

@@ -29,7 +29,6 @@ public class GetDetailByIdForAdminDto
     public List<LanguageForMaterialDetailDto> Languages { get; set; }
     public List<TranslatorForMaterialDetailDto> Translators { get; set; }
     public List<MaterialCopyForMaterialDetailDto> MaterialCopies { get; set; }
-    
     public List<GenreForMaterialDetailDto> Genres { get; set; }
     public List<MaterialPropertyForMaterialDetailDto> MaterialProperties { get; set; }
     

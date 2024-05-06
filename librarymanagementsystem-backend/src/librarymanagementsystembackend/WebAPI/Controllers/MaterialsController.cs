@@ -5,6 +5,7 @@ using Application.Features.Materials.Queries.GetById;
 using Application.Features.Materials.Queries.GetById.GetDetails;
 using Application.Features.Materials.Queries.GetList;
 using Application.Features.Materials.Queries.GetList.GetAllForAdmin;
+using Application.Features.Materials.Queries.GetList.GetAllForFrontEnd;
 using NArchitecture.Core.Application.Requests;
 using NArchitecture.Core.Application.Responses;
 using Microsoft.AspNetCore.Mvc;
@@ -48,10 +49,9 @@ public class MaterialsController : BaseController
     }
 
     [HttpGet]
-    public async Task<IActionResult> GetList([FromQuery] PageRequest pageRequest)
+    public async Task<IActionResult> GetList([FromQuery] GetAllMaterialsForFrontEndQuery getAllMaterialsForFrontEndQuery)
     {
-        GetListMaterialQuery getListMaterialQuery = new() { PageRequest = pageRequest };
-        GetListResponse<GetListMaterialListItemDto> response = await Mediator.Send(getListMaterialQuery);
+        GetListResponse<GetAllMaterialsForFrontEndResponse> response = await Mediator.Send(getAllMaterialsForFrontEndQuery);
         return Ok(response);
     }
     //ebruudan gelen---------------------

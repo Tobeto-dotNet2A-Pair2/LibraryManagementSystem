@@ -36,7 +36,6 @@ public class GetDetailByIdForAdminQuery : IRequest<GetDetailByIdForAdminDto>
                 .ProjectTo<GetDetailByIdForAdminDto>(_mapper.ConfigurationProvider);
 
             var response = await query.FirstOrDefaultAsync(cancellationToken);
-            
             return response;
         }
     }

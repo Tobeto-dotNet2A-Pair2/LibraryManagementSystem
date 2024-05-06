@@ -1,6 +1,7 @@
 using Application.Features.Materials.Constants;
 using Application.Services.Repositories;
 using AutoMapper;
+using AutoMapper.QueryableExtensions;
 using Domain.Entities;
 using NArchitecture.Core.Application.Pipelines.Authorization;
 using NArchitecture.Core.Application.Pipelines.Caching;
@@ -8,6 +9,8 @@ using NArchitecture.Core.Application.Requests;
 using NArchitecture.Core.Application.Responses;
 using NArchitecture.Core.Persistence.Paging;
 using MediatR;
+using Microsoft.EntityFrameworkCore;
+using System.Linq.Dynamic.Core;
 using static Application.Features.Materials.Constants.MaterialsOperationClaims;
 using Microsoft.EntityFrameworkCore;
 
@@ -15,12 +18,14 @@ namespace Application.Features.Materials.Queries.GetList;
 
 public class GetListMaterialQuery : IRequest<GetListResponse<GetListMaterialListItemDto>>, ICachableRequest //ISecuredRequest,
 {
-    public PageRequest PageRequest { get; set; }
+    public int PageIndex { get; set; }
+    public int PageSize { get; set; }
+    public string SearchKey { get; set; }
 
     public string[] Roles => [Admin, Read];
 
     public bool BypassCache { get; }
-    public string? CacheKey => $"GetListMaterials({PageRequest.PageIndex},{PageRequest.PageSize})";
+    public string? CacheKey => $"GetListMaterials({PageIndex},{PageSize})";
     public string? CacheGroupKey => "GetMaterials";
     public TimeSpan? SlidingExpiration { get; }
 
@@ -37,13 +42,15 @@ public class GetListMaterialQuery : IRequest<GetListResponse<GetListMaterialList
 
         public async Task<GetListResponse<GetListMaterialListItemDto>> Handle(GetListMaterialQuery request, CancellationToken cancellationToken)
         {
-            IPaginate<Material> materials = await _materialRepository.GetListAsync(
-                include: m => m.Include(m => m.MaterialImages), //include MaterialImages 
-                index: request.PageRequest.PageIndex,
-                size: request.PageRequest.PageSize,
-                cancellationToken: cancellationToken
-            );
-
+            IPaginate<GetListMaterialListItemDto> materials = _materialRepository.Query()
+                .Include(a => a.MaterialCopies)
+                .Include(a=> a.MaterialImages)
+                .Include(a=> a.AuthorMaterials)
+                .Include(a=> a.MaterialPropertyValues)
+                .Where(a => a.Name.Contains(request.SearchKey))
+                .ProjectTo<GetListMaterialListItemDto>(_mapper.ConfigurationProvider)
+                .ToPaginate(request.PageIndex, request.PageSize);
+            
             GetListResponse<GetListMaterialListItemDto> response = _mapper.Map<GetListResponse<GetListMaterialListItemDto>>(materials);
             return response;
         }
