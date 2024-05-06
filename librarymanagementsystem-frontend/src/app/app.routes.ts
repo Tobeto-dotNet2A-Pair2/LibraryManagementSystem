@@ -17,6 +17,7 @@ import { ContactComponent } from './features/pages/contact/contact.component';
 import { AboutUsComponent } from './features/pages/about-us/about-us.component';
 import { QuestionComponent } from './features/pages/question/question.component';
 import { MaterialDetailComponent } from './features/pages/materials/material-detail/material-detail.component';
+import { MyProfileComponent } from './features/pages/my-profile/my-profile.component';
 
 export const routes: Routes = [
   
@@ -29,9 +30,8 @@ export const routes: Routes = [
       { path: 'contact', component: ContactComponent },
       { path: 'aboutus', component: AboutUsComponent },
       { path: 'questions', component: QuestionComponent },
-
-
-    ]
+      { path: 'myprofile', component: MyProfileComponent },
+ ]
   },
   // { path: 'homepage', component: AdminLayoutComponent },
 
@@ -51,7 +51,9 @@ export const routes: Routes = [
       { path: 'add-material-forms', component: AddMaterialFormComponent },
       { path: 'member-profile/:id', component: MemberProfileComponent },
       { path: 'material-detail/:id', component: MaterialDetailComponent },
-      { path: 'add-library', component: AddLibraryComponent }
+      { path: 'add-library', component: AddLibraryComponent },
+      { path: 'myprofile', component: MyProfileComponent }
+
       
     ],
   },

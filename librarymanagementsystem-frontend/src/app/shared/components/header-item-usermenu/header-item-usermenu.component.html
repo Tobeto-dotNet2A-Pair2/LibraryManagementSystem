@@ -1,4 +1,4 @@
-<!--begin::Menu wrapper-->
+<!--begin::Menu wrapper--> 
 <div class="cursor-pointer symbol symbol-30px symbol-lg-40px" data-kt-menu-trigger="{default: 'click', lg: 'hover'}" data-kt-menu-attach="parent" data-kt-menu-placement="bottom-end">
     <img src="assets/media/avatars/300-2.jpg" alt="user" />
   </div>
@@ -26,9 +26,10 @@
     <div class="separator my-2"></div>
     <!--end::Menu separator-->
     <!--begin::Menu item-->
-    <div class="menu-item px-5">
-      <a href="../dist/account/overview.html" class="menu-link px-5">My Profile</a>
+    <div class="menu-item px-5"   >
+      <a href="../dist/account/overview.html" class="menu-link px-5" (click)="goToProfile()" [routerLink]="['/homepage/myprofile']" >My Profile</a>
     </div>
+   
     <!--end::Menu item-->
     <!--begin::Menu item-->
     <div class="menu-item px-5">

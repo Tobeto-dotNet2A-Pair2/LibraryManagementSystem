@@ -5,20 +5,24 @@ import { jwtDecode } from 'jwt-decode';
 import {
   JWT_EMAIL,
   JWT_ID,
+  JWT_ROLES,
 } from '../../../core/constants/jwtAttributes';
 import { MemberListDto } from '../../../features/models/responses/members/member-list-item-dto';
 import { MembersService } from '../../../core/services/concretes/members.service';
+import { RouterModule } from '@angular/router';
+
 
 @Component({
   selector: 'app-header-item-usermenu',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, RouterModule],
   templateUrl: './header-item-usermenu.component.html',
   styleUrl: './header-item-usermenu.component.scss',
 })
 export class HeaderItemUsermenuComponent implements OnInit {
   tokenId!: string;
   tokenEmail!: string;
+  tokenRole!:string[];
   memberList: MemberListDto={
     index:0,
     size:0,
@@ -45,11 +49,18 @@ export class HeaderItemUsermenuComponent implements OnInit {
 
     if (token !== null) {
       const decodedToken = jwtDecode<any>(token);
+      console.log(decodedToken)
+
       const id = decodedToken[JWT_ID];
       this.tokenId = id;
       const email = decodedToken[JWT_EMAIL];
       this.tokenEmail = email;
+      const role = decodedToken[JWT_ROLES];
+      this.tokenRole = role;
     }
   }
 
+  goToProfile(){
+
+  }
 }
