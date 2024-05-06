@@ -47,7 +47,6 @@ export class HeaderItemUsermenuComponent implements OnInit {
       const decodedToken = jwtDecode<any>(token);
       const id = decodedToken[JWT_ID];
       this.tokenId = id;
-      console.log(id)
       const email = decodedToken[JWT_EMAIL];
       this.tokenEmail = email;
     }

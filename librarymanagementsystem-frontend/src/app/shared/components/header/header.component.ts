@@ -23,7 +23,7 @@ export class HeaderComponent {
   }
   logout(): void {
     this.localStorageService.removeToken();
-    this.router.navigate(['/auth']);
+    this.router.navigate(['/homepage']);
   }
 
 }
