@@ -1,0 +1,48 @@
+<!-- material-detail.component.html -->
+
+<div *ngIf="materialDetail">
+    <h2>Kitap Ayrıntıları</h2>
+    <div>
+      <h3>Yazarlar:</h3>
+      <ul>
+        <li *ngFor="let author of authors">{{ author.firstName }} {{ author.lastName }}</li>
+      </ul>
+    </div>
+    <div>
+      <h3>Yayınevleri:</h3>
+      <ul>
+        <li *ngFor="let publisher of publishers">{{ publisher.name }} - {{ publisher.publicationPlace }}</li>
+      </ul>
+    </div>
+    <div>
+      <h3>Diller:</h3>
+      <ul>
+        <li *ngFor="let language of languages">{{ language.name }}</li>
+      </ul>
+    </div>
+    <div>
+      <h3>Çevirmenler:</h3>
+      <ul>
+        <li *ngFor="let translator of translators">{{ translator.name }}</li>
+      </ul>
+    </div>
+    <div>
+      <h3>Materyal Kopyaları:</h3>
+      <ul>
+        <li *ngFor="let materialCopy of materialCopies">{{ materialCopy.status }}</li>
+      </ul>
+    </div>
+    <div>
+      <h3>Türler:</h3>
+      <ul>
+        <li *ngFor="let genre of genres">{{ genre.name }}</li>
+      </ul>
+    </div>
+    <div>
+      <h3>Materyal Özellikleri:</h3>
+      <ul>
+        <li *ngFor="let property of materialProperties">{{ property.name }} - {{ property.propertyValue.content }}</li>
+      </ul>
+    </div>
+  </div>
+  

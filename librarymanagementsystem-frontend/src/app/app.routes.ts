@@ -13,6 +13,7 @@ import { MainLayoutComponent } from './shared/layouts/main-layout/main-layout.co
 import { MemberProfileComponent } from './features/pages/members/member-profile/member-profile.component';
 import { AddLibraryComponent } from './features/pages/library/add-libray/add-library/add-library.component';
 import { AddBranchFormComponent } from './features/pages/branches/add-branch-form/add-branch-form.component';
+import { MaterialDetailComponent } from './features/pages/materials/material-detail/material-detail.component';
 
 export const routes: Routes = [
   
@@ -36,6 +37,7 @@ export const routes: Routes = [
       { path: 'branch-lists', component: BranchListComponent },
       { path: 'add-material-forms', component: AddMaterialFormComponent },
       { path: 'member-profile/:id', component: MemberProfileComponent },
+      { path: 'material-detail/:id', component: MaterialDetailComponent },
       { path: 'add-library', component: AddLibraryComponent }
       
     ],

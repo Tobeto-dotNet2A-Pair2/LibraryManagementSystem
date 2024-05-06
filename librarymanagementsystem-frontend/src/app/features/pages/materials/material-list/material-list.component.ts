@@ -120,9 +120,9 @@ export class MaterialListComponent implements OnInit {
   }
 
   // Ayrıntıları görme işlemini gerçekleştiren metod
-  viewDetails(): void {
+  // viewDetails(): void {
    
-  }
+  // }
 
   
 // onDeleteMaterial 

@@ -198,8 +198,8 @@
                                   <!-- Ayrıntıları Gör Butonu -->
                                   <button
                                       class="btn btn-sm btn-light btn-flex btn-center btn-active-light-primary me-2"
-                                      (click)="viewDetails()"
-                                  >
+                                      [routerLink]="['/adminpage/material-detail', material.id]"
+                                      >
                                       Ayrıntıları Gör
                                   </button>
                                   <!-- Güncelle Butonu -->
