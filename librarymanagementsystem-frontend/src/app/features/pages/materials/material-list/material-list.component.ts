@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { MaterialListDto } from '../../../models/responses/materials/material-list-item-dto';
+import { MaterialListItemDto } from '../../../models/responses/materials/material-list-item-dto';
 import { ActivatedRoute, RouterModule } from '@angular/router';
 import { MaterialListService } from '../../../services/concretes/material-list.service';
 import { PageRequest } from '../../../../core/models/page/page-request';
@@ -24,7 +24,7 @@ import { ToastrService } from 'ngx-toastr';
 export class MaterialListComponent implements OnInit {
   currentPageNumber!:number; //null
   material!:string;
-  materialList: MaterialListDto={
+  materialList: MaterialListItemDto={
     index:0,
     size:0,
     count:0,
