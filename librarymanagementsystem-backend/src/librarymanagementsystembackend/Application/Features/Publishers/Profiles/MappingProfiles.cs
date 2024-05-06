@@ -1,12 +1,14 @@
 using Application.Features.Publishers.Commands.Create;
 using Application.Features.Publishers.Commands.Delete;
 using Application.Features.Publishers.Commands.Update;
+using Application.Features.Publishers.Dtos;
 using Application.Features.Publishers.Queries.GetById;
 using Application.Features.Publishers.Queries.GetList;
 using AutoMapper;
 using NArchitecture.Core.Application.Responses;
 using Domain.Entities;
 using NArchitecture.Core.Persistence.Paging;
+using Application.Features.Publishers.Queries.GetList.GetAll;
 
 namespace Application.Features.Publishers.Profiles;
 
@@ -23,5 +25,10 @@ public class MappingProfiles : Profile
         CreateMap<Publisher, GetByIdPublisherResponse>().ReverseMap();
         CreateMap<Publisher, GetListPublisherListItemDto>().ReverseMap();
         CreateMap<IPaginate<Publisher>, GetListResponse<GetListPublisherListItemDto>>().ReverseMap();
+        
+        CreateMap<Publisher, PublisherForMaterialDetailDto>();
+
+
+        CreateMap<Publisher, GetAllPublishersDto>().ReverseMap();
     }
 }

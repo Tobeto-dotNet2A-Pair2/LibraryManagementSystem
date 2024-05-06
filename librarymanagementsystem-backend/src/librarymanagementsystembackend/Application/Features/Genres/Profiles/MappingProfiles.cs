@@ -1,6 +1,7 @@
 using Application.Features.Genres.Commands.Create;
 using Application.Features.Genres.Commands.Delete;
 using Application.Features.Genres.Commands.Update;
+using Application.Features.Genres.Dtos;
 using Application.Features.Genres.Queries.GetById;
 using Application.Features.Genres.Queries.GetList;
 using AutoMapper;
@@ -23,5 +24,7 @@ public class MappingProfiles : Profile
         CreateMap<Genre, GetByIdGenreResponse>().ReverseMap();
         CreateMap<Genre, GetListGenreListItemDto>().ReverseMap();
         CreateMap<IPaginate<Genre>, GetListResponse<GetListGenreListItemDto>>().ReverseMap();
+
+        CreateMap<Genre, GenreForMaterialDetailDto>();
     }
 }

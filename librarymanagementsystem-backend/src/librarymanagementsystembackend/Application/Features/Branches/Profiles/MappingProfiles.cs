@@ -1,12 +1,14 @@
 using Application.Features.Branches.Commands.Create;
 using Application.Features.Branches.Commands.Delete;
 using Application.Features.Branches.Commands.Update;
+using Application.Features.Branches.Dtos;
 using Application.Features.Branches.Queries.GetById;
 using Application.Features.Branches.Queries.GetList;
 using AutoMapper;
 using NArchitecture.Core.Application.Responses;
 using Domain.Entities;
 using NArchitecture.Core.Persistence.Paging;
+using Application.Features.Branches.Queries.GetList.GetAll;
 
 namespace Application.Features.Branches.Profiles;
 
@@ -23,5 +25,9 @@ public class MappingProfiles : Profile
         CreateMap<Branch, GetByIdBranchResponse>().ReverseMap();
         CreateMap<Branch, GetListBranchListItemDto>().ReverseMap();
         CreateMap<IPaginate<Branch>, GetListResponse<GetListBranchListItemDto>>().ReverseMap();
+
+        CreateMap<Branch, BranchForMaterialDetailDto>();
+
+        CreateMap<Branch, GetAllBranchesDto>().ReverseMap();
     }
 }

@@ -7,5 +7,5 @@ public class MaterialProperty : Entity<Guid>
     public MaterialProperty() { }
     public MaterialProperty(string name) { Name = name; }
 
-    public virtual ICollection<MaterialPropertyValue> MaterialPropertyValues { get; set; }
+    public virtual MaterialPropertyValue MaterialPropertyValue { get; set; }
 }

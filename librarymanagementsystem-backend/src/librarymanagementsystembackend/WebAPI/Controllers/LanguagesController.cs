@@ -6,6 +6,7 @@ using Application.Features.Languages.Queries.GetList;
 using NArchitecture.Core.Application.Requests;
 using NArchitecture.Core.Application.Responses;
 using Microsoft.AspNetCore.Mvc;
+using Application.Features.Languages.Queries.GetList.GetAll;
 
 namespace WebAPI.Controllers;
 
@@ -49,6 +50,15 @@ public class LanguagesController : BaseController
     {
         GetListLanguageQuery getListLanguageQuery = new() { PageRequest = pageRequest };
         GetListResponse<GetListLanguageListItemDto> response = await Mediator.Send(getListLanguageQuery);
+        return Ok(response);
+    }
+
+
+    [HttpGet]
+    [Route("GetAll")]
+    public async Task<IActionResult> GetAll([FromQuery] GetAllLanguagesQuery getAllLanguagesQuery)
+    {
+        List<GetAllLanguagesDto> response = await Mediator.Send(getAllLanguagesQuery);
         return Ok(response);
     }
 }

@@ -3,13 +3,14 @@ using Application.Features.MaterialProperties.Commands.Delete;
 using Application.Features.MaterialProperties.Commands.Update;
 using Application.Features.MaterialProperties.Queries.GetById;
 using Application.Features.MaterialProperties.Queries.GetList;
+using Application.Features.MaterialProperties.Queries.GetList.GetListAll;
 using NArchitecture.Core.Application.Requests;
 using NArchitecture.Core.Application.Responses;
 using Microsoft.AspNetCore.Mvc;
 
 namespace WebAPI.Controllers;
 
-[Route("api/[controller]")]
+[Route("api/[controller]/[action]")]
 [ApiController]
 public class MaterialPropertiesController : BaseController
 {
@@ -49,6 +50,13 @@ public class MaterialPropertiesController : BaseController
     {
         GetListMaterialPropertyQuery getListMaterialPropertyQuery = new() { PageRequest = pageRequest };
         GetListResponse<GetListMaterialPropertyListItemDto> response = await Mediator.Send(getListMaterialPropertyQuery);
+        return Ok(response);
+    }
+    
+    [HttpGet]
+    public async Task<IActionResult> GetListAll([FromQuery] GetListAllMaterialPropertyQuery getListAllMaterialPropertyQuery)
+    { 
+        List<GetListAllMaterialPropertyDto> response = await Mediator.Send(getListAllMaterialPropertyQuery);
         return Ok(response);
     }
 }

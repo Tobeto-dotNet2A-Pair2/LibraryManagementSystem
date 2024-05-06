@@ -6,6 +6,7 @@ using Application.Features.Translators.Queries.GetList;
 using NArchitecture.Core.Application.Requests;
 using NArchitecture.Core.Application.Responses;
 using Microsoft.AspNetCore.Mvc;
+using Application.Features.Translators.Queries.GetList.GetAll;
 
 namespace WebAPI.Controllers;
 
@@ -49,6 +50,15 @@ public class TranslatorsController : BaseController
     {
         GetListTranslatorQuery getListTranslatorQuery = new() { PageRequest = pageRequest };
         GetListResponse<GetListTranslatorListItemDto> response = await Mediator.Send(getListTranslatorQuery);
+        return Ok(response);
+    }
+
+
+    [HttpGet]
+    [Route("GetAll")]
+    public async Task<IActionResult> GetAll([FromQuery] GetAllTranslatorsQuery getAllTranslatorsQuery)
+    {
+        List<GetAllTranslatorsDto> response = await Mediator.Send(getAllTranslatorsQuery);
         return Ok(response);
     }
 }
