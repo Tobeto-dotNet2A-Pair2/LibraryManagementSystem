@@ -7,6 +7,7 @@ using AutoMapper;
 using NArchitecture.Core.Application.Responses;
 using Domain.Entities;
 using NArchitecture.Core.Persistence.Paging;
+using Application.Features.Streets.Queries.GetDynamic;
 
 namespace Application.Features.Streets.Profiles;
 
@@ -23,5 +24,8 @@ public class MappingProfiles : Profile
         CreateMap<Street, GetByIdStreetResponse>().ReverseMap();
         CreateMap<Street, GetListStreetListItemDto>().ReverseMap();
         CreateMap<IPaginate<Street>, GetListResponse<GetListStreetListItemDto>>().ReverseMap();
+
+        CreateMap<Street, GetDynamicStreetResponse>().ReverseMap();
+        CreateMap<IPaginate<Street>, GetListResponse<GetDynamicStreetResponse>>().ReverseMap();
     }
 }

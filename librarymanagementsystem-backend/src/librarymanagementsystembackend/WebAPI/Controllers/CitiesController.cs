@@ -6,6 +6,8 @@ using Application.Features.Cities.Queries.GetList;
 using NArchitecture.Core.Application.Requests;
 using NArchitecture.Core.Application.Responses;
 using Microsoft.AspNetCore.Mvc;
+using NArchitecture.Core.Persistence.Dynamic;
+using Application.Features.Cities.Queries.GetDynamic;
 
 namespace WebAPI.Controllers;
 
@@ -51,4 +53,19 @@ public class CitiesController : BaseController
         GetListResponse<GetListCityListItemDto> response = await Mediator.Send(getListCityQuery);
         return Ok(response);
     }
+
+    [HttpPost("Dynamic")]
+
+    public async Task<IActionResult> GetDynamic([FromQuery] PageRequest pageRequest, [FromBody] DynamicQuery dynamic)
+    {
+        GetDynamicQuery getDynamicQuery = new()
+        {
+            PageRequest = pageRequest,
+            Dynamic = dynamic
+        };
+
+        GetListResponse<GetDynamicCityResponse> response = await Mediator.Send(getDynamicQuery);
+        return Ok(response);
+    }
+
 }
