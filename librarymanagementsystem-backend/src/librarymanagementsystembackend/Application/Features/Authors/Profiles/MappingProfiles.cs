@@ -9,6 +9,7 @@ using AutoMapper;
 using NArchitecture.Core.Application.Responses;
 using Domain.Entities;
 using NArchitecture.Core.Persistence.Paging;
+using Application.Features.Authors.Queries.GetList.GetAll;
 
 namespace Application.Features.Authors.Profiles;
 
@@ -28,5 +29,7 @@ public class MappingProfiles : Profile
 
         CreateMap<Author, AuthorForMaterialDetailDto>();
 
+
+        CreateMap<Author, GetAllAuthorsDto>().ReverseMap();
     }
 }

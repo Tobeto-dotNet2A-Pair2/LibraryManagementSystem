@@ -2089,7 +2089,16 @@ public class OperationClaimConfiguration : IEntityTypeConfiguration<OperationCla
             ]
         );
         #endregion
-        
+
+        featureOperationClaims.Add(new() { Id = ++lastId, Name = CitiesOperationClaims.GetDynamic });
+
+        featureOperationClaims.Add(new() { Id = ++lastId, Name = DistrictsOperationClaims.GetDynamic });
+
+
+        featureOperationClaims.Add(new() { Id = ++lastId, Name = NeighborhoodsOperationClaims.GetDynamic });
+
+        featureOperationClaims.Add(new() { Id = ++lastId, Name = StreetsOperationClaims.GetDynamic });
+
         return featureOperationClaims;
     }
 #pragma warning restore S1854 // Unused assignments should be removed

@@ -40,7 +40,7 @@ public class GetListMaterialQuery : IRequest<GetListResponse<GetListMaterialList
             IPaginate<Material> materials = await _materialRepository.GetListAsync(
                 include: m => m.Include(m => m.MaterialImages), //include MaterialImages 
                 index: request.PageRequest.PageIndex,
-                size: request.PageRequest.PageSize, 
+                size: request.PageRequest.PageSize,
                 cancellationToken: cancellationToken
             );
 

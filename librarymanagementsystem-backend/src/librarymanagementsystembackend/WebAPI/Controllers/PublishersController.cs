@@ -6,6 +6,8 @@ using Application.Features.Publishers.Queries.GetList;
 using NArchitecture.Core.Application.Requests;
 using NArchitecture.Core.Application.Responses;
 using Microsoft.AspNetCore.Mvc;
+using Application.Features.Locations.Queries.GetList.GetAll;
+using Application.Features.Publishers.Queries.GetList.GetAll;
 
 namespace WebAPI.Controllers;
 
@@ -49,6 +51,15 @@ public class PublishersController : BaseController
     {
         GetListPublisherQuery getListPublisherQuery = new() { PageRequest = pageRequest };
         GetListResponse<GetListPublisherListItemDto> response = await Mediator.Send(getListPublisherQuery);
+        return Ok(response);
+    }
+
+
+    [HttpGet]
+    [Route("GetAll")]
+    public async Task<IActionResult> GetAll([FromQuery] GetAllPublishersQuery getAllPublishersQuery)
+    {
+        List<GetAllPublishersDto> response = await Mediator.Send(getAllPublishersQuery);
         return Ok(response);
     }
 }

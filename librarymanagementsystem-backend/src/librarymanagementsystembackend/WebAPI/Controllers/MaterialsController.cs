@@ -8,6 +8,7 @@ using Application.Features.Materials.Queries.GetList.GetAllForAdmin;
 using NArchitecture.Core.Application.Requests;
 using NArchitecture.Core.Application.Responses;
 using Microsoft.AspNetCore.Mvc;
+using Application.Features.Materials.Queries.GetList.GetAll;
 
 namespace WebAPI.Controllers;
 
@@ -66,6 +67,14 @@ public class MaterialsController : BaseController
     public async Task<IActionResult> GetDetailByIdForAdmin([FromQuery] GetDetailByIdForAdminQuery getDetailByIdForAdminQuery)
     {
         GetDetailByIdForAdminDto response = await Mediator.Send(getDetailByIdForAdminQuery);
+        return Ok(response);
+    }
+
+    [HttpGet]
+    [Route("GetAll")]
+    public async Task<IActionResult> GetAll([FromQuery] GetAllMaterialsQuery getAllMaterialsQuery)
+    {
+        List<GetAllMaterialsDto> response = await Mediator.Send(getAllMaterialsQuery);
         return Ok(response);
     }
 }

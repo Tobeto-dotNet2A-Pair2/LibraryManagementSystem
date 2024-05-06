@@ -15,6 +15,7 @@ export function getAppProviders(){
     const authServiceProviders={
         provide:AuthBaseService,
         useClass:AuthService
+        
     };
 
     return [

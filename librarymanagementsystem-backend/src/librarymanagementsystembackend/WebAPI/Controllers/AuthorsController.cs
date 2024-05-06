@@ -6,6 +6,8 @@ using Application.Features.Authors.Queries.GetList;
 using NArchitecture.Core.Application.Requests;
 using NArchitecture.Core.Application.Responses;
 using Microsoft.AspNetCore.Mvc;
+using Application.Features.Locations.Queries.GetList.GetAll;
+using Application.Features.Authors.Queries.GetList.GetAll;
 
 namespace WebAPI.Controllers;
 
@@ -49,6 +51,15 @@ public class AuthorsController : BaseController
     {
         GetListAuthorQuery getListAuthorQuery = new() { PageRequest = pageRequest };
         GetListResponse<GetListAuthorListItemDto> response = await Mediator.Send(getListAuthorQuery);
+        return Ok(response);
+    }
+
+
+    [HttpGet]
+    [Route("GetAll")]
+    public async Task<IActionResult> GetAll([FromQuery] GetAllAuthorsQuery getAllAuthorsQuery)
+    {
+        List<GetAllAuthorsDto> response = await Mediator.Send(getAllAuthorsQuery);
         return Ok(response);
     }
 }
