@@ -16,6 +16,7 @@ import { AddBranchFormComponent } from './features/pages/branches/add-branch-for
 import { ContactComponent } from './features/pages/contact/contact.component';
 import { AboutUsComponent } from './features/pages/about-us/about-us.component';
 import { QuestionComponent } from './features/pages/question/question.component';
+import { MaterialDetailComponent } from './features/pages/materials/material-detail/material-detail.component';
 
 export const routes: Routes = [
   
@@ -49,6 +50,7 @@ export const routes: Routes = [
       { path: 'branch-lists', component: BranchListComponent },
       { path: 'add-material-forms', component: AddMaterialFormComponent },
       { path: 'member-profile/:id', component: MemberProfileComponent },
+      { path: 'material-detail/:id', component: MaterialDetailComponent },
       { path: 'add-library', component: AddLibraryComponent }
       
     ],
