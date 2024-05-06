@@ -16,7 +16,7 @@ using static Application.Features.BorrowedMaterials.Constants.BorrowedMaterialsO
 
 namespace Application.Features.BorrowedMaterials.Commands.Create;
 
-public class CreateBorrowedMaterialCommand : IRequest<CreatedBorrowedMaterialResponse>, ILoggableRequest, ITransactionalRequest //ISecuredRequest,
+public class CreateBorrowedMaterialCommand : IRequest<CreatedBorrowedMaterialResponse>, ILoggableRequest, ITransactionalRequest, ISecuredRequest
 {
     public Guid MemberId { get; set; }
     public Guid MaterialCopyId { get; set; }

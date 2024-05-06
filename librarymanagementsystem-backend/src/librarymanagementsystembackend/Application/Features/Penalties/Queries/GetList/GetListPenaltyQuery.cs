@@ -12,7 +12,7 @@ using static Application.Features.Penalties.Constants.PenaltiesOperationClaims;
 
 namespace Application.Features.Penalties.Queries.GetList;
 
-public class GetListPenaltyQuery : IRequest<GetListResponse<GetListPenaltyListItemDto>>, ICachableRequest // ISecuredRequest,
+public class GetListPenaltyQuery : IRequest<GetListResponse<GetListPenaltyListItemDto>>, ICachableRequest, ISecuredRequest
 {
     public PageRequest PageRequest { get; set; }
 

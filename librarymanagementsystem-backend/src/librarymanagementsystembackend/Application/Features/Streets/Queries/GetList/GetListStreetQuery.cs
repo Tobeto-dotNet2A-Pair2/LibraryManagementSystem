@@ -12,7 +12,7 @@ using static Application.Features.Streets.Constants.StreetsOperationClaims;
 
 namespace Application.Features.Streets.Queries.GetList;
 
-public class GetListStreetQuery : IRequest<GetListResponse<GetListStreetListItemDto>>, ICachableRequest //ISecuredRequest,
+public class GetListStreetQuery : IRequest<GetListResponse<GetListStreetListItemDto>>, ICachableRequest, ISecuredRequest
 {
     public PageRequest PageRequest { get; set; }
 

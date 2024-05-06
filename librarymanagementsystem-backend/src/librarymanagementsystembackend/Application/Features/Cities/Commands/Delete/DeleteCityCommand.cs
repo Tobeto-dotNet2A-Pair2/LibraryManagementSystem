@@ -1,5 +1,4 @@
 using Application.Features.Cities.Constants;
-using Application.Features.Cities.Constants;
 using Application.Features.Cities.Rules;
 using Application.Services.Repositories;
 using AutoMapper;
@@ -13,7 +12,7 @@ using static Application.Features.Cities.Constants.CitiesOperationClaims;
 
 namespace Application.Features.Cities.Commands.Delete;
 
-public class DeleteCityCommand : IRequest<DeletedCityResponse>, ICacheRemoverRequest, ILoggableRequest, ITransactionalRequest // ISecuredRequest, 
+public class DeleteCityCommand : IRequest<DeletedCityResponse>, ICacheRemoverRequest, ILoggableRequest, ITransactionalRequest, ISecuredRequest
 {
     public Guid Id { get; set; }
 

@@ -1,5 +1,4 @@
 using Application.Features.SocialMediaAccounts.Constants;
-using Application.Features.SocialMediaAccounts.Constants;
 using Application.Features.SocialMediaAccounts.Rules;
 using Application.Services.Repositories;
 using AutoMapper;
@@ -13,7 +12,7 @@ using static Application.Features.SocialMediaAccounts.Constants.SocialMediaAccou
 
 namespace Application.Features.SocialMediaAccounts.Commands.Delete;
 
-public class DeleteSocialMediaAccountCommand : IRequest<DeletedSocialMediaAccountResponse>, ICacheRemoverRequest, ILoggableRequest, ITransactionalRequest // ISecuredRequest,
+public class DeleteSocialMediaAccountCommand : IRequest<DeletedSocialMediaAccountResponse>, ICacheRemoverRequest, ILoggableRequest, ITransactionalRequest, ISecuredRequest
 {
     public Guid Id { get; set; }
 

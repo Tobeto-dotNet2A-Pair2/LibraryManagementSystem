@@ -12,7 +12,7 @@ using static Application.Features.Locations.Constants.LocationsOperationClaims;
 
 namespace Application.Features.Locations.Commands.Update;
 
-public class UpdateLocationCommand : IRequest<UpdatedLocationResponse>, ICacheRemoverRequest, ILoggableRequest, ITransactionalRequest //ISecuredRequest,
+public class UpdateLocationCommand : IRequest<UpdatedLocationResponse>, ICacheRemoverRequest, ILoggableRequest, ITransactionalRequest, ISecuredRequest
 {
     public Guid Id { get; set; }
     public string? ShelfLineNumber { get; set; }

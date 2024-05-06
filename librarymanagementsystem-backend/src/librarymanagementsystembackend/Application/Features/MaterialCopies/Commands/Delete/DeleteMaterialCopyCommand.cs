@@ -1,5 +1,4 @@
 using Application.Features.MaterialCopies.Constants;
-using Application.Features.MaterialCopies.Constants;
 using Application.Features.MaterialCopies.Rules;
 using Application.Services.Repositories;
 using AutoMapper;
@@ -13,7 +12,7 @@ using static Application.Features.MaterialCopies.Constants.MaterialCopiesOperati
 
 namespace Application.Features.MaterialCopies.Commands.Delete;
 
-public class DeleteMaterialCopyCommand : IRequest<DeletedMaterialCopyResponse>, ICacheRemoverRequest, ILoggableRequest, ITransactionalRequest //ISecuredRequest,
+public class DeleteMaterialCopyCommand : IRequest<DeletedMaterialCopyResponse>, ICacheRemoverRequest, ILoggableRequest, ITransactionalRequest, ISecuredRequest
 {
     public Guid Id { get; set; }
 

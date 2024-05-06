@@ -1,5 +1,4 @@
 using Application.Features.MaterialTypes.Constants;
-using Application.Features.MaterialTypes.Constants;
 using Application.Features.MaterialTypes.Rules;
 using Application.Services.Repositories;
 using AutoMapper;
@@ -13,7 +12,7 @@ using static Application.Features.MaterialTypes.Constants.MaterialTypesOperation
 
 namespace Application.Features.MaterialTypes.Commands.Delete;
 
-public class DeleteMaterialTypeCommand : IRequest<DeletedMaterialTypeResponse>, ICacheRemoverRequest, ILoggableRequest, ITransactionalRequest //ISecuredRequest,
+public class DeleteMaterialTypeCommand : IRequest<DeletedMaterialTypeResponse>, ICacheRemoverRequest, ILoggableRequest, ITransactionalRequest, ISecuredRequest
 {
     public Guid Id { get; set; }
 

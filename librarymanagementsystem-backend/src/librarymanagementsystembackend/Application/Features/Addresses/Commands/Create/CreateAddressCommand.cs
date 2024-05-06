@@ -13,7 +13,7 @@ using Application.Features.Addresses.Dtos;
 
 namespace Application.Features.Addresses.Commands.Create;
 
-public class CreateAddressCommand : IRequest<CreatedAddressResponse>, ICacheRemoverRequest, ILoggableRequest, ITransactionalRequest // ISecuredRequest,
+public class CreateAddressCommand : IRequest<CreatedAddressResponse>, ICacheRemoverRequest, ILoggableRequest, ITransactionalRequest, ISecuredRequest
 {
     public AddressListItemDto AddressListItemDto { get; set; }
     public Guid StreetId { get; set; }

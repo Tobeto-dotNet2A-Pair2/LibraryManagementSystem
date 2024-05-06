@@ -12,7 +12,7 @@ using static Application.Features.LanguageMaterials.Constants.LanguageMaterialsO
 
 namespace Application.Features.LanguageMaterials.Queries.GetList;
 
-public class GetListLanguageMaterialQuery : IRequest<GetListResponse<GetListLanguageMaterialListItemDto>>, ICachableRequest // ISecuredRequest,
+public class GetListLanguageMaterialQuery : IRequest<GetListResponse<GetListLanguageMaterialListItemDto>>, ICachableRequest, ISecuredRequest
 {
     public PageRequest PageRequest { get; set; }
 

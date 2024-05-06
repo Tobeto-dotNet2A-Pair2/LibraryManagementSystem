@@ -9,7 +9,7 @@ using static Application.Features.Translators.Constants.TranslatorsOperationClai
 
 namespace Application.Features.Translators.Queries.GetById;
 
-public class GetByIdTranslatorQuery : IRequest<GetByIdTranslatorResponse> //, ISecuredRequest
+public class GetByIdTranslatorQuery : IRequest<GetByIdTranslatorResponse>, ISecuredRequest
 {
     public Guid Id { get; set; }
 

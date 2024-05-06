@@ -9,7 +9,7 @@ using static Application.Features.MaterialImages.Constants.MaterialImagesOperati
 
 namespace Application.Features.MaterialImages.Queries.GetById;
 
-public class GetByIdMaterialImageQuery : IRequest<GetByIdMaterialImageResponse> //, ISecuredRequest
+public class GetByIdMaterialImageQuery : IRequest<GetByIdMaterialImageResponse>, ISecuredRequest
 {
     public Guid Id { get; set; }
 

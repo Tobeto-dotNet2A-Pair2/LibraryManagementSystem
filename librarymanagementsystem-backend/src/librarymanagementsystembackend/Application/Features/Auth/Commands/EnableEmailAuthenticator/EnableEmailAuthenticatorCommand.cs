@@ -12,7 +12,7 @@ using NArchitecture.Core.Security.Enums;
 
 namespace Application.Features.Auth.Commands.EnableEmailAuthenticator;
 
-public class EnableEmailAuthenticatorCommand : IRequest //,ISecuredRequest
+public class EnableEmailAuthenticatorCommand : IRequest,ISecuredRequest
 {
     public Guid UserId { get; set; }
     public string VerifyEmailUrlPrefix { get; set; }

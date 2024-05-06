@@ -12,7 +12,7 @@ using static Application.Features.Translators.Constants.TranslatorsOperationClai
 
 namespace Application.Features.Translators.Queries.GetList;
 
-public class GetListTranslatorQuery : IRequest<GetListResponse<GetListTranslatorListItemDto>>, ICachableRequest //ISecuredRequest,
+public class GetListTranslatorQuery : IRequest<GetListResponse<GetListTranslatorListItemDto>>, ICachableRequest, ISecuredRequest
 {
     public PageRequest PageRequest { get; set; }
 

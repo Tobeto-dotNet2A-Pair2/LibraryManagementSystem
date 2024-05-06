@@ -12,7 +12,7 @@ using static Application.Features.Branches.Constants.BranchesOperationClaims;
 
 namespace Application.Features.Branches.Commands.Create;
 
-public class CreateBranchCommand : IRequest<CreatedBranchResponse>, ICacheRemoverRequest, ILoggableRequest, ITransactionalRequest //ISecuredRequest,
+public class CreateBranchCommand : IRequest<CreatedBranchResponse>, ICacheRemoverRequest, ILoggableRequest, ITransactionalRequest,ISecuredRequest
 {
     public string Name { get; set; }
     public DateTime WorkingHours { get; set; }

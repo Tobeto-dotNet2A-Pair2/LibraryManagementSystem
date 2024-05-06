@@ -12,7 +12,7 @@ using static Application.Features.MemberAddresses.Constants.MemberAddressesOpera
 
 namespace Application.Features.MemberAddresses.Commands.Update;
 
-public class UpdateMemberAddressCommand : IRequest<UpdatedMemberAddressResponse>, ICacheRemoverRequest, ILoggableRequest, ITransactionalRequest // ISecuredRequest,
+public class UpdateMemberAddressCommand : IRequest<UpdatedMemberAddressResponse>, ICacheRemoverRequest, ILoggableRequest, ITransactionalRequest, ISecuredRequest
 {
     public Guid Id { get; set; }
     public Guid MemberId { get; set; }

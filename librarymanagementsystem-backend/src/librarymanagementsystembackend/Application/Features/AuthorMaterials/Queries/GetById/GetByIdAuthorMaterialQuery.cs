@@ -9,7 +9,7 @@ using static Application.Features.AuthorMaterials.Constants.AuthorMaterialsOpera
 
 namespace Application.Features.AuthorMaterials.Queries.GetById;
 
-public class GetByIdAuthorMaterialQuery : IRequest<GetByIdAuthorMaterialResponse> //, ISecuredRequest
+public class GetByIdAuthorMaterialQuery : IRequest<GetByIdAuthorMaterialResponse> , ISecuredRequest
 {
     public Guid Id { get; set; }
 

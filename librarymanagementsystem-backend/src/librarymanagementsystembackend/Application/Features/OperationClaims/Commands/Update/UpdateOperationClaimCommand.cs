@@ -9,7 +9,7 @@ using static Application.Features.OperationClaims.Constants.OperationClaimsOpera
 
 namespace Application.Features.OperationClaims.Commands.Update;
 
-public class UpdateOperationClaimCommand : IRequest<UpdatedOperationClaimResponse> //, ISecuredRequest
+public class UpdateOperationClaimCommand : IRequest<UpdatedOperationClaimResponse>, ISecuredRequest
 {
     public int Id { get; set; }
     public string Name { get; set; }

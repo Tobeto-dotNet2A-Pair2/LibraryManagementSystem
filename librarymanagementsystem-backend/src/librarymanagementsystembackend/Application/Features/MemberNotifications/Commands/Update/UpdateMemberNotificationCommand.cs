@@ -12,7 +12,7 @@ using static Application.Features.MemberNotifications.Constants.MemberNotificati
 
 namespace Application.Features.MemberNotifications.Commands.Update;
 
-public class UpdateMemberNotificationCommand : IRequest<UpdatedMemberNotificationResponse>, ICacheRemoverRequest, ILoggableRequest, ITransactionalRequest //ISecuredRequest,
+public class UpdateMemberNotificationCommand : IRequest<UpdatedMemberNotificationResponse>, ICacheRemoverRequest, ILoggableRequest, ITransactionalRequest, ISecuredRequest
 {
     public Guid Id { get; set; }
     public Guid MemberId { get; set; }

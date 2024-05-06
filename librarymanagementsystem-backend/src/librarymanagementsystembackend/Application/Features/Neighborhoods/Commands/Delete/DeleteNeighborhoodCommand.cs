@@ -1,5 +1,4 @@
 using Application.Features.Neighborhoods.Constants;
-using Application.Features.Neighborhoods.Constants;
 using Application.Features.Neighborhoods.Rules;
 using Application.Services.Repositories;
 using AutoMapper;
@@ -13,7 +12,7 @@ using static Application.Features.Neighborhoods.Constants.NeighborhoodsOperation
 
 namespace Application.Features.Neighborhoods.Commands.Delete;
 
-public class DeleteNeighborhoodCommand : IRequest<DeletedNeighborhoodResponse>, ICacheRemoverRequest, ILoggableRequest, ITransactionalRequest // ISecuredRequest,
+public class DeleteNeighborhoodCommand : IRequest<DeletedNeighborhoodResponse>, ICacheRemoverRequest, ILoggableRequest, ITransactionalRequest, ISecuredRequest
 {
     public Guid Id { get; set; }
 

@@ -12,7 +12,7 @@ using static Application.Features.Notifications.Constants.NotificationsOperation
 
 namespace Application.Features.Notifications.Queries.GetList;
 
-public class GetListNotificationQuery : IRequest<GetListResponse<GetListNotificationListItemDto>>, ICachableRequest // ISecuredRequest,
+public class GetListNotificationQuery : IRequest<GetListResponse<GetListNotificationListItemDto>>, ICachableRequest, ISecuredRequest
 {
     public PageRequest PageRequest { get; set; }
 

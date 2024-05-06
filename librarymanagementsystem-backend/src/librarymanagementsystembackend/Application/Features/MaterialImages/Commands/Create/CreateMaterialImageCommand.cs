@@ -14,7 +14,7 @@ using static Application.Features.MaterialImages.Constants.MaterialImagesOperati
 
 namespace Application.Features.MaterialImages.Commands.Create;
 
-public class CreateMaterialImageCommand : IRequest<CreatedMaterialImageResponse>, ICacheRemoverRequest, ILoggableRequest, ITransactionalRequest // ISecuredRequest,
+public class CreateMaterialImageCommand : IRequest<CreatedMaterialImageResponse>, ICacheRemoverRequest, ILoggableRequest, ITransactionalRequest, ISecuredRequest
 {
     public IFormFile Image { get; set; }
     public Guid MaterialId { get; set; }

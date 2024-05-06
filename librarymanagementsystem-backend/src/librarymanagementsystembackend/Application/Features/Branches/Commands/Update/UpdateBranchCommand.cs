@@ -12,7 +12,7 @@ using static Application.Features.Branches.Constants.BranchesOperationClaims;
 
 namespace Application.Features.Branches.Commands.Update;
 
-public class UpdateBranchCommand : IRequest<UpdatedBranchResponse>, ICacheRemoverRequest, ILoggableRequest, ITransactionalRequest //ISecuredRequest,
+public class UpdateBranchCommand : IRequest<UpdatedBranchResponse>, ICacheRemoverRequest, ILoggableRequest, ITransactionalRequest,ISecuredRequest
 {
     public Guid Id { get; set; }
     public string Name { get; set; }

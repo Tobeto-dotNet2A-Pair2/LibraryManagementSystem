@@ -12,7 +12,7 @@ using static Application.Features.Genres.Constants.GenresOperationClaims;
 
 namespace Application.Features.Genres.Commands.Create;
 
-public class CreateGenreCommand : IRequest<CreatedGenreResponse>, ICacheRemoverRequest, ILoggableRequest, ITransactionalRequest // ISecuredRequest,
+public class CreateGenreCommand : IRequest<CreatedGenreResponse>, ICacheRemoverRequest, ILoggableRequest, ITransactionalRequest, ISecuredRequest
 {
     public string Name { get; set; }
 

@@ -1,5 +1,4 @@
 using Application.Features.LanguageMaterials.Constants;
-using Application.Features.LanguageMaterials.Constants;
 using Application.Features.LanguageMaterials.Rules;
 using Application.Services.Repositories;
 using AutoMapper;
@@ -13,7 +12,7 @@ using static Application.Features.LanguageMaterials.Constants.LanguageMaterialsO
 
 namespace Application.Features.LanguageMaterials.Commands.Delete;
 
-public class DeleteLanguageMaterialCommand : IRequest<DeletedLanguageMaterialResponse>, ICacheRemoverRequest, ILoggableRequest, ITransactionalRequest //ISecuredRequest,
+public class DeleteLanguageMaterialCommand : IRequest<DeletedLanguageMaterialResponse>, ICacheRemoverRequest, ILoggableRequest, ITransactionalRequest,ISecuredRequest
 {
     public Guid Id { get; set; }
 

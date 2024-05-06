@@ -12,7 +12,7 @@ using static Application.Features.FavoriteLists.Constants.FavoriteListsOperation
 
 namespace Application.Features.FavoriteLists.Commands.Create;
 
-public class CreateFavoriteListCommand : IRequest<CreatedFavoriteListResponse>, ICacheRemoverRequest, ILoggableRequest, ITransactionalRequest // ISecuredRequest,
+public class CreateFavoriteListCommand : IRequest<CreatedFavoriteListResponse>, ICacheRemoverRequest, ILoggableRequest, ITransactionalRequest, ISecuredRequest
 {
     public string Name { get; set; }
     public Guid MemberId { get; set; }
