@@ -3,7 +3,7 @@ import { environment } from '../../../../environments/environment';
 import { Observable, map } from 'rxjs';
 import { MaterialListBaseService } from '../abstracts/material-list-base.service';
 import { PageRequest } from '../../../core/models/page/page-request';
-import { MaterialListDto } from '../../models/responses/materials/material-list-item-dto';
+import { MaterialListItemDto } from '../../models/responses/materials/material-list-item-dto';
 import { Injectable } from '@angular/core';
 import { DeleteMaterialRequest } from '../../models/requests/materials/delete-material-request';
 import { DeletedMaterialResponse } from '../../models/responses/materials/deleted-material-response';
@@ -17,16 +17,16 @@ export class MaterialListService extends MaterialListBaseService{
  private readonly apiUrl:string = `${environment.API_URL}/Materials`
   constructor(private httpClient:HttpClient) {super() }
 
-  override getList(pageRequest: PageRequest): Observable<MaterialListDto> {
+  override getList(pageRequest: PageRequest): Observable<MaterialListItemDto> {
     const newRequest :{[key:string]:string | number}={
       pageIndex:pageRequest.pageIndex,
       pageSize:pageRequest.pageSize
     };
-    return this.httpClient.get<MaterialListDto>(`${this.apiUrl}/GetList`,{
+    return this.httpClient.get<MaterialListItemDto>(`${this.apiUrl}/GetList`,{
       params:newRequest
     }).pipe(
       map((response)=>{
-        const newResponse:MaterialListDto={
+        const newResponse:MaterialListItemDto={
           index:pageRequest.pageIndex,
           size:pageRequest.pageSize,
           count:response.count,
@@ -40,18 +40,18 @@ export class MaterialListService extends MaterialListBaseService{
     )
   }
   
-  override getMaterialListByModelId(pageRequest: PageRequest, modelId: string): Observable<MaterialListDto> {
+  override getMaterialListByModelId(pageRequest: PageRequest, modelId: string): Observable<MaterialListItemDto> {
     const newRequest :{[key:string]:string | number}={
       pageIndex:pageRequest.pageIndex,
       pageSize:pageRequest.pageSize,
       modelId:modelId
     };
  
-    return this.httpClient.get<MaterialListDto>(`${this.apiUrl}/GetList/getmaterialbymodel`,{
+    return this.httpClient.get<MaterialListItemDto>(`${this.apiUrl}/GetList/getmaterialbymodel`,{
       params:newRequest
     }).pipe(
       map((response)=>{
-        const newResponse:MaterialListDto={
+        const newResponse:MaterialListItemDto={
           index:pageRequest.pageIndex,
           size:pageRequest.pageSize,
           count:response.count,
