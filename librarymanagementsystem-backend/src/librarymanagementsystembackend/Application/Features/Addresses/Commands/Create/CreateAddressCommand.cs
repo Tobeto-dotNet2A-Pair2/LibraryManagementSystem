@@ -9,11 +9,13 @@ using NArchitecture.Core.Application.Pipelines.Logging;
 using NArchitecture.Core.Application.Pipelines.Transaction;
 using MediatR;
 using static Application.Features.Addresses.Constants.AddressesOperationClaims;
+using Application.Features.Addresses.Dtos;
 
 namespace Application.Features.Addresses.Commands.Create;
 
 public class CreateAddressCommand : IRequest<CreatedAddressResponse>, ICacheRemoverRequest, ILoggableRequest, ITransactionalRequest // ISecuredRequest,
 {
+    public AddressListItemDto AddressListItemDto { get; set; }
     public Guid StreetId { get; set; }
     public string Name { get; set; }
     public string Description { get; set; }
@@ -41,6 +43,8 @@ public class CreateAddressCommand : IRequest<CreatedAddressResponse>, ICacheRemo
         public async Task<CreatedAddressResponse> Handle(CreateAddressCommand request, CancellationToken cancellationToken)
         {
             Address address = _mapper.Map<Address>(request);
+
+            AddressListItemDto addressListItemDto = request.AddressListItemDto;
 
             await _addressRepository.AddAsync(address);
 

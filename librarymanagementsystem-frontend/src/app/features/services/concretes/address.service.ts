@@ -3,10 +3,9 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { GetByIdAddressResponse } from '../../models/responses/addresses/get-by-id-address-response';
 import { CreatedAddressResponse } from '../../models/responses/addresses/created-address-response';
-import { UpdatedAddressResponse } from '../../models/responses/addresses/updated-address-response';
-import { DeletedAddressResponse } from '../../models/responses/addresses/deleted-address-response';
-import { GetListAddressResponse } from '../../models/responses/addresses/get-list-address-response';
 import { AddressBaseService } from '../abstracts/address-base.service';
+import { CreateAddressRequest } from '../../models/requests/addresses/create-address-request';
+import { AddressListItemDto } from '../../models/requests/addresses/address-list-item.dto';
 
 @Injectable({
   providedIn: 'root'
@@ -15,11 +14,13 @@ import { AddressBaseService } from '../abstracts/address-base.service';
 
 export class AddressService extends AddressBaseService 
  {
-  // override getList(): Observable<GetListAddressResponse[]> {
-  //   throw new Error('Method not implemented.');
-  // }
-  // override getById(): Observable<GetByIdAddressResponse> {
-  //   throw new Error('Method not implemented.');
-  // }
+  override getByIdCity(id: string): Observable<GetByIdAddressResponse> {
+    return this.httpClient.get<GetByIdAddressResponse>(`${this.apiUrl}/${id}`);
+  }
 
+
+  createAddress(createAddressRequest: CreateAddressRequest<AddressListItemDto>): Observable<CreatedAddressResponse> {
+        return this.httpClient.post<CreatedAddressResponse>(`${this.apiUrl}`, createAddressRequest);
+      }
+  
 }

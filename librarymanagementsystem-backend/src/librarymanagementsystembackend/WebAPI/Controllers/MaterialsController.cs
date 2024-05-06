@@ -2,7 +2,9 @@ using Application.Features.Materials.Commands.Create;
 using Application.Features.Materials.Commands.Delete;
 using Application.Features.Materials.Commands.Update;
 using Application.Features.Materials.Queries.GetById;
+using Application.Features.Materials.Queries.GetById.GetDetails;
 using Application.Features.Materials.Queries.GetList;
+using Application.Features.Materials.Queries.GetList.GetAllForAdmin;
 using NArchitecture.Core.Application.Requests;
 using NArchitecture.Core.Application.Responses;
 using Microsoft.AspNetCore.Mvc;
@@ -10,7 +12,7 @@ using Application.Features.Materials.Queries.GetList.GetAll;
 
 namespace WebAPI.Controllers;
 
-[Route("api/[controller]")]
+[Route("api/[controller]/[action]")]
 [ApiController]
 public class MaterialsController : BaseController
 {
@@ -50,6 +52,21 @@ public class MaterialsController : BaseController
     {
         GetListMaterialQuery getListMaterialQuery = new() { PageRequest = pageRequest };
         GetListResponse<GetListMaterialListItemDto> response = await Mediator.Send(getListMaterialQuery);
+        return Ok(response);
+    }
+    //ebruudan gelen---------------------
+    [HttpGet]
+    public async Task<IActionResult> GetListForAdmin([FromQuery] GetAllMaterialListAdminQuery getAllMaterialListAdminQuery)
+    {
+        List<GetAllMaterialListAdminDto> response = await Mediator.Send(getAllMaterialListAdminQuery);
+        return Ok(response);
+    }
+
+
+    [HttpGet]
+    public async Task<IActionResult> GetDetailByIdForAdmin([FromQuery] GetDetailByIdForAdminQuery getDetailByIdForAdminQuery)
+    {
+        GetDetailByIdForAdminDto response = await Mediator.Send(getDetailByIdForAdminQuery);
         return Ok(response);
     }
 

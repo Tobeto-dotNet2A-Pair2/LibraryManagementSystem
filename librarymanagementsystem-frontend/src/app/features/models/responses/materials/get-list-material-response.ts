@@ -5,4 +5,5 @@ export interface GetListMaterialResponse {
 	punishmentAmount: number;
 	isBorrowable: boolean;
 	borrowDay: number;
+	imageUrls: string[]
 }
