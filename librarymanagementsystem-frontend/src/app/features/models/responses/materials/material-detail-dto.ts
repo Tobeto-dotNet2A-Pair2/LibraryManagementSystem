@@ -1,4 +1,9 @@
 export interface MaterialDetailDto {
+  name: string
+  description: string
+  punishmentAmount: number
+  isBorrowable: boolean
+  borrowDay: number
   authors: Author[]
   publishers: Publisher[]
   languages: Language[]
@@ -6,11 +11,13 @@ export interface MaterialDetailDto {
   materialCopies: MaterialCopy[]
   genres: Genre[]
   materialProperties: MaterialProperty[]
+  materialImages: MaterialImage[]
 }
 
 export interface Author {
   firstName: string
   lastName: string
+  country: string
 }
 
 export interface Publisher {
@@ -24,6 +31,7 @@ export interface Language {
 
 export interface Translator {
   name: string
+  description: string
 }
 
 export interface MaterialCopy {
@@ -58,4 +66,8 @@ export interface PropertyValue {
 
 export interface MaterialType {
   name: string
+}
+
+export interface MaterialImage {
+  url: string
 }
