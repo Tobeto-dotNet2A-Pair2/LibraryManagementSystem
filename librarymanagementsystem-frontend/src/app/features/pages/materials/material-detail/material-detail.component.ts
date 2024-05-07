@@ -6,6 +6,7 @@ import { ActivatedRoute } from '@angular/router';
 import { Author, Genre, Language, MaterialCopy, MaterialDetailDto, MaterialImage, MaterialProperty, Publisher, Translator } from '../../../models/responses/materials/material-detail-dto';
 import { MaterialGetbyidService } from '../../../services/concretes/material-getbyid.service';
 
+
 @Component({
   selector: 'app-material-detail',
   standalone: true,
@@ -16,7 +17,6 @@ import { MaterialGetbyidService } from '../../../services/concretes/material-get
 export class MaterialDetailComponent implements OnInit {
   @Input() materialId!: string;
   materialDetail: MaterialDetailDto | undefined;
-
   authors: Author[] = [];
   publishers: Publisher[] = [];
   languages: Language[] = [];
@@ -53,7 +53,7 @@ export class MaterialDetailComponent implements OnInit {
         this.materialCopies = response.materialCopies;
         this.genres = response.genres;
         this.materialProperties = response.materialProperties;
-        this.materialImages = response.materialImages; // Yeni eklenen materialImages alanı
+        this.materialImages = response.materialImages; 
       },
       error: (error) => {
         console.log('Backendden hatalı cevap geldi:', error);
@@ -63,4 +63,7 @@ export class MaterialDetailComponent implements OnInit {
       },
     });
   }
+
+  
+
 }

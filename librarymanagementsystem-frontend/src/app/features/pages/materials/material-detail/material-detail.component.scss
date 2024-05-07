@@ -1,0 +1,17 @@
+.material-pic {
+    width: 400px;
+    border-radius: 15px;
+    margin-right: 25px;
+    margin-bottom: 25px;
+    
+}
+ 
+.images {
+    display: block;
+}
+
+@media (max-width: 762px) {
+    .material-pic {
+        width: 250px; 
+    }
+}
