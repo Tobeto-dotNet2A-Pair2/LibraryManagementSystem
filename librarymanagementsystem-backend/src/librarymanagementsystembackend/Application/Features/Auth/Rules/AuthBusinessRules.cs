@@ -1,4 +1,5 @@
 using Application.Features.Auth.Constants;
+using Application.Features.OperationClaims.Dtos;
 using Application.Services.Repositories;
 using Domain.Entities;
 using NArchitecture.Core.Application.Rules;
@@ -89,10 +90,9 @@ public class AuthBusinessRules : BaseBusinessRules
             await throwBusinessException(AuthMessages.PasswordDontMatch);
     }
 
-    public async Task<int> GetOperationClaimIdByRoleNameAsync(string role)
+    public async Task<List<GetByRoleNameDto>> GetOperationClaimIdByRoleNameAsync(List<string> roles)
     {
-        OperationClaim operationClaim = await _operationClaimRepository.GetByRoleNameAsync(role);
-
-        return operationClaim?.Id ?? 0;
+        List<GetByRoleNameDto> operationClaims = await _operationClaimRepository.GetByRoleNameAsync(roles);
+        return operationClaims;
     }
 }

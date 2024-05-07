@@ -1,5 +1,6 @@
 ﻿using System.Collections.Immutable;
 using Application.Features.Auth.Rules;
+using Application.Features.OperationClaims.Dtos;
 using Application.Services.Repositories;
 using AutoMapper;
 using Domain.Entities;
@@ -119,16 +120,17 @@ public class AuthManager : IAuthService
 
     public async Task AssignRolesToUserAsync(User createdUser, IEnumerable<string> roles)
     {
-        foreach (var role in roles)
+        List<GetByRoleNameDto> operationClaims = await _authBusinessRules.GetOperationClaimIdByRoleNameAsync(roles.ToList());
+        List<UserOperationClaim> operationClaimEntities = new List<UserOperationClaim>();
+        foreach (string role in roles)
         {
-            int operationClaimId = await _authBusinessRules.GetOperationClaimIdByRoleNameAsync(role);
-            UserOperationClaim userOperationClaim = new()
+            var match = operationClaims.FirstOrDefault(a => a.Equals(role));
+            operationClaimEntities.Add(new UserOperationClaim
             {
                 UserId = createdUser.Id,
-                OperationClaimId = operationClaimId
-            };
-
-            await _userOperationClaimRepository.AddAsync(userOperationClaim);
+                OperationClaimId = match.Id
+            });
         }
+        await _userOperationClaimRepository.AddRangeAsync(operationClaimEntities);
     }
 }

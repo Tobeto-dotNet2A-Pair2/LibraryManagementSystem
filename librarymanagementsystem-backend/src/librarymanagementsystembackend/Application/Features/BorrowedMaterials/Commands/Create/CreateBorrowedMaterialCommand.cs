@@ -21,6 +21,7 @@ public class CreateBorrowedMaterialCommand : IRequest<CreatedBorrowedMaterialRes
     public Guid MemberId { get; set; }
     public Guid MaterialCopyId { get; set; }
 
+    public string[] Roles => [Admin, Write, BorrowedMaterialsOperationClaims.Create];
     public class CreateBorrowedMaterialCommandHandler : IRequestHandler<CreateBorrowedMaterialCommand, CreatedBorrowedMaterialResponse>
     {
         private readonly IMapper _mapper;

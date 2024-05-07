@@ -84,10 +84,10 @@ public class RegisterCommand : IRequest<RegisteredResponse>, ITransactionalReque
             member.NationalIdentity = request.RegisterDto.NationalIdentity;
             member.PhoneNumber = request.RegisterDto.PhoneNumber;
 
-
             await _authService.AssignRolesToUserAsync(createdUser, MemberDefaultRoles.Roles);
             await _memberService.AddAsync(member);
 
+           
 
             RegisteredResponse registeredResponse = new() { AccessToken = createdAccessToken, RefreshToken = addedRefreshToken };
             return registeredResponse;
