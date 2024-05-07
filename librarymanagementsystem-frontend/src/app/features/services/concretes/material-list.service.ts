@@ -20,9 +20,10 @@ export class MaterialListService extends MaterialListBaseService{
   override getList(pageRequest: PageRequest): Observable<MaterialListItemDto> {
     const newRequest :{[key:string]:string | number}={
       pageIndex:pageRequest.pageIndex,
-      pageSize:pageRequest.pageSize
+      pageSize:pageRequest.pageSize,
+      //searchText:"" for search 
     };
-    return this.httpClient.get<MaterialListItemDto>(`${this.apiUrl}/GetList`,{
+    return this.httpClient.get<MaterialListItemDto>(`${this.apiUrl}/GetListForAdmin`,{
       params:newRequest
     }).pipe(
       map((response)=>{
