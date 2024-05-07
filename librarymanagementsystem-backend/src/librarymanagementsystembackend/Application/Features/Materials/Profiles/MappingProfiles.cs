@@ -29,7 +29,7 @@ public class MappingProfiles : Profile
         CreateMap<Material, GetByIdMaterialResponse>().ReverseMap();
         CreateMap<Material, GetListMaterialListItemDto>().ReverseMap();
         CreateMap<IPaginate<Material>, GetListResponse<GetListMaterialListItemDto>>().ReverseMap();
-
+       
         //1.deneme=List----burada  MaterialImages t�m tabloyu c�kt� olarak veriyordu
         //CreateMap<MaterialImage, GetListMaterialImageListItemDto>().ReverseMap(); // MaterialImage ile DTO aras�nda mapping
         //CreateMap<Material, GetListMaterialListItemDto>()
@@ -44,13 +44,18 @@ public class MappingProfiles : Profile
                    .MapFrom(a => a.MaterialImages
                        .Select(b => b.Url)));
 
-        //ebrudan gelen-------------------------------
+
+        #region All Material List for AdminPage
+        CreateMap<IPaginate<Material>, GetListResponse<GetAllMaterialListAdminDto>>().ReverseMap();
         CreateMap<Material, GetAllMaterialListAdminDto>()
             .ForMember(x => x.ImageUrls,
                 src => src
                     .MapFrom(a => a.MaterialImages
                         .Select(b => b.Url)));
-        
+
+        #endregion
+
+     
         CreateMap<Material, GetAllMaterialsForFrontEndResponse>()
             .ForMember(x => x.ImageUrls,
                 src => src

@@ -18,7 +18,7 @@ public class GetDetailByIdForAdminDto
     {
         
     }
-    
+
     public string Name { get; set; }
     public string Description { get; set; }
     public decimal? PunishmentAmount { get; set; }
@@ -31,8 +31,10 @@ public class GetDetailByIdForAdminDto
     public List<MaterialCopyForMaterialDetailDto> MaterialCopies { get; set; }
     public List<GenreForMaterialDetailDto> Genres { get; set; }
     public List<MaterialPropertyForMaterialDetailDto> MaterialProperties { get; set; }
-    
     public List<MaterialImageForMaterialDetailDto> MaterialImages { get; set; }
+
+
+    //TODO: LocationMap  ve Branch bilgisi  gelmiyor: Material Copyden gelmesi  gerekiyor
     
    
 }
