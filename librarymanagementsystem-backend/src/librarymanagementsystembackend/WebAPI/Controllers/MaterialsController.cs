@@ -71,7 +71,6 @@ public class MaterialsController : BaseController
     }
 
     [HttpGet]
-    [Route("GetAll")]
     public async Task<IActionResult> GetAll([FromQuery] GetAllMaterialsQuery getAllMaterialsQuery)
     {
         List<GetAllMaterialsDto> response = await Mediator.Send(getAllMaterialsQuery);
