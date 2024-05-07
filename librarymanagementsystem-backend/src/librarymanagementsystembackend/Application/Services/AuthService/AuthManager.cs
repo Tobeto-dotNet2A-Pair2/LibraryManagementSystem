@@ -1,4 +1,5 @@
 ﻿using System.Collections.Immutable;
+using Application.Features.Auth.Rules;
 using Application.Services.Repositories;
 using AutoMapper;
 using Domain.Entities;
@@ -14,6 +15,7 @@ public class AuthManager : IAuthService
     private readonly TokenOptions _tokenOptions;
     private readonly IUserOperationClaimRepository _userOperationClaimRepository;
     private readonly IMapper _mapper;
+    private readonly AuthBusinessRules _authBusinessRules;
 
     public AuthManager(
         IUserOperationClaimRepository userOperationClaimRepository,
@@ -21,7 +23,8 @@ public class AuthManager : IAuthService
         ITokenHelper<Guid, int> tokenHelper,
         IConfiguration configuration,
         IMapper mapper
-    )
+,
+        AuthBusinessRules authBusinessRules)
     {
         _userOperationClaimRepository = userOperationClaimRepository;
         _refreshTokenRepository = refreshTokenRepository;
@@ -32,6 +35,7 @@ public class AuthManager : IAuthService
             configuration.GetSection(tokenOptionsConfigurationSection).Get<TokenOptions>()
             ?? throw new NullReferenceException($"\"{tokenOptionsConfigurationSection}\" section cannot found in configuration");
         _mapper = mapper;
+        _authBusinessRules = authBusinessRules;
     }
 
     public async Task<AccessToken> CreateAccessToken(User user)
@@ -110,5 +114,21 @@ public class AuthManager : IAuthService
         );
         RefreshToken refreshToken = _mapper.Map<RefreshToken>(coreRefreshToken);
         return Task.FromResult(refreshToken);
+    }
+
+
+    public async Task AssignRolesToUserAsync(User createdUser, IEnumerable<string> roles)
+    {
+        foreach (var role in roles)
+        {
+            int operationClaimId = await _authBusinessRules.GetOperationClaimIdByRoleNameAsync(role);
+            UserOperationClaim userOperationClaim = new()
+            {
+                UserId = createdUser.Id,
+                OperationClaimId = operationClaimId
+            };
+
+            await _userOperationClaimRepository.AddAsync(userOperationClaim);
+        }
     }
 }

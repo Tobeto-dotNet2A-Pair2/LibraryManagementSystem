@@ -13,11 +13,13 @@ public class AuthBusinessRules : BaseBusinessRules
 {
     private readonly IUserRepository _userRepository;
     private readonly ILocalizationService _localizationService;
+    private readonly IOperationClaimRepository _operationClaimRepository;
 
-    public AuthBusinessRules(IUserRepository userRepository, ILocalizationService localizationService)
+    public AuthBusinessRules(IUserRepository userRepository, ILocalizationService localizationService, IOperationClaimRepository operationClaimRepository)
     {
         _userRepository = userRepository;
         _localizationService = localizationService;
+        _operationClaimRepository = operationClaimRepository;
     }
 
     private async Task throwBusinessException(string messageKey)
@@ -85,5 +87,12 @@ public class AuthBusinessRules : BaseBusinessRules
     {
         if (!HashingHelper.VerifyPasswordHash(password, user!.PasswordHash, user.PasswordSalt))
             await throwBusinessException(AuthMessages.PasswordDontMatch);
+    }
+
+    public async Task<int> GetOperationClaimIdByRoleNameAsync(string role)
+    {
+        OperationClaim operationClaim = await _operationClaimRepository.GetByRoleNameAsync(role);
+
+        return operationClaim?.Id ?? 0;
     }
 }

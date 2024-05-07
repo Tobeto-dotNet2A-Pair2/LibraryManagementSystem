@@ -1,5 +1,6 @@
 ﻿using Application.Features.Auth.Dtos;
 using Application.Features.Auth.Rules;
+using Application.Features.Members.Constants;
 using Application.Services.AuthService;
 using Application.Services.Members;
 using Application.Services.Repositories;
@@ -35,6 +36,7 @@ public class RegisterCommand : IRequest<RegisteredResponse>, ITransactionalReque
         private readonly IAuthService _authService;
         private readonly AuthBusinessRules _authBusinessRules;
         private readonly IMemberService _memberService;
+
 
 
         public RegisterCommandHandler(IUserRepository userRepository, IAuthService authService, AuthBusinessRules authBusinessRules, IMemberService memberService)
@@ -81,7 +83,9 @@ public class RegisterCommand : IRequest<RegisteredResponse>, ITransactionalReque
             member.LastName = request.RegisterDto.LastName;
             member.NationalIdentity = request.RegisterDto.NationalIdentity;
             member.PhoneNumber = request.RegisterDto.PhoneNumber;
-            
+
+
+            await _authService.AssignRolesToUserAsync(createdUser, MemberDefaultRoles.Roles);
             await _memberService.AddAsync(member);
 
 
