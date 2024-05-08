@@ -23,6 +23,7 @@ export const routes: Routes = [
   
   { path: '', redirectTo: 'homepage', pathMatch: 'full' },
    { path: 'auth', component: AuthComponent },
+   
    {path: 'homepage',
     component:MainLayoutComponent,
     children: [
@@ -31,7 +32,7 @@ export const routes: Routes = [
       { path: 'aboutus', component: AboutUsComponent },
       { path: 'questions', component: QuestionComponent },
       { path: 'myprofile', component: MyProfileComponent },
- ]
+    ]
   },
   // { path: 'homepage', component: AdminLayoutComponent },
 
@@ -39,7 +40,7 @@ export const routes: Routes = [
   {
     path: 'adminpage',
     component: AdminLayoutComponent,
-    // canActivate: [roleGuard],
+    canActivate: [roleGuard],
     data:{requiredRoles:['Admin']},
     children: [
       { path: '', redirectTo: 'dashboard', pathMatch: 'full' },

@@ -9,8 +9,7 @@ import {
 } from '../../../core/constants/jwtAttributes';
 import { MemberListDto } from '../../../features/models/responses/members/member-list-item-dto';
 import { MembersService } from '../../../core/services/concretes/members.service';
-import { RouterModule } from '@angular/router';
-
+import { Router, RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-header-item-usermenu',
@@ -22,18 +21,22 @@ import { RouterModule } from '@angular/router';
 export class HeaderItemUsermenuComponent implements OnInit {
   tokenId!: string;
   tokenEmail!: string;
-  tokenRole!:string[];
-  memberList: MemberListDto={
-    index:0,
-    size:0,
-    count:0,
-    hasNext:false,
-    hasPrevious:false,
-    pages:0,
-    items:[]
+  tokenRole!: string[];
+  memberList: MemberListDto = {
+    index: 0,
+    size: 0,
+    count: 0,
+    hasNext: false,
+    hasPrevious: false,
+    pages: 0,
+    items: [],
   };
 
-  constructor(private membersService: MembersService, private LocalStorageService: LocalStorageService) {}
+  constructor(
+    private membersService: MembersService,
+    private LocalStorageService: LocalStorageService,
+    private router: Router
+  ) {}
   @Output() logout = new EventEmitter<void>();
 
   callLogoutHandler() {
@@ -49,7 +52,7 @@ export class HeaderItemUsermenuComponent implements OnInit {
 
     if (token !== null) {
       const decodedToken = jwtDecode<any>(token);
-      console.log(decodedToken)
+      console.log(decodedToken);
 
       const id = decodedToken[JWT_ID];
       this.tokenId = id;
@@ -60,7 +63,11 @@ export class HeaderItemUsermenuComponent implements OnInit {
     }
   }
 
-  goToProfile(){
-
+  goToProfile() {
+    if (this.tokenRole.includes('Admin')) {
+      this.router.navigate(['/adminpage/myprofile']);
+    } else {
+      this.router.navigate(['/homepage/myprofile']);
+    }
   }
 }
