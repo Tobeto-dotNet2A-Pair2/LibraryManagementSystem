@@ -68,18 +68,7 @@ getMaterialListBySearchTerm(searchText: string): void {
     });
 }
   
-    // getDefaultMaterialList(): void {
-    //   console.log("getlist içinde  ");
-    //   this.materialListHomeService.getList({ pageIndex: 0, pageSize: 2 })
-    //     .subscribe((response: MaterialListItemDto) => {
-    //       this.materialList = response;
-    //       console.log(this.materialList)
-    //   this.updateCurrentPageNumber();
-    //     });
-    // }
-  
-    
-   
+ // search baglı yapmassa  tüm listeyi getir
   
   getList(pageRequest:PageRequest){
     this.materialListHomeService.getList(pageRequest).subscribe((response: MaterialListItemDto)=>{

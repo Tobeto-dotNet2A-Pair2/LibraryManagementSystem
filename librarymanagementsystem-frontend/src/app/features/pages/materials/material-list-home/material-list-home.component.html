@@ -197,19 +197,27 @@
                                 <td class="text-end">
                                     <!-- Ayrıntıları Gör Butonu -->
                                     <button
-                                        class="btn btn-sm btn-light btn-flex btn-center btn-active-light-primary me-2"
+                                    class="btn btn-sm btn-light btn-details btn-flex btn-center btn-active-light-primary me-2"
                                         [routerLink]="['/homepage/material-detail-home', material.id]"
                                         >
                                         Ayrıntıları Gör
                                     </button>
-                                    <!-- Güncelle Butonu -->
+                                    <!-- Ödünç Al Butonu -->
                                     <button
-                                        class="btn btn-sm btn-light btn-flex btn-center btn-active-light-primary me-2"
+                                    class="btn btn-sm btn-light btn-borrow btn-flex btn-center btn-active-light-primary me-2"
+                                        >
+                                        Ödünç Al
+                                    </button>
+                                      <!-- Rezerve Et Butonu -->
+                                    <button
+                                    class="btn btn-sm btn-light btn-revise btn-flex btn-center btn-active-light-primary me-2"
                                         (click)="oduncAl(material)"
                                     >
-                                      Ödünç Al
+                                      Rezerve Et
                                     </button>
-                                    <!-- Sil Butonu -->
+                                    <a href="#" class="btn-add-to-readlist">
+                                        <i class="fas fa-star"></i> 
+                                    </a>
                                   
                                 </td>
                             </tr>
