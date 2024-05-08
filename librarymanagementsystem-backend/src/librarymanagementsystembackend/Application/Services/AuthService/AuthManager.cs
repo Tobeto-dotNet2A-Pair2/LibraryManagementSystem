@@ -124,7 +124,7 @@ public class AuthManager : IAuthService
         List<UserOperationClaim> operationClaimEntities = new List<UserOperationClaim>();
         foreach (string role in roles)
         {
-            var match = operationClaims.FirstOrDefault(a => a.Equals(role));
+            var match = operationClaims.FirstOrDefault(a => a.Name.Equals(role));
             operationClaimEntities.Add(new UserOperationClaim
             {
                 UserId = createdUser.Id,
