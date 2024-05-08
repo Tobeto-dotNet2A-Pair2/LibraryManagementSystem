@@ -15,7 +15,7 @@
         <!--begin::Username-->
         <div class="d-flex flex-column" *ngIf="memberByIdList.length>0">
           <div class="fw-bold d-flex align-items-center fs-5">{{memberByIdList[0].firstName+" "+ memberByIdList[0].lastName}}
-          <span class="badge badge-light-success fw-bold fs-8 px-2 py-1 ms-2"></span></div>
+          <span class="badge fw-bold fs-8 px-2 py-1 ms-2"></span><br/>Borç: {{memberByIdList[0].totalDebt}}₺</div>
           <a class="fw-semibold text-muted text-hover-primary fs-7">{{tokenEmail}}</a>
         </div>
         <!--end::Username-->
@@ -31,6 +31,12 @@
     </div>
    
     <!--end::Menu item-->
+      <!--begin::Menu item-->
+      <div class="menu-item px-5"   >
+        <a href="#" class="menu-link px-5" (click)="goToBarrow(); $event.preventDefault();" >Ödünç Aldıklarım</a>
+      </div>
+     
+      <!--end::Menu item-->
 
 
     <!--begin::Menu item-->

@@ -18,6 +18,7 @@ import { AboutUsComponent } from './features/pages/about-us/about-us.component';
 import { QuestionComponent } from './features/pages/question/question.component';
 import { MaterialDetailComponent } from './features/pages/materials/material-detail/material-detail.component';
 import { MyProfileComponent } from './features/pages/my-profile/my-profile.component';
+import { BorrowedMaterialComponent } from './features/pages/borrowed-material/borrowed-material.component';
 
 export const routes: Routes = [
   
@@ -32,6 +33,7 @@ export const routes: Routes = [
       { path: 'aboutus', component: AboutUsComponent },
       { path: 'questions', component: QuestionComponent },
       { path: 'myprofile', component: MyProfileComponent },
+      { path: 'myborrowed', component: BorrowedMaterialComponent },
     ]
   },
   // { path: 'homepage', component: AdminLayoutComponent },

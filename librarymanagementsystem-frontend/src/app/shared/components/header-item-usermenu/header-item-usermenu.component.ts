@@ -72,7 +72,9 @@ export class HeaderItemUsermenuComponent implements OnInit {
       this.router.navigate(['/homepage/myprofile']);
     }
   }
-
+  goToBarrow(){
+    this.router.navigate(['/homepage/myborrowed'])
+  }
   findMemberByUserId() {
     if (this.tokenId !== null) {
       // Yüklenme tamamlandığında üye listesini bul
