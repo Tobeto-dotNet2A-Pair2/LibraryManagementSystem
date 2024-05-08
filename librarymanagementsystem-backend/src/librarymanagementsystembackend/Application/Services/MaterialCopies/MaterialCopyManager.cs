@@ -108,7 +108,6 @@ public class MaterialCopyManager : IMaterialCopyService
 
       materialCopy!.IsReserved = false;
       materialCopy!.IsReservable = true;
-      materialCopy!.DateReceipt = DateTime.UtcNow;
 
       await _materialCopyRepository.UpdateAsync(materialCopy);
 

@@ -26,14 +26,6 @@ public class GetBorrowedMaterialListByMemberQuery : IRequest<List<GetListBorrowe
         public async Task<List<GetListBorrowedMaterialListByMemberResponse>> Handle(GetBorrowedMaterialListByMemberQuery request, CancellationToken cancellationToken)
         {
             List<GetListBorrowedMaterialListByMemberResponse> borrowedMaterialList = await _borrowedMaterialRepository.Query()
-                .Include(a=> a.MaterialCopy.Material.AuthorMaterials)
-                .ThenInclude(a=> a.Author)
-                .Include(a => a.MaterialCopy)
-                .ThenInclude(a => a.Material)
-                .ThenInclude(a=> a.MaterialImages)
-                .Include(a=> a.MaterialCopy)
-                .ThenInclude(a=> a.Material)
-                .ThenInclude(a=>a.MaterialPropertyValues)
                 .Where(a=> a.MemberId == request.MemberId)
                 .ProjectTo<GetListBorrowedMaterialListByMemberResponse>(_mapper.ConfigurationProvider)
                 .ToListAsync(cancellationToken);

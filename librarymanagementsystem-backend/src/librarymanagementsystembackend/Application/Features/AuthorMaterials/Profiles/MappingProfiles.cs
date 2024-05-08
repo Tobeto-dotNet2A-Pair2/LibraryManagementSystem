@@ -3,6 +3,7 @@ using Application.Features.AuthorMaterials.Commands.Delete;
 using Application.Features.AuthorMaterials.Commands.Update;
 using Application.Features.AuthorMaterials.Queries.GetById;
 using Application.Features.AuthorMaterials.Queries.GetList;
+using Application.Features.Authors.Dtos;
 using Application.Features.BorrowedMaterials.Queries.GetListByMember;
 using AutoMapper;
 using NArchitecture.Core.Application.Responses;

@@ -4,6 +4,7 @@ using Application.Features.BorrowedMaterials.Commands.Update;
 using Application.Features.BorrowedMaterials.Queries.GetById;
 using Application.Features.BorrowedMaterials.Queries.GetList;
 using Application.Features.BorrowedMaterials.Queries.GetListByMember;
+using Application.Features.MaterialImages.Dtos;
 using AutoMapper;
 using NArchitecture.Core.Application.Responses;
 using Domain.Entities;
@@ -32,27 +33,18 @@ public class MappingProfiles : Profile
         CreateMap<BorrowedMaterial, CreatedBorrowedMaterialResponse>();
 
         CreateMap<BorrowedMaterial, GetListBorrowedMaterialListByMemberResponse>()
-            .ForMember(a => a.MaterialCopy, opt => opt
-                .MapFrom(src => src.MaterialCopy))
-
             .ForMember(a => a.Material, opt => opt
                 .MapFrom(src => src.MaterialCopy.Material))
+            
+            .ForMember(a => a.TotalDept, opt => opt
+                .MapFrom(src => src.Member.TotalDebt))
 
             .ForMember(a => a.DelayDay, opt => opt
                 .MapFrom(src =>
                     (DateTime.UtcNow - src.ReturnDate).Days > 0 ? (DateTime.UtcNow - src.ReturnDate).Days : 0))
 
             .ForMember(a => a.DaysToRefund, opt => opt
-                .MapFrom(src => (DateTime.UtcNow - src.ReturnDate).Days * -1))
-
-            .ForMember(a => a.MaterialImages, opt => opt
-                .MapFrom(src => src.MaterialCopy.Material.MaterialImages))
-
-            .ForMember(a => a.MaterialPropertyValues, opt => opt
-                .MapFrom(src => src.MaterialCopy.Material.MaterialPropertyValues))
-
-            .ForMember(a => a.AuthorMaterials, opt => opt
-                .MapFrom(src => src.MaterialCopy.Material.AuthorMaterials));
+                .MapFrom(src => (DateTime.UtcNow - src.ReturnDate).Days * -1));
         
             CreateMap<MaterialImage, MaterialImageForListBorrowedMaterialDto>();
     }
