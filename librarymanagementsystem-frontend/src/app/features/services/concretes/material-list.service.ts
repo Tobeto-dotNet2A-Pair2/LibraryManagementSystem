@@ -5,7 +5,6 @@ import { MaterialListBaseService } from '../abstracts/material-list-base.service
 import { PageRequest } from '../../../core/models/page/page-request';
 import { MaterialListItemDto } from '../../models/responses/materials/material-list-item-dto';
 import { Injectable } from '@angular/core';
-import { DeleteMaterialRequest } from '../../models/requests/materials/delete-material-request';
 import { DeletedMaterialResponse } from '../../models/responses/materials/deleted-material-response';
 
 
