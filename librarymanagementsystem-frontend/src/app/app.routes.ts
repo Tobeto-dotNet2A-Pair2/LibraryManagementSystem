@@ -39,7 +39,7 @@ export const routes: Routes = [
   {
     path: 'adminpage',
     component: AdminLayoutComponent,
-    // canActivate: [roleGuard],
+    canActivate: [roleGuard],
     data:{requiredRoles:['Admin']},
     children: [
       { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
