@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import {
+  FormBuilder,
   FormControl,
   FormGroup,
   FormsModule,
@@ -11,7 +12,6 @@ import { MaterialManagementService } from '../../../services/concretes/material-
 import { CreateMaterialRequest } from '../../../models/requests/materials/create-material-request';
 import { ToastrService } from 'ngx-toastr';
 import flatpickr from 'flatpickr';
-import { Tagify, TagifyModule } from 'ngx-tagify';
 import { CreateMaterialCopyRequest } from '../../../models/requests/material-copies/create-material-copy-request';
 import { CreateLocationRequest } from '../../../models/requests/locations/create-location-request';
 import { CreateAuthorRequest } from '../../../models/requests/authors/create-author-request';
@@ -22,6 +22,7 @@ import { CreateAuthorMaterialRequest } from '../../../models/requests/authorMate
 import { CreateLanguageMaterialRequest } from '../../../models/requests/languageMaterials/create-languageMaterial-request';
 import { CreateTranslatorMaterialRequest } from '../../../models/requests/translatorMaterials/create-translatorMaterial-request';
 import { CreatePublisherMaterialRequest } from '../../../models/requests/publisherMaterials/create-publisherMaterial-request';
+import { UpdateMaterialRequest } from '../../../models/requests/materials/update-material-request';
 
 @Component({
   selector: 'app-add-material-form',
@@ -32,6 +33,15 @@ import { CreatePublisherMaterialRequest } from '../../../models/requests/publish
 })
 export class AddMaterialFormComponent implements OnInit {
   //Variables Declerations
+  isChecked: boolean = false;
+  // selectedMaterial: any = {
+  //   "id": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+  //   "name": "string",
+  //   "description": "string",
+  //   "punishmentAmount": 0,
+  //   "isBorrowable": true,
+  //   "borrowDay": 0
+  // }
 
   //Lists
   materialList: any[] = [];
@@ -45,6 +55,8 @@ export class AddMaterialFormComponent implements OnInit {
 
   //FormGroups
   materialForm!: FormGroup;
+  updateMaterialForm!: FormGroup;
+
   materialCopyForm!: FormGroup;
   locationForm!: FormGroup;
   authorForm!: FormGroup;
@@ -59,7 +71,8 @@ export class AddMaterialFormComponent implements OnInit {
   //Constructor
   constructor(
     private managementService: MaterialManagementService,
-    private toastr: ToastrService
+    private toastr: ToastrService,
+    private formBuilder: FormBuilder
   ) {}
 
   //Functions
@@ -78,6 +91,8 @@ export class AddMaterialFormComponent implements OnInit {
     this.createLanguageMaterialForm();
     this.createPublisherMaterialForm();
     this.createTranslatorMaterialForm();
+
+    this.createUpdateMaterialForm();
     //Fill lists
     this.getMaterialList();
     this.getBranchList();
@@ -92,11 +107,13 @@ export class AddMaterialFormComponent implements OnInit {
     this.materialForm = new FormGroup({
       name: new FormControl('', [Validators.required]),
       description: new FormControl('', [Validators.required]),
-      isBorrowable: new FormControl('', [Validators.required]),
-      borrowDay: new FormControl('', [Validators.required]),
-      punishmentAmount: new FormControl('', [Validators.required]),
+      isBorrowable: new FormControl([false]),
+      borrowDay: new FormControl('0'),
+      punishmentAmount: new FormControl('0'),
     });
+  
   }
+  
 
   private createMaterialCopyForm(): void {
     this.materialCopyForm = new FormGroup({
@@ -176,6 +193,18 @@ export class AddMaterialFormComponent implements OnInit {
       materialId: new FormControl('', [Validators.required]),
     });
   }
+
+  private createUpdateMaterialForm(): void {
+    this.updateMaterialForm = new FormGroup({
+      id: new FormControl('', [Validators.required]),
+      name: new FormControl('', [Validators.required]),
+      description: new FormControl('', [Validators.required]),
+      isBorrowable: new FormControl([false]),
+      borrowDay: new FormControl('0', [Validators.required]),
+      punishmentAmount: new FormControl('0', [Validators.required]),
+    });
+  }
+
   //OnSubmits
 
   onSubmitMaterialForm(): void {
@@ -446,6 +475,36 @@ export class AddMaterialFormComponent implements OnInit {
             }
           );
         }
+//------------------------------------------------------------------------------------
+ //Update
+ onSubmitUpdateMaterialForm(): void {
+  let updateMaterialData: UpdateMaterialRequest = Object.assign(
+    {},
+    this.updateMaterialForm.value
+  );
+  this.managementService.updateMaterial(updateMaterialData).subscribe(
+    () => {
+      this.toastr.success('Material updated successfully.', 'Success');
+      this.getMaterialList();
+    },
+    (error) => {
+      this.toastr.error(
+        'An error occurred while updating the Material.',
+        'Error'
+      );
+      console.error(error);
+    }
+  );
+}
+
+onMaterialSelect(event: any) {
+  const materialId = event.target.value;
+  const selectedMaterial = this.materialList.find(material => material.id === materialId);
+  if (selectedMaterial) {
+    this.updateMaterialForm.patchValue(selectedMaterial);
+  }
+}
+
   //GetLists
   getMaterialList(): void {
     this.managementService.getAllMaterials().subscribe(

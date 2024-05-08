@@ -23,13 +23,24 @@
       <!--end::Input group Dropdown-Select-->
       <br />
       <a
-        id="btnAddMaterial"
-        class="btn btn-info"
-        (click)="openModal('materialModal')"
-        >Yeni Materyal</a
-      >
-      <br />
+      id="btnAddMaterial"
+      class="btn btn-info"
+      (click)="openModal('materialModal')"
+      >Yeni Materyal</a
+    >
+
+<br>
+     
+      <br>
+      <a
+      id="btnUpdateMaterial"
+      class="btn btn-warning"
+      (click)="openModal('updatematerialModal')"
+      >Materyal Güncelle</a
+    >
+    <br />
       <!--Material End-->
+      
       <!--MaterialCopy Start-->
       <br />
       <a
@@ -298,14 +309,17 @@
             <input
               class="form-check-input"
               type="checkbox"
-              value=""
+              value="false"
               id="isBorrowable"
               formControlName="isBorrowable"
+               
             />
             <label class="form-check-label" for="flexCheckDefault">
               Ödünç Alınabilir
             </label>
           </div>
+
+        <br>
           <div class="input-group mb-5">
             <span class="input-group-text" id="basic-addon1"
               >Ödünç Gün Sayısı</span
@@ -318,6 +332,7 @@
               aria-label="BorrowDay"
               aria-describedby="basic-addon1"
               formControlName="borrowDay"
+              
             />
           </div>
           <div class="input-group mb-5">
@@ -328,6 +343,7 @@
               class="form-control"
               aria-label="Amount (to the nearest dollar)"
               formControlName="punishmentAmount"
+              
             />
             <span class="input-group-text">.00</span>
           </div>
@@ -350,12 +366,151 @@
   </div>
 </div>
 <!--Material Modal -- materyal ekle Sonu-->
+
+
+
+
+ <!--UpdateMaterial Modal -- materyal düzenle modalı-->
+ <div id="updatematerialModal" class="modal" tabindex="-1">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Materyal Düzenle</h5>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+          (click)="closeModal('updatematerialModal')"
+        ></button>
+      </div>
+      <!--body -->
+      <div class="modal-body">
+        <form
+        [formGroup]="updateMaterialForm"
+        (ngSubmit)="onSubmitUpdateMaterialForm()"
+      >
+      <div class="form-floating">
+        <select
+          class="form-select"
+          id="floatingSelect"
+          aria-label="Floating label select example"
+          (change)="onMaterialSelect($event)"
+        >
+          <option selected></option>
+          <option
+            *ngFor="let material of materialList"
+            [value]="material.id"
+          >
+            {{ material.name }}
+          </option>
+        </select>
+        <label for="floatingSelect">Materyal Seç</label>
+      </div>
+
+      <br />
+            <div class="input-group mb-5">
+              <span class="input-group-text" id="basic-addon1">Materyal Id</span>
+              <input
+                id="id"
+                type="text"
+                class="form-control"
+                placeholder="MaterialId"
+                aria-label="MaterialId"
+                aria-describedby="basic-addon1"
+                formControlName="id"
+                readonly
+              >
+            </div>
+            <br />
+            <div class="input-group mb-5">
+              <span class="input-group-text" id="basic-addon1">Materyal Adı</span>
+              <input
+                id="name"
+                type="text"
+                class="form-control"
+                placeholder="MaterialName"
+                aria-label="MaterialName"
+                aria-describedby="basic-addon1"
+                formControlName="name"
+              >
+            </div>
+            <div class="form-floating">
+              <textarea
+                class="form-control"
+                placeholder="Description"
+                id="description"
+                style="height: 100px"
+                formControlName="description"
+              ></textarea>
+              <label for="floatingTextarea2">Açıklama</label>
+            </div>
+            <br />
+            <div class="form-check">
+              <input
+                class="form-check-input"
+                type="checkbox"
+                value="false"
+                id="isBorrowable"
+                formControlName="isBorrowable"
+              />
+              <label class="form-check-label" for="flexCheckDefault">
+                Ödünç Alınabilir
+              </label>
+            </div>
+            <div class="input-group mb-5">
+              <span class="input-group-text" id="basic-addon1"
+                >Ödünç Gün Sayısı</span
+              >
+              <input
+                id="borrowDay"
+                type="number"
+                class="form-control"
+                placeholder="0"
+                aria-label="BorrowDay"
+                aria-describedby="basic-addon1"
+                formControlName="borrowDay"
+              />
+            </div>
+            <div class="input-group mb-5">
+              <span class="input-group-text">Günlük Ceza Miktarı: ₺</span>
+              <input
+                id="punishmentAmount"
+                type="text"
+                class="form-control"
+                aria-label="Amount (to the nearest dollar)"
+                formControlName="punishmentAmount"
+              />
+              <span class="input-group-text">.00</span>
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+      </form>
+    </div>
+   <!--body end-->
+   <div class="modal-footer">
+    <button
+      type="button"
+      class="btn btn-secondary"
+      data-bs-dismiss="modal"
+      (click)="closeModal('updatematerialModal')"
+    >
+      Close
+    </button>
+  </div>
+</div>
+</div>
+</div>
+<!--UpdateMaterial Modal -- materyal düzenle Sonu-->
+
+
+
+
 <!--MaterialCopy Modal -- materyalKopyası ekle modalı-->
 <div id="materialCopyModal" class="modal" tabindex="-1">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title">Yazar Ekle</h5>
+        <h5 class="modal-title">Materyal Kopyası Ekle</h5>
         <button
           type="button"
           class="btn-close"
@@ -662,7 +817,7 @@
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title">Yazar Ekle</h5>
+        <h5 class="modal-title">Yazar-Materyal Eşle</h5>
         <button
           type="button"
           class="btn-close"
@@ -727,7 +882,7 @@
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title">Yazar Ekle</h5>
+        <h5 class="modal-title">Dil-Materyal Eşle</h5>
         <button
           type="button"
           class="btn-close"
@@ -792,7 +947,7 @@
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title">Yazar Ekle</h5>
+        <h5 class="modal-title">Yayın Evi-Materyal Eşle</h5>
         <button
           type="button"
           class="btn-close"
@@ -857,7 +1012,7 @@
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title">Yazar Ekle</h5>
+        <h5 class="modal-title">Çevirmen-Materyal Eşle</h5>
         <button
           type="button"
           class="btn-close"
@@ -1161,7 +1316,7 @@
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title">Dil Ekle</h5>
+        <h5 class="modal-title">Lokasyon Ekle</h5>
         <button
           type="button"
           class="btn-close"

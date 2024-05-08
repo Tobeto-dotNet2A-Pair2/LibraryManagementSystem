@@ -32,11 +32,13 @@ import { CreatePublisherMaterialRequest } from '../../models/requests/publisherM
 import { CreatedPublisherMaterialResponse } from '../../models/responses/publisherMaterials/created-publisherMaterial-response';
 import { CreateTranslatorMaterialRequest } from '../../models/requests/translatorMaterials/create-translatorMaterial-request';
 import { CreatedTranslatorMaterialResponse } from '../../models/responses/translatorMaterials/created-translatorMaterial-response';
+import { UpdateMaterialRequest } from '../../models/requests/materials/update-material-request';
+import { UpdatedMaterialResponse } from '../../models/responses/materials/updated-material-response';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
-export class MaterialManagementService  {
+export class MaterialManagementService {
   private readonly materialApiUrl = `${environment.API_URL}/Materials`;
   private readonly materialCopyApiUrl = `${environment.API_URL}/MaterialCopies`;
   private readonly branchApiUrl = `${environment.API_URL}/Branches`;
@@ -50,251 +52,341 @@ export class MaterialManagementService  {
   private readonly publisherMaterialApiUrl = `${environment.API_URL}/PublisherMaterials`;
   private readonly translatorMaterialApiUrl = `${environment.API_URL}/TranslatorMaterials`;
 
-  constructor(
-    private httpClient:HttpClient,
-    private toastr: ToastrService
-  ) { }
+  constructor(private httpClient: HttpClient, private toastr: ToastrService) {}
 
-    
-//Add
-   addMaterial(createMaterialRequest: CreateMaterialRequest)
-      :Observable<CreatedMaterialResponse> {
+  //Add
+  addMaterial(
+    createMaterialRequest: CreateMaterialRequest
+  ): Observable<CreatedMaterialResponse> {
+    console.log(createMaterialRequest);
+    return this.httpClient
+      .post<CreatedMaterialResponse>(
+        `${this.materialApiUrl}/Add`,
+        createMaterialRequest
+      )
+      .pipe(
+        catchError((error) => {
+          // Hata durumunda toastr ile hata mesajını kullanıcıya göster
+          this.toastr.error('Beklenmeyen bir hata oluştu.', 'Hatalı');
+          // Hata mesajını konsola yazdır
+          console.error(error);
+          return throwError(error);
+        })
+      );
+  }
 
-        return this.httpClient.post<CreatedMaterialResponse>(`${this.materialApiUrl}`, createMaterialRequest).pipe(
-         
-          catchError((error) => {
-            // Hata durumunda toastr ile hata mesajını kullanıcıya göster
-            this.toastr.error("Beklenmeyen bir hata oluştu.", "Hatalı");
-            // Hata mesajını konsola yazdır
-            console.error(error);
-            return throwError(error);
-          })
-        );
-      }
+  addMaterialCopy(
+    createMaterialCopyRequest: CreateMaterialCopyRequest
+  ): Observable<CreatedMaterialCopyResponse> {
+    return this.httpClient
+      .post<CreatedMaterialCopyResponse>(
+        `${this.materialCopyApiUrl}`,
+        createMaterialCopyRequest
+      )
+      .pipe(
+        catchError((error) => {
+          // Hata durumunda toastr ile hata mesajını kullanıcıya göster
+          this.toastr.error('Beklenmeyen bir hata oluştu.', 'Hatalı');
+          // Hata mesajını konsola yazdır
+          console.error(error);
+          return throwError(error);
+        })
+      );
+  }
 
-      addMaterialCopy(createMaterialCopyRequest: CreateMaterialCopyRequest)
-      :Observable<CreatedMaterialCopyResponse> {
+  addLocation(
+    createLocationRequest: CreateLocationRequest
+  ): Observable<CreatedLocationResponse> {
+    return this.httpClient
+      .post<CreatedLocationResponse>(
+        `${this.locationApiUrl}`,
+        createLocationRequest
+      )
+      .pipe(
+        catchError((error) => {
+          // Hata durumunda toastr ile hata mesajını kullanıcıya göster
+          this.toastr.error('Beklenmeyen bir hata oluştu.', 'Hatalı');
+          // Hata mesajını konsola yazdır
+          console.error(error);
+          return throwError(error);
+        })
+      );
+  }
 
-        return this.httpClient.post<CreatedMaterialCopyResponse>(`${this.materialCopyApiUrl}`, createMaterialCopyRequest).pipe(
-         
-          catchError((error) => {
-            // Hata durumunda toastr ile hata mesajını kullanıcıya göster
-            this.toastr.error("Beklenmeyen bir hata oluştu.", "Hatalı");
-            // Hata mesajını konsola yazdır
-            console.error(error);
-            return throwError(error);
-          })
-        );
-      }
+  addAuthor(
+    createAuthorRequest: CreateAuthorRequest
+  ): Observable<CreatedAuthorResponse> {
+    return this.httpClient
+      .post<CreatedAuthorResponse>(`${this.authorApiUrl}`, createAuthorRequest)
+      .pipe(
+        catchError((error) => {
+          // Hata durumunda toastr ile hata mesajını kullanıcıya göster
+          this.toastr.error('Beklenmeyen bir hata oluştu.', 'Hatalı');
+          // Hata mesajını konsola yazdır
+          console.error(error);
+          return throwError(error);
+        })
+      );
+  }
 
-      addLocation(createLocationRequest: CreateLocationRequest)
-      :Observable<CreatedLocationResponse> {
+  addPublisher(
+    createPublisherRequest: CreatePublisherRequest
+  ): Observable<CreatedPublisherResponse> {
+    return this.httpClient
+      .post<CreatedPublisherResponse>(
+        `${this.publisherApiUrl}`,
+        createPublisherRequest
+      )
+      .pipe(
+        catchError((error) => {
+          // Hata durumunda toastr ile hata mesajını kullanıcıya göster
+          this.toastr.error('Beklenmeyen bir hata oluştu.', 'Hatalı');
+          // Hata mesajını konsola yazdır
+          console.error(error);
+          return throwError(error);
+        })
+      );
+  }
 
-        return this.httpClient.post<CreatedLocationResponse>(`${this.locationApiUrl}`, createLocationRequest).pipe(
-         
-          catchError((error) => {
-            // Hata durumunda toastr ile hata mesajını kullanıcıya göster
-            this.toastr.error("Beklenmeyen bir hata oluştu.", "Hatalı");
-            // Hata mesajını konsola yazdır
-            console.error(error);
-            return throwError(error);
-          })
-        );
-      }
+  addTranslator(
+    createTranslatorRequest: CreateTranslatorRequest
+  ): Observable<CreatedTranslatorResponse> {
+    return this.httpClient
+      .post<CreatedTranslatorResponse>(
+        `${this.translatorApiUrl}`,
+        createTranslatorRequest
+      )
+      .pipe(
+        catchError((error) => {
+          // Hata durumunda toastr ile hata mesajını kullanıcıya göster
+          this.toastr.error('Beklenmeyen bir hata oluştu.', 'Hatalı');
+          // Hata mesajını konsola yazdır
+          console.error(error);
+          return throwError(error);
+        })
+      );
+  }
 
-      addAuthor(createAuthorRequest: CreateAuthorRequest)
-      :Observable<CreatedAuthorResponse> {
+  addLanguage(
+    createLanguageRequest: CreateLanguageRequest
+  ): Observable<CreatedLanguageResponse> {
+    return this.httpClient
+      .post<CreatedLanguageResponse>(
+        `${this.languageApiUrl}`,
+        createLanguageRequest
+      )
+      .pipe(
+        catchError((error) => {
+          // Hata durumunda toastr ile hata mesajını kullanıcıya göster
+          this.toastr.error('Beklenmeyen bir hata oluştu.', 'Hatalı');
+          // Hata mesajını konsola yazdır
+          console.error(error);
+          return throwError(error);
+        })
+      );
+  }
+  //Ara Tablo
+  addAuthorMaterial(
+    createAuthorMaterialRequest: CreateAuthorMaterialRequest
+  ): Observable<CreatedAuthorMaterialResponse> {
+    return this.httpClient
+      .post<CreatedAuthorMaterialResponse>(
+        `${this.authorMaterialApiUrl}`,
+        createAuthorMaterialRequest
+      )
+      .pipe(
+        catchError((error) => {
+          // Hata durumunda toastr ile hata mesajını kullanıcıya göster
+          this.toastr.error('Beklenmeyen bir hata oluştu.', 'Hatalı');
+          // Hata mesajını konsola yazdır
+          console.error(error);
+          return throwError(error);
+        })
+      );
+  }
 
-        return this.httpClient.post<CreatedAuthorResponse>(`${this.authorApiUrl}`, createAuthorRequest).pipe(
-         
-          catchError((error) => {
-            // Hata durumunda toastr ile hata mesajını kullanıcıya göster
-            this.toastr.error("Beklenmeyen bir hata oluştu.", "Hatalı");
-            // Hata mesajını konsola yazdır
-            console.error(error);
-            return throwError(error);
-          })
-        );
-      }
+  addLanguageMaterial(
+    createLanguageMaterialRequest: CreateLanguageMaterialRequest
+  ): Observable<CreatedLanguageMaterialResponse> {
+    return this.httpClient
+      .post<CreatedLanguageMaterialResponse>(
+        `${this.languageMaterialApiUrl}`,
+        createLanguageMaterialRequest
+      )
+      .pipe(
+        catchError((error) => {
+          // Hata durumunda toastr ile hata mesajını kullanıcıya göster
+          this.toastr.error('Beklenmeyen bir hata oluştu.', 'Hatalı');
+          // Hata mesajını konsola yazdır
+          console.error(error);
+          return throwError(error);
+        })
+      );
+  }
 
-      addPublisher(createPublisherRequest: CreatePublisherRequest)
-      :Observable<CreatedPublisherResponse> {
+  addPublisherMaterial(
+    createPublisherMaterialRequest: CreatePublisherMaterialRequest
+  ): Observable<CreatedPublisherMaterialResponse> {
+    return this.httpClient
+      .post<CreatedPublisherMaterialResponse>(
+        `${this.publisherMaterialApiUrl}`,
+        createPublisherMaterialRequest
+      )
+      .pipe(
+        catchError((error) => {
+          // Hata durumunda toastr ile hata mesajını kullanıcıya göster
+          this.toastr.error('Beklenmeyen bir hata oluştu.', 'Hatalı');
+          // Hata mesajını konsola yazdır
+          console.error(error);
+          return throwError(error);
+        })
+      );
+  }
 
-        return this.httpClient.post<CreatedPublisherResponse>(`${this.publisherApiUrl}`, createPublisherRequest).pipe(
-         
-          catchError((error) => {
-            // Hata durumunda toastr ile hata mesajını kullanıcıya göster
-            this.toastr.error("Beklenmeyen bir hata oluştu.", "Hatalı");
-            // Hata mesajını konsola yazdır
-            console.error(error);
-            return throwError(error);
-          })
-        );
-      }
+  addTranslatorMaterial(
+    createTranslatorMaterialRequest: CreateTranslatorMaterialRequest
+  ): Observable<CreatedTranslatorMaterialResponse> {
+    return this.httpClient
+      .post<CreatedTranslatorMaterialResponse>(
+        `${this.translatorMaterialApiUrl}`,
+        createTranslatorMaterialRequest
+      )
+      .pipe(
+        catchError((error) => {
+          // Hata durumunda toastr ile hata mesajını kullanıcıya göster
+          this.toastr.error('Beklenmeyen bir hata oluştu.', 'Hatalı');
+          // Hata mesajını konsola yazdır
+          console.error(error);
+          return throwError(error);
+        })
+      );
+  }
 
-      addTranslator(createTranslatorRequest: CreateTranslatorRequest)
-      :Observable<CreatedTranslatorResponse> {
+  //UPDATE
+  updateMaterial(
+    updateMaterialRequest: UpdateMaterialRequest
+  ): Observable<UpdatedMaterialResponse> {
+    return this.httpClient
+      .put<UpdatedMaterialResponse>(
+        `${this.materialApiUrl}/Update`,
+        updateMaterialRequest
+      )
+      .pipe(
+        catchError((error) => {
+          this.toastr.error(
+            'An unexpected error occurred while updating the Material.',
+            'Error'
+          );
+          console.error(error);
+          return throwError(error);
+        })
+      );
+  }
 
-        return this.httpClient.post<CreatedTranslatorResponse>(`${this.translatorApiUrl}`, createTranslatorRequest).pipe(
-         
-          catchError((error) => {
-            // Hata durumunda toastr ile hata mesajını kullanıcıya göster
-            this.toastr.error("Beklenmeyen bir hata oluştu.", "Hatalı");
-            // Hata mesajını konsola yazdır
-            console.error(error);
-            return throwError(error);
-          })
-        );
-      }
+  //GetAll
 
-      addLanguage(createLanguageRequest: CreateLanguageRequest)
-      :Observable<CreatedLanguageResponse> {
+  getAllMaterials(): Observable<GetListMaterialResponse[]> {
+    return this.httpClient
+      .get<GetListMaterialResponse[]>(`${this.materialApiUrl}/GetAll`)
+      .pipe(
+        catchError((error) => {
+          this.toastr.error(
+            'An unexpected error occurred while fetching the list of Materials.',
+            'Error'
+          );
+          console.error(error);
+          return throwError(error);
+        })
+      );
+  }
 
-        return this.httpClient.post<CreatedLanguageResponse>(`${this.languageApiUrl}`, createLanguageRequest).pipe(
-         
-          catchError((error) => {
-            // Hata durumunda toastr ile hata mesajını kullanıcıya göster
-            this.toastr.error("Beklenmeyen bir hata oluştu.", "Hatalı");
-            // Hata mesajını konsola yazdır
-            console.error(error);
-            return throwError(error);
-          })
-        );
-      }
-//Ara Tablo
-addAuthorMaterial(createAuthorMaterialRequest: CreateAuthorMaterialRequest)
-      :Observable<CreatedAuthorMaterialResponse> {
+  getAllBranches(): Observable<GetListBranchResponse[]> {
+    return this.httpClient
+      .get<GetListBranchResponse[]>(`${this.branchApiUrl}/GetAll`)
+      .pipe(
+        catchError((error) => {
+          this.toastr.error(
+            'An unexpected error occurred while fetching the list of Branches.',
+            'Error'
+          );
+          console.error(error);
+          return throwError(error);
+        })
+      );
+  }
 
-        return this.httpClient.post<CreatedAuthorMaterialResponse>(`${this.authorMaterialApiUrl}`, createAuthorMaterialRequest).pipe(
-         
-          catchError((error) => {
-            // Hata durumunda toastr ile hata mesajını kullanıcıya göster
-            this.toastr.error("Beklenmeyen bir hata oluştu.", "Hatalı");
-            // Hata mesajını konsola yazdır
-            console.error(error);
-            return throwError(error);
-          })
-        );
-      }
+  getAllLocations(): Observable<GetListLocationResponse[]> {
+    return this.httpClient
+      .get<GetListLocationResponse[]>(`${this.locationApiUrl}/GetAll`)
+      .pipe(
+        catchError((error) => {
+          this.toastr.error(
+            'An unexpected error occurred while fetching the list of Locations.',
+            'Error'
+          );
+          console.error(error);
+          return throwError(error);
+        })
+      );
+  }
 
-      addLanguageMaterial(createLanguageMaterialRequest: CreateLanguageMaterialRequest)
-      :Observable<CreatedLanguageMaterialResponse> {
+  getAllAuthors(): Observable<GetListAuthorResponse[]> {
+    return this.httpClient
+      .get<GetListAuthorResponse[]>(`${this.authorApiUrl}/GetAll`)
+      .pipe(
+        catchError((error) => {
+          this.toastr.error(
+            'An unexpected error occurred while fetching the list of Authors.',
+            'Error'
+          );
+          console.error(error);
+          return throwError(error);
+        })
+      );
+  }
 
-        return this.httpClient.post<CreatedLanguageMaterialResponse>(`${this.languageMaterialApiUrl}`, createLanguageMaterialRequest).pipe(
-         
-          catchError((error) => {
-            // Hata durumunda toastr ile hata mesajını kullanıcıya göster
-            this.toastr.error("Beklenmeyen bir hata oluştu.", "Hatalı");
-            // Hata mesajını konsola yazdır
-            console.error(error);
-            return throwError(error);
-          })
-        );
-      }
+  getAllPublishers(): Observable<GetListPublisherResponse[]> {
+    return this.httpClient
+      .get<GetListPublisherResponse[]>(`${this.publisherApiUrl}/GetAll`)
+      .pipe(
+        catchError((error) => {
+          this.toastr.error(
+            'An unexpected error occurred while fetching the list of Publishers.',
+            'Error'
+          );
+          console.error(error);
+          return throwError(error);
+        })
+      );
+  }
 
-      addPublisherMaterial(createPublisherMaterialRequest: CreatePublisherMaterialRequest)
-      :Observable<CreatedPublisherMaterialResponse> {
+  getAllTranslators(): Observable<GetListTranslatorResponse[]> {
+    return this.httpClient
+      .get<GetListTranslatorResponse[]>(`${this.translatorApiUrl}/GetAll`)
+      .pipe(
+        catchError((error) => {
+          this.toastr.error(
+            'An unexpected error occurred while fetching the list of Translators.',
+            'Error'
+          );
+          console.error(error);
+          return throwError(error);
+        })
+      );
+  }
 
-        return this.httpClient.post<CreatedPublisherMaterialResponse>(`${this.publisherMaterialApiUrl}`, createPublisherMaterialRequest).pipe(
-         
-          catchError((error) => {
-            // Hata durumunda toastr ile hata mesajını kullanıcıya göster
-            this.toastr.error("Beklenmeyen bir hata oluştu.", "Hatalı");
-            // Hata mesajını konsola yazdır
-            console.error(error);
-            return throwError(error);
-          })
-        );
-      }
-
-      addTranslatorMaterial(createTranslatorMaterialRequest: CreateTranslatorMaterialRequest)
-      :Observable<CreatedTranslatorMaterialResponse> {
-
-        return this.httpClient.post<CreatedTranslatorMaterialResponse>(`${this.translatorMaterialApiUrl}`, createTranslatorMaterialRequest).pipe(
-         
-          catchError((error) => {
-            // Hata durumunda toastr ile hata mesajını kullanıcıya göster
-            this.toastr.error("Beklenmeyen bir hata oluştu.", "Hatalı");
-            // Hata mesajını konsola yazdır
-            console.error(error);
-            return throwError(error);
-          })
-        );
-      }
-
-
-
-//GetAll
-
-      getAllMaterials(): Observable<GetListMaterialResponse[]> {
-        return this.httpClient.get<GetListMaterialResponse[]>(`${this.materialApiUrl}/GetAll`).pipe(
-          catchError((error) => {
-            this.toastr.error("An unexpected error occurred while fetching the list of Materials.", "Error");
-            console.error(error);
-            return throwError(error);
-          })
-        );
-      }
-
-      getAllBranches(): Observable<GetListBranchResponse[]> {
-        return this.httpClient.get<GetListBranchResponse[]>(`${this.branchApiUrl}/GetAll`).pipe(
-          catchError((error) => {
-            this.toastr.error("An unexpected error occurred while fetching the list of Branches.", "Error");
-            console.error(error);
-            return throwError(error);
-          })
-        );
-      }
-
-      getAllLocations(): Observable<GetListLocationResponse[]> {
-        return this.httpClient.get<GetListLocationResponse[]>(`${this.locationApiUrl}/GetAll`).pipe(
-          catchError((error) => {
-            this.toastr.error("An unexpected error occurred while fetching the list of Locations.", "Error");
-            console.error(error);
-            return throwError(error);
-          })
-        );
-      }
-
-      getAllAuthors(): Observable<GetListAuthorResponse[]> {
-        return this.httpClient.get<GetListAuthorResponse[]>(`${this.authorApiUrl}/GetAll`).pipe(
-          catchError((error) => {
-            this.toastr.error("An unexpected error occurred while fetching the list of Authors.", "Error");
-            console.error(error);
-            return throwError(error);
-          })
-        );
-      }
-
-      getAllPublishers(): Observable<GetListPublisherResponse[]> {
-        return this.httpClient.get<GetListPublisherResponse[]>(`${this.publisherApiUrl}/GetAll`).pipe(
-          catchError((error) => {
-            this.toastr.error("An unexpected error occurred while fetching the list of Publishers.", "Error");
-            console.error(error);
-            return throwError(error);
-          })
-        );
-      }
-
-      getAllTranslators(): Observable<GetListTranslatorResponse[]> {
-        return this.httpClient.get<GetListTranslatorResponse[]>(`${this.translatorApiUrl}/GetAll`).pipe(
-          catchError((error) => {
-            this.toastr.error("An unexpected error occurred while fetching the list of Translators.", "Error");
-            console.error(error);
-            return throwError(error);
-          })
-        );
-      }
-
-      getAllLanguages(): Observable<GetListLanguageResponse[]> {
-        return this.httpClient.get<GetListLanguageResponse[]>(`${this.languageApiUrl}/GetAll`).pipe(
-          catchError((error) => {
-            this.toastr.error("An unexpected error occurred while fetching the list of Languages.", "Error");
-            console.error(error);
-            return throwError(error);
-          })
-        );
-      }
- 
-
+  getAllLanguages(): Observable<GetListLanguageResponse[]> {
+    return this.httpClient
+      .get<GetListLanguageResponse[]>(`${this.languageApiUrl}/GetAll`)
+      .pipe(
+        catchError((error) => {
+          this.toastr.error(
+            'An unexpected error occurred while fetching the list of Languages.',
+            'Error'
+          );
+          console.error(error);
+          return throwError(error);
+        })
+      );
+  }
 }
