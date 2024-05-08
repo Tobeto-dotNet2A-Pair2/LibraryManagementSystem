@@ -43,13 +43,13 @@ export class MaterialListHomeComponent implements OnInit {
  
   
   ngOnInit(): void {
-    this.activatedRoute.params.subscribe(params=>{
+    this.activatedRoute.queryParams.subscribe(params => {
       const searchText = params['q'];
-      console.log("if den once");
+      console.log("Search text:", searchText);
       if (searchText) {
         this.searchText = searchText;
-        this.getMaterialListBySearchTerm(searchText);
-        console.log("if ıcınde");
+        this.getMaterialListBySearchTerm(this.searchText);
+        console.log("if ıcınde"+searchText);
       } else {
         this.getList({pageIndex:0,pageSize:this.PAGE_SIZE});
         console.log("else ıcınde");
