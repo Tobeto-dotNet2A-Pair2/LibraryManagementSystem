@@ -1,4 +1,4 @@
-<div class="card">
+<div class="card" *ngIf="memberByIdList.length>0">
 <!--begin::Card body-->
 <div class="card-body border-top p-9">
   <!--begin::Input group-->
@@ -12,7 +12,7 @@
       <div
         class="image-input image-input-outline"
         data-kt-image-input="true"
-        style="background-image: url('assets/media/svg/avatars/blank.svg')"
+        style="background-image: url('assets/media/svg/avatars/blank.png')"
       >
         <!--begin::Preview existing avatar-->
         <div
@@ -72,17 +72,17 @@
       </div>
       <!--end::Image input-->
       <!--begin::Hint-->
-      <div class="form-text">Allowed file types: png, jpg, jpeg.</div>
+      <div class="form-text">İzin verilen tip: png, jpg, jpeg.</div>
       <!--end::Hint-->
     </div>
     <!--end::Col-->
   </div>
   <!--end::Input group-->
   <!--begin::Input group-->
-  <div class="row mb-6">
+  <div class="row mb-6" >
     <!--begin::Label-->
     <label class="col-lg-4 col-form-label required fw-semibold fs-6"
-      >Full Name</label
+      >Tam Adınız</label
     >
     <!--end::Label-->
     <!--begin::Col-->
@@ -95,8 +95,8 @@
             type="text"
             name="fname"
             class="form-control form-control-lg form-control-solid mb-3 mb-lg-0"
-            placeholder="First name"
-            value="Max"
+            placeholder="Adınız"
+            [value]="memberByIdList[0].firstName"
           />
           <div class="fv-plugins-message-container invalid-feedback"></div>
         </div>
@@ -107,8 +107,8 @@
             type="text"
             name="lname"
             class="form-control form-control-lg form-control-solid"
-            placeholder="Last name"
-            value="Smith"
+            placeholder="Soyadınız"
+            [value]="memberByIdList[0].lastName"
           />
           <div class="fv-plugins-message-container invalid-feedback"></div>
         </div>
@@ -123,7 +123,7 @@
   <div class="row mb-6">
     <!--begin::Label-->
     <label class="col-lg-4 col-form-label required fw-semibold fs-6"
-      >Company</label
+      >TC</label
     >
     <!--end::Label-->
     <!--begin::Col-->
@@ -132,8 +132,8 @@
         type="text"
         name="company"
         class="form-control form-control-lg form-control-solid"
-        placeholder="Company name"
-        value="Keenthemes"
+        placeholder="TC'nizi giriniz"
+        [value]="memberByIdList[0].nationalIdentity"
       />
       <div class="fv-plugins-message-container invalid-feedback"></div>
     </div>
@@ -144,20 +144,7 @@
   <div class="row mb-6">
     <!--begin::Label-->
     <label class="col-lg-4 col-form-label fw-semibold fs-6">
-      <span class="required">Contact Phone</span>
-      <span
-        class="ms-1"
-        data-bs-toggle="tooltip"
-        aria-label="Phone number must be active"
-        data-bs-original-title="Phone number must be active"
-        data-kt-initialized="1"
-      >
-        <i class="ki-duotone ki-information-5 text-gray-500 fs-6">
-          <span class="path1"></span>
-          <span class="path2"></span>
-          <span class="path3"></span>
-        </i>
-      </span>
+      <span class="required">Telefon</span>
     </label>
     <!--end::Label-->
     <!--begin::Col-->
@@ -166,8 +153,8 @@
         type="tel"
         name="phone"
         class="form-control form-control-lg form-control-solid"
-        placeholder="Phone number"
-        value="044 3276 454 935"
+        placeholder="Telefon Numaranız"
+        [value]="memberByIdList[0].phoneNumber"
       />
       <div class="fv-plugins-message-container invalid-feedback"></div>
     </div>
@@ -177,7 +164,7 @@
   <!--begin::Input group-->
   <div class="row mb-6">
     <!--begin::Label-->
-    <label class="col-lg-4 col-form-label fw-semibold fs-6">Company Site</label>
+    <label class="col-lg-4 col-form-label fw-semibold fs-6">Posizyon</label>
     <!--end::Label-->
     <!--begin::Col-->
     <div class="col-lg-8 fv-row">
@@ -185,8 +172,8 @@
         type="text"
         name="website"
         class="form-control form-control-lg form-control-solid"
-        placeholder="Company website"
-        value="keenthemes.com"
+        placeholder="Pozisyonunuz"
+        [value]="memberByIdList[0].position"
       />
     </div>
     <!--end::Col-->

@@ -1,17 +1,16 @@
 import { Component, OnInit } from '@angular/core';
 import { MembersService } from '../../../core/services/concretes/members.service';
-import { ActivatedRoute } from '@angular/router';
-import { PageRequest } from '../../../core/models/page/page-request';
 import { MemberListDto } from '../../models/responses/members/member-list-item-dto';
 import { LocalStorageService } from '../../../core/services/concretes/local-storage.service';
 import { JWT_ID } from '../../../core/constants/jwtAttributes';
 import { jwtDecode } from 'jwt-decode';
 import { GetByIdMemberResponse } from '../../models/responses/members/get-by-id-member-response';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-my-profile',
   standalone: true,
-  imports: [],
+  imports: [CommonModule],
   templateUrl: './my-profile.component.html',
   styleUrl: './my-profile.component.scss',
 })
@@ -62,4 +61,7 @@ export class MyProfileComponent implements OnInit {
       }
     }
   }
+
+
+  
 }
