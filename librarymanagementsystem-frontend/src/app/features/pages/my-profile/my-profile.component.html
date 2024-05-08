@@ -12,13 +12,11 @@
       <div
         class="image-input image-input-outline"
         data-kt-image-input="true"
-        style="background-image: url('assets/media/svg/avatars/blank.png')"
       >
         <!--begin::Preview existing avatar-->
-        <div
-          class="image-input-wrapper w-125px h-125px"
-          style="background-image: url(assets/media/avatars/300-1.jpg)"
-        ></div>
+        <div class="image-input-wrapper w-125px h-125px"
+        [ngStyle]="{ 'background-image': memberByIdList[0].profilePicture ? 'url(' + memberByIdList[0].profilePicture + ')' : 'url(assets/media/avatars/blank.png)' }">
+          </div>
         <!--end::Preview existing avatar-->
         <!--begin::Label-->
         <label
