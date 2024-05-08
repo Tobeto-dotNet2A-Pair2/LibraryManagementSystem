@@ -32,8 +32,8 @@ public class MappingProfiles : Profile
             .ForMember(a => a.BorrowDay, opt => opt
                 .MapFrom(a => a.Material.BorrowDay))
             .ForMember(a => a.PunishmentAmount, opt => opt
-                .MapFrom(a => a.Material.PunishmentAmount));
-
-        CreateMap<MaterialCopy, MaterialCopyForListBorrowedMaterialDto>();
+                .MapFrom(a => a.Material.PunishmentAmount))
+            .ForMember(a => a.Name, opt => opt
+                .MapFrom(a => a.Material.Name));
     }
 }

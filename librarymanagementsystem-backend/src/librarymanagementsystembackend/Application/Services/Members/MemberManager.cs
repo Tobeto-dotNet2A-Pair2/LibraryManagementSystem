@@ -1,10 +1,14 @@
 using Application.Features.BorrowedMaterials.Dtos;
+using Application.Features.Members.Dtos;
 using Application.Features.Members.Rules;
 using Application.Services.Repositories;
+using AutoMapper;
+using AutoMapper.QueryableExtensions;
 using NArchitecture.Core.Persistence.Paging;
 using Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Query;
+using System.Linq.Dynamic.Core;
 using System.Linq.Expressions;
 
 namespace Application.Services.Members;
@@ -13,11 +17,13 @@ public class MemberManager : IMemberService
 {
     private readonly IMemberRepository _memberRepository;
     private readonly MemberBusinessRules _memberBusinessRules;
+    private readonly IMapper _mapper;
 
-    public MemberManager(IMemberRepository memberRepository, MemberBusinessRules memberBusinessRules)
+    public MemberManager(IMemberRepository memberRepository, MemberBusinessRules memberBusinessRules, IMapper mapper)
     {
         _memberRepository = memberRepository;
         _memberBusinessRules = memberBusinessRules;
+        _mapper = mapper;
     }
 
     public async Task<Member?> GetAsync(
@@ -107,5 +113,16 @@ public class MemberManager : IMemberService
         }
 
         await Task.CompletedTask;
+    }
+
+    public async Task<GetMemberForEmailDto> GetForEmailById(Guid memberId, CancellationToken cancellationToken)
+    {
+        var member = await _memberRepository.Query()
+            .Include(a => a.User)
+            .Where(a => a.Id == memberId)
+            .ProjectTo<GetMemberForEmailDto>(_mapper.ConfigurationProvider)
+            .FirstOrDefaultAsync(cancellationToken);
+
+        return member;
     }
 }

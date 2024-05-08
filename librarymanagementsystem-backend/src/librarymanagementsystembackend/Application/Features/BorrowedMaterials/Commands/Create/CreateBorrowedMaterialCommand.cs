@@ -2,17 +2,19 @@ using Application.Features.BorrowedMaterials.Constants;
 using Application.Features.BorrowedMaterials.Dtos;
 using Application.Features.BorrowedMaterials.Rules;
 using Application.Features.MaterialCopies.Rules;
+using Application.Features.Members.Dtos;
 using Application.Features.Members.Rules;
 using Application.Services.MaterialCopies;
+using Application.Services.Members;
 using Application.Services.Repositories;
 using AutoMapper;
 using Domain.Entities;
-using NArchitecture.Core.Application.Pipelines.Authorization;
-using NArchitecture.Core.Application.Pipelines.Caching;
 using NArchitecture.Core.Application.Pipelines.Logging;
 using NArchitecture.Core.Application.Pipelines.Transaction;
 using MediatR;
-using static Application.Features.BorrowedMaterials.Constants.BorrowedMaterialsOperationClaims;
+using MimeKit;
+using NArchitecture.Core.Mailing;
+using System.Globalization;
 
 namespace Application.Features.BorrowedMaterials.Commands.Create;
 
@@ -29,13 +31,17 @@ public class CreateBorrowedMaterialCommand : IRequest<CreatedBorrowedMaterialRes
         private readonly MaterialCopyBusinessRules _materialCopyBusinessRules;
         private readonly MemberBusinessRules _memberBusinessRules;
         private readonly IMaterialCopyService _materialCopyService;
+        private readonly IMailService _mailService;
+        private readonly IMemberService _memberService;
 
         public CreateBorrowedMaterialCommandHandler(IMapper mapper, 
             IBorrowedMaterialRepository borrowedMaterialRepository,
             BorrowedMaterialBusinessRules borrowedMaterialBusinessRules, 
             MaterialCopyBusinessRules materialCopyBusinessRules, 
             IMaterialCopyService materialCopyService, 
-            MemberBusinessRules memberBusinessRules)
+            MemberBusinessRules memberBusinessRules, 
+            IMailService mailService, 
+            IMemberService memberService)
         {
             _mapper = mapper;
             _borrowedMaterialRepository = borrowedMaterialRepository;
@@ -43,6 +49,8 @@ public class CreateBorrowedMaterialCommand : IRequest<CreatedBorrowedMaterialRes
             _materialCopyBusinessRules = materialCopyBusinessRules;
             _materialCopyService = materialCopyService;
             _memberBusinessRules = memberBusinessRules;
+            _mailService = mailService;
+            _memberService = memberService;
         }
 
         public async Task<CreatedBorrowedMaterialResponse> Handle(CreateBorrowedMaterialCommand request, CancellationToken cancellationToken)
@@ -67,7 +75,23 @@ public class CreateBorrowedMaterialCommand : IRequest<CreatedBorrowedMaterialRes
             #endregion
 
             await _materialCopyService.UpdateAfterBorrow(request.MaterialCopyId);
-            
+
+            #region Mail 
+
+            GetMemberForEmailDto member = await _memberService.GetForEmailById(request.MemberId, cancellationToken: cancellationToken);
+            var mail = new Mail(
+                subject: BorrowedMaterialsBusinessMessages.BorrowedMaterialEmailSubject,
+                textBody: string.Empty,
+                htmlBody: BorrowedMaterialsBusinessMessages.BorrowedMaterialEmailHtmlBody
+                            .Replace("%Fullname%",string.Concat(member.FirstName,member.LastName))
+                            .Replace("%MaterialName%",materialWithCopy.Name)
+                            .Replace("%%ReturnDate%%",borrowedMaterial.ReturnDate.ToString(CultureInfo.InvariantCulture)),
+                [new MailboxAddress(string.Concat(member.FirstName, member.LastName), member.Email)]);
+
+            await _mailService.SendEmailAsync(mail);
+
+            #endregion
+
             #region Response
             
             var response = _mapper.Map<CreatedBorrowedMaterialResponse>(borrowedMaterial);

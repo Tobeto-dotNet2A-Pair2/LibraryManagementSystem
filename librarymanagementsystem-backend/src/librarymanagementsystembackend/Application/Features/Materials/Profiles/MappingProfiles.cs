@@ -12,6 +12,7 @@ using NArchitecture.Core.Application.Responses;
 using Domain.Entities;
 using NArchitecture.Core.Persistence.Paging;
 using Application.Features.MaterialImages.Queries.GetList;
+using Application.Features.Materials.Dtos;
 using Application.Features.Materials.Queries.GetList.GetAll;
 
 namespace Application.Features.Materials.Profiles;

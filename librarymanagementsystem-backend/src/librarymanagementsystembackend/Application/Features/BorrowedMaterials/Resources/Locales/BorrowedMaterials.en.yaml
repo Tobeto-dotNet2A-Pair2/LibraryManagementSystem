@@ -1,1 +1,3 @@
 BorrowedMaterialNotExists: "Borrowed material don't exists."
+BorrowedMaterialEmailSubject: "Tobeto Kütüphanesi Ödünç Alma İşleminiz"
+BorrowedMaterialEmailHtmlBody:  "Merhaba %FullName%, </br> Ödünç almış olduğunuz Kitap : %MaterialName% </br>" "Teslim Tarihi : %ReturnDate%"
