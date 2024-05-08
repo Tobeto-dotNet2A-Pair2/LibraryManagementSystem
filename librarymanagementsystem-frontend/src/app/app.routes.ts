@@ -17,6 +17,8 @@ import { ContactComponent } from './features/pages/contact/contact.component';
 import { AboutUsComponent } from './features/pages/about-us/about-us.component';
 import { QuestionComponent } from './features/pages/question/question.component';
 import { MaterialDetailComponent } from './features/pages/materials/material-detail/material-detail.component';
+import { MaterialDetailHomeComponent } from './features/pages/materials/material-detail-home/material-detail-home.component';
+import { MaterialListHomeComponent } from './features/pages/materials/material-list-home/material-list-home.component';
 
 export const routes: Routes = [
   
@@ -29,6 +31,11 @@ export const routes: Routes = [
       { path: 'contact', component: ContactComponent },
       { path: 'aboutus', component: AboutUsComponent },
       { path: 'questions', component: QuestionComponent },
+      { path: 'app-material-list-home', component: MaterialListHomeComponent },
+      { path: 'material-detail-home/:id', component: MaterialDetailHomeComponent }
+
+
+      
 
 
     ]
