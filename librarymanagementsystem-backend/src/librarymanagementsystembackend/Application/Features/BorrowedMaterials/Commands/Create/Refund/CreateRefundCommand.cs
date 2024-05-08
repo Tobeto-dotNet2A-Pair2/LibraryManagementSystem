@@ -1,10 +1,10 @@
 using Application.Features.BorrowedMaterials.Rules;
 using Application.Features.Penalties.Dto;
 using Application.Services.MaterialCopies;
+using Application.Services.Members;
 using Application.Services.Penalties;
 using Application.Services.Repositories;
 using MediatR;
-using NArchitecture.Core.Localization.Abstraction;
 
 namespace Application.Features.BorrowedMaterials.Commands.Create.Refund;
 
@@ -19,16 +19,18 @@ public class CreateRefundCommand : IRequest<CreateRefundResponse>
         private readonly IBorrowedMaterialRepository _borrowedMaterialRepository;
         private readonly IPenaltyService _penaltyService;
         private readonly IMaterialCopyService _materialCopyService;
+        private readonly IMemberService _memberService;
         
         public CreateRefundHandler(BorrowedMaterialBusinessRules borrowedMaterialBusinessRules, 
             IBorrowedMaterialRepository borrowedMaterialRepository, 
             IPenaltyService penaltyService, 
-            IMaterialCopyService materialCopyService)
+            IMaterialCopyService materialCopyService, IMemberService memberService)
         {
             _borrowedMaterialBusinessRules = borrowedMaterialBusinessRules;
             _borrowedMaterialRepository = borrowedMaterialRepository;
             _penaltyService = penaltyService;
             _materialCopyService = materialCopyService;
+            _memberService = memberService;
         }
         
         public async Task<CreateRefundResponse> Handle(CreateRefundCommand request, CancellationToken cancellationToken)
@@ -73,6 +75,8 @@ public class CreateRefundCommand : IRequest<CreateRefundResponse>
             // Update isReserved and isReservable fields in material copy. 
 
             await _materialCopyService.UpdateAfterRefund(request.MaterialCopyId);
+
+            await _memberService.UpdateMemberDebtByAmount(borrowedMaterialTotalValues.TotalDebt, request.MemberId);
 
             #endregion
 

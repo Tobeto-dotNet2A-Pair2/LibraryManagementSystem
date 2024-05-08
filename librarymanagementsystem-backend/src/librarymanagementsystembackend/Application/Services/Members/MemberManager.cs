@@ -1,7 +1,9 @@
+using Application.Features.BorrowedMaterials.Dtos;
 using Application.Features.Members.Rules;
 using Application.Services.Repositories;
 using NArchitecture.Core.Persistence.Paging;
 using Domain.Entities;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Query;
 using System.Linq.Expressions;
 
@@ -73,5 +75,37 @@ public class MemberManager : IMemberService
         Member deletedMember = await _memberRepository.DeleteAsync(member);
 
         return deletedMember;
+    }
+
+    public async Task UpdateDebtBulk(List<GetAllDelayedRefundDto> debts)
+    {
+        var memberIds = debts.Select(a => a.MemberId).ToList();
+        var members = await _memberRepository.Query()
+             .Where(a => memberIds.Contains(a.Id))
+             .ToListAsync();
+        
+        foreach (var debt in debts)
+        {
+            var member = members.FirstOrDefault(a => a.Id == debt.MemberId);
+            if (member is not null)
+                member.TotalDebt = debt.TotalDebt!.Value;
+        }
+
+        await _memberRepository.UpdateRangeAsync(members);
+
+        await Task.CompletedTask;
+    }
+
+
+    public async Task UpdateMemberDebtByAmount(decimal debtAmount, Guid memberId)
+    {
+        var member = await _memberRepository.GetAsync(a => a.Id == memberId);
+        if (member is not null)
+        {
+            member.TotalDebt -= debtAmount;
+            await _memberRepository.UpdateAsync(member);
+        }
+
+        await Task.CompletedTask;
     }
 }

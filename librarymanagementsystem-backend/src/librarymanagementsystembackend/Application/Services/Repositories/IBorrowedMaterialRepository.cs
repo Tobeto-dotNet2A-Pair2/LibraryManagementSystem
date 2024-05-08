@@ -8,5 +8,7 @@ public interface IBorrowedMaterialRepository : IAsyncRepository<BorrowedMaterial
 {
     Task<GetMemberDeptForBorrowedMaterialDto> GetMemberDeptForBorrowedMaterialCopyAsync(Guid memberId,
         Guid materialCopyId, CancellationToken cancellationToken);
+    
+    Task<List<GetAllDelayedRefundDto>> GetAllDelayedRefundAsync(CancellationToken cancellationToken);
 
 }

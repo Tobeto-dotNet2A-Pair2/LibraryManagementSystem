@@ -32,12 +32,37 @@ public class BorrowedMaterialRepository : EfRepositoryBase<BorrowedMaterial, Gui
                                       a.MaterialCopyId == materialCopyId &&
                                       !a.IsReturned, cancellationToken: cancellationToken);
         
-            int totalDelayDays = (DateTime.UtcNow - borrowedMaterial!.ReturnDate).Days;
+            int totalDelayDays = (DateTime.Now - borrowedMaterial!.ReturnDate).Days;
             decimal? totalDebt = totalDelayDays * borrowedMaterial.MaterialCopy.Material.PunishmentAmount;
             return new GetMemberDeptForBorrowedMaterialDto()
             {
                 TotalDebt = totalDebt!.Value, 
                 DelayDay = totalDelayDays,
             };
+    }
+
+    /// <summary>
+    /// GetAllDelayedRefundAsync
+    /// </summary>
+    /// <param name="cancellationToken"></param>
+    /// <returns></returns>
+    /// <exception cref="NotImplementedException"></exception>
+    public async Task<List<GetAllDelayedRefundDto>> GetAllDelayedRefundAsync(CancellationToken cancellationToken)
+    {
+        var list = await _baseDbContext.BorrowedMaterials
+            .Include(a => a.MaterialCopy)
+            .ThenInclude(a => a.Material)
+            .Where( a=> !a.IsReturned)
+            .ToListAsync(cancellationToken);
+
+        var delayedList = list
+                    .Where(a => (DateTime.Now - a!.ReturnDate).Days > 0)
+                    .GroupBy(a=> a.MemberId);
+        
+        return delayedList.Select(a=> new GetAllDelayedRefundDto()
+        {
+            TotalDebt = a.Sum(b=> (DateTime.Now - b!.ReturnDate).Days * b.MaterialCopy.Material.PunishmentAmount),
+            MemberId = a.Key
+        }).ToList(); 
     }
 }

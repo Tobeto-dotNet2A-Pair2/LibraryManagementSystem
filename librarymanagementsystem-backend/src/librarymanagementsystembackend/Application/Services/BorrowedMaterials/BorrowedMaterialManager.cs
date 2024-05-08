@@ -1,4 +1,6 @@
+using Application.Features.BorrowedMaterials.Dtos;
 using Application.Features.BorrowedMaterials.Rules;
+using Application.Services.Members;
 using Application.Services.Repositories;
 using NArchitecture.Core.Persistence.Paging;
 using Domain.Entities;
@@ -11,11 +13,13 @@ public class BorrowedMaterialManager : IBorrowedMaterialService
 {
     private readonly IBorrowedMaterialRepository _borrowedMaterialRepository;
     private readonly BorrowedMaterialBusinessRules _borrowedMaterialBusinessRules;
+    private readonly IMemberService _memberService;
 
-    public BorrowedMaterialManager(IBorrowedMaterialRepository borrowedMaterialRepository, BorrowedMaterialBusinessRules borrowedMaterialBusinessRules)
+    public BorrowedMaterialManager(IBorrowedMaterialRepository borrowedMaterialRepository, BorrowedMaterialBusinessRules borrowedMaterialBusinessRules, IMemberService memberService)
     {
         _borrowedMaterialRepository = borrowedMaterialRepository;
         _borrowedMaterialBusinessRules = borrowedMaterialBusinessRules;
+        _memberService = memberService;
     }
 
     public async Task<BorrowedMaterial?> GetAsync(
@@ -73,5 +77,18 @@ public class BorrowedMaterialManager : IBorrowedMaterialService
         BorrowedMaterial deletedBorrowedMaterial = await _borrowedMaterialRepository.DeleteAsync(borrowedMaterial);
 
         return deletedBorrowedMaterial;
+    }
+
+
+    /// <summary>
+    /// 
+    /// </summary>
+    public async Task CalculateDept()
+    {
+        List<GetAllDelayedRefundDto> allDelays = await _borrowedMaterialRepository.GetAllDelayedRefundAsync(new CancellationToken());
+        if (allDelays.Count != 0)
+            await _memberService.UpdateDebtBulk(allDelays);
+
+        await Task.CompletedTask;
     }
 }
