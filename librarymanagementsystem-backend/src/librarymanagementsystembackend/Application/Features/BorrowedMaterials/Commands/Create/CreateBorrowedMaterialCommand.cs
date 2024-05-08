@@ -85,7 +85,7 @@ public class CreateBorrowedMaterialCommand : IRequest<CreatedBorrowedMaterialRes
                 htmlBody: BorrowedMaterialsBusinessMessages.BorrowedMaterialEmailHtmlBody
                             .Replace("%Fullname%",string.Concat(member.FirstName,member.LastName))
                             .Replace("%MaterialName%",materialWithCopy.Name)
-                            .Replace("%%ReturnDate%%",borrowedMaterial.ReturnDate.ToString(CultureInfo.InvariantCulture)),
+                            .Replace("%ReturnDate%",borrowedMaterial.ReturnDate.ToString(CultureInfo.InvariantCulture)),
                 [new MailboxAddress(string.Concat(member.FirstName, member.LastName), member.Email)]);
 
             await _mailService.SendEmailAsync(mail);
