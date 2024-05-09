@@ -13,6 +13,7 @@ using NArchitecture.Core.Application.Pipelines.Logging;
 using NArchitecture.Core.Application.Pipelines.Transaction;
 using MediatR;
 using MimeKit;
+using NArchitecture.Core.Application.Pipelines.Authorization;
 using NArchitecture.Core.Mailing;
 using System.Globalization;
 
@@ -23,7 +24,7 @@ public class CreateBorrowedMaterialCommand : IRequest<CreatedBorrowedMaterialRes
     public Guid MemberId { get; set; }
     public Guid MaterialCopyId { get; set; }
 
-    public string[] Roles => [Admin, Write, BorrowedMaterialsOperationClaims.Create];
+    public string[] Roles => [BorrowedMaterialsOperationClaims.Admin, BorrowedMaterialsOperationClaims.Write, BorrowedMaterialsOperationClaims.Create];
     public class CreateBorrowedMaterialCommandHandler : IRequestHandler<CreateBorrowedMaterialCommand, CreatedBorrowedMaterialResponse>
     {
         private readonly IMapper _mapper;
