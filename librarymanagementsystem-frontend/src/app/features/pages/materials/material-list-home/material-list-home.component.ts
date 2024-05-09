@@ -25,9 +25,9 @@ export class MaterialListHomeComponent implements OnInit {
 
   //
   searchText: string = '';
-  // selectedMaterialCopyId: string = ''; // Seçilen materyal kopyası kimliği
-  selectedMaterialCopy: GetListMaterialResponse | null = null; // Seçilen materyal nesnesi
-
+  selectedMaterialCopyId: string = ''; // Seçilen materyal kopyası kimliği
+ // selectedMaterialCopy: GetListMaterialResponse | null = null; // Seçilen materyal nesnesi
+ materialId!:string;
   currentPageNumber: number = 1; // initialize with 1
   material!:string;
   readonly PAGE_SIZE=2;
@@ -141,18 +141,20 @@ getMaterialListBySearchTerm(searchText: string): void {
 
 //-----------------------------------------------------------
 
-onMaterialClick(material: GetListMaterialResponse): void {
+onMaterialClick(materialId: string): void {
   // Seçilen materyalin kopyası kimliğini ayarla
-  this.selectedMaterialCopy = material;
+  this.selectedMaterialCopyId = materialId;
+  console.log("onMaterialClick"+ materialId);
+  this.borrowMaterial();
 }
 
 borrowMaterial(): void {
   // Kullanıcının oturum durumunu kontrol et
   const isLoggedIn = this.authService.isLoggedIn();
-  if (isLoggedIn && this.selectedMaterialCopy) {
+  if (isLoggedIn && this.selectedMaterialCopyId) {
     // Oturumlu ise, materyal ödünç alma işlemini gerçekleştir
     const memberId = this.authService.getCurrentUserId(); // Kullanıcının kimliğini al
-    const materialCopyId = this.selectedMaterialCopy.id; // Seçilen materyal kopyası kimliğini al
+    const materialCopyId = this.selectedMaterialCopyId; // Seçilen materyal kopyası kimliğini al
     
     this.borrowMaterialProcess(memberId, materialCopyId);
     console.log("materialCopyId"+ materialCopyId);
