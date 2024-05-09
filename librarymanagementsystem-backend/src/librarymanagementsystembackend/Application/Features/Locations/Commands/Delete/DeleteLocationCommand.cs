@@ -1,5 +1,4 @@
 using Application.Features.Locations.Constants;
-using Application.Features.Locations.Constants;
 using Application.Features.Locations.Rules;
 using Application.Services.Repositories;
 using AutoMapper;
@@ -13,7 +12,7 @@ using static Application.Features.Locations.Constants.LocationsOperationClaims;
 
 namespace Application.Features.Locations.Commands.Delete;
 
-public class DeleteLocationCommand : IRequest<DeletedLocationResponse>, ICacheRemoverRequest, ILoggableRequest, ITransactionalRequest //ISecuredRequest,
+public class DeleteLocationCommand : IRequest<DeletedLocationResponse>, ICacheRemoverRequest, ILoggableRequest, ITransactionalRequest, ISecuredRequest
 {
     public Guid Id { get; set; }
 

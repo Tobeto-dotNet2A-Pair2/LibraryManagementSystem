@@ -1,5 +1,4 @@
 using Application.Features.MaterialImages.Constants;
-using Application.Features.MaterialImages.Constants;
 using Application.Features.MaterialImages.Rules;
 using Application.Services.ImageService;
 using Application.Services.Repositories;
@@ -14,7 +13,7 @@ using static Application.Features.MaterialImages.Constants.MaterialImagesOperati
 
 namespace Application.Features.MaterialImages.Commands.Delete;
 
-public class DeleteMaterialImageCommand : IRequest<DeletedMaterialImageResponse>, ICacheRemoverRequest, ILoggableRequest, ITransactionalRequest // ISecuredRequest,
+public class DeleteMaterialImageCommand : IRequest<DeletedMaterialImageResponse>, ICacheRemoverRequest, ILoggableRequest, ITransactionalRequest, ISecuredRequest
 {
     public Guid Id { get; set; }
 

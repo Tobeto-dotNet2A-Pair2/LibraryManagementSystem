@@ -12,7 +12,7 @@ using static Application.Features.Districts.Constants.DistrictsOperationClaims;
 
 namespace Application.Features.Districts.Queries.GetList;
 
-public class GetListDistrictQuery : IRequest<GetListResponse<GetListDistrictListItemDto>>, ICachableRequest // ISecuredRequest,
+public class GetListDistrictQuery : IRequest<GetListResponse<GetListDistrictListItemDto>>, ICachableRequest, ISecuredRequest
 {
     public PageRequest PageRequest { get; set; }
 

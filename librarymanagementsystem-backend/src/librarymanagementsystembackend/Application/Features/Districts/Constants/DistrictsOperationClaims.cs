@@ -1,8 +1,8 @@
-using NArchitecture.Core.Security.Attributes;
+
 
 namespace Application.Features.Districts.Constants;
 
-[OperationClaimConstants]
+
 public static class DistrictsOperationClaims
 {
     private const string _section = "Districts";

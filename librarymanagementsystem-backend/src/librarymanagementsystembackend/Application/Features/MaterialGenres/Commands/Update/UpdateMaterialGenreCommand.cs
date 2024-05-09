@@ -12,7 +12,7 @@ using static Application.Features.MaterialGenres.Constants.MaterialGenresOperati
 
 namespace Application.Features.MaterialGenres.Commands.Update;
 
-public class UpdateMaterialGenreCommand : IRequest<UpdatedMaterialGenreResponse>, ICacheRemoverRequest, ILoggableRequest, ITransactionalRequest // ISecuredRequest,
+public class UpdateMaterialGenreCommand : IRequest<UpdatedMaterialGenreResponse>, ICacheRemoverRequest, ILoggableRequest, ITransactionalRequest, ISecuredRequest
 {
     public Guid Id { get; set; }
     public Guid GenreId { get; set; }

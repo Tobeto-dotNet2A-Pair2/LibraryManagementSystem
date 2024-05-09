@@ -12,7 +12,7 @@ using static Application.Features.Addresses.Constants.AddressesOperationClaims;
 
 namespace Application.Features.Addresses.Queries.GetList;
 
-public class GetListAddressQuery : IRequest<GetListResponse<GetListAddressListItemDto>>, ICachableRequest //ISecuredRequest,
+public class GetListAddressQuery : IRequest<GetListResponse<GetListAddressListItemDto>>, ICachableRequest ,ISecuredRequest
 {
     public PageRequest PageRequest { get; set; }
 

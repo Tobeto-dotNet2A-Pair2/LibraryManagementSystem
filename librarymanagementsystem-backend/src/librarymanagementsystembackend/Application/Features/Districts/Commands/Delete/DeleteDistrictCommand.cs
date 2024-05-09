@@ -1,5 +1,4 @@
 using Application.Features.Districts.Constants;
-using Application.Features.Districts.Constants;
 using Application.Features.Districts.Rules;
 using Application.Services.Repositories;
 using AutoMapper;
@@ -13,7 +12,7 @@ using static Application.Features.Districts.Constants.DistrictsOperationClaims;
 
 namespace Application.Features.Districts.Commands.Delete;
 
-public class DeleteDistrictCommand : IRequest<DeletedDistrictResponse>, ICacheRemoverRequest, ILoggableRequest, ITransactionalRequest //ISecuredRequest,
+public class DeleteDistrictCommand : IRequest<DeletedDistrictResponse>, ICacheRemoverRequest, ILoggableRequest, ITransactionalRequest, ISecuredRequest
 {
     public Guid Id { get; set; }
 

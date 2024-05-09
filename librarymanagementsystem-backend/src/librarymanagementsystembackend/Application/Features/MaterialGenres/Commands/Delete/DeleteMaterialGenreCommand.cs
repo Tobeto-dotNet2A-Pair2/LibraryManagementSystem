@@ -1,5 +1,4 @@
 using Application.Features.MaterialGenres.Constants;
-using Application.Features.MaterialGenres.Constants;
 using Application.Features.MaterialGenres.Rules;
 using Application.Services.Repositories;
 using AutoMapper;
@@ -13,7 +12,7 @@ using static Application.Features.MaterialGenres.Constants.MaterialGenresOperati
 
 namespace Application.Features.MaterialGenres.Commands.Delete;
 
-public class DeleteMaterialGenreCommand : IRequest<DeletedMaterialGenreResponse>, ICacheRemoverRequest, ILoggableRequest, ITransactionalRequest //ISecuredRequest,
+public class DeleteMaterialGenreCommand : IRequest<DeletedMaterialGenreResponse>, ICacheRemoverRequest, ILoggableRequest, ITransactionalRequest, ISecuredRequest
 {
     public Guid Id { get; set; }
 

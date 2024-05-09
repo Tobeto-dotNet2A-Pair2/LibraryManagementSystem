@@ -12,7 +12,7 @@ using static Application.Features.MaterialImages.Constants.MaterialImagesOperati
 
 namespace Application.Features.MaterialImages.Queries.GetList;
 
-public class GetListMaterialImageQuery : IRequest<GetListResponse<GetListMaterialImageListItemDto>>, ICachableRequest // ISecuredRequest,
+public class GetListMaterialImageQuery : IRequest<GetListResponse<GetListMaterialImageListItemDto>>, ICachableRequest, ISecuredRequest
 {
     public PageRequest PageRequest { get; set; }
 

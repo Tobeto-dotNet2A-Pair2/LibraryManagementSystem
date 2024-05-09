@@ -1,8 +1,8 @@
-using NArchitecture.Core.Security.Attributes;
+
 
 namespace Application.Features.Penalties.Constants;
 
-[OperationClaimConstants]
+
 public static class PenaltiesOperationClaims
 {
     private const string _section = "Penalties";

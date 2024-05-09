@@ -12,7 +12,7 @@ using static Application.Features.Libraries.Constants.LibrariesOperationClaims;
 
 namespace Application.Features.Libraries.Commands.Update;
 
-public class UpdateLibraryCommand : IRequest<UpdatedLibraryResponse>, ICacheRemoverRequest, ILoggableRequest, ITransactionalRequest //ISecuredRequest,
+public class UpdateLibraryCommand : IRequest<UpdatedLibraryResponse>, ICacheRemoverRequest, ILoggableRequest, ITransactionalRequest, ISecuredRequest
 {
     public Guid Id { get; set; }
     public string Name { get; set; }

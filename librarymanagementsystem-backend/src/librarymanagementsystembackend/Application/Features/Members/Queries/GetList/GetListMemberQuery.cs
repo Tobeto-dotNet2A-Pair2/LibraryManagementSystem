@@ -12,7 +12,7 @@ using static Application.Features.Members.Constants.MembersOperationClaims;
 
 namespace Application.Features.Members.Queries.GetList;
 
-public class GetListMemberQuery : IRequest<GetListResponse<GetListMemberListItemDto>>, ICachableRequest // ISecuredRequest,
+public class GetListMemberQuery : IRequest<GetListResponse<GetListMemberListItemDto>>, ICachableRequest , ISecuredRequest
 {
     public PageRequest PageRequest { get; set; }
 

@@ -13,7 +13,7 @@ using Domain.Enums;
 
 namespace Application.Features.MaterialTypes.Commands.Update;
 
-public class UpdateMaterialTypeCommand : IRequest<UpdatedMaterialTypeResponse>, ICacheRemoverRequest, ILoggableRequest, ITransactionalRequest // ISecuredRequest,
+public class UpdateMaterialTypeCommand : IRequest<UpdatedMaterialTypeResponse>, ICacheRemoverRequest, ILoggableRequest, ITransactionalRequest, ISecuredRequest
 {
     public Guid Id { get; set; }
     public string Name { get; set; }

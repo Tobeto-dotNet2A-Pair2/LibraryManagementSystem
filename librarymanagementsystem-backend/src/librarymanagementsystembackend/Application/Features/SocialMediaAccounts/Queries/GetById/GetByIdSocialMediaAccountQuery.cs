@@ -9,7 +9,7 @@ using static Application.Features.SocialMediaAccounts.Constants.SocialMediaAccou
 
 namespace Application.Features.SocialMediaAccounts.Queries.GetById;
 
-public class GetByIdSocialMediaAccountQuery : IRequest<GetByIdSocialMediaAccountResponse> //, ISecuredRequest
+public class GetByIdSocialMediaAccountQuery : IRequest<GetByIdSocialMediaAccountResponse>, ISecuredRequest
 {
     public Guid Id { get; set; }
 

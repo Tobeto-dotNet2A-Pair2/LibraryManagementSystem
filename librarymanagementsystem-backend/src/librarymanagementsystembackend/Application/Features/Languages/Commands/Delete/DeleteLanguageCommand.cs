@@ -1,5 +1,4 @@
 using Application.Features.Languages.Constants;
-using Application.Features.Languages.Constants;
 using Application.Features.Languages.Rules;
 using Application.Services.Repositories;
 using AutoMapper;
@@ -13,7 +12,7 @@ using static Application.Features.Languages.Constants.LanguagesOperationClaims;
 
 namespace Application.Features.Languages.Commands.Delete;
 
-public class DeleteLanguageCommand : IRequest<DeletedLanguageResponse>, ICacheRemoverRequest, ILoggableRequest, ITransactionalRequest // ISecuredRequest,
+public class DeleteLanguageCommand : IRequest<DeletedLanguageResponse>, ICacheRemoverRequest, ILoggableRequest, ITransactionalRequest, ISecuredRequest
 {
     public Guid Id { get; set; }
 

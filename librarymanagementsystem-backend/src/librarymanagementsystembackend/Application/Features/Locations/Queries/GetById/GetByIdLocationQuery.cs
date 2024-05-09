@@ -9,7 +9,7 @@ using static Application.Features.Locations.Constants.LocationsOperationClaims;
 
 namespace Application.Features.Locations.Queries.GetById;
 
-public class GetByIdLocationQuery : IRequest<GetByIdLocationResponse> //, ISecuredRequest
+public class GetByIdLocationQuery : IRequest<GetByIdLocationResponse>, ISecuredRequest
 {
     public Guid Id { get; set; }
 

@@ -1,8 +1,8 @@
-using NArchitecture.Core.Security.Attributes;
+
 
 namespace Application.Features.PaymentMethods.Constants;
 
-[OperationClaimConstants]
+
 public static class PaymentMethodsOperationClaims
 {
     private const string _section = "PaymentMethods";

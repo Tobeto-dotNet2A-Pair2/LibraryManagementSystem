@@ -12,7 +12,7 @@ using static Application.Features.TranslatorMaterials.Constants.TranslatorMateri
 
 namespace Application.Features.TranslatorMaterials.Queries.GetList;
 
-public class GetListTranslatorMaterialQuery : IRequest<GetListResponse<GetListTranslatorMaterialListItemDto>>, ICachableRequest // ISecuredRequest,
+public class GetListTranslatorMaterialQuery : IRequest<GetListResponse<GetListTranslatorMaterialListItemDto>>, ICachableRequest, ISecuredRequest
 {
     public PageRequest PageRequest { get; set; }
 

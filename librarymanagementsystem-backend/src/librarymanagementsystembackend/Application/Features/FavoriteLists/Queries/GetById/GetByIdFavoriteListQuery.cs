@@ -9,7 +9,7 @@ using static Application.Features.FavoriteLists.Constants.FavoriteListsOperation
 
 namespace Application.Features.FavoriteLists.Queries.GetById;
 
-public class GetByIdFavoriteListQuery : IRequest<GetByIdFavoriteListResponse> //, ISecuredRequest
+public class GetByIdFavoriteListQuery : IRequest<GetByIdFavoriteListResponse>, ISecuredRequest
 {
     public Guid Id { get; set; }
 

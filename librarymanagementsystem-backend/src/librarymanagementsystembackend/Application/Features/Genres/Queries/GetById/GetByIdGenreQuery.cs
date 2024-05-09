@@ -9,7 +9,7 @@ using static Application.Features.Genres.Constants.GenresOperationClaims;
 
 namespace Application.Features.Genres.Queries.GetById;
 
-public class GetByIdGenreQuery : IRequest<GetByIdGenreResponse> //, ISecuredRequest
+public class GetByIdGenreQuery : IRequest<GetByIdGenreResponse>, ISecuredRequest
 {
     public Guid Id { get; set; }
 

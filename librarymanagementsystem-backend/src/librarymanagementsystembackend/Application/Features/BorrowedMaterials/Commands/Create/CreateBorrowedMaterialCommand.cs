@@ -18,11 +18,12 @@ using System.Globalization;
 
 namespace Application.Features.BorrowedMaterials.Commands.Create;
 
-public class CreateBorrowedMaterialCommand : IRequest<CreatedBorrowedMaterialResponse>, ILoggableRequest, ITransactionalRequest //ISecuredRequest,
+public class CreateBorrowedMaterialCommand : IRequest<CreatedBorrowedMaterialResponse>, ILoggableRequest, ITransactionalRequest, ISecuredRequest
 {
     public Guid MemberId { get; set; }
     public Guid MaterialCopyId { get; set; }
 
+    public string[] Roles => [Admin, Write, BorrowedMaterialsOperationClaims.Create];
     public class CreateBorrowedMaterialCommandHandler : IRequestHandler<CreateBorrowedMaterialCommand, CreatedBorrowedMaterialResponse>
     {
         private readonly IMapper _mapper;

@@ -1,5 +1,4 @@
 using Application.Features.BorrowedMaterials.Constants;
-using Application.Features.BorrowedMaterials.Constants;
 using Application.Features.BorrowedMaterials.Rules;
 using Application.Services.Repositories;
 using AutoMapper;
@@ -13,7 +12,7 @@ using static Application.Features.BorrowedMaterials.Constants.BorrowedMaterialsO
 
 namespace Application.Features.BorrowedMaterials.Commands.Delete;
 
-public class DeleteBorrowedMaterialCommand : IRequest<DeletedBorrowedMaterialResponse>, ICacheRemoverRequest, ILoggableRequest, ITransactionalRequest // ISecuredRequest,
+public class DeleteBorrowedMaterialCommand : IRequest<DeletedBorrowedMaterialResponse>, ICacheRemoverRequest, ILoggableRequest, ITransactionalRequest, ISecuredRequest
 {
     public Guid Id { get; set; }
 

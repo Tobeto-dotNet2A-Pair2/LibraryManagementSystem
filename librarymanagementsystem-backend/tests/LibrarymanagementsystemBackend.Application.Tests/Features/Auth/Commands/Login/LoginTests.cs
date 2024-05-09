@@ -52,7 +52,7 @@ public class LoginTests
         IUserRepository _userRepository = new MockUserRepository(userFakeData).GetUserMockRepository();
         #endregion
         #region Mock Helpers
-        ITokenHelper<Guid, int> tokenHelper = new JwtHelper<Guid, int>(_configuration);
+        ITokenHelper<Guid, int, Guid> tokenHelper = new JwtHelper<Guid, int, Guid>(_configuration.GetSection("TokenOptions").Get<TokenOptions>());
         IEmailAuthenticatorHelper emailAuthenticatorHelper = new EmailAuthenticatorHelper();
         MailSettings mailSettings =
             _configuration.GetSection("MailSettings").Get<MailSettings>() ?? throw new Exception("Mail settings not found.");
@@ -64,26 +64,26 @@ public class LoginTests
         };
         IMapper mapper = new Mapper(new MapperConfiguration(cfg => cfg.AddProfile<MappingProfiles>()));
         #endregion
-        AuthBusinessRules authBusinessRules = new(_userRepository, localizationService);
-        IAuthService _authService = new AuthManager(
-            _userOperationClaimRepository,
-            _refreshTokenRepository,
-            tokenHelper,
-            _configuration,
-            mapper
-        );
-        UserBusinessRules _userBusinessRules = new(_userRepository, localizationService);
-        IUserService _userService = new UserManager(_userRepository, _userBusinessRules);
-        IAuthenticatorService _authententicatorService = new AuthenticatorManager(
-            emailAuthenticatorHelper,
-            _userEmailAuthenticatorRepository,
-            mailService,
-            otpAuthenticatorHelper,
-            _userOtpAuthenticatorRepository
-        );
-        _validator = new LoginCommandValidator();
-        _loginCommand = new LoginCommand();
-        _loginCommandHandler = new LoginCommandHandler(_userService, _authService, authBusinessRules, _authententicatorService);
+        //AuthBusinessRules authBusinessRules = new(_userRepository, localizationService);
+        //IAuthService _authService = new AuthManager(
+        //    _userOperationClaimRepository,
+        //    _refreshTokenRepository,
+        //    tokenHelper,
+        //    _configuration,
+        //    mapper
+        //);
+        //UserBusinessRules _userBusinessRules = new(_userRepository, localizationService);
+        //IUserService _userService = new UserManager(_userRepository, _userBusinessRules);
+        //IAuthenticatorService _authententicatorService = new AuthenticatorManager(
+        //    emailAuthenticatorHelper,
+        //    _userEmailAuthenticatorRepository,
+        //    mailService,
+        //    otpAuthenticatorHelper,
+        //    _userOtpAuthenticatorRepository
+        //);
+        ////_validator = new LoginCommandValidator();
+        //_loginCommand = new LoginCommand();
+        //_loginCommandHandler = new LoginCommandHandler(_userService, _authService, authBusinessRules, _authententicatorService);
     }
 
     [Fact]

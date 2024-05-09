@@ -1,8 +1,8 @@
-using NArchitecture.Core.Security.Attributes;
+
 
 namespace Application.Features.MemberContacts.Constants;
 
-[OperationClaimConstants]
+
 public static class MemberContactsOperationClaims
 {
     private const string _section = "MemberContacts";

@@ -12,7 +12,7 @@ using static Application.Features.Members.Constants.MembersOperationClaims;
 
 namespace Application.Features.Members.Commands.Update;
 
-public class UpdateMemberCommand : IRequest<UpdatedMemberResponse>, ICacheRemoverRequest, ILoggableRequest, ITransactionalRequest //ISecuredRequest,
+public class UpdateMemberCommand : IRequest<UpdatedMemberResponse>, ICacheRemoverRequest, ILoggableRequest, ITransactionalRequest, ISecuredRequest
 {
     public Guid Id { get; set; }
     public string FirstName { get; set; }

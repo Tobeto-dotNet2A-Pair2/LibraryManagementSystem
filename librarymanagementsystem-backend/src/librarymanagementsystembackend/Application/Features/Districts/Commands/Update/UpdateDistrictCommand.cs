@@ -12,7 +12,7 @@ using static Application.Features.Districts.Constants.DistrictsOperationClaims;
 
 namespace Application.Features.Districts.Commands.Update;
 
-public class UpdateDistrictCommand : IRequest<UpdatedDistrictResponse>, ICacheRemoverRequest, ILoggableRequest, ITransactionalRequest //ISecuredRequest,
+public class UpdateDistrictCommand : IRequest<UpdatedDistrictResponse>, ICacheRemoverRequest, ILoggableRequest, ITransactionalRequest, ISecuredRequest
 {
     public Guid Id { get; set; }
     public string Name { get; set; }

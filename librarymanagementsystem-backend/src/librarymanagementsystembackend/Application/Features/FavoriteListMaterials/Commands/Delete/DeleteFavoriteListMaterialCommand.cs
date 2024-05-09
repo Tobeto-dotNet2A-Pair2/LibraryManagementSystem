@@ -1,5 +1,4 @@
 using Application.Features.FavoriteListMaterials.Constants;
-using Application.Features.FavoriteListMaterials.Constants;
 using Application.Features.FavoriteListMaterials.Rules;
 using Application.Services.Repositories;
 using AutoMapper;
@@ -13,7 +12,7 @@ using static Application.Features.FavoriteListMaterials.Constants.FavoriteListMa
 
 namespace Application.Features.FavoriteListMaterials.Commands.Delete;
 
-public class DeleteFavoriteListMaterialCommand : IRequest<DeletedFavoriteListMaterialResponse>, ICacheRemoverRequest, ILoggableRequest, ITransactionalRequest // ISecuredRequest,
+public class DeleteFavoriteListMaterialCommand : IRequest<DeletedFavoriteListMaterialResponse>, ICacheRemoverRequest, ILoggableRequest, ITransactionalRequest, ISecuredRequest
 {
     public Guid Id { get; set; }
 

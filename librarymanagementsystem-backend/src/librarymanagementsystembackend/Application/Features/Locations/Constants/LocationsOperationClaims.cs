@@ -1,8 +1,8 @@
-using NArchitecture.Core.Security.Attributes;
+
 
 namespace Application.Features.Locations.Constants;
 
-[OperationClaimConstants]
+
 public static class LocationsOperationClaims
 {
     private const string _section = "Locations";

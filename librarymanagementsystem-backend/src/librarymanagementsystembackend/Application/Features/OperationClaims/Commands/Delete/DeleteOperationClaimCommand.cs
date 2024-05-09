@@ -9,7 +9,7 @@ using static Application.Features.OperationClaims.Constants.OperationClaimsOpera
 
 namespace Application.Features.OperationClaims.Commands.Delete;
 
-public class DeleteOperationClaimCommand : IRequest<DeletedOperationClaimResponse> // , ISecuredRequest
+public class DeleteOperationClaimCommand : IRequest<DeletedOperationClaimResponse>, ISecuredRequest
 {
     public int Id { get; set; }
 

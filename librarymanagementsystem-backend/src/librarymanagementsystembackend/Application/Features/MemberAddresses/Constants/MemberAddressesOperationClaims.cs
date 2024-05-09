@@ -1,8 +1,8 @@
-using NArchitecture.Core.Security.Attributes;
+
 
 namespace Application.Features.MemberAddresses.Constants;
 
-[OperationClaimConstants]
+
 public static class MemberAddressesOperationClaims
 {
     private const string _section = "MemberAddresses";

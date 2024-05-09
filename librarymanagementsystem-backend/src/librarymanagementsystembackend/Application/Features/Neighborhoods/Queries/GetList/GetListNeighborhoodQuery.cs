@@ -12,7 +12,7 @@ using static Application.Features.Neighborhoods.Constants.NeighborhoodsOperation
 
 namespace Application.Features.Neighborhoods.Queries.GetList;
 
-public class GetListNeighborhoodQuery : IRequest<GetListResponse<GetListNeighborhoodListItemDto>>, ICachableRequest // ISecuredRequest,
+public class GetListNeighborhoodQuery : IRequest<GetListResponse<GetListNeighborhoodListItemDto>>, ICachableRequest, ISecuredRequest
 {
     public PageRequest PageRequest { get; set; }
 

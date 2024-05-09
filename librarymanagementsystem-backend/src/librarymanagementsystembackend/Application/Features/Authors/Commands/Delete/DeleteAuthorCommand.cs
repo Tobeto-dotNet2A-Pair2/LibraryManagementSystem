@@ -1,5 +1,4 @@
 using Application.Features.Authors.Constants;
-using Application.Features.Authors.Constants;
 using Application.Features.Authors.Rules;
 using Application.Services.Repositories;
 using AutoMapper;
@@ -13,7 +12,7 @@ using static Application.Features.Authors.Constants.AuthorsOperationClaims;
 
 namespace Application.Features.Authors.Commands.Delete;
 
-public class DeleteAuthorCommand : IRequest<DeletedAuthorResponse>, ICacheRemoverRequest, ILoggableRequest, ITransactionalRequest //ISecuredRequest,
+public class DeleteAuthorCommand : IRequest<DeletedAuthorResponse>, ICacheRemoverRequest, ILoggableRequest, ITransactionalRequest,ISecuredRequest
 {
     public Guid Id { get; set; }
 

@@ -14,7 +14,7 @@ using static Application.Features.MaterialCopies.Constants.MaterialCopiesOperati
 
 namespace Application.Features.MaterialCopies.Queries.GetList;
 
-public class GetListMaterialCopyQuery : IRequest<GetListResponse<GetListMaterialCopyDto>> //, ICachableRequest, ISecuredRequest,
+public class GetListMaterialCopyQuery : IRequest<GetListResponse<GetListMaterialCopyListItemDto>>, ICachableRequest, ISecuredRequest
 {
     public string SearchText { get; set; }
     public int PageIndex { get; set; }

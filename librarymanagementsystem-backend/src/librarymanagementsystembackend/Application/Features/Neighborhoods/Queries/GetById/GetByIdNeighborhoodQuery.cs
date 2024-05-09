@@ -9,7 +9,7 @@ using static Application.Features.Neighborhoods.Constants.NeighborhoodsOperation
 
 namespace Application.Features.Neighborhoods.Queries.GetById;
 
-public class GetByIdNeighborhoodQuery : IRequest<GetByIdNeighborhoodResponse> //, ISecuredRequest
+public class GetByIdNeighborhoodQuery : IRequest<GetByIdNeighborhoodResponse>, ISecuredRequest
 {
     public Guid Id { get; set; }
 

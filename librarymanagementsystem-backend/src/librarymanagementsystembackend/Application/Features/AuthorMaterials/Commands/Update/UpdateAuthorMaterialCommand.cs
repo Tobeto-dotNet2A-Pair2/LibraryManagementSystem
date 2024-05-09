@@ -12,7 +12,7 @@ using static Application.Features.AuthorMaterials.Constants.AuthorMaterialsOpera
 
 namespace Application.Features.AuthorMaterials.Commands.Update;
 
-public class UpdateAuthorMaterialCommand : IRequest<UpdatedAuthorMaterialResponse>, ICacheRemoverRequest, ILoggableRequest, ITransactionalRequest // ISecuredRequest,
+public class UpdateAuthorMaterialCommand : IRequest<UpdatedAuthorMaterialResponse>, ICacheRemoverRequest, ILoggableRequest, ITransactionalRequest, ISecuredRequest
 {
     public Guid Id { get; set; }
     public Guid AuthorId { get; set; }

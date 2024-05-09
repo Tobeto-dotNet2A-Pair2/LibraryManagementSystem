@@ -1,5 +1,4 @@
 using Application.Features.Libraries.Constants;
-using Application.Features.Libraries.Constants;
 using Application.Features.Libraries.Rules;
 using Application.Services.Repositories;
 using AutoMapper;
@@ -13,7 +12,7 @@ using static Application.Features.Libraries.Constants.LibrariesOperationClaims;
 
 namespace Application.Features.Libraries.Commands.Delete;
 
-public class DeleteLibraryCommand : IRequest<DeletedLibraryResponse>, ICacheRemoverRequest, ILoggableRequest, ITransactionalRequest // ISecuredRequest,
+public class DeleteLibraryCommand : IRequest<DeletedLibraryResponse>, ICacheRemoverRequest, ILoggableRequest, ITransactionalRequest, ISecuredRequest
 {
     public Guid Id { get; set; }
 

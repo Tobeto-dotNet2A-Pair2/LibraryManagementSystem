@@ -12,7 +12,7 @@ using static Application.Features.FavoriteListMaterials.Constants.FavoriteListMa
 
 namespace Application.Features.FavoriteListMaterials.Commands.Update;
 
-public class UpdateFavoriteListMaterialCommand : IRequest<UpdatedFavoriteListMaterialResponse>, ICacheRemoverRequest, ILoggableRequest, ITransactionalRequest //ISecuredRequest,
+public class UpdateFavoriteListMaterialCommand : IRequest<UpdatedFavoriteListMaterialResponse>, ICacheRemoverRequest, ILoggableRequest, ITransactionalRequest, ISecuredRequest
 {
     public Guid Id { get; set; }
     public Guid FavoriteListId { get; set; }

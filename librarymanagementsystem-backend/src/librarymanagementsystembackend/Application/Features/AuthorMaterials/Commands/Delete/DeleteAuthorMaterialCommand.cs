@@ -1,5 +1,4 @@
 using Application.Features.AuthorMaterials.Constants;
-using Application.Features.AuthorMaterials.Constants;
 using Application.Features.AuthorMaterials.Rules;
 using Application.Services.Repositories;
 using AutoMapper;
@@ -13,7 +12,7 @@ using static Application.Features.AuthorMaterials.Constants.AuthorMaterialsOpera
 
 namespace Application.Features.AuthorMaterials.Commands.Delete;
 
-public class DeleteAuthorMaterialCommand : IRequest<DeletedAuthorMaterialResponse>, ICacheRemoverRequest, ILoggableRequest, ITransactionalRequest // ISecuredRequest,
+public class DeleteAuthorMaterialCommand : IRequest<DeletedAuthorMaterialResponse>, ICacheRemoverRequest, ILoggableRequest, ITransactionalRequest, ISecuredRequest
 {
     public Guid Id { get; set; }
 

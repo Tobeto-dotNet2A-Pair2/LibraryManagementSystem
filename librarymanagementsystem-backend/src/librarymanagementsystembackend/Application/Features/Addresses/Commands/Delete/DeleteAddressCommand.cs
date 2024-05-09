@@ -1,5 +1,4 @@
 using Application.Features.Addresses.Constants;
-using Application.Features.Addresses.Constants;
 using Application.Features.Addresses.Rules;
 using Application.Services.Repositories;
 using AutoMapper;
@@ -13,7 +12,7 @@ using static Application.Features.Addresses.Constants.AddressesOperationClaims;
 
 namespace Application.Features.Addresses.Commands.Delete;
 
-public class DeleteAddressCommand : IRequest<DeletedAddressResponse>, ICacheRemoverRequest, ILoggableRequest, ITransactionalRequest // ISecuredRequest,
+public class DeleteAddressCommand : IRequest<DeletedAddressResponse>, ICacheRemoverRequest, ILoggableRequest, ITransactionalRequest, ISecuredRequest
 {
     public Guid Id { get; set; }
 
