@@ -35,10 +35,7 @@ export const routes: Routes = [
       { path: 'aboutus', component: AboutUsComponent },
       { path: 'questions', component: QuestionComponent },
       { path: 'app-material-list-home', component: MaterialListHomeComponent },
-      { path: 'material-detail-home/:id', component: MaterialDetailHomeComponent }
-
-
-      
+      { path: 'material-detail-home/:id', component: MaterialDetailHomeComponent },    
       { path: 'myprofile', component: MyProfileComponent },
       { path: 'myborrowed', component: BorrowedMaterialComponent },
     ]
