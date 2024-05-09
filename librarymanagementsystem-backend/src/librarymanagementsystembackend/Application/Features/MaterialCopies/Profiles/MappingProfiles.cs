@@ -35,5 +35,24 @@ public class MappingProfiles : Profile
                 .MapFrom(a => a.Material.PunishmentAmount))
             .ForMember(a => a.Name, opt => opt
                 .MapFrom(a => a.Material.Name));
+
+
+        CreateMap<IPaginate<MaterialCopy>, GetListResponse<GetListMaterialCopyDto>>();
+        CreateMap<MaterialCopy, GetListMaterialCopyDto>()
+            .ForMember(a => a.Name, opt => opt
+                .MapFrom(src => src.Material.Name))
+            .ForMember(a => a.Description, opt => opt
+                .MapFrom(src => src.Material.Description))
+            .ForMember(a => a.ImageUrls, opt => opt
+                .MapFrom(src => src.Material.MaterialImages.Select(a => a.Url)))
+            .ForMember(a => a.BorrowDay, opt => opt
+                .MapFrom(src => src.Material.BorrowDay))
+            .ForMember(a => a.IsBorrowable, opt => opt
+                .MapFrom(src => src.Material.IsBorrowable))
+            .ForMember(a => a.PunishmentAmount, opt => opt
+                .MapFrom(src => src.Material.PunishmentAmount))
+            .ForMember(a => a.FullLocationMap, opt => opt
+                .MapFrom(src => src.Location.FullLocationMap));
     }
+    
 }
