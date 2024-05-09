@@ -119,5 +119,12 @@ export class AuthService extends AuthBaseService {
     return false;
   }
   
+// Kullanıcının oturum bilgilerini kontrol etmek için 
+// bu.storageService.getToken() ile kullanıcının token'ını alır ve token'ın geçerliliğini kontrol eder
+  isLoggedIn(): boolean {
+    const token = this.storageService.getToken(); // localStorage'da saklanan token
+    const isTokenValid = !!token && !this.jwtHelper.isTokenExpired(token);
+    return isTokenValid;
+  }
   
 }
