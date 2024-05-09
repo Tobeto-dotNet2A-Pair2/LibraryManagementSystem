@@ -65,7 +65,7 @@ export class LoginComponent {
         // Başarılı giriş durumunda
         this.toastr.success('Giriş başarılı!', 'Başarılı');
          this.toastr.clear(); // Toast mesajını kapat
-        this.toastr.info("Admin Sayfasına Yönlendiriliyorsun.");
+        this.toastr.info("Başarılı şekilde Yönlendiriliyorsun.");
 
         // İşlem tamamlandığında yönlendirme yapılabilir
         setTimeout(() => {
