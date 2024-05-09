@@ -6,6 +6,7 @@ import { JWT_ID } from '../../../core/constants/jwtAttributes';
 import { jwtDecode } from 'jwt-decode';
 import { GetByIdMemberResponse } from '../../models/responses/members/get-by-id-member-response';
 import { CommonModule } from '@angular/common';
+
 import {
   FormControl,
   FormGroup,
@@ -49,6 +50,7 @@ export class MyProfileComponent implements OnInit {
     this.findMemberByUserId().then(() => {
       this.createUpdateMaterialForm();
     });
+    
   }
 
   findMemberByUserId(): Promise<void> {
@@ -100,14 +102,14 @@ export class MyProfileComponent implements OnInit {
         Validators.required,
       ]),
       position: new FormControl(this.memberByIdList[0]?.position || ''),
-      birthDate: new FormControl(this.memberByIdList[0]?.birthDate || ''),
+      birthDate: new FormControl(this.memberByIdList[0].birthDate ? this.memberByIdList[0].birthDate.split('T')[0] : ''|| ''),
     });
   }
 
   onSubmitUpdateMemberForm(): void {
     let updateMemberData: UpdateMemberRequest = Object.assign(
       {
-        profilePicture:"https://static-cse.canva.com/blob/1477992/1600w-6TRIGX90Yig.jpg",
+        profilePicture:"assets/media/avatars/blank.png",
         id: this.memberByIdList[0]?.id,
         totalDebt: this.memberByIdList[0]?.totalDebt,
         isActive: this.memberByIdList[0]?.isActive,
