@@ -101,7 +101,9 @@ export class MyProfileComponent implements OnInit {
       phoneNumber: new FormControl(this.memberByIdList[0]?.phoneNumber || '', [
         Validators.required,
       ]),
-      position: new FormControl(this.memberByIdList[0]?.position || ''),
+      position: new FormControl(this.memberByIdList[0]?.position || '',[
+        Validators.required,
+      ]),
       birthDate: new FormControl(this.memberByIdList[0].birthDate ? this.memberByIdList[0].birthDate.split('T')[0] : ''|| ''),
     });
   }
@@ -111,7 +113,7 @@ export class MyProfileComponent implements OnInit {
       {
         profilePicture:"assets/media/avatars/blank.png",
         id: this.memberByIdList[0]?.id,
-        totalDebt: this.memberByIdList[0]?.totalDebt,
+        totalDebt: 5,
         isActive: this.memberByIdList[0]?.isActive,
         userId: this.memberByIdList[0]?.userId,
       },
@@ -125,8 +127,8 @@ export class MyProfileComponent implements OnInit {
       },
       (error) => {
         this.toastr.error(
-          'An error occurred while updating the Member.',
-          'Error'
+          'Tüm Bilgileri giriniz'
+
         );
         console.error(error);
       }
