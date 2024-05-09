@@ -1,8 +1,8 @@
-using NArchitecture.Core.Security.Attributes;
+
 
 namespace Application.Features.MaterialProperties.Constants;
 
-[OperationClaimConstants]
+
 public static class MaterialPropertiesOperationClaims
 {
     private const string _section = "MaterialProperties";

@@ -1,8 +1,8 @@
-using NArchitecture.Core.Security.Attributes;
+
 
 namespace Application.Features.FavoriteListMaterials.Constants;
 
-[OperationClaimConstants]
+
 public static class FavoriteListMaterialsOperationClaims
 {
     private const string _section = "FavoriteListMaterials";

@@ -1,8 +1,8 @@
-using NArchitecture.Core.Security.Attributes;
+
 
 namespace Application.Features.BorrowedMaterials.Constants;
 
-[OperationClaimConstants]
+
 public static class BorrowedMaterialsOperationClaims
 {
     private const string _section = "BorrowedMaterials";

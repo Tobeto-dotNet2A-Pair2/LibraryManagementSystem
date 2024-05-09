@@ -1,8 +1,8 @@
-using NArchitecture.Core.Security.Attributes;
+
 
 namespace Application.Features.PublisherMaterials.Constants;
 
-[OperationClaimConstants]
+
 public static class PublisherMaterialsOperationClaims
 {
     private const string _section = "PublisherMaterials";

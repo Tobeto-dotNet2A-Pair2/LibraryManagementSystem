@@ -1,8 +1,8 @@
-using NArchitecture.Core.Security.Attributes;
+
 
 namespace Application.Features.Branches.Constants;
 
-[OperationClaimConstants]
+
 public static class BranchesOperationClaims
 {
     private const string _section = "Branches";

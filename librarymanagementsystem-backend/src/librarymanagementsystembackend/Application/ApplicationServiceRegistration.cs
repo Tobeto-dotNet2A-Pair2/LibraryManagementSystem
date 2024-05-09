@@ -54,6 +54,7 @@ using Application.Services.TranslatorMaterials;
 using Application.Services.Genres;
 using Application.Services.MaterialGenres;
 using Application.Services.MaterialImages;
+using NArchitecture.Core.Security.JWT;
 
 namespace Application;
 
@@ -63,7 +64,8 @@ public static class ApplicationServiceRegistration
         this IServiceCollection services,
         MailSettings mailSettings,
         FileLogConfiguration fileLogConfiguration,
-        ElasticSearchConfig elasticSearchConfig
+        ElasticSearchConfig elasticSearchConfig,
+        TokenOptions tokenOptions
     )
     {
         services.AddAutoMapper(Assembly.GetExecutingAssembly());
@@ -92,7 +94,7 @@ public static class ApplicationServiceRegistration
 
         services.AddYamlResourceLocalization();
 
-        services.AddSecurityServices<Guid, int>();
+        services.AddSecurityServices<Guid, int,Guid>(tokenOptions);
 
         services.AddScoped<IMemberService, MemberManager>();
         services.AddScoped<IAddressService, AddressManager>();

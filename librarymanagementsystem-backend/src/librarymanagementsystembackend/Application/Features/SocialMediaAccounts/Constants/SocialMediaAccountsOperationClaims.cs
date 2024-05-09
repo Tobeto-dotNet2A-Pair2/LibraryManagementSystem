@@ -1,8 +1,8 @@
-using NArchitecture.Core.Security.Attributes;
+
 
 namespace Application.Features.SocialMediaAccounts.Constants;
 
-[OperationClaimConstants]
+
 public static class SocialMediaAccountsOperationClaims
 {
     private const string _section = "SocialMediaAccounts";

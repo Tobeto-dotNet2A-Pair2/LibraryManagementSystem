@@ -1,8 +1,8 @@
-using NArchitecture.Core.Security.Attributes;
+
 
 namespace Application.Features.MaterialCopies.Constants;
 
-[OperationClaimConstants]
+
 public static class MaterialCopiesOperationClaims
 {
     private const string _section = "MaterialCopies";

@@ -1,8 +1,8 @@
-using NArchitecture.Core.Security.Attributes;
+
 
 namespace Application.Features.Libraries.Constants;
 
-[OperationClaimConstants]
+
 public static class LibrariesOperationClaims
 {
     private const string _section = "Libraries";

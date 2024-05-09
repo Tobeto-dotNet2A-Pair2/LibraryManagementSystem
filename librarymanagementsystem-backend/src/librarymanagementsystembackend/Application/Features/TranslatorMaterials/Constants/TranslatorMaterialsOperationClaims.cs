@@ -1,8 +1,8 @@
-using NArchitecture.Core.Security.Attributes;
+
 
 namespace Application.Features.TranslatorMaterials.Constants;
 
-[OperationClaimConstants]
+
 public static class TranslatorMaterialsOperationClaims
 {
     private const string _section = "TranslatorMaterials";

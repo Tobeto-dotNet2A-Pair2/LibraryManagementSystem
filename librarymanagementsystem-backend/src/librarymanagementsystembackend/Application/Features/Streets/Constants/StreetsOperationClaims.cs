@@ -1,8 +1,8 @@
-using NArchitecture.Core.Security.Attributes;
+
 
 namespace Application.Features.Streets.Constants;
 
-[OperationClaimConstants]
+
 public static class StreetsOperationClaims
 {
     private const string _section = "Streets";
