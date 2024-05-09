@@ -1,4 +1,4 @@
-<div class="card" *ngIf="memberByIdList.length>0">
+<div class="card" *ngIf="memberByIdList.length>0" [formGroup]="updateMemberForm">
 <!--begin::Card body-->
 <div class="card-body border-top p-9">
   <!--begin::Input group-->
@@ -94,7 +94,7 @@
             name="fname"
             class="form-control form-control-lg form-control-solid mb-3 mb-lg-0"
             placeholder="Adınız"
-            [value]="memberByIdList[0].firstName"
+            formControlName="firstName"
           />
           <div class="fv-plugins-message-container invalid-feedback"></div>
         </div>
@@ -106,7 +106,7 @@
             name="lname"
             class="form-control form-control-lg form-control-solid"
             placeholder="Soyadınız"
-            [value]="memberByIdList[0].lastName"
+            formControlName="lastName"
           />
           <div class="fv-plugins-message-container invalid-feedback"></div>
         </div>
@@ -131,7 +131,7 @@
         name="company"
         class="form-control form-control-lg form-control-solid"
         placeholder="TC'nizi giriniz"
-        [value]="memberByIdList[0].nationalIdentity"
+        formControlName="nationalIdentity"
       />
       <div class="fv-plugins-message-container invalid-feedback"></div>
     </div>
@@ -152,7 +152,7 @@
         name="phone"
         class="form-control form-control-lg form-control-solid"
         placeholder="Telefon Numaranız"
-        [value]="memberByIdList[0].phoneNumber"
+        formControlName="phoneNumber"
       />
       <div class="fv-plugins-message-container invalid-feedback"></div>
     </div>
@@ -171,7 +171,7 @@
         name="website"
         class="form-control form-control-lg form-control-solid"
         placeholder="Pozisyonunuz"
-        [value]="memberByIdList[0].position"
+        formControlName="position"
       />
     </div>
     <!--end::Col-->
@@ -183,13 +183,13 @@
     <label class="col-lg-4 col-form-label fw-semibold fs-6">Doğum Tarihi</label>
     <!--end::Label-->
     <!--begin::Col-->
-    <div class="mb-10">
-      <label for="" class="form-label">Date Receipt</label>
+    <div class="col-lg-8 fv-row">
       <input
-        class="form-control"
-        placeholder="Pick a date"
-        id="dateReceipt"
-        formControlName="dateReceipt"
+        type="date"
+        name="website"
+        class="form-control form-control-lg form-control-solid"
+        [value]="memberByIdList[0].birthDate ? memberByIdList[0].birthDate.split('T')[0] : ''"
+        formControlName="birthDate"
       />
     </div>
     <!--end::Col-->
@@ -199,15 +199,13 @@
 <!--end::Card body-->
 <!--begin::Actions-->
 <div class="card-footer d-flex justify-content-end py-6 px-9">
-  <button type="reset" class="btn btn-light btn-active-light-primary me-2">
-    Discard
-  </button>
   <button
     type="submit"
     class="btn btn-primary"
     id="kt_account_profile_details_submit"
+    (click)="onSubmitUpdateMemberForm()"
   >
-    Save Changes
+    Kaydet
   </button>
 </div>
 <!--end::Actions-->

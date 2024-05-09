@@ -6,17 +6,27 @@ import { JWT_ID } from '../../../core/constants/jwtAttributes';
 import { jwtDecode } from 'jwt-decode';
 import { GetByIdMemberResponse } from '../../models/responses/members/get-by-id-member-response';
 import { CommonModule } from '@angular/common';
+import {
+  FormControl,
+  FormGroup,
+  FormsModule,
+  ReactiveFormsModule,
+  Validators,
+} from '@angular/forms';
+import { UpdateMemberRequest } from '../../models/requests/members/update-member-request';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-my-profile',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, FormsModule, ReactiveFormsModule],
   templateUrl: './my-profile.component.html',
   styleUrl: './my-profile.component.scss',
 })
 export class MyProfileComponent implements OnInit {
   tokenId!: string;
   memberByIdList: GetByIdMemberResponse[] = [];
+  updateMemberForm!: FormGroup;
   memberList: MemberListDto = {
     index: 0,
     size: 0,
@@ -29,39 +39,95 @@ export class MyProfileComponent implements OnInit {
 
   constructor(
     private membersService: MembersService,
-    private LocalStorageService: LocalStorageService
+    private LocalStorageService: LocalStorageService,
+    private toastr: ToastrService
   ) {}
 
   readonly PAGE_SIZE = 1000000000;
 
   ngOnInit(): void {
-    this.findMemberByUserId();
+    this.findMemberByUserId().then(() => {
+      this.createUpdateMaterialForm();
+    });
   }
 
-  findMemberByUserId() {
-    const token = this.LocalStorageService.getToken();
-  
-    if (token !== null) {
-      const decodedToken = jwtDecode<any>(token);
-      const id = decodedToken[JWT_ID];
-      this.tokenId = id;
-      //console.log("token:"+this.tokenId);
-      if (this.tokenId !== null) {
-        // Yüklenme tamamlandığında üye listesini bul
-        this.membersService.getList({ pageIndex: 0, pageSize: this.PAGE_SIZE }).subscribe(response => {
-          this.memberList = response;
-          const foundMember = this.memberList.items.find((member) => member.userId === this.tokenId);
-          if (foundMember) {
-            this.memberByIdList=[foundMember];
-            console.log('Found member:', this.memberByIdList);
-          } else {
-            console.log('Member not found.');
-          }
-        });
+  findMemberByUserId(): Promise<void> {
+    return new Promise<void>((resolve, reject) => {
+      const token = this.LocalStorageService.getToken();
+
+      if (token !== null) {
+        const decodedToken = jwtDecode<any>(token);
+        const id = decodedToken[JWT_ID];
+        this.tokenId = id;
+
+        if (this.tokenId !== null) {
+          this.membersService
+            .getList({ pageIndex: 0, pageSize: this.PAGE_SIZE })
+            .subscribe((response) => {
+              this.memberList = response;
+              const foundMember = this.memberList.items.find(
+                (member) => member.userId === this.tokenId
+              );
+              if (foundMember) {
+                this.memberByIdList = [foundMember];
+                console.log('Found member:', this.memberByIdList);
+                resolve(); // İşlem tamamlandığında promise'i çöz
+              } else {
+                console.log('Member not found.');
+                resolve(); // İşlem tamamlandığında promise'i çöz
+              }
+            });
+        }
+      } else {
+        resolve(); // İşlem tamamlandığında promise'i çöz
       }
-    }
+    });
+  }
+  private createUpdateMaterialForm(): void {
+    this.updateMemberForm = new FormGroup({
+      // profilePicture: new FormControl(''),
+      firstName: new FormControl(this.memberByIdList[0]?.firstName || '', [
+        Validators.required,
+      ]),
+      lastName: new FormControl(this.memberByIdList[0]?.lastName || '', [
+        Validators.required,
+      ]),
+      nationalIdentity: new FormControl(
+        this.memberByIdList[0]?.nationalIdentity || '',
+        [Validators.required]
+      ),
+      phoneNumber: new FormControl(this.memberByIdList[0]?.phoneNumber || '', [
+        Validators.required,
+      ]),
+      position: new FormControl(this.memberByIdList[0]?.position || ''),
+      birthDate: new FormControl(this.memberByIdList[0]?.birthDate || ''),
+    });
   }
 
+  onSubmitUpdateMemberForm(): void {
+    let updateMemberData: UpdateMemberRequest = Object.assign(
+      {
+        profilePicture:"https://static-cse.canva.com/blob/1477992/1600w-6TRIGX90Yig.jpg",
+        id: this.memberByIdList[0]?.id,
+        totalDebt: this.memberByIdList[0]?.totalDebt,
+        isActive: this.memberByIdList[0]?.isActive,
+        userId: this.memberByIdList[0]?.userId,
+      },
 
-  
+      this.updateMemberForm.value
+    );
+
+    this.membersService.updateMember(updateMemberData).subscribe(
+      () => {
+        this.toastr.success('Profiliniz başarıyla güncellendi.', 'Success');
+      },
+      (error) => {
+        this.toastr.error(
+          'An error occurred while updating the Member.',
+          'Error'
+        );
+        console.error(error);
+      }
+    );
+  }
 }
