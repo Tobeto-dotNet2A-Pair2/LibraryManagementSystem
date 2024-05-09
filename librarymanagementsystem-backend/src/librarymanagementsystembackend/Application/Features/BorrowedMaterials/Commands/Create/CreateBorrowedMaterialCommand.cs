@@ -70,7 +70,7 @@ public class CreateBorrowedMaterialCommand : IRequest<CreatedBorrowedMaterialRes
 
             var borrowedMaterial = _mapper.Map<BorrowedMaterial>(request);
             borrowedMaterial.ReturnDate = DateTime.UtcNow.AddDays(materialWithCopy.BorrowDay);
-         //   await _borrowedMaterialRepository.AddAsync(borrowedMaterial);
+            await _borrowedMaterialRepository.AddAsync(borrowedMaterial);
             
             #endregion
 
