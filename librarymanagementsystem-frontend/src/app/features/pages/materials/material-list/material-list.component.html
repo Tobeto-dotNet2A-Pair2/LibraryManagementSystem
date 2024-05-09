@@ -197,21 +197,21 @@
                               <td class="text-end">
                                   <!-- Ayrıntıları Gör Butonu -->
                                   <button
-                                      class="btn btn-sm btn-light btn-flex btn-center btn-active-light-primary me-2"
+                                  class="btn btn-sm btn-primary btn-flex btn-center btn-active-primary me-2"
                                       [routerLink]="['/adminpage/material-detail', material.id]"
                                       >
                                       Ayrıntıları Gör
                                   </button>
                                   <!-- Güncelle Butonu -->
                                   <button
-                                      class="btn btn-sm btn-light btn-flex btn-center btn-active-light-primary me-2"
-                                      (click)="updateMaterial(material)"
+                                  class="btn btn-sm btn-warning btn-flex btn-center btn-active-warning me-2"
+                                      [routerLink]="['/adminpage/add-material-forms']"
                                   >
-                                      Güncelle
+                                      Ekle/Güncelle
                                   </button>
                                   <!-- Sil Butonu -->
                                   <button
-                                      class="btn btn-sm btn-light btn-flex btn-center btn-active-light-primary"
+                                  class="btn btn-sm btn-danger btn-flex btn-center btn-active-danger"
                                       (click)="onDeleteMaterial(material.id)"
                                   >
                                       Sil

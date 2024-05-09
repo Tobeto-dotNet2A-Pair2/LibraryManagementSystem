@@ -1,0 +1,44 @@
+.btn-details {
+    background-color: #b8d8e3; /* Açık mavi tonu */
+    color: #555; /* Gri tonları */
+}
+
+.btn-borrow {
+    background-color: #c7e8cb; /* Açık yeşil tonu */
+    color: #555; /* Gri tonları */
+}
+
+.btn-revise {
+    background-color: #f4c8d2; /* Açık pembe tonu */
+    color: #333; /* Gri tonları */
+}
+
+.table thead th {
+    color: #333; /* Koyu gri tonu */
+    font-weight: bold; /* Kalın font */
+}
+
+.table tfoot th {
+    color: #333; /* Koyu gri tonu */
+    font-weight: bold; /* Kalın font */
+}
+
+.table tbody td {
+    color: #333; /* Koyu gri tonu */
+}
+
+
+.btn-add-to-readlist {
+    font-size: 14px;
+    color: #555; /* Yazı rengi */
+    text-decoration: none; /* Altı çizgiyi kaldır */
+    transition: color 0.3s; /* Geçiş efekti */
+}
+
+.btn-add-to-readlist i {
+    margin-right: 5px; /* Yıldızdan önce biraz boşluk bırak */
+}
+
+.btn-add-to-readlist:hover {
+    color: #333; /* Hover durumunda yazı rengi */
+}

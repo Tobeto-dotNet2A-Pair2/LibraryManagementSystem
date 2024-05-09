@@ -7,3 +7,18 @@
 #kt_material_table td:last-child {
     text-align: center;
 }
+
+.table thead th {
+    color: #333; /* Koyu gri tonu */
+    font-weight: bold; /* Kalın font */
+}
+
+.table tfoot th {
+    color: #333; /* Koyu gri tonu */
+    font-weight: bold; /* Kalın font */
+}
+
+.table tbody td {
+    color: #333; /* Koyu gri tonu */
+}
+
