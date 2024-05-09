@@ -34,6 +34,19 @@ import { CreateTranslatorMaterialRequest } from '../../models/requests/translato
 import { CreatedTranslatorMaterialResponse } from '../../models/responses/translatorMaterials/created-translatorMaterial-response';
 import { UpdateMaterialRequest } from '../../models/requests/materials/update-material-request';
 import { UpdatedMaterialResponse } from '../../models/responses/materials/updated-material-response';
+import { UpdateAuthorRequest } from '../../models/requests/authors/update-author-request';
+import { UpdatedAuthorResponse } from '../../models/responses/authors/updated-author-response';
+import { UpdateLocationRequest } from '../../models/requests/locations/update-location-request';
+import { UpdatedLocationResponse } from '../../models/responses/locations/updated-location-response';
+import { CreateMaterialImageRequest } from '../../models/requests/material-images/create-material-image-request';
+import { CreatedMaterialImageResponse } from '../../models/responses/material-images/created-material-image-response';
+import { CreateGenreRequest } from '../../models/requests/genres/create-genre-request';
+import { CreatedGenreResponse } from '../../models/responses/genres/created-genre-response';
+import { GetListGenreResponse } from '../../models/responses/genres/get-list-genre-response';
+import { CreatedMaterialGenreResponse } from '../../models/responses/materialGenres/created-materialGenre-response';
+import { CreateMaterialGenreRequest } from '../../models/requests/materialGenres/create-materialGenre-request';
+import { CreateMaterialPropertyRequest } from '../../models/requests/material-properties/create-material-property-request';
+import { CreatedMaterialPropertyResponse } from '../../models/responses/material-properties/created-material-property-response';
 
 @Injectable({
   providedIn: 'root',
@@ -51,6 +64,10 @@ export class MaterialManagementService {
   private readonly languageMaterialApiUrl = `${environment.API_URL}/LanguageMaterials`;
   private readonly publisherMaterialApiUrl = `${environment.API_URL}/PublisherMaterials`;
   private readonly translatorMaterialApiUrl = `${environment.API_URL}/TranslatorMaterials`;
+  private readonly materialImageApiUrl = `${environment.API_URL}/MaterialImages`;
+  private readonly genreApiUrl = `${environment.API_URL}/Genres`;
+  private readonly materialGenreApiUrl = `${environment.API_URL}/MaterialGenres`;
+  private readonly materialPropertyApiUrl = `${environment.API_URL}/MaterialProperties`;
 
   constructor(private httpClient: HttpClient, private toastr: ToastrService) {}
 
@@ -185,6 +202,45 @@ export class MaterialManagementService {
         })
       );
   }
+
+  addMaterialImage(
+    createMaterialImageRequest: FormData
+  ): Observable<CreatedMaterialImageResponse> {
+    return this.httpClient
+      .post<CreatedMaterialImageResponse>(
+        `${this.materialImageApiUrl}/Add`,
+        createMaterialImageRequest
+      )
+      .pipe(
+        catchError((error) => {
+          // Hata durumunda toastr ile hata mesajını kullanıcıya göster
+          debugger;
+          this.toastr.error('Beklenmeyen bir hata oluştu.', 'Hatalı');
+          // Hata mesajını konsola yazdır
+          console.error(error);
+          return throwError(error);
+        })
+      );
+  }
+
+  addGenre(
+    createGenreRequest: CreateGenreRequest
+  ): Observable<CreatedGenreResponse> {
+    return this.httpClient
+      .post<CreatedGenreResponse>(
+        `${this.genreApiUrl}`,
+        createGenreRequest
+      )
+      .pipe(
+        catchError((error) => {
+          // Hata durumunda toastr ile hata mesajını kullanıcıya göster
+          this.toastr.error('Beklenmeyen bir hata oluştu.', 'Hatalı');
+          // Hata mesajını konsola yazdır
+          console.error(error);
+          return throwError(error);
+        })
+      );
+  }
   //Ara Tablo
   addAuthorMaterial(
     createAuthorMaterialRequest: CreateAuthorMaterialRequest
@@ -193,6 +249,44 @@ export class MaterialManagementService {
       .post<CreatedAuthorMaterialResponse>(
         `${this.authorMaterialApiUrl}`,
         createAuthorMaterialRequest
+      )
+      .pipe(
+        catchError((error) => {
+          // Hata durumunda toastr ile hata mesajını kullanıcıya göster
+          this.toastr.error('Beklenmeyen bir hata oluştu.', 'Hatalı');
+          // Hata mesajını konsola yazdır
+          console.error(error);
+          return throwError(error);
+        })
+      );
+  }
+
+  addMaterialGenre(
+    createMaterialGenreRequest: CreateMaterialGenreRequest
+  ): Observable<CreatedMaterialGenreResponse> {
+    return this.httpClient
+      .post<CreatedMaterialGenreResponse>(
+        `${this.materialGenreApiUrl}`,
+        createMaterialGenreRequest
+      )
+      .pipe(
+        catchError((error) => {
+          // Hata durumunda toastr ile hata mesajını kullanıcıya göster
+          this.toastr.error('Beklenmeyen bir hata oluştu.', 'Hatalı');
+          // Hata mesajını konsola yazdır
+          console.error(error);
+          return throwError(error);
+        })
+      );
+  }
+
+  addMaterialProperty(
+    createMaterialPropertyRequest: CreateMaterialPropertyRequest
+  ): Observable<CreatedMaterialPropertyResponse> {
+    return this.httpClient
+      .post<CreatedMaterialPropertyResponse>(
+        `${this.materialPropertyApiUrl}`,
+        createMaterialPropertyRequest
       )
       .pipe(
         catchError((error) => {
@@ -275,6 +369,46 @@ export class MaterialManagementService {
         catchError((error) => {
           this.toastr.error(
             'An unexpected error occurred while updating the Material.',
+            'Error'
+          );
+          console.error(error);
+          return throwError(error);
+        })
+      );
+  }
+
+  updateAuthor(
+    updateAuthorRequest: UpdateAuthorRequest
+  ): Observable<UpdatedAuthorResponse> {
+    return this.httpClient
+      .put<UpdatedAuthorResponse>(
+        `${this.authorApiUrl}`,
+        updateAuthorRequest
+      )
+      .pipe(
+        catchError((error) => {
+          this.toastr.error(
+            'An unexpected error occurred while updating the Author.',
+            'Error'
+          );
+          console.error(error);
+          return throwError(error);
+        })
+      );
+  }
+
+  updateLocation(
+    updateLocationRequest: UpdateLocationRequest
+  ): Observable<UpdatedLocationResponse> {
+    return this.httpClient
+      .put<UpdatedLocationResponse>(
+        `${this.locationApiUrl}`,
+        updateLocationRequest
+      )
+      .pipe(
+        catchError((error) => {
+          this.toastr.error(
+            'An unexpected error occurred while updating the Location.',
             'Error'
           );
           console.error(error);
@@ -382,6 +516,21 @@ export class MaterialManagementService {
         catchError((error) => {
           this.toastr.error(
             'An unexpected error occurred while fetching the list of Languages.',
+            'Error'
+          );
+          console.error(error);
+          return throwError(error);
+        })
+      );
+  }
+
+  getAllGenres(): Observable<GetListGenreResponse[]> {
+    return this.httpClient
+      .get<GetListGenreResponse[]>(`${this.genreApiUrl}/GetAll`)
+      .pipe(
+        catchError((error) => {
+          this.toastr.error(
+            'An unexpected error occurred while fetching the list of Genres.',
             'Error'
           );
           console.error(error);

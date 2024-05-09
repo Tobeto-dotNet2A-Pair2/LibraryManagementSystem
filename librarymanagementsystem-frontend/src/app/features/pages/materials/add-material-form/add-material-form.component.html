@@ -35,7 +35,7 @@
       <a
       id="btnUpdateMaterial"
       class="btn btn-warning"
-      (click)="openModal('updatematerialModal')"
+      (click)="openModal('updateMaterialModal')"
       >Materyal Güncelle</a
     >
     <br />
@@ -60,21 +60,35 @@
         >Yeni Materyal Fotoğrafı yükle</a
       >
       <br />
+      <br>
       <!--MaterialImage End-->
       <!--MaterialGenre Start-->
+      <div class="form-floating">
+        <select
+          class="form-select"
+          id="floatingSelect"
+          aria-label="Floating label select example"
+        >
+          <option selected></option>
+          <option *ngFor="let genre of genreList" [value]="genre.id">
+            {{ genre.name }}
+          </option>
+        </select>
+        <label for="floatingSelect">Materyal Türü/Kategorisi Seç</label>
+      </div>
       <br />
       <a
-        id="btnAddMaterialGenre"
+        id="btnAddGenre"
         class="btn btn-info"
-        (click)="openModal('materialNewGenreModal')"
-        >Yeni tür/kategori ekle Opsiyonel</a
+        (click)="openModal('genreModal')"
+        >Yeni tür/kategori ekle</a
       >
       <br /><br />
       <a
         id="btnSelectMaterialGenre"
         class="btn btn-warning"
         (click)="openModal('materialGenreModal')"
-        >Material tür/kategori seç</a
+        >Material tür/kategori eşle</a
       >
       <!--MaterialGenre End-->
     </div>
@@ -148,13 +162,21 @@
       </div>
       <br />
       <a
-        id="btnAddAutor"
+        id="btnAddAuthor"
         class="btn btn-info"
         (click)="openModal('authorModal')"
         >Yeni Yazar</a
       >
     </div>
-    <!--Autor End-->
+    <br>
+      <a
+      id="btnUpdateAuthor"
+      class="btn btn-warning"
+      (click)="openModal('updateAuthorModal')"
+      >Yazar Güncelle</a
+    >
+    <br />
+    <!--Author End-->
     <br />
     <!--Publisher Start-->
     <div class="form-group">
@@ -230,7 +252,7 @@
         >Yeni Dil</a
       >
     </div>
-    <br />
+    <br>
     <!--Language End-->
     <!--Location Start-->
     <div class="form-group">
@@ -256,6 +278,13 @@
         class="btn btn-info"
         (click)="openModal('locationModal')"
         >Yeni Lokasyon</a
+      >
+      <br />
+      <a
+        id="btnUpdateLocation"
+        class="btn btn-warning"
+        (click)="openModal('updateLocationModal')"
+        >Lokasyon Güncelle</a
       >
     </div>
     <br />
@@ -312,7 +341,7 @@
               value="false"
               id="isBorrowable"
               formControlName="isBorrowable"
-               
+              [(ngModel)]="isBorrowable"
             />
             <label class="form-check-label" for="flexCheckDefault">
               Ödünç Alınabilir
@@ -329,6 +358,7 @@
               type="number"
               class="form-control"
               placeholder="0"
+              value="0"
               aria-label="BorrowDay"
               aria-describedby="basic-addon1"
               formControlName="borrowDay"
@@ -371,7 +401,7 @@
 
 
  <!--UpdateMaterial Modal -- materyal düzenle modalı-->
- <div id="updatematerialModal" class="modal" tabindex="-1">
+ <div id="updateMaterialModal" class="modal" tabindex="-1">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
@@ -381,7 +411,7 @@
           class="btn-close"
           data-bs-dismiss="modal"
           aria-label="Close"
-          (click)="closeModal('updatematerialModal')"
+          (click)="closeModal('updateMaterialModal')"
         ></button>
       </div>
       <!--body -->
@@ -453,6 +483,7 @@
                 value="false"
                 id="isBorrowable"
                 formControlName="isBorrowable"
+                [(ngModel)]="isBorrowable"
               />
               <label class="form-check-label" for="flexCheckDefault">
                 Ödünç Alınabilir
@@ -470,6 +501,7 @@
                 aria-label="BorrowDay"
                 aria-describedby="basic-addon1"
                 formControlName="borrowDay"
+                
               />
             </div>
             <div class="input-group mb-5">
@@ -492,7 +524,7 @@
       type="button"
       class="btn btn-secondary"
       data-bs-dismiss="modal"
-      (click)="closeModal('updatematerialModal')"
+      (click)="closeModal('updateMaterialModal')"
     >
       Close
     </button>
@@ -554,6 +586,7 @@
               value=""
               id="isReserved"
               formControlName="isReserved"
+              [(ngModel)]="isReserved"
             />
             <label class="form-check-label" for="flexCheckDefault">
               Ayrıldı
@@ -567,6 +600,7 @@
               value=""
               id="isReservable"
               formControlName="isReservable"
+              [(ngModel)]="isReservable"
             />
             <label class="form-check-label" for="flexCheckDefault">
               Ayırtılabilir
@@ -665,6 +699,8 @@
           class="form"
           action="#"
           autocomplete="off"
+          [formGroup]="materialImageForm"
+          (ngSubmit)="onSubmitMaterialImageForm()"
         >
         <div class="form-floating">
           <select
@@ -672,6 +708,8 @@
             id="floatingSelect"
             aria-label="Floating label select example"
             formControlName="materialId"
+            name="materialId"
+            (change)="onMaterialSelected($event)"
           >
             <option selected></option>
             <option *ngFor="let material of materialList" [value]="material.id">
@@ -711,7 +749,7 @@
                 ></i>
 
                 <!--begin::Inputs-->
-                <input type="file" name="avatar" accept=".png, .jpg, .jpeg" />
+                <input type="file" name="avatar" accept=".png, .jpg, .jpeg" formControlName="image" (change)="onFileSelected($event)"/>
                 <input type="hidden" name="avatar_remove" />
                 <!--end::Inputs-->
               </label>
@@ -761,7 +799,6 @@
         >
           Close
         </button>
-        <button type="button" class="btn btn-primary">Save changes</button>
       </div>
     </div>
   </div>
@@ -783,15 +820,38 @@
       </div>
       <!--body -->
       <div class="modal-body">
-        <form action="">
-          <div class="mb-10">
-            <label class="form-label">Materyal Tür/Kategori seç</label>
-            <input
-              class="form-control"
-              value="Korku, Fantastik, Bilim Kurgu"
-              id="genre_tagify"
-            />
+        <form [formGroup]="materialGenreForm" (ngSubmit)="onSubmitMaterialGenreForm()">
+          <div class="form-floating">
+            <select
+              class="form-select"
+              id="floatingSelect"
+              aria-label="Floating label select example"
+              formControlName="materialId"
+            >
+              <option selected></option>
+              <option *ngFor="let material of materialList" [value]="material.id">
+                {{ material.name }}
+              </option>
+            </select>
+            <label for="floatingSelect">Materyal Seç</label>
           </div>
+          <br>
+          <div class="form-floating">
+            <select
+              class="form-select"
+              id="floatingSelect"
+              aria-label="Floating label select example"
+              formControlName="genreId"
+            >
+              <option selected></option>
+              <option *ngFor="let genre of genreList" [value]="genre.id">
+                {{ genre.name }}
+              </option>
+            </select>
+            <label for="floatingSelect">Materyal Türü/Kategorisi Seç</label>
+          </div>
+          <br />
+          <button type="submit" class="btn btn-success">Submit</button>
         </form>
       </div>
       <!--body end-->
@@ -804,13 +864,58 @@
         >
           Close
         </button>
-        <button type="button" class="btn btn-primary">Save changes</button>
       </div>
     </div>
   </div>
 </div>
 <!--MaterialGenre Modal -- materyal foto Sonu-->
-
+<!--Genre Modal -- tür ekle modalı-->
+<div id="genreModal" class="modal" tabindex="-1">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Tür Ekle</h5>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+          (click)="closeModal('genreModal')"
+        ></button>
+      </div>
+      <!--body -->
+      <div class="modal-body">
+        <form [formGroup]="genreForm" (ngSubmit)="onSubmitGenreForm()">
+          <div class="input-group mb-5">
+            <span class="input-group-text" id="basic-addon1">Tür Adı</span>
+            <input
+              id="name"
+              type="text"
+              class="form-control"
+              placeholder="Name"
+              aria-label="Name"
+              aria-describedby="basic-addon1"
+              formControlName="name"
+            />
+          </div>
+          <button type="submit" class="btn btn-success">Submit</button>
+        </form>
+      </div>
+      <!--body end-->
+      <div class="modal-footer">
+        <button
+          type="button"
+          class="btn btn-secondary"
+          data-bs-dismiss="modal"
+          (click)="closeModal('genreModal')"
+        >
+          Close
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+<!--Genre Modal End -- tür ekle Sonu-->
 
 <!--AuthorMaterial Modal -- materyal-yazar eşle modalı-->
 <div id="authorMaterialModal" class="modal" tabindex="-1">
@@ -1145,6 +1250,111 @@
   </div>
 </div>
 <!--Author Modal -- yazar ekle Sonu-->
+<!--UpdateAuthor Modal -- yazar ekle modalı-->
+<div id="updateAuthorModal" class="modal" tabindex="-1">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Yazar Düzenle</h5>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+          (click)="closeModal('updateAuthorModal')"
+        ></button>
+      </div>
+      <!--body -->
+      <div class="modal-body">
+        <form [formGroup]="updateAuthorForm" (ngSubmit)="onSubmitUpdateAuthorForm()">
+          <div class="form-floating">
+            <select
+              class="form-select"
+              id="floatingSelect"
+              aria-label="Floating label select example"
+              (change)="onAuthorSelect($event)"
+            >
+              <option selected></option>
+              <option
+                *ngFor="let author of authorList"
+                [value]="author.id"
+              >
+              {{ author.firstName }} {{ author.lastName }}
+              </option>
+            </select>
+            <label for="floatingSelect">Yazar Seç</label>
+          </div>
+    
+          <br />
+                <div class="input-group mb-5">
+                  <span class="input-group-text" id="basic-addon1">Yazar Id</span>
+                  <input
+                    id="id"
+                    type="text"
+                    class="form-control"
+                    placeholder="MaterialId"
+                    aria-label="MaterialId"
+                    aria-describedby="basic-addon1"
+                    formControlName="id"
+                    readonly
+                  >
+                </div>
+                <br />
+          <div class="input-group mb-5">
+            <span class="input-group-text" id="basic-addon1">Adı</span>
+            <input
+              id="firstname"
+              type="text"
+              class="form-control"
+              placeholder="FirstName"
+              aria-label="FirstName"
+              aria-describedby="basic-addon1"
+              formControlName="firstName"
+            />
+          </div>
+          <div class="input-group mb-5">
+            <span class="input-group-text" id="basic-addon1">Soyadı</span>
+            <input
+              id="lastname"
+              type="text"
+              class="form-control"
+              placeholder="Last Name"
+              aria-label="LastName"
+              aria-describedby="basic-addon1"
+              formControlName="lastName"
+            />
+          </div>
+          <div class="input-group mb-5">
+            <span class="input-group-text" id="basic-addon1">Ülkesi</span>
+            <input
+              id="country"
+              type="text"
+              class="form-control"
+              placeholder="Country"
+              aria-label="Country"
+              aria-describedby="basic-addon1"
+              formControlName="country"
+            />
+          </div>
+          <br />
+          <button type="submit" class="btn btn-success">Submit</button>
+        </form>
+      </div>
+      <!--body end-->
+      <div class="modal-footer">
+        <button
+          type="button"
+          class="btn btn-danger"
+          data-bs-dismiss="modal"
+          (click)="closeModal('updateAuthorModal')"
+        >
+          Close
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+<!--Author Modal -- yazar ekle Sonu-->
 <!--Publisher Modal -- yayınEvi ekle modalı-->
 <div id="publisherModal" class="modal" tabindex="-1">
   <div class="modal-dialog">
@@ -1406,7 +1616,7 @@
             />
           </div>
           <br />
-          <button type="submit" class="btn btn-primary">Submit</button>
+          <button type="submit" class="btn btn-success">Submit</button>
         </form>
       </div>
       <!--body end-->
@@ -1419,9 +1629,155 @@
         >
           Close
         </button>
-        <button type="button" class="btn btn-primary">Save changes</button>
       </div>
     </div>
   </div>
 </div>
 <!--Location Modal End -- yer ekle Sonu-->
+<!--UpdateLocation Modal -- yer güncelle modalı-->
+<div id="updateLocationModal" class="modal" tabindex="-1">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Lokasyon Düzenle</h5>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+          (click)="closeModal('updateLocationModal')"
+        ></button>
+      </div>
+      <!--body -->
+      <div class="modal-body">
+        <form [formGroup]="updateLocationForm"
+        (ngSubmit)="onSubmitUpdateLocationForm()">
+        <div class="form-floating">
+          <select
+            class="form-select"
+            id="floatingSelect"
+            aria-label="Floating label select example"
+            (change)="onLocationSelect($event)"
+          >
+            <option selected></option>
+            <option
+              *ngFor="let location of locationList"
+              [value]="location.id"
+            >
+              {{ location.fullLocationMap }}
+            </option>
+          </select>
+          <label for="floatingSelect">Lokasyon Seç</label>
+        </div>
+  
+        <br />
+              <div class="input-group mb-5">
+                <span class="input-group-text" id="basic-addon1">Lokasyon Id</span>
+                <input
+                  id="id"
+                  type="text"
+                  class="form-control"
+                  placeholder="LocationId"
+                  aria-label="LocationId"
+                  aria-describedby="basic-addon1"
+                  formControlName="id"
+                  readonly
+                >
+              </div>
+              <br />
+          <div class="input-group mb-5">
+            <span class="input-group-text" id="basic-addon1">Kat</span>
+            <input
+              id="floor"
+              type="text"
+              class="form-control"
+              placeholder="Floor"
+              aria-label="Floor"
+              aria-describedby="basic-addon1"
+              formControlName="floor"
+            />
+          </div>
+          <div class="input-group mb-5">
+            <span class="input-group-text" id="basic-addon1">Koridor</span>
+            <input
+              id="corridor"
+              type="text"
+              class="form-control"
+              placeholder="Corridor"
+              aria-label="Corridor"
+              aria-describedby="basic-addon1"
+              formControlName="corridor"
+            />
+          </div>
+          <div class="input-group mb-5">
+            <span class="input-group-text" id="basic-addon1">Raf</span>
+            <input
+              id="shelf"
+              type="text"
+              class="form-control"
+              placeholder="Shelf"
+              aria-label="Shelf"
+              aria-describedby="basic-addon1"
+              formControlName="shelf"
+            />
+          </div>
+          <div class="input-group mb-5">
+            <span class="input-group-text" id="basic-addon1">RafKatı</span>
+            <input
+              id="shelfFloor"
+              type="text"
+              class="form-control"
+              placeholder="ShelfFloor"
+              aria-label="ShelfFloor"
+              aria-describedby="basic-addon1"
+              formControlName="shelfFloor"
+            />
+          </div>
+          <div class="input-group mb-5">
+            <span class="input-group-text" id="basic-addon1"
+              >RafSıraNumarası</span
+            >
+            <input
+              id="shelfLineNumber"
+              type="text"
+              class="form-control"
+              placeholder="ShelfLineNumber"
+              aria-label="ShelfLineNumber"
+              aria-describedby="basic-addon1"
+              formControlName="shelfLineNumber"
+            />
+          </div>
+          <div class="input-group mb-5">
+            <span class="input-group-text" id="basic-addon1"
+              >TamLokasyonHaritası</span
+            >
+            <input
+              id="fullLocationMap"
+              type="text"
+              class="form-control"
+              placeholder="FullLocationMap"
+              aria-label="FullLocationMap"
+              aria-describedby="basic-addon1"
+              formControlName="fullLocationMap"
+            />
+          </div>
+          <br />
+          <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+      </div>
+      <!--body end-->
+      <div class="modal-footer">
+        <button
+          type="button"
+          class="btn btn-secondary"
+          data-bs-dismiss="modal"
+          (click)="closeModal('updateLocationModal')"
+        >
+          Close
+        </button>
+        <button type="button" class="btn btn-success">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!--UpdateLocation Modal End -- yer güncelle Sonu-->
