@@ -1,18 +1,18 @@
 import { Component, OnInit } from '@angular/core';
-import { UpdateMaterialRequest } from '../../../models/requests/materials/update-material-request';
-import { MaterialListItemDto } from '../../../models/responses/materials/material-list-item-dto';
 import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { PageRequest } from '../../../../core/models/page/page-request';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { MaterialListHomeService } from '../../../services/concretes/material-list-home.service';
-import { MaterialListService } from '../../../services/concretes/material-list.service';
 import { AuthService } from '../../../../core/services/concretes/auth.service';
 import { BorrowMaterialService } from '../../../services/concretes/borrow-material.service';
 import { BorrowMaterialRequest } from '../../../models/requests/borrowed-materials/borrow-material-request';
 import { BorrowMaterialResponse } from '../../../models/responses/borrowed-materials/borrow-material-response';
-import { GetListMaterialResponse } from '../../../models/responses/materials/get-list-material-response';
+import { MaterialCopyListItemDto } from '../../../models/responses/material-copies/materialcopy-list-item-dto';
+
+
+
 
 @Component({
   selector: 'app-material-list-home',
@@ -26,12 +26,13 @@ export class MaterialListHomeComponent implements OnInit {
   //
   searchText: string = '';
   selectedMaterialCopyId: string = ''; // Seçilen materyal kopyası kimliği
- // selectedMaterialCopy: GetListMaterialResponse | null = null; // Seçilen materyal nesnesi
- materialId!:string;
+ 
+
+ materialCopyId!:string;
   currentPageNumber: number = 1; // initialize with 1
-  material!:string;
+
   readonly PAGE_SIZE=2;
-  materialList: MaterialListItemDto={
+  materialCopyList: MaterialCopyListItemDto={
     index:0,
     size:0,
     count:0,
@@ -43,7 +44,6 @@ export class MaterialListHomeComponent implements OnInit {
  
   constructor(
     private materialListHomeService: MaterialListHomeService, 
-    private materialListService:MaterialListService,
     private authService: AuthService,
     private borrowMaterialService: BorrowMaterialService,
     private activatedRoute:ActivatedRoute,
@@ -70,8 +70,8 @@ export class MaterialListHomeComponent implements OnInit {
 getMaterialListBySearchTerm(searchText: string): void {
   console.log("Search metodun içinde ");
   this.materialListHomeService.search({ pageIndex: 0, pageSize: 2 }, searchText)
-    .subscribe((response: MaterialListItemDto) => {
-      this.materialList = response;
+    .subscribe((response: MaterialCopyListItemDto) => {
+      this.materialCopyList = response;
       this.updateCurrentPageNumber();
     });
 }
@@ -79,48 +79,48 @@ getMaterialListBySearchTerm(searchText: string): void {
  // search baglı yapmassa  tüm listeyi getir
   
   getList(pageRequest:PageRequest){
-    this.materialListHomeService.getList(pageRequest).subscribe((response: MaterialListItemDto)=>{
-      this.materialList=response;
-      console.log(this.materialList)
+    this.materialListHomeService.getList(pageRequest).subscribe((response: MaterialCopyListItemDto)=>{
+      this.materialCopyList=response;
+      console.log(this.materialCopyList)
       this.updateCurrentPageNumber(); 
     })}
     
   getMaterialListByModel(pageRequest:PageRequest,modelId:string){
     this.materialListHomeService.getMaterialListByModelId(pageRequest,modelId).subscribe((response)=>{
-      this.materialList=response;
+      this.materialCopyList=response;
       this.updateCurrentPageNumber();
     })
   }
   onViewMoreClicked():void{
-    const nextPageIndex = this.materialList.index+1;
-    const pageSize = this.materialList.size;
+    const nextPageIndex = this.materialCopyList.index+1;
+    const pageSize = this.materialCopyList.size;
 
     this.getList({pageIndex:nextPageIndex,pageSize})
     this.updateCurrentPageNumber();
    
   }//Sonraki sayfaya gitme fonksiyonu
   onPreviousPageClicked():void{
-    const previousPageIndex = this.materialList.index-1;
-    const pageSize = this.materialList.size;
+    const previousPageIndex = this.materialCopyList.index-1;
+    const pageSize = this.materialCopyList.size;
     this.getList({pageIndex:previousPageIndex,pageSize});
     this.updateCurrentPageNumber();
     console.log("current"+this.currentPageNumber)
   }//Önceki sayfaya git
 
   updateCurrentPageNumber():void{
-    this.currentPageNumber=this.materialList.index+1;
+    this.currentPageNumber=this.materialCopyList.index+1;
   }
 
   isPreviousDisabled(): boolean {
-    return !this.materialList.hasPrevious;
+    return !this.materialCopyList.hasPrevious;
   }//Eğer önceki sayfa yoksa disabled classı ekle
 
   isNextDisabled(): boolean {
-    return !this.materialList.hasNext;
+    return !this.materialCopyList.hasNext;
   }//Eğer sonraki sayfa yoksa butonu disabled yap
 
   getPageNumbers(): number[] {
-    const totalPages = this.materialList.pages; // Toplam sayfa sayısı
+    const totalPages = this.materialCopyList.pages; // Toplam sayfa sayısı
     const pageNumbers: number[] = [];
     for (let i = 1; i <= totalPages; i++) {
       pageNumbers.push(i);
@@ -141,10 +141,10 @@ getMaterialListBySearchTerm(searchText: string): void {
 
 //-----------------------------------------------------------
 
-onMaterialClick(materialId: string): void {
+onMaterialClick(materialCopyId: string): void {
   // Seçilen materyalin kopyası kimliğini ayarla
-  this.selectedMaterialCopyId = materialId;
-  console.log("onMaterialClick"+ materialId);
+  this.selectedMaterialCopyId = materialCopyId;
+  console.log("onMaterialClick"+ materialCopyId);
   this.borrowMaterial();
 }
 
