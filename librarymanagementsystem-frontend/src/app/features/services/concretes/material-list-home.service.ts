@@ -5,6 +5,7 @@ import { Observable, map } from 'rxjs';
 import { PageRequest } from '../../../core/models/page/page-request';
 import { MaterialListItemDto } from '../../models/responses/materials/material-list-item-dto';
 import { environment } from '../../../../environments/environment';
+import { MaterialCopyListItemDto } from '../../models/responses/material-copies/materialcopy-list-item-dto';
 
 @Injectable({
   providedIn: 'root'
@@ -12,18 +13,20 @@ import { environment } from '../../../../environments/environment';
 export class MaterialListHomeService extends MaterialListHomeBaseService{
 
   constructor(private httpClient:HttpClient) {super() }
-  private readonly apiUrl:string = `${environment.API_URL}/Materials`
+  private readonly apiUrl:string = `${environment.API_URL}`
+ // private readonly apiUrl:string = `${environment.API_URL}/MaterialCopies`
 
-  override getList(pageRequest: PageRequest): Observable<MaterialListItemDto> {
+  override getList(pageRequest: PageRequest): Observable<MaterialCopyListItemDto> {
     const newRequest: {[key: string]: string | number} = {
       pageIndex: pageRequest.pageIndex,
       pageSize: pageRequest.pageSize,
     };
-    return this.httpClient.get<MaterialListItemDto>(`${this.apiUrl}/GetListForAdmin`,{
+    return this.httpClient.get<MaterialCopyListItemDto>(`${this.apiUrl}/Materials/GetListForAdmin`,{
       params:newRequest
     }).pipe(
       map((response)=>{
-        const newResponse:MaterialListItemDto={
+        const newResponse:MaterialCopyListItemDto={
+
           index:pageRequest.pageIndex,
           size:pageRequest.pageSize,
           count:response.count,
@@ -38,7 +41,7 @@ export class MaterialListHomeService extends MaterialListHomeBaseService{
     }
   
 
-   override search(pageRequest: PageRequest, searchText:string): Observable<MaterialListItemDto> {
+   override search(pageRequest: PageRequest, searchText:string): Observable<MaterialCopyListItemDto> {
     const newRequest :{[key:string]:string | number}={
       pageIndex:pageRequest.pageIndex,
       pageSize:pageRequest.pageSize,
@@ -48,7 +51,7 @@ export class MaterialListHomeService extends MaterialListHomeBaseService{
 };
 
 
-return this.httpClient.get<MaterialListItemDto>(`${this.apiUrl}/GetList`,{
+return this.httpClient.get<MaterialCopyListItemDto>(`${this.apiUrl}/MaterialCopies/GetList`,{
   params:newRequest
 }).pipe(
   // map((response)=>{
@@ -67,7 +70,7 @@ return this.httpClient.get<MaterialListItemDto>(`${this.apiUrl}/GetList`,{
   })
 )
 }
-private mapMaterialListResponse(response: any): MaterialListItemDto {
+private mapMaterialListResponse(response: any): MaterialCopyListItemDto {
     return {
       index: response.index,
       size: response.size,
@@ -79,18 +82,18 @@ private mapMaterialListResponse(response: any): MaterialListItemDto {
     };
   }
 
-override getMaterialListByModelId(pageRequest: PageRequest, modelId: string): Observable<MaterialListItemDto> {
+override getMaterialListByModelId(pageRequest: PageRequest, modelId: string): Observable<MaterialCopyListItemDto> {
 const newRequest :{[key:string]:string | number}={
   pageIndex:pageRequest.pageIndex,
   pageSize:pageRequest.pageSize,
   modelId:modelId
 };
 
-return this.httpClient.get<MaterialListItemDto>(`${this.apiUrl}/GetList/getmaterialbymodel`,{
+return this.httpClient.get<MaterialCopyListItemDto>(`${this.apiUrl}/MaterialCopies/GetList/getmaterialbymodel`,{
   params:newRequest
 }).pipe(
   map((response)=>{
-    const newResponse:MaterialListItemDto={
+    const newResponse:MaterialCopyListItemDto={
       index:pageRequest.pageIndex,
       size:pageRequest.pageSize,
       count:response.count,

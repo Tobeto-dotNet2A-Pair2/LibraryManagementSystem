@@ -1,10 +1,10 @@
 export interface GetListMaterialCopyResponse {
-	id: string;
-	dateReceipt: string;
-	status: string;
-	isReserved: boolean;
-	isReservable: boolean;
-	materialId: string;
-	branchId: string;
-	locationId: string;
+	imageUrls: string[]
+	id: string
+	name: string
+	fullLocationMap: string
+	description: string
+	borrowDay: number
+	punishmentAmount: number
+	isBorrowable: boolean
 }

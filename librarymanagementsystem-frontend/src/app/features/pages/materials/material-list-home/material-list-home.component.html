@@ -160,12 +160,24 @@
                                 >
                                     Ödünç Alınabilirliği
                                 </th>
+                                <!-- Yeni Sütun -->
+                                <th
+                                    class="min-w-125px sorting"
+                                    tabindex="0"
+                                    aria-controls="kt_customers_table"
+                                    rowspan="1"
+                                    colspan="1"
+                                    style="width: 169.117px"
+                                    aria-label="Location: activate to sort column ascending"
+                                >
+                                    Yer Bilgisi
+                                </th>
                                 <!-- Güncellenmiş İşlem Sütunu -->
                                 <th
                                     class="text-end min-w-200px sorting_disabled"
                                     rowspan="1"
                                     colspan="1"
-                                    style="width: 200px"
+                                    style="width: 300px" 
                                     aria-label="Actions"
                                 >
                                     İşlemler
@@ -174,7 +186,7 @@
                         </thead>
                         <tbody class="fw-semibold text-gray-600">
                             <!-- Örnek Satır -->
-                            <tr class="odd" *ngFor="let material of materialList.items">
+                            <tr class="odd" *ngFor="let material of materialCopyList.items">
                                 <!-- Diğer Sütunlar -->
                                 <td>
                                     <a href="#" class="symbol symbol-150px">
@@ -193,6 +205,8 @@
                                 <td>{{ material.borrowDay }}</td>
                                 <td>{{ material.punishmentAmount }}</td>
                                 <td>{{ material.isBorrowable ? 'Evet' : 'Hayır' }}</td>
+                                <!-- Yeni Sütun -->
+                                <td>{{ material.fullLocationMap }}</td>
                                 <!-- Güncellenmiş İşlem Sütunu -->
                                 <td class="text-end">
                                     <!-- Ayrıntıları Gör Butonu -->
@@ -205,7 +219,7 @@
                                     <!-- Ödünç Al Butonu -->
                                     <button
                                     class="btn btn-sm btn-light btn-borrow btn-flex btn-center btn-active-light-primary me-2"
-                                    (click)="onMaterialClick(materialId)">
+                                    (click)="onMaterialClick(materialCopyId)">
                                         Ödünç Al
                                     </button>
                                       <!-- Rezerve Et Butonu -->
@@ -313,5 +327,3 @@
 <!--end::Materials-->
 </div>
 <!--end::Content container-->
-
-                   
