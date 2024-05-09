@@ -5,11 +5,12 @@ import { LocalStorageService } from '../../../core/services/concretes/local-stor
 import { HeaderItemFavoriesComponent } from '../header-item-favories/header-item-favories.component';
 import { HeaderItemUsermenuComponent } from '../header-item-usermenu/header-item-usermenu.component';
 import { Router, RouterModule } from '@angular/router';
+import { MyProfileComponent } from '../../../features/pages/my-profile/my-profile.component';
 
 @Component({
   selector: 'app-header',
   standalone: true,
-  imports: [CommonModule, SearchComponent, HeaderItemFavoriesComponent, HeaderItemUsermenuComponent, RouterModule],
+  imports: [CommonModule, SearchComponent, HeaderItemFavoriesComponent, HeaderItemUsermenuComponent, RouterModule, MyProfileComponent],
   templateUrl: './header.component.html',
   styleUrl: './header.component.scss'
 })

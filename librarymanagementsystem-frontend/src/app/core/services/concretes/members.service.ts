@@ -1,17 +1,20 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, map } from 'rxjs';
+import { Observable, catchError, map, throwError } from 'rxjs';
 import { MemberBaseService } from '../abstracts/member-base.service';
 import { environment } from '../../../../environments/environment';
 import { PageRequest } from '../../models/page/page-request';
 import { MemberListDto } from '../../../features/models/responses/members/member-list-item-dto';
+import { UpdateMemberRequest } from '../../../features/models/requests/members/update-member-request';
+import { UpdatedMemberResponse } from '../../../features/models/responses/members/updated-member-response';
+import { ToastrService } from 'ngx-toastr';
 
 @Injectable({
   providedIn: 'root'
 })
 export class MembersService extends MemberBaseService {
   private readonly apiUrl:string = `${environment.API_URL}/Members`
-  constructor(private httpClient:HttpClient) {super() }
+  constructor(private httpClient:HttpClient, private toastr: ToastrService) {super() }
   
   override getList(pageRequest: PageRequest): Observable<MemberListDto> {
     const newRequest :{[key:string]:string | number}={
@@ -63,6 +66,24 @@ export class MembersService extends MemberBaseService {
     )
   }
 
-  
+  updateMember(
+    updateMemberRequest: UpdateMemberRequest
+  ): Observable<UpdatedMemberResponse> {
+    return this.httpClient
+      .put<UpdatedMemberResponse>(
+        `${this.apiUrl}`,
+        updateMemberRequest
+      )
+      .pipe(
+        catchError((error) => {
+          this.toastr.error(
+            'An unexpected error occurred while updating the Members.',
+            'Error'
+          );
+          console.error(error);
+          return throwError(error);
+        })
+      );
+  }
 
 }

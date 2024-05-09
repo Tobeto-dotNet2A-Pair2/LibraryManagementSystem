@@ -1,0 +1,212 @@
+<div class="card" *ngIf="memberByIdList.length>0" [formGroup]="updateMemberForm">
+<!--begin::Card body-->
+<div class="card-body border-top p-9">
+  <!--begin::Input group-->
+  <div class="row mb-6">
+    <!--begin::Label-->
+    <label class="col-lg-4 col-form-label fw-semibold fs-6">Avatar</label>
+    <!--end::Label-->
+    <!--begin::Col-->
+    <div class="col-lg-8">
+      <!--begin::Image input-->
+      <div
+        class="image-input image-input-outline"
+        data-kt-image-input="true"
+      >
+        <!--begin::Preview existing avatar-->
+        <div class="image-input-wrapper w-125px h-125px"
+        [ngStyle]="{ 'background-image': memberByIdList[0].profilePicture ? 'url(' + memberByIdList[0].profilePicture + ')' : 'url(assets/media/avatars/blank.png)' }">
+          </div>
+        <!--end::Preview existing avatar-->
+        <!--begin::Label-->
+        <label
+          class="btn btn-icon btn-circle btn-active-color-primary w-25px h-25px bg-body shadow"
+          data-kt-image-input-action="change"
+          data-bs-toggle="tooltip"
+          aria-label="Change avatar"
+          data-bs-original-title="Change avatar"
+          data-kt-initialized="1"
+        >
+          <i class="ki-duotone ki-pencil fs-7">
+            <span class="path1"></span>
+            <span class="path2"></span>
+          </i>
+          <!--begin::Inputs-->
+          <input type="file" name="avatar" accept=".png, .jpg, .jpeg" />
+          <input type="hidden" name="avatar_remove" />
+          <!--end::Inputs-->
+        </label>
+        <!--end::Label-->
+        <!--begin::Cancel-->
+        <span
+          class="btn btn-icon btn-circle btn-active-color-primary w-25px h-25px bg-body shadow"
+          data-kt-image-input-action="cancel"
+          data-bs-toggle="tooltip"
+          aria-label="Cancel avatar"
+          data-bs-original-title="Cancel avatar"
+          data-kt-initialized="1"
+        >
+          <i class="ki-duotone ki-cross fs-2">
+            <span class="path1"></span>
+            <span class="path2"></span>
+          </i>
+        </span>
+        <!--end::Cancel-->
+        <!--begin::Remove-->
+        <span
+          class="btn btn-icon btn-circle btn-active-color-primary w-25px h-25px bg-body shadow"
+          data-kt-image-input-action="remove"
+          data-bs-toggle="tooltip"
+          aria-label="Remove avatar"
+          data-bs-original-title="Remove avatar"
+          data-kt-initialized="1"
+        >
+          <i class="ki-duotone ki-cross fs-2">
+            <span class="path1"></span>
+            <span class="path2"></span>
+          </i>
+        </span>
+        <!--end::Remove-->
+      </div>
+      <!--end::Image input-->
+      <!--begin::Hint-->
+      <div class="form-text">İzin verilen tip: png, jpg, jpeg.</div>
+      <!--end::Hint-->
+    </div>
+    <!--end::Col-->
+  </div>
+  <!--end::Input group-->
+  <!--begin::Input group-->
+  <div class="row mb-6" >
+    <!--begin::Label-->
+    <label class="col-lg-4 col-form-label required fw-semibold fs-6"
+      >Tam Adınız</label
+    >
+    <!--end::Label-->
+    <!--begin::Col-->
+    <div class="col-lg-8">
+      <!--begin::Row-->
+      <div class="row">
+        <!--begin::Col-->
+        <div class="col-lg-6 fv-row fv-plugins-icon-container">
+          <input
+            type="text"
+            name="fname"
+            class="form-control form-control-lg form-control-solid mb-3 mb-lg-0"
+            placeholder="Adınız"
+            formControlName="firstName"
+          />
+          <div class="fv-plugins-message-container invalid-feedback"></div>
+        </div>
+        <!--end::Col-->
+        <!--begin::Col-->
+        <div class="col-lg-6 fv-row fv-plugins-icon-container">
+          <input
+            type="text"
+            name="lname"
+            class="form-control form-control-lg form-control-solid"
+            placeholder="Soyadınız"
+            formControlName="lastName"
+          />
+          <div class="fv-plugins-message-container invalid-feedback"></div>
+        </div>
+        <!--end::Col-->
+      </div>
+      <!--end::Row-->
+    </div>
+    <!--end::Col-->
+  </div>
+  <!--end::Input group-->
+  <!--begin::Input group-->
+  <div class="row mb-6">
+    <!--begin::Label-->
+    <label class="col-lg-4 col-form-label required fw-semibold fs-6"
+      >TC</label
+    >
+    <!--end::Label-->
+    <!--begin::Col-->
+    <div class="col-lg-8 fv-row fv-plugins-icon-container">
+      <input
+        type="text"
+        name="company"
+        class="form-control form-control-lg form-control-solid"
+        placeholder="TC'nizi giriniz"
+        formControlName="nationalIdentity"
+      />
+      <div class="fv-plugins-message-container invalid-feedback"></div>
+    </div>
+    <!--end::Col-->
+  </div>
+  <!--end::Input group-->
+  <!--begin::Input group-->
+  <div class="row mb-6">
+    <!--begin::Label-->
+    <label class="col-lg-4 col-form-label fw-semibold fs-6">
+      <span class="required">Telefon</span>
+    </label>
+    <!--end::Label-->
+    <!--begin::Col-->
+    <div class="col-lg-8 fv-row fv-plugins-icon-container">
+      <input
+        type="tel"
+        name="phone"
+        class="form-control form-control-lg form-control-solid"
+        placeholder="Telefon Numaranız"
+        formControlName="phoneNumber"
+      />
+      <div class="fv-plugins-message-container invalid-feedback"></div>
+    </div>
+    <!--end::Col-->
+  </div>
+  <!--end::Input group-->
+  <!--begin::Input group-->
+  <div class="row mb-6">
+    <!--begin::Label-->
+    <label class="col-lg-4 col-form-label fw-semibold fs-6">Posizyon</label>
+    <!--end::Label-->
+    <!--begin::Col-->
+    <div class="col-lg-8 fv-row">
+      <input
+        type="text"
+        name="website"
+        class="form-control form-control-lg form-control-solid"
+        placeholder="Pozisyonunuz"
+        formControlName="position"
+      />
+    </div>
+    <!--end::Col-->
+  </div>
+  <!--end::Input group-->
+   <!--begin::Input group-->
+   <div class="row mb-6">
+    <!--begin::Label-->
+    <label class="col-lg-4 col-form-label fw-semibold fs-6">Doğum Tarihi</label>
+    <!--end::Label-->
+    <!--begin::Col-->
+    <div class="col-lg-8 fv-row">
+      <input
+        type="date"
+        name="website"
+        class="form-control form-control-lg form-control-solid"
+        formControlName="birthDate"
+      />
+    </div>
+    <!--end::Col-->
+  </div>
+  <!--end::Input group-->
+</div>
+<!--end::Card body-->
+<!--begin::Actions-->
+<div class="card-footer d-flex justify-content-end py-6 px-9">
+  <button
+    type="submit"
+    class="btn btn-primary"
+    id="kt_account_profile_details_submit"
+    (click)="onSubmitUpdateMemberForm()"
+  >
+    Kaydet
+  </button>
+</div>
+<!--end::Actions-->
+<input type="hidden" />
+</div>
