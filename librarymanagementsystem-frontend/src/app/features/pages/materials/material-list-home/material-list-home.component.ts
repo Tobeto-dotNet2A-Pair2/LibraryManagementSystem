@@ -1,13 +1,18 @@
 import { Component, OnInit } from '@angular/core';
 import { UpdateMaterialRequest } from '../../../models/requests/materials/update-material-request';
 import { MaterialListItemDto } from '../../../models/responses/materials/material-list-item-dto';
-import { ActivatedRoute, RouterModule } from '@angular/router';
+import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { PageRequest } from '../../../../core/models/page/page-request';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { MaterialListHomeService } from '../../../services/concretes/material-list-home.service';
 import { MaterialListService } from '../../../services/concretes/material-list.service';
+import { AuthService } from '../../../../core/services/concretes/auth.service';
+import { BorrowMaterialService } from '../../../services/concretes/borrow-material.service';
+import { BorrowMaterialRequest } from '../../../models/requests/borrowed-materials/borrow-material-request';
+import { BorrowMaterialResponse } from '../../../models/responses/borrowed-materials/borrow-material-response';
+import { GetListMaterialResponse } from '../../../models/responses/materials/get-list-material-response';
 
 @Component({
   selector: 'app-material-list-home',
@@ -20,6 +25,8 @@ export class MaterialListHomeComponent implements OnInit {
 
   //
   searchText: string = '';
+  // selectedMaterialCopyId: string = ''; // Seçilen materyal kopyası kimliği
+  selectedMaterialCopy: GetListMaterialResponse | null = null; // Seçilen materyal nesnesi
 
   currentPageNumber: number = 1; // initialize with 1
   material!:string;
@@ -37,7 +44,10 @@ export class MaterialListHomeComponent implements OnInit {
   constructor(
     private materialListHomeService: MaterialListHomeService, 
     private materialListService:MaterialListService,
+    private authService: AuthService,
+    private borrowMaterialService: BorrowMaterialService,
     private activatedRoute:ActivatedRoute,
+    private router: Router,
     private toastr: ToastrService
   ) {}
  
@@ -49,7 +59,7 @@ export class MaterialListHomeComponent implements OnInit {
       if (searchText) {
         this.searchText = searchText;
         this.getMaterialListBySearchTerm(this.searchText);
-        console.log("if ıcınde"+searchText);
+        console.log("if ıcınde:::"+searchText);
       } else {
         this.getList({pageIndex:0,pageSize:this.PAGE_SIZE});
         console.log("else ıcınde");
@@ -57,10 +67,8 @@ export class MaterialListHomeComponent implements OnInit {
   });
 }  
 
-
-
 getMaterialListBySearchTerm(searchText: string): void {
-  console.log("Search metıdun içinde ");
+  console.log("Search metodun içinde ");
   this.materialListHomeService.search({ pageIndex: 0, pageSize: 2 }, searchText)
     .subscribe((response: MaterialListItemDto) => {
       this.materialList = response;
@@ -74,18 +82,15 @@ getMaterialListBySearchTerm(searchText: string): void {
     this.materialListHomeService.getList(pageRequest).subscribe((response: MaterialListItemDto)=>{
       this.materialList=response;
       console.log(this.materialList)
-      this.updateCurrentPageNumber();
-     
+      this.updateCurrentPageNumber(); 
     })}
     
-  
   getMaterialListByModel(pageRequest:PageRequest,modelId:string){
     this.materialListHomeService.getMaterialListByModelId(pageRequest,modelId).subscribe((response)=>{
       this.materialList=response;
       this.updateCurrentPageNumber();
     })
   }
-
   onViewMoreClicked():void{
     const nextPageIndex = this.materialList.index+1;
     const pageSize = this.materialList.size;
@@ -136,10 +141,47 @@ getMaterialListBySearchTerm(searchText: string): void {
 
 //-----------------------------------------------------------
 
-oduncAl(material: any) {
-  // Ödünç alma işlemini gerçekleştir
-  console.log('Ödünç alındı:', material);
-  // Burada ödünç alma işlemini yapacak kodu ekleyebilirsiniz
+onMaterialClick(material: GetListMaterialResponse): void {
+  // Seçilen materyalin kopyası kimliğini ayarla
+  this.selectedMaterialCopy = material;
+}
+
+borrowMaterial(): void {
+  // Kullanıcının oturum durumunu kontrol et
+  const isLoggedIn = this.authService.isLoggedIn();
+  if (isLoggedIn && this.selectedMaterialCopy) {
+    // Oturumlu ise, materyal ödünç alma işlemini gerçekleştir
+    const memberId = this.authService.getCurrentUserId(); // Kullanıcının kimliğini al
+    const materialCopyId = this.selectedMaterialCopy.id; // Seçilen materyal kopyası kimliğini al
+    
+    this.borrowMaterialProcess(memberId, materialCopyId);
+    console.log("materialCopyId"+ materialCopyId);
+    console.log("memberId"+ memberId);
+  } else {
+    // Oturumlu değilse, kullanıcıyı giriş yapmaya yönlendir veya bir bildirim göster
+      
+     this.router.navigate(['/auth']);// Giriş yapma sayfasına yönlendir
+
+     this.toastr.warning('Ödünç almak için giriş yapmalısınız.', 'Uyarı');
+  }
+}
+
+private borrowMaterialProcess(memberId: string, materialCopyId: string): void {
+
+  const request: BorrowMaterialRequest = { memberId, materialCopyId }; 
+  // Materyal ödünç alma işlemini gerçekleştir
+ 
+  this.borrowMaterialService.borrowMaterial(request).subscribe(
+    (response: BorrowMaterialResponse) => {
+    
+      console.log('servise gitti', response);
+      this.toastr.info('Ödünç aldı.', 'İnfo');
+    },
+    (error) => {
+      this.toastr.error('Hata aldı.', 'Error');
+    }
+  );
+
 }
 
 }
