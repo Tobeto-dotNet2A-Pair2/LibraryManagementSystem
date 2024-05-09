@@ -12,7 +12,7 @@ public static class BorrowedMaterialsBusinessMessages
     
     public const string MemberHasNotThisMaterialCopy = "MemberHasNotThisMaterialCopy";
 
-    public const string BorrowedMaterialEmailHtmlBody = "BorrowedMaterialEmailHtmlBody";
+    public const string BorrowedMaterialEmailHtmlBody = "Merhaba %FullName%, </br> Ödünç almış olduğunuz Kitap : %MaterialName% </br> Teslim Tarihi : %ReturnDate%";
 
     public const string BorrowedMaterialEmailSubject = "Tobeto Kütüphanesi Ödünç Alma İşleminiz";
     

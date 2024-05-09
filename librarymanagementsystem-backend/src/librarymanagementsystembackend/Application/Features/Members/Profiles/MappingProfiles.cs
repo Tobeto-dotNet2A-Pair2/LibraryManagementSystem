@@ -8,6 +8,7 @@ using NArchitecture.Core.Application.Responses;
 using Domain.Entities;
 using NArchitecture.Core.Persistence.Paging;
 using Application.Features.Auth.Dtos;
+using Application.Features.Members.Dtos;
 
 namespace Application.Features.Members.Profiles;
 
@@ -26,5 +27,8 @@ public class MappingProfiles : Profile
 
         CreateMap<Member, RegisterDto>().ReverseMap();
         CreateMap<IPaginate<Member>, GetListResponse<GetListMemberListItemDto>>().ReverseMap();
+        CreateMap<Member, GetMemberForEmailDto>()
+            .ForMember(a => a.Email, src => src.MapFrom(opt => opt.User.Email));
+
     }
 }

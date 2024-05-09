@@ -70,7 +70,7 @@ public class CreateBorrowedMaterialCommand : IRequest<CreatedBorrowedMaterialRes
 
             var borrowedMaterial = _mapper.Map<BorrowedMaterial>(request);
             borrowedMaterial.ReturnDate = DateTime.UtcNow.AddDays(materialWithCopy.BorrowDay);
-            await _borrowedMaterialRepository.AddAsync(borrowedMaterial);
+         //   await _borrowedMaterialRepository.AddAsync(borrowedMaterial);
             
             #endregion
 
@@ -83,7 +83,7 @@ public class CreateBorrowedMaterialCommand : IRequest<CreatedBorrowedMaterialRes
                 subject: BorrowedMaterialsBusinessMessages.BorrowedMaterialEmailSubject,
                 textBody: string.Empty,
                 htmlBody: BorrowedMaterialsBusinessMessages.BorrowedMaterialEmailHtmlBody
-                            .Replace("%Fullname%",string.Concat(member.FirstName,member.LastName))
+                            .Replace("%FullName%",string.Concat(member.FirstName,member.LastName))
                             .Replace("%MaterialName%",materialWithCopy.Name)
                             .Replace("%ReturnDate%",borrowedMaterial.ReturnDate.ToString(CultureInfo.InvariantCulture)),
                 [new MailboxAddress(string.Concat(member.FirstName, member.LastName), member.Email)]);
