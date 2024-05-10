@@ -155,12 +155,11 @@ borrowMaterial(): void {
   const isLoggedIn = this.authService.isLoggedIn();
   if (isLoggedIn && this.selectedMaterialCopyId) {
     // Oturumlu ise, materyal ödünç alma işlemini gerçekleştir
-    const memberId = this.authService.getCurrentUserId(); // Kullanıcının kimliğini al
+    const userId = this.authService.getCurrentUserId(); // Kullanıcının kimliğini al
     const materialCopyId = this.selectedMaterialCopyId; // Seçilen materyal kopyası kimliğini al
     
-    this.borrowMaterialProcess(memberId, materialCopyId);
-    console.log("materialCopyId"+ materialCopyId);
-    console.log("memberId"+ memberId);
+    this.borrowMaterialProcess(userId, materialCopyId);
+    
   } else {
     // Oturumlu değilse, kullanıcıyı giriş yapmaya yönlendir veya bir bildirim göster
       
@@ -170,9 +169,9 @@ borrowMaterial(): void {
   }
 }
 
-private borrowMaterialProcess(memberId: string, materialCopyId: string): void {
+private borrowMaterialProcess(userId: string, materialCopyId: string): void {
 
-  const request: BorrowMaterialRequest = { memberId, materialCopyId }; 
+  const request: BorrowMaterialRequest = { userId, materialCopyId }; 
   // Materyal ödünç alma işlemini gerçekleştir
  
   this.borrowMaterialService.borrowMaterial(request).subscribe(

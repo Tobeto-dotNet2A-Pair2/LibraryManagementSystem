@@ -16,7 +16,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Application.Features.Materials.Queries.GetList;
 
-public class GetListMaterialQuery : IRequest<GetListResponse<GetListMaterialListItemDto>> //, ISecuredRequest //ICachableRequest
+public class GetListMaterialQuery : IRequest<GetListResponse<GetListMaterialListItemDto>> , ISecuredRequest //ICachableRequest
 {
     public int PageIndex { get; set; }
     public int PageSize { get; set; }
