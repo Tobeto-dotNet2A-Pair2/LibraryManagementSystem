@@ -27,5 +27,6 @@ public class MappingProfiles : Profile
         CreateMap<IPaginate<Translator>, GetListResponse<GetListTranslatorListItemDto>>().ReverseMap();
 
         CreateMap<Translator, TranslatorForMaterialDetailDto>();
+        CreateMap<Translator, GetAllTranslatorsDto>().ReverseMap();
     }
 }

@@ -8,6 +8,7 @@ using AutoMapper;
 using NArchitecture.Core.Application.Responses;
 using Domain.Entities;
 using NArchitecture.Core.Persistence.Paging;
+using Application.Features.Genres.Queries.GetList.GetAll;
 
 namespace Application.Features.Genres.Profiles;
 
@@ -26,5 +27,6 @@ public class MappingProfiles : Profile
         CreateMap<IPaginate<Genre>, GetListResponse<GetListGenreListItemDto>>().ReverseMap();
 
         CreateMap<Genre, GenreForMaterialDetailDto>();
+        CreateMap<Genre, GetAllGenresDto>().ReverseMap();
     }
 }

@@ -10,6 +10,7 @@ using AutoMapper;
 using NArchitecture.Core.Application.Responses;
 using Domain.Entities;
 using NArchitecture.Core.Persistence.Paging;
+using Application.Features.MaterialProperties.Queries.GetList.GetAll;
 
 namespace Application.Features.MaterialProperties.Profiles;
 
@@ -35,5 +36,6 @@ public class MappingProfiles : Profile
 
         CreateMap<MaterialProperty, MaterialPropertyListForBorrowedMaterialDto>();
         
+        CreateMap<MaterialProperty, GetAllMaterialPropertiesDto>();
     }
 }

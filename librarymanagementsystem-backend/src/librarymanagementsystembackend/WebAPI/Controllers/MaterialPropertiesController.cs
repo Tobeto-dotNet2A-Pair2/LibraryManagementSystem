@@ -7,6 +7,8 @@ using Application.Features.MaterialProperties.Queries.GetList.GetListAll;
 using NArchitecture.Core.Application.Requests;
 using NArchitecture.Core.Application.Responses;
 using Microsoft.AspNetCore.Mvc;
+using Application.Features.Languages.Queries.GetList.GetAll;
+using Application.Features.MaterialProperties.Queries.GetList.GetAll;
 
 namespace WebAPI.Controllers;
 
@@ -57,6 +59,13 @@ public class MaterialPropertiesController : BaseController
     public async Task<IActionResult> GetListAll([FromQuery] GetListAllMaterialPropertyQuery getListAllMaterialPropertyQuery)
     { 
         List<GetListAllMaterialPropertyDto> response = await Mediator.Send(getListAllMaterialPropertyQuery);
+        return Ok(response);
+    }
+
+    [HttpGet]
+    public async Task<IActionResult> GetAll([FromQuery] GetAllMaterialPropertiesQuery getAllMaterialPropertiesQuery)
+    {
+        List<GetAllMaterialPropertiesDto> response = await Mediator.Send(getAllMaterialPropertiesQuery);
         return Ok(response);
     }
 }

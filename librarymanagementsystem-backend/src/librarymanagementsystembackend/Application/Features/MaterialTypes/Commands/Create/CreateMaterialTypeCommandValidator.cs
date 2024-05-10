@@ -7,6 +7,6 @@ public class CreateMaterialTypeCommandValidator : AbstractValidator<CreateMateri
     public CreateMaterialTypeCommandValidator()
     {
         RuleFor(c => c.Name).NotEmpty().Length(2, 100);
-        RuleFor(c => c.MaterialFormat).NotEmpty();
+        RuleFor(c => c.MaterialFormat);
     }
 }

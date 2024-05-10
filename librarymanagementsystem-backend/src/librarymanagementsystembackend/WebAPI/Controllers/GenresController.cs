@@ -6,6 +6,8 @@ using Application.Features.Genres.Queries.GetList;
 using NArchitecture.Core.Application.Requests;
 using NArchitecture.Core.Application.Responses;
 using Microsoft.AspNetCore.Mvc;
+using Application.Features.Languages.Queries.GetList.GetAll;
+using Application.Features.Genres.Queries.GetList.GetAll;
 
 namespace WebAPI.Controllers;
 
@@ -49,6 +51,14 @@ public class GenresController : BaseController
     {
         GetListGenreQuery getListGenreQuery = new() { PageRequest = pageRequest };
         GetListResponse<GetListGenreListItemDto> response = await Mediator.Send(getListGenreQuery);
+        return Ok(response);
+    }
+
+    [HttpGet]
+    [Route("GetAll")]
+    public async Task<IActionResult> GetAll([FromQuery] GetAllGenresQuery getAllGenresQuery)
+    {
+        List<GetAllGenresDto> response = await Mediator.Send(getAllGenresQuery);
         return Ok(response);
     }
 }

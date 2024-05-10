@@ -1,1 +1,92 @@
-<p>branch-list works!</p>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Şube Listesi</title>
+
+    <!-- Custom CSS -->
+    <style>
+        .card {
+            border: none;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+        }
+
+        .card-body ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .card-body ul li {
+            padding: 8px 0;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .card-body ul li:last-child {
+            border-bottom: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container mt-4">
+        <div class="row row-cols-1 row-cols-md-4 g-4">
+            <div class="col">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Şube Adı</h5>
+                        <ul>
+                            <li>Üsküdar Kütüphanesi</li>
+                            <li>Fatih Kütüphanesi</li>
+                            <li>Kadıköy Kütüphanesi</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Şube Telefon Numarası</h5>
+                        <ul>
+                            <li>555-123-4567</li>
+                            <li>555-987-6543</li>
+                            <li>555-456-7890</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Şube Çalışma Saatleri</h5>
+                        <ul>
+                            <li>08:00 - 17:00</li>
+                            <li>09:00 - 18:00</li>
+                            <li>10:00 - 19:00</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Şube Adresi</h5>
+                        <ul>
+                            <li>Adres 1</li>
+                            <li>Adres 2</li>
+                            <li>Adres 3</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</body>
+</html>
