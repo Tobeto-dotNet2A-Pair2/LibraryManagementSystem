@@ -1,3 +1,4 @@
+<div class="card">
 <div class="container mt-4">
     <h2>Şube İçin Adres Bilgileri</h2>
   
@@ -82,7 +83,7 @@
         <label for="street">Sokak:</label>
         <select
           id="street"
-          class="form-control"
+          class="form-control mb-5"
           [(ngModel)]="selectedStreet"
           name="street"
           required
@@ -96,10 +97,11 @@
   
       <button
         type="submit"
-        class="btn btn-primary"
+        class="btn btn-primary mb-5"
         [disabled]="!addressForm.valid"
       >
         Adresi Kaydet
       </button>
     </form>
   </div>
+</div>
