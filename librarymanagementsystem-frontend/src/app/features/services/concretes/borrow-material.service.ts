@@ -11,7 +11,7 @@ import { BorrowMaterialResponse } from '../../models/responses/borrowed-material
 })
 export class BorrowMaterialService {
 
-  private readonly apiUrl: string = `${environment.API_URL}/BorrowMaterials`;
+  private readonly apiUrl: string = `${environment.API_URL}/BorrowedMaterials`;
   constructor(
     private httpClient: HttpClient,
     private toastr: ToastrService

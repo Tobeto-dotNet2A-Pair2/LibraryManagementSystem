@@ -20,6 +20,8 @@ export class LoginComponent {
   callRegisterHandler() { //Register sayfasına gecmesini saglar
     this.registerClicked.emit(); 
   }
+
+
  
   loginForm!: FormGroup
   constructor(
@@ -68,6 +70,8 @@ export class LoginComponent {
         this.toastr.info("Başarılı şekilde Yönlendiriliyorsun.");
 
         // İşlem tamamlandığında yönlendirme yapılabilir
+
+        
         setTimeout(() => {
         
           this.router.navigate(['/adminpage']);

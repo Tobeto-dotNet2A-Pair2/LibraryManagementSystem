@@ -1,4 +1,4 @@
 export interface BorrowMaterialRequest {
-    memberId: string
+    userId: string
     materialCopyId: string
   }

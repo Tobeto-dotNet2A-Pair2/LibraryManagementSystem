@@ -186,40 +186,40 @@
                         </thead>
                         <tbody class="fw-semibold text-gray-600">
                             <!-- Örnek Satır -->
-                            <tr class="odd" *ngFor="let material of materialCopyList.items">
+                            <tr class="odd" *ngFor="let materialCopy of materialCopyList.items">
                                 <!-- Diğer Sütunlar -->
                                 <td>
                                     <a href="#" class="symbol symbol-150px">
                                         <span
                                             class="symbol-label"
-                                            [style.backgroundImage]="'url(' + material.imageUrls[0] + ')'"
+                                            [style.backgroundImage]="'url(' + materialCopy.imageUrls[0] + ')'"
                                         ></span>
                                     </a>
                                 </td>
                                 <td>
-                                    <a href="#" class="text-gray-800 text-hover-primary mb-1">{{ material.name }}</a>
+                                    <a href="#" class="text-gray-800 text-hover-primary mb-1">{{ materialCopy.name }}</a>
                                 </td>
                                 <td>
-                                    <a href="#" class="text-gray-600 text-hover-primary mb-1">{{ material.description }}</a>
+                                    <a href="#" class="text-gray-600 text-hover-primary mb-1">{{ materialCopy.description }}</a>
                                 </td>
-                                <td>{{ material.borrowDay }}</td>
-                                <td>{{ material.punishmentAmount }}</td>
-                                <td>{{ material.isBorrowable ? 'Evet' : 'Hayır' }}</td>
+                                <td>{{ materialCopy.borrowDay }}</td>
+                                <td>{{ materialCopy.punishmentAmount }}</td>
+                                <td>{{ materialCopy.isBorrowable ? 'Evet' : 'Hayır' }}</td>
                                 <!-- Yeni Sütun -->
-                                <td>{{ material.fullLocationMap }}</td>
+                                <td>{{ materialCopy.fullLocationMap }}</td>
                                 <!-- Güncellenmiş İşlem Sütunu -->
                                 <td class="text-end">
                                     <!-- Ayrıntıları Gör Butonu -->
                                     <button
                                     class="btn btn-sm btn-light btn-details btn-flex btn-center btn-active-light-primary me-2"
-                                        [routerLink]="['/homepage/material-detail-home', material.id]"
+                                        [routerLink]="['/homepage/material-detail-home', materialCopy.id]"
                                         >
                                         Ayrıntıları Gör
                                     </button>
                                     <!-- Ödünç Al Butonu -->
                                     <button
                                     class="btn btn-sm btn-light btn-borrow btn-flex btn-center btn-active-light-primary me-2"
-                                    (click)="onMaterialClick(materialCopyId)">
+                                    (click)="onMaterialClick(materialCopy.id)">
                                         Ödünç Al
                                     </button>
                                       <!-- Rezerve Et Butonu -->

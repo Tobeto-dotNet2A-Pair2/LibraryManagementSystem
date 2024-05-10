@@ -26,12 +26,12 @@ export class MaterialListHomeComponent implements OnInit {
   //
   searchText: string = '';
   selectedMaterialCopyId: string = ''; // Seçilen materyal kopyası kimliği
- 
 
- materialCopyId!:string;
-  currentPageNumber: number = 1; // initialize with 1
-
+  currentPageNumber: number = 1; 
   readonly PAGE_SIZE=2;
+
+  materialCopyId!:string;
+  material!:string;
   materialCopyList: MaterialCopyListItemDto={
     index:0,
     size:0,
@@ -142,6 +142,7 @@ getMaterialListBySearchTerm(searchText: string): void {
 //-----------------------------------------------------------
 
 onMaterialClick(materialCopyId: string): void {
+  debugger
   // Seçilen materyalin kopyası kimliğini ayarla
   this.selectedMaterialCopyId = materialCopyId;
   console.log("onMaterialClick"+ materialCopyId);
@@ -150,15 +151,15 @@ onMaterialClick(materialCopyId: string): void {
 
 borrowMaterial(): void {
   // Kullanıcının oturum durumunu kontrol et
+  debugger
   const isLoggedIn = this.authService.isLoggedIn();
   if (isLoggedIn && this.selectedMaterialCopyId) {
     // Oturumlu ise, materyal ödünç alma işlemini gerçekleştir
-    const memberId = this.authService.getCurrentUserId(); // Kullanıcının kimliğini al
+    const userId = this.authService.getCurrentUserId(); // Kullanıcının kimliğini al
     const materialCopyId = this.selectedMaterialCopyId; // Seçilen materyal kopyası kimliğini al
     
-    this.borrowMaterialProcess(memberId, materialCopyId);
-    console.log("materialCopyId"+ materialCopyId);
-    console.log("memberId"+ memberId);
+    this.borrowMaterialProcess(userId, materialCopyId);
+    
   } else {
     // Oturumlu değilse, kullanıcıyı giriş yapmaya yönlendir veya bir bildirim göster
       
@@ -168,9 +169,9 @@ borrowMaterial(): void {
   }
 }
 
-private borrowMaterialProcess(memberId: string, materialCopyId: string): void {
+private borrowMaterialProcess(userId: string, materialCopyId: string): void {
 
-  const request: BorrowMaterialRequest = { memberId, materialCopyId }; 
+  const request: BorrowMaterialRequest = { userId, materialCopyId }; 
   // Materyal ödünç alma işlemini gerçekleştir
  
   this.borrowMaterialService.borrowMaterial(request).subscribe(
