@@ -130,7 +130,7 @@ public class MemberManager : IMemberService
     {
         Guid memberId = await _memberRepository.Query()
             .Where(a => a.UserId == userId)
-            .Select(a => a.UserId)
+            .Select(a => a.Id)
             .FirstOrDefaultAsync();
         
         return userId;
