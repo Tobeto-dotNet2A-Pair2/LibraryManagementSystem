@@ -71,7 +71,13 @@ public class CreateBorrowedMaterialCommand : IRequest<CreatedBorrowedMaterialRes
             if (materialWithCopy is null) //TODO : Message have to replace with localization service.
                 throw new Exception("The requested material can not be found");
 
-            var borrowedMaterial = _mapper.Map<BorrowedMaterial>(request);
+
+            var borrowedMaterial = new BorrowedMaterial()
+            {
+                MaterialCopyId = request.MaterialCopyId,
+                MemberId = memberId
+            };
+
             borrowedMaterial.ReturnDate = DateTime.UtcNow.AddDays(materialWithCopy.BorrowDay);
             await _borrowedMaterialRepository.AddAsync(borrowedMaterial);
             
@@ -81,17 +87,17 @@ public class CreateBorrowedMaterialCommand : IRequest<CreatedBorrowedMaterialRes
 
             #region Mail 
 
-            GetMemberForEmailDto member = await _memberService.GetForEmailById(memberId, cancellationToken: cancellationToken);
-            var mail = new Mail(
-                subject: BorrowedMaterialsBusinessMessages.BorrowedMaterialEmailSubject,
-                textBody: string.Empty,
-                htmlBody: BorrowedMaterialsBusinessMessages.BorrowedMaterialEmailHtmlBody
-                            .Replace("%FullName%",string.Concat(member.FirstName,member.LastName))
-                            .Replace("%MaterialName%",materialWithCopy.Name)
-                            .Replace("%ReturnDate%",borrowedMaterial.ReturnDate.ToString(CultureInfo.InvariantCulture)),
-                [new MailboxAddress(string.Concat(member.FirstName, member.LastName), member.Email)]);
+            //GetMemberForEmailDto member = await _memberService.GetForEmailById(memberId, cancellationToken: cancellationToken);
+            //var mail = new Mail(
+            //    subject: BorrowedMaterialsBusinessMessages.BorrowedMaterialEmailSubject,
+            //    textBody: string.Empty,
+            //    htmlBody: BorrowedMaterialsBusinessMessages.BorrowedMaterialEmailHtmlBody
+            //                .Replace("%FullName%",string.Concat(member.FirstName,member.LastName))
+            //                .Replace("%MaterialName%",materialWithCopy.Name)
+            //                .Replace("%ReturnDate%",borrowedMaterial.ReturnDate.ToString(CultureInfo.InvariantCulture)),
+            //    [new MailboxAddress(string.Concat(member.FirstName, member.LastName), member.Email)]);
 
-            await _mailService.SendEmailAsync(mail);
+            //await _mailService.SendEmailAsync(mail);
 
             #endregion
 

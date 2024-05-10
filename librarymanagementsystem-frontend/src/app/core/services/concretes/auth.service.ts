@@ -40,6 +40,7 @@ export class AuthService extends AuthBaseService {
   login(userLoginRequest:UserForLoginRequest) :Observable<AccessTokenModel<TokenModel>>{
     return this.httpClient.post<AccessTokenModel<TokenModel>>(`${this.apiUrl}/Login`,userLoginRequest)
     .pipe(map(response=>{
+    
         this.storageService.setToken(response.accessToken.token);
         //this.toaster.success("Başarılı ","Giriş Yapıldı");
         //alert("Giriş yapıldı")
@@ -89,6 +90,7 @@ export class AuthService extends AuthBaseService {
   
 
   getCurrentUserId():string{
+    debugger
     var decoded = this.getDecodedToken();
     var propUserId = Object.keys(decoded).filter(x=>x.endsWith("/nameidentifier"))[0]
     return this.userId=decoded[propUserId]

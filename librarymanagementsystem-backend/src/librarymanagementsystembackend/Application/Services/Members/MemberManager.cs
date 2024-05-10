@@ -133,6 +133,6 @@ public class MemberManager : IMemberService
             .Select(a => a.Id)
             .FirstOrDefaultAsync();
         
-        return userId;
+        return memberId;
     }
 }

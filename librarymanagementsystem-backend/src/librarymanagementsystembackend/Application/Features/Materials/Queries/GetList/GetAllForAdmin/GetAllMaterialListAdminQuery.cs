@@ -1,18 +1,21 @@
+using Application.Features.Materials.Constants;
 using Application.Services.Repositories;
 using AutoMapper;
 using AutoMapper.QueryableExtensions;
 using Domain.Entities;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
+using NArchitecture.Core.Application.Pipelines.Authorization;
 using NArchitecture.Core.Application.Pipelines.Caching;
 using NArchitecture.Core.Application.Requests;
 using NArchitecture.Core.Application.Responses;
 using NArchitecture.Core.Persistence.Paging;
+using System.ComponentModel;
 using System.Linq.Dynamic.Core;
 
 namespace Application.Features.Materials.Queries.GetList.GetAllForAdmin;
 
-public class GetAllMaterialListAdminQuery :IRequest<GetListResponse<GetAllMaterialListAdminDto>>, ICachableRequest //ISecuredRequest,
+public class GetAllMaterialListAdminQuery :IRequest<GetListResponse<GetAllMaterialListAdminDto>> // , ISecuredRequest //, ICachableRequest //
 {
     public PageRequest PageRequest { get; set; }
     //public string SearchText { get; set; }
@@ -21,6 +24,9 @@ public class GetAllMaterialListAdminQuery :IRequest<GetListResponse<GetAllMateri
     public string? CacheKey => $"GetListMaterials({PageRequest.PageIndex},{PageRequest.PageSize})";
     public string? CacheGroupKey => "GetMaterials";
     public TimeSpan? SlidingExpiration { get; }
+
+    //public string[] Roles => [Admin, Write, MaterialsOperationClaims.Create];
+
 
     public class GetAllMaterialListAdminHandler : IRequestHandler<GetAllMaterialListAdminQuery,GetListResponse<GetAllMaterialListAdminDto>>
     {
