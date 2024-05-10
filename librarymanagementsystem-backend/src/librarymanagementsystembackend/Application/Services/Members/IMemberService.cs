@@ -35,4 +35,6 @@ public interface IMemberService
     Task UpdateMemberDebtByAmount(decimal debtAmount, Guid memberId);
 
     Task<GetMemberForEmailDto> GetForEmailById(Guid memberId, CancellationToken cancellationToken);
+
+    Task<Guid> GetMemberIdByUserId(Guid userId);
 }

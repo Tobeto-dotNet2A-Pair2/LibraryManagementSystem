@@ -6,7 +6,7 @@ public class CreateBorrowedMaterialCommandValidator : AbstractValidator<CreateBo
 {
     public CreateBorrowedMaterialCommandValidator()
     {
-        RuleFor(c => c.MemberId).NotEmpty();
+        RuleFor(c => c.UserId).NotEmpty();
         RuleFor(c => c.MaterialCopyId).NotEmpty();
     }
 }
