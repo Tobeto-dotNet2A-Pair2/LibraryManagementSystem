@@ -4,6 +4,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { Author, Genre, Language, MaterialCopy, MaterialDetailDto, MaterialImage, MaterialProperty, Publisher, Translator } from '../../../models/responses/materials/material-detail-dto';
 import { ActivatedRoute } from '@angular/router';
 import { MaterialGetbyidService } from '../../../services/concretes/material-getbyid.service';
+import { MaterialDetailHomeDto } from '../../../models/responses/materials/material-detail-home-dto';
 
 @Component({
   selector: 'app-material-detail-home',
@@ -13,8 +14,8 @@ import { MaterialGetbyidService } from '../../../services/concretes/material-get
   styleUrl: './material-detail-home.component.scss'
 })
 export class MaterialDetailHomeComponent implements OnInit {
-  @Input() materialId!: string;
-  materialDetail: MaterialDetailDto | undefined;
+  @Input() materialCopyId!: string;
+  materialHomeDetail: MaterialDetailHomeDto  | undefined;
   authors: Author[] = [];
   publishers: Publisher[] = [];
   languages: Language[] = [];
@@ -31,26 +32,25 @@ export class MaterialDetailHomeComponent implements OnInit {
 
   ngOnInit(): void {
     this.route.params.subscribe((params) => {
-      this.materialId = params['id'];
-      this.getMaterialById();
+      this.materialCopyId = params['id'];
+      this.getMaterialCopyById();
     });
   }
 
-  getMaterialById(): void {
-    this.materialGetByIdService.getMaterialById(this.materialId).subscribe({
-      next: (response: MaterialDetailDto) => {
+  getMaterialCopyById(): void {
+    this.materialGetByIdService.getMaterialCopyById(this.materialCopyId).subscribe({
+      next: (response: MaterialDetailHomeDto) => {
         console.log('Backendden cevap geldi:', response);
 
            // this.materialByIdList = [response];
-        this.materialDetail = response;
-        
+        this.materialHomeDetail = response;
+        console.log( "material"+this.materialHomeDetail);
         this.authors = response.authors;
         this.publishers = response.publishers;
         this.languages = response.languages;
         this.translators = response.translators;
-        this.materialCopies = response.materialCopies;
-        this.genres = response.genres;
         this.materialProperties = response.materialProperties;
+        this.genres = response.genres;
         this.materialImages = response.materialImages; 
       },
       error: (error) => {

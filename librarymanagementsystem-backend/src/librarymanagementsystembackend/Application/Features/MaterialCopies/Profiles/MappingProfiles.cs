@@ -49,7 +49,7 @@ public class MappingProfiles : Profile
             .ForMember(a => a.BorrowDay, opt => opt
                 .MapFrom(src => src.Material.BorrowDay))
             .ForMember(a => a.IsBorrowable, opt => opt
-                .MapFrom(src => src.Material.IsBorrowable))
+                .MapFrom(src => src.IsReservable))
             .ForMember(a => a.PunishmentAmount, opt => opt
                 .MapFrom(src => src.Material.PunishmentAmount))
             .ForMember(a => a.FullLocationMap, opt => opt
