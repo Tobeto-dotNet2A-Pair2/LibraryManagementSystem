@@ -5,6 +5,7 @@ import { ToastrService } from 'ngx-toastr';
 import { BorrowMaterialRequest } from '../../models/requests/borrowed-materials/borrow-material-request';
 import { Observable, catchError, map } from 'rxjs';
 import { BorrowMaterialResponse } from '../../models/responses/borrowed-materials/borrow-material-response';
+import { BorrowMaterialMember } from '../../models/responses/borrowed-materials/borrow-material-member';
 
 @Injectable({
   providedIn: 'root'
@@ -34,5 +35,12 @@ export class BorrowMaterialService {
     const message = `Ödünç alma tarihi: ${response.borrowedDate}, Dönüş tarihi: ${response.returnDate}, Cezai miktar: ${response.punishmentAmount}`;
     this.toastr.info(message, 'Bilgi'); // BorrowMaterialResponse toast bildirimi
   }
+
+
+  getMemberBorrowedMaterials(memberId: string): Observable<BorrowMaterialMember[]> {
+    return this.httpClient.get<BorrowMaterialMember[]>(`${environment.API_URL}/MaterialCopies/GetById/${memberId}`);
+  }
+
+  
 }
 
