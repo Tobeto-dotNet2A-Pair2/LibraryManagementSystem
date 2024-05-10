@@ -1,8 +1,8 @@
-using NArchitecture.Core.Security.Attributes;
+
 
 namespace Application.Features.Notifications.Constants;
 
-[OperationClaimConstants]
+
 public static class NotificationsOperationClaims
 {
     private const string _section = "Notifications";

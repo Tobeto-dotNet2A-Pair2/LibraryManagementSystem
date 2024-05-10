@@ -12,7 +12,7 @@ using static Application.Features.TranslatorMaterials.Constants.TranslatorMateri
 
 namespace Application.Features.TranslatorMaterials.Commands.Update;
 
-public class UpdateTranslatorMaterialCommand : IRequest<UpdatedTranslatorMaterialResponse>, ICacheRemoverRequest, ILoggableRequest, ITransactionalRequest //ISecuredRequest,
+public class UpdateTranslatorMaterialCommand : IRequest<UpdatedTranslatorMaterialResponse>, ICacheRemoverRequest, ILoggableRequest, ITransactionalRequest, ISecuredRequest
 {
     public Guid Id { get; set; }
     public Guid TranslatorId { get; set; }

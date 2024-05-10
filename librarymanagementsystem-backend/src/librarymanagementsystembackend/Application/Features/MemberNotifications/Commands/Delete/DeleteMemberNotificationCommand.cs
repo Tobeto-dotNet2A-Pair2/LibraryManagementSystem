@@ -1,5 +1,4 @@
 using Application.Features.MemberNotifications.Constants;
-using Application.Features.MemberNotifications.Constants;
 using Application.Features.MemberNotifications.Rules;
 using Application.Services.Repositories;
 using AutoMapper;
@@ -13,7 +12,7 @@ using static Application.Features.MemberNotifications.Constants.MemberNotificati
 
 namespace Application.Features.MemberNotifications.Commands.Delete;
 
-public class DeleteMemberNotificationCommand : IRequest<DeletedMemberNotificationResponse>, ICacheRemoverRequest, ILoggableRequest, ITransactionalRequest // ISecuredRequest,
+public class DeleteMemberNotificationCommand : IRequest<DeletedMemberNotificationResponse>, ICacheRemoverRequest, ILoggableRequest, ITransactionalRequest, ISecuredRequest
 {
     public Guid Id { get; set; }
 

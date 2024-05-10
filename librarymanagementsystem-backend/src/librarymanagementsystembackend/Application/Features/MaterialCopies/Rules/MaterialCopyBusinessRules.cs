@@ -4,6 +4,9 @@ using NArchitecture.Core.Application.Rules;
 using NArchitecture.Core.CrossCuttingConcerns.Exception.Types;
 using NArchitecture.Core.Localization.Abstraction;
 using Domain.Entities;
+using Microsoft.EntityFrameworkCore;
+using System.Linq.Dynamic.Core;
+using System.Reflection.Metadata;
 
 namespace Application.Features.MaterialCopies.Rules;
 
@@ -38,5 +41,16 @@ public class MaterialCopyBusinessRules : BaseBusinessRules
             cancellationToken: cancellationToken
         );
         await MaterialCopyShouldExistWhenSelected(materialCopy);
+    }
+
+    public async Task MaterialCopyIsShouldReservableWhenBorrowed(Guid id, CancellationToken cancellationToken)
+    {
+       bool isReservable= await _materialCopyRepository.Query()
+            .Where(a => a.Id == id)
+            .Select(a => a.IsReservable)
+            .FirstOrDefaultAsync(cancellationToken);
+       
+       if(!isReservable)
+         await throwBusinessException(MaterialCopiesBusinessMessages.MaterialCopyCannotBorrow);
     }
 }

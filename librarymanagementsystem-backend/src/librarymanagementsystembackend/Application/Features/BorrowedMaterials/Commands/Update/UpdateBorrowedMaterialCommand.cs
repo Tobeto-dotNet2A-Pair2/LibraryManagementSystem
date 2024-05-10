@@ -12,7 +12,7 @@ using static Application.Features.BorrowedMaterials.Constants.BorrowedMaterialsO
 
 namespace Application.Features.BorrowedMaterials.Commands.Update;
 
-public class UpdateBorrowedMaterialCommand : IRequest<UpdatedBorrowedMaterialResponse>, ICacheRemoverRequest, ILoggableRequest, ITransactionalRequest // ISecuredRequest,
+public class UpdateBorrowedMaterialCommand : IRequest<UpdatedBorrowedMaterialResponse>, ICacheRemoverRequest, ILoggableRequest, ITransactionalRequest, ISecuredRequest
 {
     public Guid Id { get; set; }
     public DateTime BorrowedDate { get; set; }

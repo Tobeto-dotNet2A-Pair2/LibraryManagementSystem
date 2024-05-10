@@ -12,7 +12,7 @@ using static Application.Features.Cities.Constants.CitiesOperationClaims;
 
 namespace Application.Features.Cities.Queries.GetList;
 
-public class GetListCityQuery : IRequest<GetListResponse<GetListCityListItemDto>>, ICachableRequest //ISecuredRequest,
+public class GetListCityQuery : IRequest<GetListResponse<GetListCityListItemDto>>, ICachableRequest,ISecuredRequest
 {
     public PageRequest PageRequest { get; set; }
 

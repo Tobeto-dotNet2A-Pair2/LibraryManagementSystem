@@ -1,3 +1,4 @@
+using Application.Features.BorrowedMaterials.Queries.GetListByMember;
 using Application.Features.Materials.Commands.Create;
 using Application.Features.Materials.Commands.Delete;
 using Application.Features.Materials.Commands.Update;
@@ -5,11 +6,13 @@ using Application.Features.Materials.Queries.GetById;
 using Application.Features.Materials.Queries.GetById.GetDetails;
 using Application.Features.Materials.Queries.GetList;
 using Application.Features.Materials.Queries.GetList.GetAllForAdmin;
+using Application.Features.Materials.Queries.GetList.GetAllForFrontEnd;
 using AutoMapper;
 using NArchitecture.Core.Application.Responses;
 using Domain.Entities;
 using NArchitecture.Core.Persistence.Paging;
 using Application.Features.MaterialImages.Queries.GetList;
+using Application.Features.Materials.Dtos;
 using Application.Features.Materials.Queries.GetList.GetAll;
 
 namespace Application.Features.Materials.Profiles;
@@ -27,7 +30,7 @@ public class MappingProfiles : Profile
         CreateMap<Material, GetByIdMaterialResponse>().ReverseMap();
         CreateMap<Material, GetListMaterialListItemDto>().ReverseMap();
         CreateMap<IPaginate<Material>, GetListResponse<GetListMaterialListItemDto>>().ReverseMap();
-
+       
         //1.deneme=List----burada  MaterialImages t�m tabloyu c�kt� olarak veriyordu
         //CreateMap<MaterialImage, GetListMaterialImageListItemDto>().ReverseMap(); // MaterialImage ile DTO aras�nda mapping
         //CreateMap<Material, GetListMaterialListItemDto>()
@@ -42,8 +45,19 @@ public class MappingProfiles : Profile
                    .MapFrom(a => a.MaterialImages
                        .Select(b => b.Url)));
 
-        //ebrudan gelen-------------------------------
+
+        #region All Material List for AdminPage
+        CreateMap<IPaginate<Material>, GetListResponse<GetAllMaterialListAdminDto>>().ReverseMap();
         CreateMap<Material, GetAllMaterialListAdminDto>()
+            .ForMember(x => x.ImageUrls,
+                src => src
+                    .MapFrom(a => a.MaterialImages
+                        .Select(b => b.Url)));
+
+        #endregion
+
+     
+        CreateMap<Material, GetAllMaterialsForFrontEndResponse>()
             .ForMember(x => x.ImageUrls,
                 src => src
                     .MapFrom(a => a.MaterialImages
@@ -81,6 +95,11 @@ public class MappingProfiles : Profile
             .ForMember(src => src.MaterialImages,
                 opt => opt
                     .MapFrom(dest => dest.MaterialImages));
+
+        CreateMap<Material, MaterialForListBorrowedMaterialDto>();
+        CreateMap<IPaginate<Material>, GetListResponse<GetAllMaterialsForFrontEndResponse>>().ReverseMap();
+        
+        CreateMap<IPaginate<Material>, GetListResponse<GetAllMaterialsForFrontEndResponse>>().ReverseMap();
 
 
         CreateMap<Material, GetAllMaterialsDto>().ReverseMap();

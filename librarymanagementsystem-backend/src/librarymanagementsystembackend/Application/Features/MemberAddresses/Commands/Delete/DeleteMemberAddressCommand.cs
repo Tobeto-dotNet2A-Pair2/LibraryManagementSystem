@@ -1,5 +1,4 @@
 using Application.Features.MemberAddresses.Constants;
-using Application.Features.MemberAddresses.Constants;
 using Application.Features.MemberAddresses.Rules;
 using Application.Services.Repositories;
 using AutoMapper;
@@ -13,7 +12,7 @@ using static Application.Features.MemberAddresses.Constants.MemberAddressesOpera
 
 namespace Application.Features.MemberAddresses.Commands.Delete;
 
-public class DeleteMemberAddressCommand : IRequest<DeletedMemberAddressResponse>, ICacheRemoverRequest, ILoggableRequest, ITransactionalRequest // ISecuredRequest,
+public class DeleteMemberAddressCommand : IRequest<DeletedMemberAddressResponse>, ICacheRemoverRequest, ILoggableRequest, ITransactionalRequest, ISecuredRequest
 {
     public Guid Id { get; set; }
 

@@ -9,7 +9,7 @@ using static Application.Features.PaymentMethods.Constants.PaymentMethodsOperati
 
 namespace Application.Features.PaymentMethods.Queries.GetById;
 
-public class GetByIdPaymentMethodQuery : IRequest<GetByIdPaymentMethodResponse> //, ISecuredRequest
+public class GetByIdPaymentMethodQuery : IRequest<GetByIdPaymentMethodResponse>, ISecuredRequest
 {
     public Guid Id { get; set; }
 

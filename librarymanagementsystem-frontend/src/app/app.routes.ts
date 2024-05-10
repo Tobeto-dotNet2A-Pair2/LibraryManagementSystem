@@ -17,11 +17,16 @@ import { ContactComponent } from './features/pages/contact/contact.component';
 import { AboutUsComponent } from './features/pages/about-us/about-us.component';
 import { QuestionComponent } from './features/pages/question/question.component';
 import { MaterialDetailComponent } from './features/pages/materials/material-detail/material-detail.component';
+import { MaterialDetailHomeComponent } from './features/pages/materials/material-detail-home/material-detail-home.component';
+import { MaterialListHomeComponent } from './features/pages/materials/material-list-home/material-list-home.component';
+import { MyProfileComponent } from './features/pages/my-profile/my-profile.component';
+import { BorrowedMaterialComponent } from './features/pages/borrowed-material/borrowed-material.component';
 
 export const routes: Routes = [
   
   { path: '', redirectTo: 'homepage', pathMatch: 'full' },
    { path: 'auth', component: AuthComponent },
+   
    {path: 'homepage',
     component:MainLayoutComponent,
     children: [
@@ -29,8 +34,10 @@ export const routes: Routes = [
       { path: 'contact', component: ContactComponent },
       { path: 'aboutus', component: AboutUsComponent },
       { path: 'questions', component: QuestionComponent },
-
-
+      { path: 'app-material-list-home', component: MaterialListHomeComponent },
+      { path: 'material-detail-home/:id', component: MaterialDetailHomeComponent },    
+      { path: 'myprofile', component: MyProfileComponent },
+      { path: 'myborrowed', component: BorrowedMaterialComponent },
     ]
   },
   // { path: 'homepage', component: AdminLayoutComponent },
@@ -39,7 +46,8 @@ export const routes: Routes = [
   {
     path: 'adminpage',
     component: AdminLayoutComponent,
-    // canActivate: [roleGuard],
+    canActivate: [roleGuard],
+
     data:{requiredRoles:['Admin']},
     children: [
       { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
@@ -51,7 +59,9 @@ export const routes: Routes = [
       { path: 'add-material-forms', component: AddMaterialFormComponent },
       { path: 'member-profile/:id', component: MemberProfileComponent },
       { path: 'material-detail/:id', component: MaterialDetailComponent },
-      { path: 'add-library', component: AddLibraryComponent }
+      { path: 'add-library', component: AddLibraryComponent },
+      { path: 'myprofile', component: MyProfileComponent }
+
       
     ],
   },

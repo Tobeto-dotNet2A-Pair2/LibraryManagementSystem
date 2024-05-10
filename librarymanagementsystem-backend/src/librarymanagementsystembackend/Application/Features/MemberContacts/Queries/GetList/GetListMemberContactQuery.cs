@@ -12,7 +12,7 @@ using static Application.Features.MemberContacts.Constants.MemberContactsOperati
 
 namespace Application.Features.MemberContacts.Queries.GetList;
 
-public class GetListMemberContactQuery : IRequest<GetListResponse<GetListMemberContactListItemDto>>, ICachableRequest // ISecuredRequest,
+public class GetListMemberContactQuery : IRequest<GetListResponse<GetListMemberContactListItemDto>>, ICachableRequest, ISecuredRequest
 {
     public PageRequest PageRequest { get; set; }
 

@@ -28,10 +28,29 @@ public class AuthController : BaseController
             ?? throw new NullReferenceException($"\"{configurationSection}\" section cannot found in configuration.");
     }
 
+    //[HttpPost("Login")]
+    //public async Task<IActionResult> Login([FromBody] UserForLoginDto userForLoginDto)
+    //{
+    //    LoginCommand loginCommand = new() { UserForLoginDto = userForLoginDto, IpAddress = getIpAddress() };
+    //    LoggedResponse result = await Mediator.Send(loginCommand);
+
+    //    if (result.RefreshToken is not null)
+    //        setRefreshTokenToCookie(result.RefreshToken);
+
+    //    return Ok(result.ToHttpResponse());
+    //}
     [HttpPost("Login")]
-    public async Task<IActionResult> Login([FromBody] UserForLoginDto userForLoginDto)
+    public async Task<IActionResult> Login([FromBody] BaseAuthDto baseAuthDto)
     {
-        LoginCommand loginCommand = new() { UserForLoginDto = userForLoginDto, IpAddress = getIpAddress() };
+        LoginCommand loginCommand = new()
+        {
+            UserForLoginDto = new UserForLoginDto()
+            {
+                Email = baseAuthDto.Email,
+                Password = baseAuthDto.Password
+            },
+            IpAddress = getIpAddress()
+        };
         LoggedResponse result = await Mediator.Send(loginCommand);
 
         if (result.RefreshToken is not null)
@@ -39,6 +58,7 @@ public class AuthController : BaseController
 
         return Ok(result.ToHttpResponse());
     }
+
 
     [HttpPost("Register")]
     public async Task<IActionResult> Register([FromBody] RegisterDto userForRegisterDto)

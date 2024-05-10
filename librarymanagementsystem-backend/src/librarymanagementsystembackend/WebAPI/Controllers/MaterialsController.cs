@@ -5,6 +5,7 @@ using Application.Features.Materials.Queries.GetById;
 using Application.Features.Materials.Queries.GetById.GetDetails;
 using Application.Features.Materials.Queries.GetList;
 using Application.Features.Materials.Queries.GetList.GetAllForAdmin;
+using Application.Features.Materials.Queries.GetList.GetAllForFrontEnd;
 using NArchitecture.Core.Application.Requests;
 using NArchitecture.Core.Application.Responses;
 using Microsoft.AspNetCore.Mvc;
@@ -46,22 +47,28 @@ public class MaterialsController : BaseController
         GetByIdMaterialResponse response = await Mediator.Send(new GetByIdMaterialQuery { Id = id });
         return Ok(response);
     }
-
+    #region Material List for Homepage
     [HttpGet]
-    public async Task<IActionResult> GetList([FromQuery] PageRequest pageRequest)
+    public async Task<IActionResult> GetList([FromQuery] GetAllMaterialsForFrontEndQuery getAllMaterialsForFrontEndQuery)
     {
-        GetListMaterialQuery getListMaterialQuery = new() { PageRequest = pageRequest };
-        GetListResponse<GetListMaterialListItemDto> response = await Mediator.Send(getListMaterialQuery);
-        return Ok(response);
-    }
-    //ebruudan gelen---------------------
-    [HttpGet]
-    public async Task<IActionResult> GetListForAdmin([FromQuery] GetAllMaterialListAdminQuery getAllMaterialListAdminQuery)
-    {
-        List<GetAllMaterialListAdminDto> response = await Mediator.Send(getAllMaterialListAdminQuery);
+        GetListResponse<GetAllMaterialsForFrontEndResponse> response = await Mediator.Send(getAllMaterialsForFrontEndQuery);
         return Ok(response);
     }
 
+    #endregion
+
+    #region All Material List for AdminPage
+    [HttpGet]
+    public async Task<IActionResult> GetListForAdmin([FromQuery] PageRequest pageRequest)
+    {
+        GetAllMaterialListAdminQuery getAllMaterialListAdminQuery = new() { PageRequest = pageRequest };
+        // List<GetAllMaterialListAdminDto> response = await Mediator.Send(getAllMaterialListAdminQuery);
+        GetListResponse < GetAllMaterialListAdminDto > response = await Mediator.Send(getAllMaterialListAdminQuery);
+        return Ok(response);
+    }
+    #endregion
+
+    #region MaterialDetail   
 
     [HttpGet]
     public async Task<IActionResult> GetDetailByIdForAdmin([FromQuery] GetDetailByIdForAdminQuery getDetailByIdForAdminQuery)
@@ -69,11 +76,15 @@ public class MaterialsController : BaseController
         GetDetailByIdForAdminDto response = await Mediator.Send(getDetailByIdForAdminQuery);
         return Ok(response);
     }
+    #endregion
 
+
+    #region Material Add Form for search
     [HttpGet]
     public async Task<IActionResult> GetAll([FromQuery] GetAllMaterialsQuery getAllMaterialsQuery)
     {
         List<GetAllMaterialsDto> response = await Mediator.Send(getAllMaterialsQuery);
         return Ok(response);
     }
+    #endregion
 }

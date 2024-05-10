@@ -1,6 +1,7 @@
 using Application.Features.Penalties.Commands.Create;
 using Application.Features.Penalties.Commands.Delete;
 using Application.Features.Penalties.Commands.Update;
+using Application.Features.Penalties.Dto;
 using Application.Features.Penalties.Queries.GetById;
 using Application.Features.Penalties.Queries.GetList;
 using AutoMapper;
@@ -23,5 +24,7 @@ public class MappingProfiles : Profile
         CreateMap<Penalty, GetByIdPenaltyResponse>().ReverseMap();
         CreateMap<Penalty, GetListPenaltyListItemDto>().ReverseMap();
         CreateMap<IPaginate<Penalty>, GetListResponse<GetListPenaltyListItemDto>>().ReverseMap();
+
+        CreateMap<CreatePenaltyWhenRefundDto, Penalty>();
     }
 }

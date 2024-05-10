@@ -17,7 +17,7 @@ namespace Persistence.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "8.0.2")
+                .HasAnnotation("ProductVersion", "8.0.4")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
@@ -38,12 +38,10 @@ namespace Persistence.Migrations
                         .HasColumnName("DeletedDate");
 
                     b.Property<string>("Description")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)")
                         .HasColumnName("Description");
 
                     b.Property<string>("Name")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)")
                         .HasColumnName("Name");
 
@@ -70,7 +68,6 @@ namespace Persistence.Migrations
                         .HasColumnName("Id");
 
                     b.Property<string>("Country")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)")
                         .HasColumnName("Country");
 
@@ -83,12 +80,10 @@ namespace Persistence.Migrations
                         .HasColumnName("DeletedDate");
 
                     b.Property<string>("FirstName")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)")
                         .HasColumnName("FirstName");
 
                     b.Property<string>("LastName")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)")
                         .HasColumnName("LastName");
 
@@ -210,12 +205,10 @@ namespace Persistence.Migrations
                         .HasColumnName("LibraryId");
 
                     b.Property<string>("Name")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)")
                         .HasColumnName("Name");
 
                     b.Property<string>("PhoneNumber")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)")
                         .HasColumnName("PhoneNumber");
 
@@ -257,7 +250,6 @@ namespace Persistence.Migrations
                         .HasColumnName("DeletedDate");
 
                     b.Property<string>("Name")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)")
                         .HasColumnName("Name");
 
@@ -290,7 +282,6 @@ namespace Persistence.Migrations
                         .HasColumnName("DeletedDate");
 
                     b.Property<string>("Name")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)")
                         .HasColumnName("Name");
 
@@ -363,7 +354,6 @@ namespace Persistence.Migrations
                         .HasColumnName("MemberId");
 
                     b.Property<string>("Name")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)")
                         .HasColumnName("Name");
 
@@ -430,7 +420,6 @@ namespace Persistence.Migrations
                         .HasColumnName("DeletedDate");
 
                     b.Property<string>("Name")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)")
                         .HasColumnName("Name");
 
@@ -459,7 +448,6 @@ namespace Persistence.Migrations
                         .HasColumnName("DeletedDate");
 
                     b.Property<string>("Name")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)")
                         .HasColumnName("Name");
 
@@ -524,7 +512,6 @@ namespace Persistence.Migrations
                         .HasColumnName("DeletedDate");
 
                     b.Property<string>("Name")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)")
                         .HasColumnName("Name");
 
@@ -605,7 +592,6 @@ namespace Persistence.Migrations
                         .HasColumnName("DeletedDate");
 
                     b.Property<string>("Description")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)")
                         .HasColumnName("Description");
 
@@ -614,7 +600,6 @@ namespace Persistence.Migrations
                         .HasColumnName("IsBorrowable");
 
                     b.Property<string>("Name")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)")
                         .HasColumnName("Name");
 
@@ -672,7 +657,6 @@ namespace Persistence.Migrations
                         .HasColumnName("MaterialId");
 
                     b.Property<string>("Status")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)")
                         .HasColumnName("Status");
 
@@ -753,7 +737,6 @@ namespace Persistence.Migrations
                         .HasColumnName("UpdatedDate");
 
                     b.Property<string>("Url")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)")
                         .HasColumnName("Url");
 
@@ -780,7 +763,6 @@ namespace Persistence.Migrations
                         .HasColumnName("DeletedDate");
 
                     b.Property<string>("Name")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)")
                         .HasColumnName("Name");
 
@@ -801,7 +783,6 @@ namespace Persistence.Migrations
                         .HasColumnName("Id");
 
                     b.Property<string>("Content")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)")
                         .HasColumnName("Content");
 
@@ -833,7 +814,8 @@ namespace Persistence.Migrations
 
                     b.HasIndex("MaterialId");
 
-                    b.HasIndex("MaterialPropertyId");
+                    b.HasIndex("MaterialPropertyId")
+                        .IsUnique();
 
                     b.HasIndex("MaterialTypeId");
 
@@ -860,7 +842,6 @@ namespace Persistence.Migrations
                         .HasColumnName("MaterialFormat");
 
                     b.Property<string>("Name")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)")
                         .HasColumnName("Name");
 
@@ -893,7 +874,6 @@ namespace Persistence.Migrations
                         .HasColumnName("DeletedDate");
 
                     b.Property<string>("FirstName")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)")
                         .HasColumnName("FirstName");
 
@@ -902,17 +882,14 @@ namespace Persistence.Migrations
                         .HasColumnName("IsActive");
 
                     b.Property<string>("LastName")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)")
                         .HasColumnName("LastName");
 
                     b.Property<string>("NationalIdentity")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)")
                         .HasColumnName("NationalIdentity");
 
                     b.Property<string>("PhoneNumber")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)")
                         .HasColumnName("PhoneNumber");
 
@@ -988,12 +965,10 @@ namespace Persistence.Migrations
                         .HasColumnName("Id");
 
                     b.Property<string>("AskLibrarianDescription")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)")
                         .HasColumnName("AskLibrarianDescription");
 
                     b.Property<string>("AskLibrarianTopic")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)")
                         .HasColumnName("AskLibrarianTopic");
 
@@ -1014,7 +989,6 @@ namespace Persistence.Migrations
                         .HasColumnName("MemberId");
 
                     b.Property<string>("Message")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)")
                         .HasColumnName("Message");
 
@@ -1088,7 +1062,6 @@ namespace Persistence.Migrations
                         .HasColumnName("DistrictId");
 
                     b.Property<string>("Name")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)")
                         .HasColumnName("Name");
 
@@ -1119,7 +1092,6 @@ namespace Persistence.Migrations
                         .HasColumnName("DeletedDate");
 
                     b.Property<string>("Message")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)")
                         .HasColumnName("Message");
 
@@ -1128,12 +1100,10 @@ namespace Persistence.Migrations
                         .HasColumnName("SendingDate");
 
                     b.Property<string>("Status")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)")
                         .HasColumnName("Status");
 
                     b.Property<string>("Type")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)")
                         .HasColumnName("Type");
 
@@ -6318,6 +6288,30 @@ namespace Persistence.Migrations
                             Id = 857,
                             CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Name = "MaterialCopies.Delete"
+                        },
+                        new
+                        {
+                            Id = 858,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "Cities.GetDynamic"
+                        },
+                        new
+                        {
+                            Id = 859,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "Districts.GetDynamic"
+                        },
+                        new
+                        {
+                            Id = 860,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "Neighborhoods.GetDynamic"
+                        },
+                        new
+                        {
+                            Id = 861,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "Streets.GetDynamic"
                         });
                 });
 
@@ -6380,7 +6374,6 @@ namespace Persistence.Migrations
                         .HasColumnName("DeletedDate");
 
                     b.Property<string>("Name")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)")
                         .HasColumnName("Name");
 
@@ -6451,12 +6444,10 @@ namespace Persistence.Migrations
                         .HasColumnName("DeletedDate");
 
                     b.Property<string>("Name")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)")
                         .HasColumnName("Name");
 
                     b.Property<string>("PublicationPlace")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)")
                         .HasColumnName("PublicationPlace");
 
@@ -6525,9 +6516,9 @@ namespace Persistence.Migrations
                         .HasColumnType("datetime2")
                         .HasColumnName("DeletedDate");
 
-                    b.Property<DateTime>("ExpiresDate")
+                    b.Property<DateTime>("ExpirationDate")
                         .HasColumnType("datetime2")
-                        .HasColumnName("ExpiresDate");
+                        .HasColumnName("ExpirationDate");
 
                     b.Property<string>("ReasonRevoked")
                         .HasColumnType("nvarchar(max)")
@@ -6585,7 +6576,6 @@ namespace Persistence.Migrations
                         .HasColumnName("DeletedDate");
 
                     b.Property<string>("Logo")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)")
                         .HasColumnName("Logo");
 
@@ -6594,7 +6584,6 @@ namespace Persistence.Migrations
                         .HasColumnName("UpdatedDate");
 
                     b.Property<string>("Url")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)")
                         .HasColumnName("Url");
 
@@ -6621,7 +6610,6 @@ namespace Persistence.Migrations
                         .HasColumnName("DeletedDate");
 
                     b.Property<string>("Name")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)")
                         .HasColumnName("Name");
 
@@ -6656,12 +6644,10 @@ namespace Persistence.Migrations
                         .HasColumnName("DeletedDate");
 
                     b.Property<string>("Description")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)")
                         .HasColumnName("Description");
 
                     b.Property<string>("Name")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)")
                         .HasColumnName("Name");
 
@@ -6755,12 +6741,12 @@ namespace Persistence.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("a2fc4113-455f-40a4-a6f5-38135909f17e"),
+                            Id = new Guid("de25acda-5822-47ec-bd12-a6e5a28b20a2"),
                             AuthenticatorType = 0,
                             CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Email = "narch@kodlama.io",
-                            PasswordHash = new byte[] { 121, 173, 188, 19, 186, 232, 189, 85, 45, 203, 31, 127, 181, 109, 219, 5, 104, 165, 24, 201, 226, 213, 127, 63, 163, 133, 2, 61, 150, 90, 8, 33, 40, 4, 32, 137, 241, 55, 154, 69, 12, 91, 81, 91, 104, 232, 138, 3, 90, 212, 57, 47, 164, 49, 158, 43, 89, 62, 76, 200, 139, 64, 159, 23 },
-                            PasswordSalt = new byte[] { 244, 217, 250, 190, 24, 93, 87, 11, 147, 223, 123, 104, 88, 80, 164, 108, 27, 241, 161, 147, 140, 14, 53, 139, 132, 194, 35, 8, 109, 16, 71, 219, 236, 178, 88, 147, 173, 48, 233, 136, 193, 200, 28, 203, 107, 60, 210, 42, 245, 146, 10, 130, 206, 36, 195, 223, 205, 28, 131, 75, 43, 143, 44, 187, 150, 242, 6, 171, 82, 96, 203, 103, 64, 109, 229, 190, 227, 168, 194, 251, 55, 230, 216, 97, 88, 95, 245, 19, 136, 83, 10, 115, 169, 164, 77, 2, 169, 209, 116, 93, 110, 87, 65, 102, 58, 13, 46, 86, 6, 198, 237, 195, 21, 182, 186, 2, 151, 29, 112, 13, 44, 7, 198, 102, 200, 75, 23, 129 }
+                            PasswordHash = new byte[] { 87, 25, 48, 208, 52, 111, 235, 80, 9, 90, 179, 145, 241, 76, 153, 53, 91, 72, 33, 150, 69, 95, 205, 75, 19, 183, 102, 68, 242, 195, 148, 9, 240, 145, 166, 223, 85, 171, 83, 182, 43, 240, 9, 136, 255, 92, 209, 209, 207, 77, 131, 198, 188, 61, 207, 95, 126, 162, 200, 78, 43, 233, 118, 54 },
+                            PasswordSalt = new byte[] { 98, 144, 219, 238, 158, 255, 1, 61, 159, 185, 48, 49, 125, 49, 83, 138, 225, 212, 211, 222, 199, 3, 36, 226, 227, 26, 6, 46, 74, 78, 175, 19, 9, 44, 45, 137, 94, 220, 162, 194, 19, 163, 36, 232, 101, 147, 212, 15, 246, 51, 244, 216, 203, 235, 94, 63, 131, 50, 202, 103, 182, 4, 6, 44, 59, 51, 68, 88, 152, 250, 158, 201, 90, 242, 246, 175, 249, 112, 57, 192, 248, 124, 221, 50, 131, 68, 151, 76, 117, 247, 52, 135, 72, 174, 15, 220, 87, 157, 214, 55, 44, 1, 58, 243, 167, 236, 30, 234, 167, 51, 135, 100, 3, 246, 105, 199, 43, 66, 176, 107, 117, 169, 68, 19, 203, 56, 114, 84 }
                         });
                 });
 
@@ -6802,10 +6788,10 @@ namespace Persistence.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("f5516e84-9339-4ed4-aabb-b7ecd499cc05"),
+                            Id = new Guid("a1b78403-1c46-4731-b618-375821c6e85f"),
                             CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             OperationClaimId = 1,
-                            UserId = new Guid("a2fc4113-455f-40a4-a6f5-38135909f17e")
+                            UserId = new Guid("de25acda-5822-47ec-bd12-a6e5a28b20a2")
                         });
                 });
 
@@ -7012,8 +6998,8 @@ namespace Persistence.Migrations
                         .IsRequired();
 
                     b.HasOne("Domain.Entities.MaterialProperty", "MaterialProperty")
-                        .WithMany("MaterialPropertyValues")
-                        .HasForeignKey("MaterialPropertyId")
+                        .WithOne("MaterialPropertyValue")
+                        .HasForeignKey("Domain.Entities.MaterialPropertyValue", "MaterialPropertyId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -7234,8 +7220,7 @@ namespace Persistence.Migrations
 
             modelBuilder.Entity("Domain.Entities.Address", b =>
                 {
-                    b.Navigation("Branch")
-                        .IsRequired();
+                    b.Navigation("Branch");
 
                     b.Navigation("MemberAddresses");
                 });
@@ -7247,8 +7232,7 @@ namespace Persistence.Migrations
 
             modelBuilder.Entity("Domain.Entities.BorrowedMaterial", b =>
                 {
-                    b.Navigation("Penalty")
-                        .IsRequired();
+                    b.Navigation("Penalty");
                 });
 
             modelBuilder.Entity("Domain.Entities.Branch", b =>
@@ -7289,14 +7273,12 @@ namespace Persistence.Migrations
                 {
                     b.Navigation("Branches");
 
-                    b.Navigation("MemberContact")
-                        .IsRequired();
+                    b.Navigation("MemberContact");
                 });
 
             modelBuilder.Entity("Domain.Entities.Location", b =>
                 {
-                    b.Navigation("MaterialCopy")
-                        .IsRequired();
+                    b.Navigation("MaterialCopy");
                 });
 
             modelBuilder.Entity("Domain.Entities.Material", b =>
@@ -7322,13 +7304,12 @@ namespace Persistence.Migrations
 
             modelBuilder.Entity("Domain.Entities.MaterialCopy", b =>
                 {
-                    b.Navigation("BorrowedMaterial")
-                        .IsRequired();
+                    b.Navigation("BorrowedMaterial");
                 });
 
             modelBuilder.Entity("Domain.Entities.MaterialProperty", b =>
                 {
-                    b.Navigation("MaterialPropertyValues");
+                    b.Navigation("MaterialPropertyValue");
                 });
 
             modelBuilder.Entity("Domain.Entities.MaterialType", b =>

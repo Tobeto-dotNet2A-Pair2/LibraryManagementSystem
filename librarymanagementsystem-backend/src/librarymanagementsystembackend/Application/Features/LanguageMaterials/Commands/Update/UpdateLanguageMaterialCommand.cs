@@ -12,7 +12,7 @@ using static Application.Features.LanguageMaterials.Constants.LanguageMaterialsO
 
 namespace Application.Features.LanguageMaterials.Commands.Update;
 
-public class UpdateLanguageMaterialCommand : IRequest<UpdatedLanguageMaterialResponse>, ICacheRemoverRequest, ILoggableRequest, ITransactionalRequest // ISecuredRequest,
+public class UpdateLanguageMaterialCommand : IRequest<UpdatedLanguageMaterialResponse>, ICacheRemoverRequest, ILoggableRequest, ITransactionalRequest, ISecuredRequest
 {
     public Guid Id { get; set; }
     public Guid LanguageId { get; set; }

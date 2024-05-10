@@ -1,3 +1,5 @@
+using Application.Features.BorrowedMaterials.Dtos;
+using Application.Features.Members.Dtos;
 using NArchitecture.Core.Persistence.Paging;
 using Domain.Entities;
 using Microsoft.EntityFrameworkCore.Query;
@@ -27,4 +29,10 @@ public interface IMemberService
     Task<Member> AddAsync(Member member);
     Task<Member> UpdateAsync(Member member);
     Task<Member> DeleteAsync(Member member, bool permanent = false);
+
+    Task UpdateDebtBulk(List<GetAllDelayedRefundDto> debts);
+
+    Task UpdateMemberDebtByAmount(decimal debtAmount, Guid memberId);
+
+    Task<GetMemberForEmailDto> GetForEmailById(Guid memberId, CancellationToken cancellationToken);
 }

@@ -10,7 +10,7 @@ using NArchitecture.Core.Persistence.Paging;
 
 namespace Application.Features.OperationClaims.Queries.GetList;
 
-public class GetListOperationClaimQuery : IRequest<GetListResponse<GetListOperationClaimListItemDto>> // , ISecuredRequest
+public class GetListOperationClaimQuery : IRequest<GetListResponse<GetListOperationClaimListItemDto>>, ISecuredRequest
 {
     public PageRequest PageRequest { get; set; }
 

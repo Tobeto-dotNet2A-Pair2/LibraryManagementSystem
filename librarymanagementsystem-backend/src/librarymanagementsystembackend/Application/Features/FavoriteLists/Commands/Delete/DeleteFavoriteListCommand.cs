@@ -1,5 +1,4 @@
 using Application.Features.FavoriteLists.Constants;
-using Application.Features.FavoriteLists.Constants;
 using Application.Features.FavoriteLists.Rules;
 using Application.Services.Repositories;
 using AutoMapper;
@@ -13,7 +12,7 @@ using static Application.Features.FavoriteLists.Constants.FavoriteListsOperation
 
 namespace Application.Features.FavoriteLists.Commands.Delete;
 
-public class DeleteFavoriteListCommand : IRequest<DeletedFavoriteListResponse>, ICacheRemoverRequest, ILoggableRequest, ITransactionalRequest // ISecuredRequest,
+public class DeleteFavoriteListCommand : IRequest<DeletedFavoriteListResponse>, ICacheRemoverRequest, ILoggableRequest, ITransactionalRequest, ISecuredRequest
 {
     public Guid Id { get; set; }
 

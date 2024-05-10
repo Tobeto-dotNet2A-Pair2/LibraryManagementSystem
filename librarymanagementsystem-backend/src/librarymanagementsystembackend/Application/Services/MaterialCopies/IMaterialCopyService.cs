@@ -1,3 +1,4 @@
+using Application.Features.BorrowedMaterials.Dtos;
 using NArchitecture.Core.Persistence.Paging;
 using Domain.Entities;
 using Microsoft.EntityFrameworkCore.Query;
@@ -27,4 +28,10 @@ public interface IMaterialCopyService
     Task<MaterialCopy> AddAsync(MaterialCopy materialCopy);
     Task<MaterialCopy> UpdateAsync(MaterialCopy materialCopy);
     Task<MaterialCopy> DeleteAsync(MaterialCopy materialCopy, bool permanent = false);
+
+    Task<GetForBorrowDto> GetForBorrow(Guid id);
+    
+    Task UpdateAfterBorrow(Guid materialCopyId);
+
+    Task UpdateAfterRefund(Guid materialCopyId);
 }

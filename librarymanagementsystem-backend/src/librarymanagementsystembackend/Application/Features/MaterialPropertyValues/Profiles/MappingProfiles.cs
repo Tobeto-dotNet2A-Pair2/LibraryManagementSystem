@@ -1,3 +1,4 @@
+using Application.Features.BorrowedMaterials.Queries.GetListByMember;
 using Application.Features.MaterialProperties.Dtos;
 using Application.Features.MaterialPropertyValues.Commands.Create;
 using Application.Features.MaterialPropertyValues.Commands.Delete;
@@ -28,5 +29,7 @@ public class MappingProfiles : Profile
             .ReverseMap();
 
         CreateMap<MaterialPropertyValue, MaterialPropertyValuesForMaterialDetailDto>();
+
+        CreateMap<MaterialPropertyValue, MaterialPropertyValuesListForBorrowedMaterialDto>();
     }
 }

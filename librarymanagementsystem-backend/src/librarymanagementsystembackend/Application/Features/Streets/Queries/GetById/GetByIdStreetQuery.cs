@@ -9,7 +9,7 @@ using static Application.Features.Streets.Constants.StreetsOperationClaims;
 
 namespace Application.Features.Streets.Queries.GetById;
 
-public class GetByIdStreetQuery : IRequest<GetByIdStreetResponse> //, ISecuredRequest
+public class GetByIdStreetQuery : IRequest<GetByIdStreetResponse>, ISecuredRequest
 {
     public Guid Id { get; set; }
 

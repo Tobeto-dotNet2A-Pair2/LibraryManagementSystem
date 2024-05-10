@@ -8,7 +8,7 @@ using NArchitecture.Core.Application.Pipelines.Authorization;
 
 namespace Application.Features.UserOperationClaims.Queries.GetById;
 
-public class GetByIdUserOperationClaimQuery : IRequest<GetByIdUserOperationClaimResponse> //, ISecuredRequest
+public class GetByIdUserOperationClaimQuery : IRequest<GetByIdUserOperationClaimResponse>, ISecuredRequest
 {
     public Guid Id { get; set; }
 

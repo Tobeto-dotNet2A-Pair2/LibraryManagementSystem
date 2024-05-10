@@ -12,7 +12,7 @@ using static Application.Features.Publishers.Constants.PublishersOperationClaims
 
 namespace Application.Features.Publishers.Commands.Update;
 
-public class UpdatePublisherCommand : IRequest<UpdatedPublisherResponse>, ICacheRemoverRequest, ILoggableRequest, ITransactionalRequest //ISecuredRequest,
+public class UpdatePublisherCommand : IRequest<UpdatedPublisherResponse>, ICacheRemoverRequest, ILoggableRequest, ITransactionalRequest, ISecuredRequest
 {
     public Guid Id { get; set; }
     public string Name { get; set; }

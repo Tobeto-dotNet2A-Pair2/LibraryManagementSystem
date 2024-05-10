@@ -8,7 +8,7 @@ using NArchitecture.Core.Application.Pipelines.Authorization;
 
 namespace Application.Features.Auth.Commands.EnableOtpAuthenticator;
 
-public class EnableOtpAuthenticatorCommand : IRequest<EnabledOtpAuthenticatorResponse> //, ISecuredRequest
+public class EnableOtpAuthenticatorCommand : IRequest<EnabledOtpAuthenticatorResponse>, ISecuredRequest
 {
     public Guid UserId { get; set; }
 

@@ -1,5 +1,4 @@
 using Application.Features.PaymentMethods.Constants;
-using Application.Features.PaymentMethods.Constants;
 using Application.Features.PaymentMethods.Rules;
 using Application.Services.Repositories;
 using AutoMapper;
@@ -13,7 +12,7 @@ using static Application.Features.PaymentMethods.Constants.PaymentMethodsOperati
 
 namespace Application.Features.PaymentMethods.Commands.Delete;
 
-public class DeletePaymentMethodCommand : IRequest<DeletedPaymentMethodResponse>, ICacheRemoverRequest, ILoggableRequest, ITransactionalRequest //ISecuredRequest,
+public class DeletePaymentMethodCommand : IRequest<DeletedPaymentMethodResponse>, ICacheRemoverRequest, ILoggableRequest, ITransactionalRequest , ISecuredRequest
 {
     public Guid Id { get; set; }
 

@@ -1,4 +1,5 @@
 using Application.Features.Auth.Constants;
+using Application.Features.OperationClaims.Dtos;
 using Application.Services.Repositories;
 using Domain.Entities;
 using NArchitecture.Core.Application.Rules;
@@ -13,11 +14,13 @@ public class AuthBusinessRules : BaseBusinessRules
 {
     private readonly IUserRepository _userRepository;
     private readonly ILocalizationService _localizationService;
+    private readonly IOperationClaimRepository _operationClaimRepository;
 
-    public AuthBusinessRules(IUserRepository userRepository, ILocalizationService localizationService)
+    public AuthBusinessRules(IUserRepository userRepository, ILocalizationService localizationService, IOperationClaimRepository operationClaimRepository)
     {
         _userRepository = userRepository;
         _localizationService = localizationService;
+        _operationClaimRepository = operationClaimRepository;
     }
 
     private async Task throwBusinessException(string messageKey)
@@ -70,13 +73,13 @@ public class AuthBusinessRules : BaseBusinessRules
 
     public async Task RefreshTokenShouldBeActive(RefreshToken refreshToken)
     {
-        if (refreshToken.RevokedDate != null && DateTime.UtcNow >= refreshToken.ExpiresDate)
+        if (refreshToken.RevokedDate != null && DateTime.UtcNow >= refreshToken.ExpirationDate)
             await throwBusinessException(AuthMessages.InvalidRefreshToken);
     }
 
     public async Task UserEmailShouldBeNotExists(string email)
     {
-        bool doesExists = await _userRepository.AnyAsync(predicate: u => u.Email == email, enableTracking: false);
+        bool doesExists = await _userRepository.AnyAsync(predicate: u => u.Email == email);
         if (doesExists)
             await throwBusinessException(AuthMessages.UserMailAlreadyExists);
     }
@@ -85,5 +88,11 @@ public class AuthBusinessRules : BaseBusinessRules
     {
         if (!HashingHelper.VerifyPasswordHash(password, user!.PasswordHash, user.PasswordSalt))
             await throwBusinessException(AuthMessages.PasswordDontMatch);
+    }
+
+    public async Task<List<GetByRoleNameDto>> GetOperationClaimIdByRoleNameAsync(List<string> roles)
+    {
+        List<GetByRoleNameDto> operationClaims = await _operationClaimRepository.GetByRoleNameAsync(roles);
+        return operationClaims;
     }
 }

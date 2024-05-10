@@ -9,7 +9,7 @@ using static Application.Features.MaterialGenres.Constants.MaterialGenresOperati
 
 namespace Application.Features.MaterialGenres.Queries.GetById;
 
-public class GetByIdMaterialGenreQuery : IRequest<GetByIdMaterialGenreResponse> //, ISecuredRequest
+public class GetByIdMaterialGenreQuery : IRequest<GetByIdMaterialGenreResponse> , ISecuredRequest
 {
     public Guid Id { get; set; }
 

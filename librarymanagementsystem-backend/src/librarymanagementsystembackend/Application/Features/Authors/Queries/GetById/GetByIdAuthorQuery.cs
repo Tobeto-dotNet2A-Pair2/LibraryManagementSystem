@@ -9,7 +9,7 @@ using static Application.Features.Authors.Constants.AuthorsOperationClaims;
 
 namespace Application.Features.Authors.Queries.GetById;
 
-public class GetByIdAuthorQuery : IRequest<GetByIdAuthorResponse> //, ISecuredRequest
+public class GetByIdAuthorQuery : IRequest<GetByIdAuthorResponse> , ISecuredRequest
 {
     public Guid Id { get; set; }
 

@@ -1,5 +1,4 @@
 using Application.Features.Translators.Constants;
-using Application.Features.Translators.Constants;
 using Application.Features.Translators.Rules;
 using Application.Services.Repositories;
 using AutoMapper;
@@ -13,7 +12,7 @@ using static Application.Features.Translators.Constants.TranslatorsOperationClai
 
 namespace Application.Features.Translators.Commands.Delete;
 
-public class DeleteTranslatorCommand : IRequest<DeletedTranslatorResponse>, ICacheRemoverRequest, ILoggableRequest, ITransactionalRequest // ISecuredRequest,
+public class DeleteTranslatorCommand : IRequest<DeletedTranslatorResponse>, ICacheRemoverRequest, ILoggableRequest, ITransactionalRequest, ISecuredRequest
 {
     public Guid Id { get; set; }
 

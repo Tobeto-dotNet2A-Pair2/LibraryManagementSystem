@@ -8,7 +8,7 @@ using static Application.Features.Auth.Constants.AuthOperationClaims;
 
 namespace Application.Features.Auth.Commands.RevokeToken;
 
-public class RevokeTokenCommand : IRequest<RevokedTokenResponse> //, ISecuredRequest
+public class RevokeTokenCommand : IRequest<RevokedTokenResponse> , ISecuredRequest
 {
     public string Token { get; set; }
     public string IpAddress { get; set; }

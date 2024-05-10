@@ -1,4 +1,6 @@
 ﻿using System.Collections.Immutable;
+using Application.Features.Auth.Rules;
+using Application.Features.OperationClaims.Dtos;
 using Application.Services.Repositories;
 using AutoMapper;
 using Domain.Entities;
@@ -10,18 +12,20 @@ namespace Application.Services.AuthService;
 public class AuthManager : IAuthService
 {
     private readonly IRefreshTokenRepository _refreshTokenRepository;
-    private readonly ITokenHelper<Guid, int> _tokenHelper;
+    private readonly ITokenHelper<Guid, int, Guid> _tokenHelper;
     private readonly TokenOptions _tokenOptions;
     private readonly IUserOperationClaimRepository _userOperationClaimRepository;
     private readonly IMapper _mapper;
+    private readonly AuthBusinessRules _authBusinessRules;
 
     public AuthManager(
         IUserOperationClaimRepository userOperationClaimRepository,
         IRefreshTokenRepository refreshTokenRepository,
-        ITokenHelper<Guid, int> tokenHelper,
+        ITokenHelper<Guid, int,Guid> tokenHelper,
         IConfiguration configuration,
         IMapper mapper
-    )
+,
+        AuthBusinessRules authBusinessRules)
     {
         _userOperationClaimRepository = userOperationClaimRepository;
         _refreshTokenRepository = refreshTokenRepository;
@@ -32,6 +36,7 @@ public class AuthManager : IAuthService
             configuration.GetSection(tokenOptionsConfigurationSection).Get<TokenOptions>()
             ?? throw new NullReferenceException($"\"{tokenOptionsConfigurationSection}\" section cannot found in configuration");
         _mapper = mapper;
+        _authBusinessRules = authBusinessRules;
     }
 
     public async Task<AccessToken> CreateAccessToken(User user)
@@ -81,7 +86,7 @@ public class AuthManager : IAuthService
 
     public async Task<RefreshToken> RotateRefreshToken(User user, RefreshToken refreshToken, string ipAddress)
     {
-        NArchitecture.Core.Security.Entities.RefreshToken<Guid> newCoreRefreshToken = _tokenHelper.CreateRefreshToken(
+        NArchitecture.Core.Security.Entities.RefreshToken<Guid,Guid> newCoreRefreshToken = _tokenHelper.CreateRefreshToken(
             user,
             ipAddress
         );
@@ -96,7 +101,7 @@ public class AuthManager : IAuthService
             r.Token == refreshToken.ReplacedByToken
         );
 
-        if (childToken?.RevokedDate != null && childToken.ExpiresDate <= DateTime.UtcNow)
+        if (childToken?.RevokedDate != null && childToken.ExpirationDate <= DateTime.UtcNow)
             await RevokeRefreshToken(childToken, ipAddress, reason);
         else
             await RevokeDescendantRefreshTokens(refreshToken: childToken!, ipAddress, reason);
@@ -104,11 +109,28 @@ public class AuthManager : IAuthService
 
     public Task<RefreshToken> CreateRefreshToken(User user, string ipAddress)
     {
-        NArchitecture.Core.Security.Entities.RefreshToken<Guid> coreRefreshToken = _tokenHelper.CreateRefreshToken(
+        NArchitecture.Core.Security.Entities.RefreshToken<Guid,Guid> coreRefreshToken = _tokenHelper.CreateRefreshToken(
             user,
             ipAddress
         );
         RefreshToken refreshToken = _mapper.Map<RefreshToken>(coreRefreshToken);
         return Task.FromResult(refreshToken);
+    }
+
+
+    public async Task AssignRolesToUserAsync(User createdUser, IEnumerable<string> roles)
+    {
+        List<GetByRoleNameDto> operationClaims = await _authBusinessRules.GetOperationClaimIdByRoleNameAsync(roles.ToList());
+        List<UserOperationClaim> operationClaimEntities = new List<UserOperationClaim>();
+        foreach (string role in roles)
+        {
+            var match = operationClaims.FirstOrDefault(a => a.Name.Equals(role));
+            operationClaimEntities.Add(new UserOperationClaim
+            {
+                UserId = createdUser.Id,
+                OperationClaimId = match.Id
+            });
+        }
+        await _userOperationClaimRepository.AddRangeAsync(operationClaimEntities);
     }
 }

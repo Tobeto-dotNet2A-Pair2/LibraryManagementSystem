@@ -15,4 +15,6 @@ public interface IAuthService
     public Task RevokeRefreshToken(RefreshToken token, string ipAddress, string? reason = null, string? replacedByToken = null);
 
     public Task<RefreshToken> RotateRefreshToken(User user, RefreshToken refreshToken, string ipAddress);
+
+   public Task AssignRolesToUserAsync(User createdUser, IEnumerable<string> roles);
 }

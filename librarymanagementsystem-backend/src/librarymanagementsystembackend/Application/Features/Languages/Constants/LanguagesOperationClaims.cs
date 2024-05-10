@@ -1,8 +1,8 @@
-using NArchitecture.Core.Security.Attributes;
+
 
 namespace Application.Features.Languages.Constants;
 
-[OperationClaimConstants]
+
 public static class LanguagesOperationClaims
 {
     private const string _section = "Languages";

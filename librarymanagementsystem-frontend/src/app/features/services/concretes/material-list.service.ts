@@ -5,7 +5,6 @@ import { MaterialListBaseService } from '../abstracts/material-list-base.service
 import { PageRequest } from '../../../core/models/page/page-request';
 import { MaterialListItemDto } from '../../models/responses/materials/material-list-item-dto';
 import { Injectable } from '@angular/core';
-import { DeleteMaterialRequest } from '../../models/requests/materials/delete-material-request';
 import { DeletedMaterialResponse } from '../../models/responses/materials/deleted-material-response';
 
 
@@ -20,9 +19,10 @@ export class MaterialListService extends MaterialListBaseService{
   override getList(pageRequest: PageRequest): Observable<MaterialListItemDto> {
     const newRequest :{[key:string]:string | number}={
       pageIndex:pageRequest.pageIndex,
-      pageSize:pageRequest.pageSize
+      pageSize:pageRequest.pageSize,
+      //searchText:"" for search 
     };
-    return this.httpClient.get<MaterialListItemDto>(`${this.apiUrl}/GetList`,{
+    return this.httpClient.get<MaterialListItemDto>(`${this.apiUrl}/GetListForAdmin`,{
       params:newRequest
     }).pipe(
       map((response)=>{

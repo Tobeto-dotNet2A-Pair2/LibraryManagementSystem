@@ -9,7 +9,7 @@ using static Application.Features.MemberNotifications.Constants.MemberNotificati
 
 namespace Application.Features.MemberNotifications.Queries.GetById;
 
-public class GetByIdMemberNotificationQuery : IRequest<GetByIdMemberNotificationResponse> //, ISecuredRequest
+public class GetByIdMemberNotificationQuery : IRequest<GetByIdMemberNotificationResponse>, ISecuredRequest
 {
     public Guid Id { get; set; }
 

@@ -1,5 +1,4 @@
 using Application.Features.PublisherMaterials.Constants;
-using Application.Features.PublisherMaterials.Constants;
 using Application.Features.PublisherMaterials.Rules;
 using Application.Services.Repositories;
 using AutoMapper;
@@ -13,7 +12,7 @@ using static Application.Features.PublisherMaterials.Constants.PublisherMaterial
 
 namespace Application.Features.PublisherMaterials.Commands.Delete;
 
-public class DeletePublisherMaterialCommand : IRequest<DeletedPublisherMaterialResponse>, ICacheRemoverRequest, ILoggableRequest, ITransactionalRequest //ISecuredRequest,
+public class DeletePublisherMaterialCommand : IRequest<DeletedPublisherMaterialResponse>, ICacheRemoverRequest, ILoggableRequest, ITransactionalRequest, ISecuredRequest
 {
     public Guid Id { get; set; }
 

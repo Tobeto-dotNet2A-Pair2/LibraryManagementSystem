@@ -1,5 +1,4 @@
 using Application.Features.MemberContacts.Constants;
-using Application.Features.MemberContacts.Constants;
 using Application.Features.MemberContacts.Rules;
 using Application.Services.Repositories;
 using AutoMapper;
@@ -13,7 +12,7 @@ using static Application.Features.MemberContacts.Constants.MemberContactsOperati
 
 namespace Application.Features.MemberContacts.Commands.Delete;
 
-public class DeleteMemberContactCommand : IRequest<DeletedMemberContactResponse>, ICacheRemoverRequest, ILoggableRequest, ITransactionalRequest // ISecuredRequest,
+public class DeleteMemberContactCommand : IRequest<DeletedMemberContactResponse>, ICacheRemoverRequest, ILoggableRequest, ITransactionalRequest, ISecuredRequest
 {
     public Guid Id { get; set; }
 

@@ -12,8 +12,8 @@ using static Application.Features.Notifications.Constants.NotificationsOperation
 
 namespace Application.Features.Notifications.Commands.Create;
 
-public class CreateNotificationCommand : IRequest<CreatedNotificationResponse>, ICacheRemoverRequest, ILoggableRequest, ITransactionalRequest //ISecuredRequest,
-{
+public class CreateNotificationCommand : IRequest<CreatedNotificationResponse>, ICacheRemoverRequest, ILoggableRequest, ITransactionalRequest, ISecuredRequest
+{ 
     public string Type { get; set; }
     public DateTime SendingDate { get; set; }
     public string Message { get; set; }

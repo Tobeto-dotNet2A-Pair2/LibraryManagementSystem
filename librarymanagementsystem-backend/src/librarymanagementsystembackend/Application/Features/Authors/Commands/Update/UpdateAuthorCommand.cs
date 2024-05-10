@@ -12,7 +12,7 @@ using static Application.Features.Authors.Constants.AuthorsOperationClaims;
 
 namespace Application.Features.Authors.Commands.Update;
 
-public class UpdateAuthorCommand : IRequest<UpdatedAuthorResponse>, ICacheRemoverRequest, ILoggableRequest, ITransactionalRequest //ISecuredRequest,
+public class UpdateAuthorCommand : IRequest<UpdatedAuthorResponse>, ICacheRemoverRequest, ILoggableRequest, ITransactionalRequest,ISecuredRequest
 {
     public Guid Id { get; set; }
     public string FirstName { get; set; }

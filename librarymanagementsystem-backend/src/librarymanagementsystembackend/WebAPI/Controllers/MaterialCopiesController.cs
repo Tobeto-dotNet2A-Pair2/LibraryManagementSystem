@@ -1,6 +1,7 @@
 using Application.Features.MaterialCopies.Commands.Create;
 using Application.Features.MaterialCopies.Commands.Delete;
 using Application.Features.MaterialCopies.Commands.Update;
+using Application.Features.MaterialCopies.Dtos;
 using Application.Features.MaterialCopies.Queries.GetById;
 using Application.Features.MaterialCopies.Queries.GetList;
 using NArchitecture.Core.Application.Requests;
@@ -9,7 +10,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace WebAPI.Controllers;
 
-[Route("api/[controller]")]
+[Route("api/[controller]/[action]")]
 [ApiController]
 public class MaterialCopiesController : BaseController
 {
@@ -45,10 +46,9 @@ public class MaterialCopiesController : BaseController
     }
 
     [HttpGet]
-    public async Task<IActionResult> GetList([FromQuery] PageRequest pageRequest)
+    public async Task<IActionResult> GetList([FromQuery] GetListMaterialCopyQuery getListMaterialCopyQuery)
     {
-        GetListMaterialCopyQuery getListMaterialCopyQuery = new() { PageRequest = pageRequest };
-        GetListResponse<GetListMaterialCopyListItemDto> response = await Mediator.Send(getListMaterialCopyQuery);
+        GetListResponse<GetListMaterialCopyDto> response = await Mediator.Send(getListMaterialCopyQuery);
         return Ok(response);
     }
 }
