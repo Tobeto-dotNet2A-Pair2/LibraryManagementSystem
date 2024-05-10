@@ -125,4 +125,14 @@ public class MemberManager : IMemberService
 
         return member;
     }
+
+    public async Task<Guid> GetMemberIdByUserId(Guid userId)
+    {
+        Guid memberId = await _memberRepository.Query()
+            .Where(a => a.UserId == userId)
+            .Select(a => a.UserId)
+            .FirstOrDefaultAsync();
+        
+        return userId;
+    }
 }

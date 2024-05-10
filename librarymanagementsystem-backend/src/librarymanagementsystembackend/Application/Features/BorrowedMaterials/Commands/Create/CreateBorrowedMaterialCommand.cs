@@ -21,7 +21,7 @@ namespace Application.Features.BorrowedMaterials.Commands.Create;
 
 public class CreateBorrowedMaterialCommand : IRequest<CreatedBorrowedMaterialResponse>, ILoggableRequest, ITransactionalRequest, ISecuredRequest
 {
-    public Guid MemberId { get; set; }
+    public Guid UserId { get; set; }
     public Guid MaterialCopyId { get; set; }
 
     public string[] Roles => [BorrowedMaterialsOperationClaims.Admin, BorrowedMaterialsOperationClaims.Write, BorrowedMaterialsOperationClaims.Create];
@@ -57,10 +57,11 @@ public class CreateBorrowedMaterialCommand : IRequest<CreatedBorrowedMaterialRes
 
         public async Task<CreatedBorrowedMaterialResponse> Handle(CreateBorrowedMaterialCommand request, CancellationToken cancellationToken)
         {
+            Guid memberId = await _memberService.GetMemberIdByUserId(request.UserId);
             #region BusinessRules
             
-            await _borrowedMaterialBusinessRules.MemberDoesNotHaveSameMaterialAtTheSameTime(request.MemberId, request.MaterialCopyId, cancellationToken);
-            await _memberBusinessRules.MemberShouldHaveNoDebt(request.MemberId, cancellationToken);
+            await _borrowedMaterialBusinessRules.MemberDoesNotHaveSameMaterialAtTheSameTime(memberId, request.MaterialCopyId, cancellationToken);
+            await _memberBusinessRules.MemberShouldHaveNoDebt(memberId, cancellationToken);
             await _materialCopyBusinessRules.MaterialCopyIsShouldReservableWhenBorrowed(request.MaterialCopyId,cancellationToken);
 
             #endregion
@@ -80,7 +81,7 @@ public class CreateBorrowedMaterialCommand : IRequest<CreatedBorrowedMaterialRes
 
             #region Mail 
 
-            GetMemberForEmailDto member = await _memberService.GetForEmailById(request.MemberId, cancellationToken: cancellationToken);
+            GetMemberForEmailDto member = await _memberService.GetForEmailById(memberId, cancellationToken: cancellationToken);
             var mail = new Mail(
                 subject: BorrowedMaterialsBusinessMessages.BorrowedMaterialEmailSubject,
                 textBody: string.Empty,
