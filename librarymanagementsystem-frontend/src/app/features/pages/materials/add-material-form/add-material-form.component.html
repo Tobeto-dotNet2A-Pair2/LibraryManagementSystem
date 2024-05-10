@@ -6,7 +6,6 @@
     <!--begin::Input group Dropdown-Select-->
     <div class="form-group">
       <!--Material Start-->
-      <input type="text">
       <div class="form-floating">
         <select
           class="form-select"
@@ -23,18 +22,29 @@
       <!--end::Input group Dropdown-Select-->
       <br />
       <a
-        id="btnAddMaterial"
-        class="btn btn-info"
-        (click)="openModal('materialModal')"
-        >Yeni Materyal</a
-      >
-      <br />
+      id="btnAddMaterial"
+      class="btn btn-info hover-elevate-up"
+      (click)="openModal('materialModal')"
+      >Yeni Materyal</a
+    >
+
+<br>
+     
+      <br>
+      <a
+      id="btnUpdateMaterial"
+      class="btn btn-warning hover-elevate-up"
+      (click)="openModal('updateMaterialModal')"
+      >Materyal Güncelle</a
+    >
+    <br />
       <!--Material End-->
+      
       <!--MaterialCopy Start-->
       <br />
       <a
         id="btnAddMaterialCopy"
-        class="btn btn-info"
+        class="btn btn-info hover-elevate-up"
         (click)="openModal('materialCopyModal')"
         >Yeni Materyal Kopyası</a
       >
@@ -44,28 +54,86 @@
       <br />
       <a
         id="btnAddMaterialImage"
-        class="btn btn-info"
+        class="btn btn-info hover-elevate-up"
         (click)="openModal('materialImageModal')"
         >Yeni Materyal Fotoğrafı yükle</a
       >
       <br />
+      <br>
       <!--MaterialImage End-->
       <!--MaterialGenre Start-->
+      <div class="form-floating">
+        <select
+          class="form-select"
+          id="floatingSelect"
+          aria-label="Floating label select example"
+        >
+          <option selected></option>
+          <option *ngFor="let genre of genreList" [value]="genre.id">
+            {{ genre.name }}
+          </option>
+        </select>
+        <label for="floatingSelect">Materyal Türü/Kategorisi Seç</label>
+      </div>
       <br />
       <a
-        id="btnAddMaterialGenre"
-        class="btn btn-info"
-        (click)="openModal('materialNewGenreModal')"
-        >Yeni tür/kategori ekle Opsiyonel</a
+        id="btnAddGenre"
+        class="btn btn-info hover-elevate-up"
+        (click)="openModal('genreModal')"
+        >Yeni tür/kategori ekle</a
       >
-      <br /><br />
-      <a
-        id="btnSelectMaterialGenre"
-        class="btn btn-warning"
-        (click)="openModal('materialGenreModal')"
-        >Material tür/kategori seç</a
-      >
+      <br>
       <!--MaterialGenre End-->
+            <!--MaterialProperty Start-->
+            <br>
+            <div class="form-floating">
+              <select
+                class="form-select"
+                id="floatingSelect"
+                aria-label="Floating label select example"
+              >
+                <option selected></option>
+                <option *ngFor="let property of materialPropertyList" [value]="property.id">
+                  {{ property.name }}
+                </option>
+              </select>
+              <label for="floatingSelect">Materyal Özelliği Seç</label>
+            </div>
+            <br />
+            <a
+              id="btnAddmaterialProperty"
+              class="btn btn-info hover-elevate-up"
+              (click)="openModal('materialPropertyModal')"
+              >Yeni Materyal Özelliği ekle</a
+            >
+            <br>
+            <!--MaterialProperty End-->
+             <!--MaterialType Start-->
+             <br>
+             <div class="form-floating">
+               <select
+                 class="form-select"
+                 id="floatingSelect"
+                 aria-label="Floating label select example"
+               >
+                 <option selected></option>
+                 <option *ngFor="let type of materialTypeList" [value]="type.id">
+                   {{ type.name }}
+                 </option>
+               </select>
+               <label for="floatingSelect">Materyal Tipi Seç</label>
+             </div>
+             <!---->    
+             <br />
+             <a
+               id="btnAddmaterialType"
+               class="btn btn-info hover-elevate-up"
+               (click)="openModal('materialTypeModal')"
+               >Yeni Materyal Tipi ekle</a
+             >
+                                                                        
+             <!--MaterialType End-->
+             
     </div>
   </form>
   <!--2.Sutun-->
@@ -77,7 +145,7 @@
       <!--Material-Yazar Eşle Start-->
       <a
         id="btnRelateMaterialAuthor"
-        class="btn btn-primary"
+        class="btn btn-primary hover-elevate-up"
         (click)="openModal('authorMaterialModal')"
         >Materyal-Yazar Eşle</a
       >
@@ -87,7 +155,7 @@
             <br />
             <a
               id="btnRelateMaterialPublisher"
-              class="btn btn-primary"
+              class="btn btn-primary hover-elevate-up"
               (click)="openModal('publisherMaterialModal')"
               >Materyal-YayınEvi Eşle</a
             >
@@ -97,7 +165,7 @@
       <br />
       <a
         id="btnRelateMaterialTranslator"
-        class="btn btn-primary"
+        class="btn btn-primary hover-elevate-up"
         (click)="openModal('translatorMaterialModal')"
         >Materyal-Çevirmen Eşle</a
       >
@@ -108,12 +176,32 @@
       <br />
       <a
         id="btnRelateMaterialLanguage"
-        class="btn btn-primary"
+        class="btn btn-primary hover-elevate-up"
         (click)="openModal('languageMaterialModal')"
         >Materyal-Dil Eşle</a
       >
       <br />
       <!--Material-Dil Eşle End-->
+      <!--Material-Kategori Eşle Start-->
+      <br />
+      <a
+        id="btnSelectMaterialGenre"
+        class="btn btn-primary hover-elevate-up"
+        (click)="openModal('materialGenreModal')"
+        >Material tür/kategori eşle</a
+      >
+      <!--Material-Kategori Eşle End-->
+      <!--MaterialPropertyValue Start-->
+      <br>
+        <br>  
+      <a
+        id="btnAddmaterialPropertyValue"
+        class="btn btn-dark hover-elevate-up"
+        (click)="openModal('materialPropertyValueModal')"
+        >Yeni Materyal Özelliği Değeri ekle</a
+      >
+      <br>
+      <!--MaterialPropertyValue End-->
     </div>
   </form>
   <!--3.Sutun-->
@@ -137,13 +225,21 @@
       </div>
       <br />
       <a
-        id="btnAddAutor"
-        class="btn btn-info"
+        id="btnAddAuthor"
+        class="btn btn-info hover-elevate-up"
         (click)="openModal('authorModal')"
         >Yeni Yazar</a
       >
     </div>
-    <!--Autor End-->
+    <br>
+      <a
+      id="btnUpdateAuthor"
+      class="btn btn-warning hover-elevate-up"
+      (click)="openModal('updateAuthorModal')"
+      >Yazar Güncelle</a
+    >
+    <br />
+    <!--Author End-->
     <br />
     <!--Publisher Start-->
     <div class="form-group">
@@ -163,7 +259,7 @@
       <br />
       <a
         id="btnAddPublisher"
-        class="btn btn-info"
+        class="btn btn-info hover-elevate-up"
         (click)="openModal('publisherModal')"
         >Yeni Yayın Evi</a
       >
@@ -188,14 +284,13 @@
       <br />
       <a
         id="btnAddTranslator"
-        class="btn btn-info"
+        class="btn btn-info hover-elevate-up"
         (click)="openModal('translatorModal')"
         >Yeni Çevirmen</a
       >
     </div>
     <br />
     <!--Translator End-->
-    <br />
     <!--Language Start-->
     <div class="form-group">
       <div class="form-floating">
@@ -214,12 +309,12 @@
       <br />
       <a
         id="btnAddLanguage"
-        class="btn btn-info"
+        class="btn btn-info hover-elevate-up"
         (click)="openModal('languageModal')"
         >Yeni Dil</a
       >
     </div>
-    <br />
+    <br>
     <!--Language End-->
     <!--Location Start-->
     <div class="form-group">
@@ -239,12 +334,19 @@
         </select>
         <label for="floatingSelect">Lokasyon Seç</label>
       </div>
-      <br />
+      <br>
       <a
         id="btnAddLocation"
-        class="btn btn-info"
+        class="btn btn-info hover-elevate-up"
         (click)="openModal('locationModal')"
         >Yeni Lokasyon</a
+      >
+      <br><br>
+      <a
+        id="btnUpdateLocation"
+        class="btn btn-warning hover-elevate-up"
+        (click)="openModal('updateLocationModal')"
+        >Lokasyon Güncelle</a
       >
     </div>
     <br />
@@ -298,14 +400,17 @@
             <input
               class="form-check-input"
               type="checkbox"
-              value=""
+              value="false"
               id="isBorrowable"
               formControlName="isBorrowable"
+              [(ngModel)]="isBorrowable"
             />
             <label class="form-check-label" for="flexCheckDefault">
               Ödünç Alınabilir
             </label>
           </div>
+
+        <br>
           <div class="input-group mb-5">
             <span class="input-group-text" id="basic-addon1"
               >Ödünç Gün Sayısı</span
@@ -315,9 +420,11 @@
               type="number"
               class="form-control"
               placeholder="0"
+              value="0"
               aria-label="BorrowDay"
               aria-describedby="basic-addon1"
               formControlName="borrowDay"
+              
             />
           </div>
           <div class="input-group mb-5">
@@ -328,34 +435,175 @@
               class="form-control"
               aria-label="Amount (to the nearest dollar)"
               formControlName="punishmentAmount"
+              
             />
             <span class="input-group-text">.00</span>
           </div>
-          <button type="submit" class="btn btn-primary">Submit</button>
+          <button type="submit" class="btn btn-success hover-elevate-up">Submit</button>
         </form>
       </div>
       <!--body end-->
       <div class="modal-footer">
         <button
           type="button"
-          class="btn btn-secondary"
+          class="btn btn-danger hover-elevate-up"
           data-bs-dismiss="modal"
           (click)="closeModal('materialModal')"
         >
           Close
         </button>
-        <button type="button" class="btn btn-primary">Submit</button>
       </div>
     </div>
   </div>
 </div>
 <!--Material Modal -- materyal ekle Sonu-->
+
+
+
+
+ <!--UpdateMaterial Modal -- materyal düzenle modalı-->
+ <div id="updateMaterialModal" class="modal" tabindex="-1">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Materyal Düzenle</h5>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+          (click)="closeModal('updateMaterialModal')"
+        ></button>
+      </div>
+      <!--body -->
+      <div class="modal-body">
+        <form
+        [formGroup]="updateMaterialForm"
+        (ngSubmit)="onSubmitUpdateMaterialForm()"
+      >
+      <div class="form-floating">
+        <select
+          class="form-select"
+          id="floatingSelect"
+          aria-label="Floating label select example"
+          (change)="onMaterialSelect($event)"
+        >
+          <option selected></option>
+          <option
+            *ngFor="let material of materialList"
+            [value]="material.id"
+          >
+            {{ material.name }}
+          </option>
+        </select>
+        <label for="floatingSelect">Materyal Seç</label>
+      </div>
+
+      <br />
+            <div class="input-group mb-5">
+              <span class="input-group-text" id="basic-addon1">Materyal Id</span>
+              <input
+                id="id"
+                type="text"
+                class="form-control"
+                placeholder="MaterialId"
+                aria-label="MaterialId"
+                aria-describedby="basic-addon1"
+                formControlName="id"
+                readonly
+              >
+            </div>
+            <br />
+            <div class="input-group mb-5">
+              <span class="input-group-text" id="basic-addon1">Materyal Adı</span>
+              <input
+                id="name"
+                type="text"
+                class="form-control"
+                placeholder="MaterialName"
+                aria-label="MaterialName"
+                aria-describedby="basic-addon1"
+                formControlName="name"
+              >
+            </div>
+            <div class="form-floating">
+              <textarea
+                class="form-control"
+                placeholder="Description"
+                id="description"
+                style="height: 100px"
+                formControlName="description"
+              ></textarea>
+              <label for="floatingTextarea2">Açıklama</label>
+            </div>
+            <br />
+            <div class="form-check">
+              <input
+                class="form-check-input"
+                type="checkbox"
+                value="false"
+                id="isBorrowable"
+                formControlName="isBorrowable"
+                [(ngModel)]="isBorrowable"
+              />
+              <label class="form-check-label" for="flexCheckDefault">
+                Ödünç Alınabilir
+              </label>
+            </div>
+            <div class="input-group mb-5">
+              <span class="input-group-text" id="basic-addon1"
+                >Ödünç Gün Sayısı</span
+              >
+              <input
+                id="borrowDay"
+                type="number"
+                class="form-control"
+                placeholder="0"
+                aria-label="BorrowDay"
+                aria-describedby="basic-addon1"
+                formControlName="borrowDay"
+                
+              />
+            </div>
+            <div class="input-group mb-5">
+              <span class="input-group-text">Günlük Ceza Miktarı: ₺</span>
+              <input
+                id="punishmentAmount"
+                type="text"
+                class="form-control"
+                aria-label="Amount (to the nearest dollar)"
+                formControlName="punishmentAmount"
+              />
+              <span class="input-group-text">.00</span>
+            </div>
+            <button type="submit" class="btn btn-success hover-elevate-up">Submit</button>
+      </form>
+    </div>
+   <!--body end-->
+   <div class="modal-footer">
+    <button
+      type="button"
+      class="btn btn-danger hover-elevate-up"
+      data-bs-dismiss="modal"
+      (click)="closeModal('updateMaterialModal')"
+    >
+      Close
+    </button>
+  </div>
+</div>
+</div>
+</div>
+<!--UpdateMaterial Modal -- materyal düzenle Sonu-->
+
+
+
+
 <!--MaterialCopy Modal -- materyalKopyası ekle modalı-->
 <div id="materialCopyModal" class="modal" tabindex="-1">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title">Yazar Ekle</h5>
+        <h5 class="modal-title">Materyal Kopyası Ekle</h5>
         <button
           type="button"
           class="btn-close"
@@ -399,6 +647,7 @@
               value=""
               id="isReserved"
               formControlName="isReserved"
+              [(ngModel)]="isReserved"
             />
             <label class="form-check-label" for="flexCheckDefault">
               Ayrıldı
@@ -412,6 +661,7 @@
               value=""
               id="isReservable"
               formControlName="isReservable"
+              [(ngModel)]="isReservable"
             />
             <label class="form-check-label" for="flexCheckDefault">
               Ayırtılabilir
@@ -470,14 +720,14 @@
             <label for="floatingSelect">Materyal Lokasyonu Seç</label>
           </div>
           <br />
-          <button type="submit" class="btn btn-success">Submit</button>
+          <button type="submit" class="btn btn-success hover-elevate-up">Submit</button>
         </form>
       </div>
       <!--body end-->
       <div class="modal-footer">
         <button
           type="button"
-          class="btn btn-danger"
+          class="btn btn-danger hover-elevate-up"
           data-bs-dismiss="modal"
           (click)="closeModal('materialCopyModal')"
         >
@@ -510,6 +760,8 @@
           class="form"
           action="#"
           autocomplete="off"
+          [formGroup]="materialImageForm"
+          (ngSubmit)="onSubmitMaterialImageForm()"
         >
         <div class="form-floating">
           <select
@@ -517,6 +769,8 @@
             id="floatingSelect"
             aria-label="Floating label select example"
             formControlName="materialId"
+            name="materialId"
+            (change)="onMaterialSelected($event)"
           >
             <option selected></option>
             <option *ngFor="let material of materialList" [value]="material.id">
@@ -556,7 +810,7 @@
                 ></i>
 
                 <!--begin::Inputs-->
-                <input type="file" name="avatar" accept=".png, .jpg, .jpeg" />
+                <input type="file" name="avatar" accept=".png, .jpg, .jpeg" formControlName="image" (change)="onFileSelected($event)"/>
                 <input type="hidden" name="avatar_remove" />
                 <!--end::Inputs-->
               </label>
@@ -592,7 +846,7 @@
           </div>
           <!--end::Input group-->
 
-          <button type="submit" class="btn btn-success">Submit</button>
+          <button type="submit" class="btn btn-success hover-elevate-up">Submit</button>
         </form>
         <!--end::Form-->
       </div>
@@ -600,13 +854,12 @@
       <div class="modal-footer">
         <button
           type="button"
-          class="btn btn-secondary"
+          class="btn btn-danger hover-elevate-up"
           data-bs-dismiss="modal"
           (click)="closeModal('materialImageModal')"
         >
           Close
         </button>
-        <button type="button" class="btn btn-primary">Save changes</button>
       </div>
     </div>
   </div>
@@ -620,7 +873,7 @@
         <h5 class="modal-title">Materyal Kategori/Tür Seç</h5>
         <button
           type="button"
-          class="btn-close"
+          class="btn-close "
           data-bs-dismiss="modal"
           aria-label="Close"
           (click)="closeModal('materialGenreModal')"
@@ -628,33 +881,302 @@
       </div>
       <!--body -->
       <div class="modal-body">
-        <form action="">
-          <div class="mb-10">
-            <label class="form-label">Materyal Tür/Kategori seç</label>
-            <input
-              class="form-control"
-              value="Korku, Fantastik, Bilim Kurgu"
-              id="genre_tagify"
-            />
+        <form [formGroup]="materialGenreForm" (ngSubmit)="onSubmitMaterialGenreForm()">
+          <div class="form-floating">
+            <select
+              class="form-select"
+              id="floatingSelect"
+              aria-label="Floating label select example"
+              formControlName="materialId"
+            >
+              <option selected></option>
+              <option *ngFor="let material of materialList" [value]="material.id">
+                {{ material.name }}
+              </option>
+            </select>
+            <label for="floatingSelect">Materyal Seç</label>
           </div>
+          <br>
+          <div class="form-floating">
+            <select
+              class="form-select"
+              id="floatingSelect"
+              aria-label="Floating label select example"
+              formControlName="genreId"
+            >
+              <option selected></option>
+              <option *ngFor="let genre of genreList" [value]="genre.id">
+                {{ genre.name }}
+              </option>
+            </select>
+            <label for="floatingSelect">Materyal Türü/Kategorisi Seç</label>
+          </div>
+          <br />
+          <button type="submit" class="btn btn-success hover-elevate-up">Submit</button>
         </form>
       </div>
       <!--body end-->
       <div class="modal-footer">
         <button
           type="button"
-          class="btn btn-secondary"
+          class="btn btn-danger hover-elevate-up"
           data-bs-dismiss="modal"
           (click)="closeModal('materialGenreModal')"
         >
           Close
         </button>
-        <button type="button" class="btn btn-primary">Save changes</button>
       </div>
     </div>
   </div>
 </div>
 <!--MaterialGenre Modal -- materyal foto Sonu-->
+<!--Genre Modal -- tür ekle modalı-->
+<div id="genreModal" class="modal" tabindex="-1">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Tür Ekle</h5>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+          (click)="closeModal('genreModal')"
+        ></button>
+      </div>
+      <!--body -->
+      <div class="modal-body">
+        <form [formGroup]="genreForm" (ngSubmit)="onSubmitGenreForm()">
+          <div class="input-group mb-5">
+            <span class="input-group-text" id="basic-addon1">Tür Adı</span>
+            <input
+              id="name"
+              type="text"
+              class="form-control"
+              placeholder="Name"
+              aria-label="Name"
+              aria-describedby="basic-addon1"
+              formControlName="name"
+            />
+          </div>
+          <button type="submit" class="btn btn-success hover-elevate-up">Submit</button>
+        </form>
+      </div>
+      <!--body end-->
+      <div class="modal-footer">
+        <button
+          type="button"
+          class="btn btn-danger hover-elevate-up"
+          data-bs-dismiss="modal"
+          (click)="closeModal('genreModal')"
+        >
+          Close
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+<!--Genre Modal End -- tür ekle Sonu-->
+<!--MaterialProperty Modal -- materyal özellik ekle modalı-->
+<div id="materialPropertyModal" class="modal" tabindex="-1">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Materyal Özelliği Ekle</h5>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+          (click)="closeModal('materialPropertyModal')"
+        ></button>
+      </div>
+      <!--body -->
+      <div class="modal-body">
+        <form [formGroup]="materialPropertyForm" (ngSubmit)="onSubmitMaterialPropertyForm()">
+          <div class="input-group mb-5">
+            <span class="input-group-text" id="basic-addon1">Adı</span>
+            <input
+              id="name"
+              type="text"
+              class="form-control"
+              placeholder="Name"
+              aria-label="Name"
+              aria-describedby="basic-addon1"
+              formControlName="name"
+            />
+          </div>
+          <button type="submit" class="btn btn-success hover-elevate-up">Submit</button>
+        </form>
+      </div>
+      <!--body end-->
+      <div class="modal-footer">
+        <button
+          type="button"
+          class="btn btn-danger hover-elevate-up"
+          data-bs-dismiss="modal"
+          (click)="closeModal('materialPropertyModal')"
+        >
+          Close
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+<!--MaterialProperty Modal End -- dil ekle Sonu-->
+<!--MaterialType Modal -- dil ekle modalı                                          -->
+<div id="materialTypeModal" class="modal" tabindex="-1">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Materyal Tipi Ekle</h5>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+          (click)="closeModal('materialTypeModal')"
+        ></button>
+      </div>                                         
+      <!--body                                                                            -->
+      <div class="modal-body">
+        <form [formGroup]="materialTypeForm" (ngSubmit)="onSubmitMaterialTypeForm()">
+          <div class="input-group mb-5">
+            <span class="input-group-text" id="basic-addon1">Adı</span>
+            <input
+              id="name"
+              type="text"
+              class="form-control"
+              placeholder="Name"
+              aria-label="Name"
+              aria-describedby="basic-addon1"
+              formControlName="name"
+            />
+          </div>
+          <div class="input-group mb-5">
+            <span class="input-group-text" id="basic-addon1">Materyal Formatı</span>
+            <input
+              id="materialFormat"
+              type="number"
+              class="form-control"
+              placeholder="MaterialFormat"
+              aria-label="materialFormat"
+              aria-describedby="basic-addon1"
+              formControlName="materialFormat"
+              [(ngModel)]="materialFormat"
+            />
+          </div>
+          <button type="submit" class="btn btn-success hover-elevate-up">Submit</button>
+        </form>
+      </div>                                                      
+      <!--body end                                                                  -->
+      <div class="modal-footer">
+        <button
+          type="button"
+          class="btn btn-danger hover-elevate-up"
+          data-bs-dismiss="modal"
+          (click)="closeModal('materialTypeModal')"
+        >
+          Close
+        </button>
+      </div>
+    </div>
+  </div>
+</div>                                                                  
+<!--MaterialType Modal End -- materyal tipi ekle Sonu-->
+<!--MaterialPropertyValue Modal -- materyal özelliği değer ekle modalı-->
+<div id="materialPropertyValueModal" class="modal" tabindex="-1">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Materyal Özelliği Değeri Ekle</h5>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+          (click)="closeModal('materialPropertyValueModal')"
+        ></button>
+      </div>
+      <!--body -->
+      <div class="modal-body">
+        <form [formGroup]="materialPropertyValueForm" (ngSubmit)="onSubmitMaterialPropertyValueForm()">
+          <div class="form-floating">
+            <select
+              class="form-select"
+              id="floatingSelect"
+              aria-label="Floating label select example"
+              formControlName="materialId"
+            >
+              <option selected></option>
+              <option *ngFor="let material of materialList" [value]="material.id">
+                {{ material.name }}
+              </option>
+            </select>
+            <label for="floatingSelect">Material Seç</label>
+          </div>
+          <br>
+          <div class="form-floating">
+            <select
+              class="form-select"
+              id="floatingSelect"
+              aria-label="Floating label select example"
+              formControlName="materialTypeId"
+            >
+              <option selected></option>
+              <option *ngFor="let type of materialTypeList" [value]="type.id">
+                {{ type.name }}
+              </option>
+            </select>
+            <label for="floatingSelect">Materyal Tipi Seç</label>
+          </div>
+          <br>
+          <div class="form-floating">
+            <select
+              class="form-select"
+              id="floatingSelect"
+              aria-label="Floating label select example"
+              formControlName="materialPropertyId"
+            >
+              <option selected></option>
+              <option *ngFor="let property of materialPropertyList" [value]="property.id">
+                {{ property.name }}
+              </option>
+            </select>
+            <label for="floatingSelect">Materyal Özelliği Seç</label>
+          </div>
+<br>
+          <div class="input-group mb-5">
+            <span class="input-group-text" id="basic-addon1">Değeri</span>
+            <input
+              id="content"
+              type="text"
+              class="form-control"
+              placeholder="Content"
+              aria-label="Content"
+              aria-describedby="basic-addon1"
+              formControlName="content"
+            />
+          </div>
+        
+          <button type="submit" class="btn btn-success hover-elevate-up">Submit</button>
+        </form>
+      </div>
+      <!--body end-->
+      <div class="modal-footer">
+        <button
+          type="button"
+          class="btn btn-danger hover-elevate-up"
+          data-bs-dismiss="modal"
+          (click)="closeModal('materialPropertyValueModal')"
+        >
+          Close
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+<!--MaterialPropertyValue Modal End -- materyal özelliği değer ekle Sonu-->
 
 
 <!--AuthorMaterial Modal -- materyal-yazar eşle modalı-->
@@ -662,7 +1184,7 @@
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title">Yazar Ekle</h5>
+        <h5 class="modal-title">Yazar-Materyal Eşle</h5>
         <button
           type="button"
           class="btn-close"
@@ -704,14 +1226,14 @@
             <label for="floatingSelect">Yazar Seç</label>
           </div>
           <br>
-          <button type="submit" class="btn btn-success">Submit</button>
+          <button type="submit" class="btn btn-success hover-elevate-up">Submit</button>
         </form>
       </div>
       <!--body end-->
       <div class="modal-footer">
         <button
           type="button"
-          class="btn btn-danger"
+          class="btn btn-danger hover-elevate-up"
           data-bs-dismiss="modal"
           (click)="closeModal('authorMaterialModal')"
         >
@@ -727,7 +1249,7 @@
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title">Yazar Ekle</h5>
+        <h5 class="modal-title">Dil-Materyal Eşle</h5>
         <button
           type="button"
           class="btn-close"
@@ -769,14 +1291,14 @@
             <label for="floatingSelect">Dil Seç</label>
           </div>
           <br>
-          <button type="submit" class="btn btn-success">Submit</button>
+          <button type="submit" class="btn btn-success hover-elevate-up">Submit</button>
         </form>
       </div>
       <!--body end-->
       <div class="modal-footer">
         <button
           type="button"
-          class="btn btn-danger"
+          class="btn btn-danger hover-elevate-up"
           data-bs-dismiss="modal"
           (click)="closeModal('languageMaterialModal')"
         >
@@ -792,7 +1314,7 @@
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title">Yazar Ekle</h5>
+        <h5 class="modal-title">Yayın Evi-Materyal Eşle</h5>
         <button
           type="button"
           class="btn-close"
@@ -834,14 +1356,14 @@
             <label for="floatingSelect">Yayın Evi Seç</label>
           </div>
           <br>
-          <button type="submit" class="btn btn-success">Submit</button>
+          <button type="submit" class="btn btn-success hover-elevate-up">Submit</button>
         </form>
       </div>
       <!--body end-->
       <div class="modal-footer">
         <button
           type="button"
-          class="btn btn-danger"
+          class="btn btn-danger hover-elevate-up"
           data-bs-dismiss="modal"
           (click)="closeModal('publisherMaterialModal')"
         >
@@ -857,7 +1379,7 @@
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title">Yazar Ekle</h5>
+        <h5 class="modal-title">Çevirmen-Materyal Eşle</h5>
         <button
           type="button"
           class="btn-close"
@@ -899,14 +1421,14 @@
             <label for="floatingSelect">Dil Seç</label>
           </div>
           <br>
-          <button type="submit" class="btn btn-success">Submit</button>
+          <button type="submit" class="btn btn-success hover-elevate-up">Submit</button>
         </form>
       </div>
       <!--body end-->
       <div class="modal-footer">
         <button
           type="button"
-          class="btn btn-danger"
+          class="btn btn-danger hover-elevate-up"
           data-bs-dismiss="modal"
           (click)="closeModal('translatorMaterialModal')"
         >
@@ -972,16 +1494,121 @@
             />
           </div>
           <br />
-          <button type="submit" class="btn btn-success">Submit</button>
+          <button type="submit" class="btn btn-success hover-elevate-up">Submit</button>
         </form>
       </div>
       <!--body end-->
       <div class="modal-footer">
         <button
           type="button"
-          class="btn btn-danger"
+          class="btn btn-danger hover-elevate-up"
           data-bs-dismiss="modal"
           (click)="closeModal('authorModal')"
+        >
+          Close
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+<!--Author Modal -- yazar ekle Sonu-->
+<!--UpdateAuthor Modal -- yazar ekle modalı-->
+<div id="updateAuthorModal" class="modal" tabindex="-1">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Yazar Düzenle</h5>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+          (click)="closeModal('updateAuthorModal')"
+        ></button>
+      </div>
+      <!--body -->
+      <div class="modal-body">
+        <form [formGroup]="updateAuthorForm" (ngSubmit)="onSubmitUpdateAuthorForm()">
+          <div class="form-floating">
+            <select
+              class="form-select"
+              id="floatingSelect"
+              aria-label="Floating label select example"
+              (change)="onAuthorSelect($event)"
+            >
+              <option selected></option>
+              <option
+                *ngFor="let author of authorList"
+                [value]="author.id"
+              >
+              {{ author.firstName }} {{ author.lastName }}
+              </option>
+            </select>
+            <label for="floatingSelect">Yazar Seç</label>
+          </div>
+    
+          <br />
+                <div class="input-group mb-5">
+                  <span class="input-group-text" id="basic-addon1">Yazar Id</span>
+                  <input
+                    id="id"
+                    type="text"
+                    class="form-control"
+                    placeholder="MaterialId"
+                    aria-label="MaterialId"
+                    aria-describedby="basic-addon1"
+                    formControlName="id"
+                    readonly
+                  >
+                </div>
+                <br />
+          <div class="input-group mb-5">
+            <span class="input-group-text" id="basic-addon1">Adı</span>
+            <input
+              id="firstname"
+              type="text"
+              class="form-control"
+              placeholder="FirstName"
+              aria-label="FirstName"
+              aria-describedby="basic-addon1"
+              formControlName="firstName"
+            />
+          </div>
+          <div class="input-group mb-5">
+            <span class="input-group-text" id="basic-addon1">Soyadı</span>
+            <input
+              id="lastname"
+              type="text"
+              class="form-control"
+              placeholder="Last Name"
+              aria-label="LastName"
+              aria-describedby="basic-addon1"
+              formControlName="lastName"
+            />
+          </div>
+          <div class="input-group mb-5">
+            <span class="input-group-text" id="basic-addon1">Ülkesi</span>
+            <input
+              id="country"
+              type="text"
+              class="form-control"
+              placeholder="Country"
+              aria-label="Country"
+              aria-describedby="basic-addon1"
+              formControlName="country"
+            />
+          </div>
+          <br />
+          <button type="submit" class="btn btn-success hover-elevate-up">Submit</button>
+        </form>
+      </div>
+      <!--body end-->
+      <div class="modal-footer">
+        <button
+          type="button"
+          class="btn btn-danger hover-elevate-up"
+          data-bs-dismiss="modal"
+          (click)="closeModal('updateAuthorModal')"
         >
           Close
         </button>
@@ -1031,20 +1658,19 @@
               formControlName="publicationPlace"
             />
           </div>
-          <button type="submit" class="btn btn-success">Submit</button>
+          <button type="submit" class="btn btn-success hover-elevate-up">Submit</button>
         </form>
       </div>
       <!--body end-->
       <div class="modal-footer">
         <button
           type="button"
-          class="btn btn-secondary"
+          class="btn btn-danger hover-elevate-up"
           data-bs-dismiss="modal"
           (click)="closeModal('publisherModal')"
         >
           Close
         </button>
-        <button type="button" class="btn btn-primary">Save changes</button>
       </div>
     </div>
   </div>
@@ -1089,20 +1715,20 @@
             ></textarea>
             <label for="floatingTextarea2">Açıklama</label>
           </div>
-          <button type="submit" class="btn btn-success">Submit</button>
+          <br>
+          <button type="submit" class="btn btn-success hover-elevate-up">Submit</button>
         </form>
       </div>
       <!--body end-->
       <div class="modal-footer">
         <button
           type="button"
-          class="btn btn-secondary"
+          class="btn btn-danger hover-elevate-up"
           data-bs-dismiss="modal"
           (click)="closeModal('translatorModal')"
         >
           Close
         </button>
-        <button type="button" class="btn btn-primary">Save changes</button>
       </div>
     </div>
   </div>
@@ -1137,20 +1763,19 @@
               formControlName="name"
             />
           </div>
-          <button type="submit" class="btn btn-success">Submit</button>
+          <button type="submit" class="btn btn-success hover-elevate-up">Submit</button>
         </form>
       </div>
       <!--body end-->
       <div class="modal-footer">
         <button
           type="button"
-          class="btn btn-secondary"
+          class="btn btn-danger hover-elevate-up"
           data-bs-dismiss="modal"
           (click)="closeModal('languageModal')"
         >
           Close
         </button>
-        <button type="button" class="btn btn-primary">Save changes</button>
       </div>
     </div>
   </div>
@@ -1161,7 +1786,7 @@
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title">Dil Ekle</h5>
+        <h5 class="modal-title">Lokasyon Ekle</h5>
         <button
           type="button"
           class="btn-close"
@@ -1251,22 +1876,166 @@
             />
           </div>
           <br />
-          <button type="submit" class="btn btn-primary">Submit</button>
+          <button type="submit" class="btn btn-success hover-elevate-up">Submit</button>
         </form>
       </div>
       <!--body end-->
       <div class="modal-footer">
         <button
           type="button"
-          class="btn btn-secondary"
+          class="btn btn-danger hover-elevate-up"
           data-bs-dismiss="modal"
           (click)="closeModal('locationModal')"
         >
           Close
         </button>
-        <button type="button" class="btn btn-primary">Save changes</button>
       </div>
     </div>
   </div>
 </div>
 <!--Location Modal End -- yer ekle Sonu-->
+<!--UpdateLocation Modal -- yer güncelle modalı-->
+<div id="updateLocationModal" class="modal" tabindex="-1">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Lokasyon Düzenle</h5>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+          (click)="closeModal('updateLocationModal')"
+        ></button>
+      </div>
+      <!--body -->
+      <div class="modal-body">
+        <form [formGroup]="updateLocationForm"
+        (ngSubmit)="onSubmitUpdateLocationForm()">
+        <div class="form-floating">
+          <select
+            class="form-select"
+            id="floatingSelect"
+            aria-label="Floating label select example"
+            (change)="onLocationSelect($event)"
+          >
+            <option selected></option>
+            <option
+              *ngFor="let location of locationList"
+              [value]="location.id"
+            >
+              {{ location.fullLocationMap }}
+            </option>
+          </select>
+          <label for="floatingSelect">Lokasyon Seç</label>
+        </div>
+  
+        <br />
+              <div class="input-group mb-5">
+                <span class="input-group-text" id="basic-addon1">Lokasyon Id</span>
+                <input
+                  id="id"
+                  type="text"
+                  class="form-control"
+                  placeholder="LocationId"
+                  aria-label="LocationId"
+                  aria-describedby="basic-addon1"
+                  formControlName="id"
+                  readonly
+                >
+              </div>
+          <div class="input-group mb-5">
+            <span class="input-group-text" id="basic-addon1">Kat</span>
+            <input
+              id="floor"
+              type="text"
+              class="form-control"
+              placeholder="Floor"
+              aria-label="Floor"
+              aria-describedby="basic-addon1"
+              formControlName="floor"
+            />
+          </div>
+          <div class="input-group mb-5">
+            <span class="input-group-text" id="basic-addon1">Koridor</span>
+            <input
+              id="corridor"
+              type="text"
+              class="form-control"
+              placeholder="Corridor"
+              aria-label="Corridor"
+              aria-describedby="basic-addon1"
+              formControlName="corridor"
+            />
+          </div>
+          <div class="input-group mb-5">
+            <span class="input-group-text" id="basic-addon1">Raf</span>
+            <input
+              id="shelf"
+              type="text"
+              class="form-control"
+              placeholder="Shelf"
+              aria-label="Shelf"
+              aria-describedby="basic-addon1"
+              formControlName="shelf"
+            />
+          </div>
+          <div class="input-group mb-5">
+            <span class="input-group-text" id="basic-addon1">RafKatı</span>
+            <input
+              id="shelfFloor"
+              type="text"
+              class="form-control"
+              placeholder="ShelfFloor"
+              aria-label="ShelfFloor"
+              aria-describedby="basic-addon1"
+              formControlName="shelfFloor"
+            />
+          </div>
+          <div class="input-group mb-5">
+            <span class="input-group-text" id="basic-addon1"
+              >RafSıraNumarası</span
+            >
+            <input
+              id="shelfLineNumber"
+              type="text"
+              class="form-control"
+              placeholder="ShelfLineNumber"
+              aria-label="ShelfLineNumber"
+              aria-describedby="basic-addon1"
+              formControlName="shelfLineNumber"
+            />
+          </div>
+          <div class="input-group mb-5">
+            <span class="input-group-text" id="basic-addon1"
+              >TamLokasyonHaritası</span
+            >
+            <input
+              id="fullLocationMap"
+              type="text"
+              class="form-control"
+              placeholder="FullLocationMap"
+              aria-label="FullLocationMap"
+              aria-describedby="basic-addon1"
+              formControlName="fullLocationMap"
+            />
+          </div>
+          <br />
+          <button type="submit" class="btn btn-success hover-elevate-up">Submit</button>
+        </form>
+      </div>
+      <!--body end-->
+      <div class="modal-footer">
+        <button
+          type="button"
+          class="btn btn-danger hover-elevate-up"
+          data-bs-dismiss="modal"
+          (click)="closeModal('updateLocationModal')"
+        >
+          Close
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+<!--UpdateLocation Modal End -- yer güncelle Sonu-->
