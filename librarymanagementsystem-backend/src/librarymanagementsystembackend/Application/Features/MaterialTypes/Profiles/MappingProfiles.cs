@@ -8,6 +8,7 @@ using AutoMapper;
 using NArchitecture.Core.Application.Responses;
 using Domain.Entities;
 using NArchitecture.Core.Persistence.Paging;
+using Application.Features.MaterialTypes.Queries.GetList.GetAll;
 
 namespace Application.Features.MaterialTypes.Profiles;
 
@@ -26,5 +27,6 @@ public class MappingProfiles : Profile
         CreateMap<IPaginate<MaterialType>, GetListResponse<GetListMaterialTypeListItemDto>>().ReverseMap();
 
         CreateMap<MaterialType, MaterialTypeForMaterialDetailDto>();
+        CreateMap<MaterialType, GetAllMaterialTypesDto>().ReverseMap();
     }
 }

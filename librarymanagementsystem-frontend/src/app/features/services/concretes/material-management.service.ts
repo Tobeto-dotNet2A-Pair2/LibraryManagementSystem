@@ -47,6 +47,12 @@ import { CreatedMaterialGenreResponse } from '../../models/responses/materialGen
 import { CreateMaterialGenreRequest } from '../../models/requests/materialGenres/create-materialGenre-request';
 import { CreateMaterialPropertyRequest } from '../../models/requests/material-properties/create-material-property-request';
 import { CreatedMaterialPropertyResponse } from '../../models/responses/material-properties/created-material-property-response';
+import { GetListMaterialPropertyResponse } from '../../models/responses/material-properties/get-list-material-property-response';
+import { GetListMaterialTypeResponse } from '../../models/responses/material-types/get-list-material-type-response';
+import { CreateMaterialTypeRequest } from '../../models/requests/material-types/create-material-type-request';
+import { CreatedMaterialTypeResponse } from '../../models/responses/material-types/created-material-type-response';
+import { CreateMaterialPropertyValueRequest } from '../../models/requests/material-property-values/create-material-property-value-request';
+import { CreatedMaterialPropertyValueResponse } from '../../models/responses/material-property-values/created-material-property-value-response';
 
 @Injectable({
   providedIn: 'root',
@@ -68,7 +74,8 @@ export class MaterialManagementService {
   private readonly genreApiUrl = `${environment.API_URL}/Genres`;
   private readonly materialGenreApiUrl = `${environment.API_URL}/MaterialGenres`;
   private readonly materialPropertyApiUrl = `${environment.API_URL}/MaterialProperties`;
-
+  private readonly materialTypeApiUrl = `${environment.API_URL}/MaterialTypes`;
+  private readonly materialPropertyValueApiUrl = `${environment.API_URL}/MaterialPropertyValues`;
   constructor(private httpClient: HttpClient, private toastr: ToastrService) {}
 
   //Add
@@ -285,8 +292,46 @@ export class MaterialManagementService {
   ): Observable<CreatedMaterialPropertyResponse> {
     return this.httpClient
       .post<CreatedMaterialPropertyResponse>(
-        `${this.materialPropertyApiUrl}`,
+        `${this.materialPropertyApiUrl}/Add`,
         createMaterialPropertyRequest
+      )
+      .pipe(
+        catchError((error) => {
+          // Hata durumunda toastr ile hata mesajını kullanıcıya göster
+          this.toastr.error('Beklenmeyen bir hata oluştu.', 'Hatalı');
+          // Hata mesajını konsola yazdır
+          console.error(error);
+          return throwError(error);
+        })
+      );
+  }
+
+  addMaterialPropertyValue(
+    createMaterialPropertyValueRequest: CreateMaterialPropertyValueRequest
+  ): Observable<CreatedMaterialPropertyValueResponse> {
+    return this.httpClient
+      .post<CreatedMaterialPropertyValueResponse>(
+        `${this.materialPropertyValueApiUrl}`,
+        createMaterialPropertyValueRequest
+      )
+      .pipe(
+        catchError((error) => {
+          // Hata durumunda toastr ile hata mesajını kullanıcıya göster
+          this.toastr.error('Beklenmeyen bir hata oluştu.', 'Hatalı');
+          // Hata mesajını konsola yazdır
+          console.error(error);
+          return throwError(error);
+        })
+      );
+  }
+
+  addMaterialType(
+    createMaterialTypeRequest: CreateMaterialTypeRequest
+  ): Observable<CreatedMaterialTypeResponse> {
+    return this.httpClient
+      .post<CreatedMaterialTypeResponse>(
+        `${this.materialTypeApiUrl}`,
+        createMaterialTypeRequest
       )
       .pipe(
         catchError((error) => {
@@ -538,4 +583,36 @@ export class MaterialManagementService {
         })
       );
   }
+
+  getAllMaterialProperties(): Observable<GetListMaterialPropertyResponse[]> {
+    return this.httpClient
+      .get<GetListMaterialPropertyResponse[]>(`${this.materialPropertyApiUrl}/GetAll`)
+      .pipe(
+        catchError((error) => {
+          this.toastr.error(
+            'An unexpected error occurred while fetching the list of MaterialProperties.',
+            'Error'
+          );
+          console.error(error);
+          return throwError(error);
+        })
+      );
+  }
+
+  getAllMaterialTypes(): Observable<GetListMaterialTypeResponse[]> {
+    return this.httpClient
+      .get<GetListMaterialTypeResponse[]>(`${this.materialTypeApiUrl}/GetAll`)
+      .pipe(
+        catchError((error) => {
+          this.toastr.error(
+            'An unexpected error occurred while fetching the list of MaterialTypes.',
+            'Error'
+          );
+          console.error(error);
+          return throwError(error);
+        })
+      );
+  }
+
+
 }

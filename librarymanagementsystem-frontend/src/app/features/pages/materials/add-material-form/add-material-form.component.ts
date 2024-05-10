@@ -25,10 +25,11 @@ import { CreatePublisherMaterialRequest } from '../../../models/requests/publish
 import { UpdateMaterialRequest } from '../../../models/requests/materials/update-material-request';
 import { UpdateAuthorRequest } from '../../../models/requests/authors/update-author-request';
 import { UpdateLocationRequest } from '../../../models/requests/locations/update-location-request';
-import { CreateMaterialImageRequest } from '../../../models/requests/material-images/create-material-image-request';
 import { CreateGenreRequest } from '../../../models/requests/genres/create-genre-request';
 import { CreateMaterialGenreRequest } from '../../../models/requests/materialGenres/create-materialGenre-request';
 import { CreateMaterialPropertyRequest } from '../../../models/requests/material-properties/create-material-property-request';
+import { CreateMaterialTypeRequest } from '../../../models/requests/material-types/create-material-type-request';
+import { CreateMaterialPropertyValueRequest } from '../../../models/requests/material-property-values/create-material-property-value-request';
 
 @Component({
   selector: 'app-add-material-form',
@@ -43,6 +44,7 @@ export class AddMaterialFormComponent implements OnInit {
   borrowDay:string='0';
   isReservable: boolean = false;
   isReserved: boolean = false;
+  materialFormat: number = 0;
 
   selectedFile: File | null = null;
   selectedMaterialId: any;
@@ -55,9 +57,9 @@ export class AddMaterialFormComponent implements OnInit {
   publisherList: any[] = [];
   translatorList: any[] = [];
   languageList: any[] = [];
-  materialGenreList: any[] = [];
   genreList: any[] = [];
-
+materialPropertyList: any[] = [];
+materialTypeList: any[] = [];
   //FormGroups
   materialForm!: FormGroup;
   updateMaterialForm!: FormGroup;
@@ -80,6 +82,8 @@ updateAuthorForm!: FormGroup;
   translatorMaterialForm!: FormGroup;
   materialGenreForm!: FormGroup;
   materialPropertyForm!: FormGroup;
+  materialPropertyValueForm!: FormGroup;
+  materialTypeForm!: FormGroup;
   //Constructor
   constructor(
     private managementService: MaterialManagementService,
@@ -100,6 +104,9 @@ updateAuthorForm!: FormGroup;
     this.createPublisherForm();
     this.createTranslatorForm();
     this.createLanguageForm();
+    this.createMaterialPropertyForm();
+    this.createMaterialPropertyValueForm();
+    this.createMaterialTypeForm();
     //aratabloform
     this.createAuthorMaterialForm();
     this.createLanguageMaterialForm();
@@ -119,6 +126,8 @@ updateAuthorForm!: FormGroup;
     this.getTranslatorList();
     this.getLanguageList();
     this.getGenreList();
+    this.getMaterialPropertyList();
+    this.getMaterialTypeList();
   }
   //CreateForms
   private createMaterialForm(): void {
@@ -235,6 +244,22 @@ updateAuthorForm!: FormGroup;
   private createMaterialPropertyForm(): void {
     this.materialPropertyForm = new FormGroup({
       name: new FormControl('', [Validators.required]),
+    });
+  }
+
+  private createMaterialPropertyValueForm(): void {
+    this.materialPropertyValueForm = new FormGroup({
+      materialId: new FormControl('', [Validators.required]),
+      materialTypeId: new FormControl('', [Validators.required]),
+      materialPropertyId: new FormControl('', [Validators.required]),
+      content: new FormControl('', [Validators.required]),
+    });
+  }
+
+  private createMaterialTypeForm(): void {
+    this.materialTypeForm = new FormGroup({
+      name: new FormControl('', [Validators.required]),
+      materialFormat: new FormControl(0),
     });
   }
 
@@ -498,10 +523,63 @@ onSubmitMaterialPropertyForm(): void {
       this.toastr.success('MaterialProperty added successfully.', 'Başarılı');
       console.log('toasttan once');
       this.materialPropertyForm.reset();
-      //this.getMaterialPropertyList();
+      this.getMaterialPropertyList();
     },
     (error) => {
       this.toastr.error('An error occurred while adding the MaterialProperty.');
+      console.error(error);
+    }
+  );
+}
+//----------------------------------------------------
+onSubmitMaterialTypeForm(): void {
+  if (this.materialTypeForm.invalid) {
+    return;
+  }
+
+  // const materialTypeData: CreateMaterialTypeRequest = {
+  //   name: this.materialForm.value.name,
+  //   materialFormat: this.materialFormat
+  //  };
+
+
+  let materialTypeData: CreateMaterialTypeRequest = Object.assign(
+    {},
+    this.materialTypeForm.value
+  );
+
+  this.managementService.addMaterialType(materialTypeData).subscribe(
+    () => {
+      this.toastr.success('MaterialType added successfully.', 'Başarılı');
+      console.log('toasttan once');
+      this.materialTypeForm.reset();
+      this.getMaterialTypeList();
+    },
+    (error) => {
+      this.toastr.error('An error occurred while adding the MaterialType.');
+      console.error(error);
+    }
+  );
+}
+//----------------------------------------------------
+onSubmitMaterialPropertyValueForm(): void {
+  if (this.materialPropertyValueForm.invalid) {
+    return;
+  }
+
+  let materialPropertyValueData: CreateMaterialPropertyValueRequest = Object.assign(
+    {},
+    this.materialPropertyValueForm.value
+  );
+console.log(materialPropertyValueData);
+  this.managementService.addMaterialPropertyValue(materialPropertyValueData).subscribe(
+    () => {
+      this.toastr.success('MaterialPropertyValue added successfully.', 'Başarılı');
+      console.log('toasttan once');
+      this.materialPropertyValueForm.reset();
+    },
+    (error) => {
+      this.toastr.error('An error occurred while adding the MaterialPropertyValue.');
       console.error(error);
     }
   );
@@ -863,6 +941,35 @@ onLocationSelect(event: any) {
     );
   }
 
+  getMaterialPropertyList(): void {
+    this.managementService.getAllMaterialProperties().subscribe(
+      (response) => {
+        this.materialPropertyList = response;
+      },
+      (error) => {
+        this.toastr.error(
+          'An error occurred while fetching the MaterialProperty list.',
+          'Error'
+        );
+        console.error(error);
+      }
+    );
+  }
+
+  getMaterialTypeList(): void {
+    this.managementService.getAllMaterialTypes().subscribe(
+      (response) => {
+        this.materialTypeList = response;
+      },
+      (error) => {
+        this.toastr.error(
+          'An error occurred while fetching the MaterialType list.',
+          'Error'
+        );
+        console.error(error);
+      }
+    );
+  }
 
   //OPEN/CLOSE MODAL
 
