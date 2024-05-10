@@ -35,7 +35,7 @@ public class GetDetailByIdForAdminDto
 
 
     //TODO: LocationMap  ve Branch bilgisi  gelmiyor: Material Copyden gelmesi  gerekiyor
-    
-   
+
+
 }
 
