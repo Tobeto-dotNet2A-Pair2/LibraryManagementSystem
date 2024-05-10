@@ -8,9 +8,11 @@ export const authInterceptor: HttpInterceptorFn = (req, next) => {
   const storageService = inject(LocalStorageService);
   const token = storageService.getToken();
 
+  console.log("token::"+token);
   const authRequest = req.clone({
     setHeaders:{
       Authorization:`Bearer ${token}`
+      
     }
   })
 

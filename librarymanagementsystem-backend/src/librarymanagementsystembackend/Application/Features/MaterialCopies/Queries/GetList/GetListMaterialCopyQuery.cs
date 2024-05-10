@@ -14,7 +14,7 @@ using static Application.Features.MaterialCopies.Constants.MaterialCopiesOperati
 
 namespace Application.Features.MaterialCopies.Queries.GetList;
 
-public class GetListMaterialCopyQuery : IRequest<GetListResponse<GetListMaterialCopyDto>>, ICachableRequest, ISecuredRequest
+public class GetListMaterialCopyQuery : IRequest<GetListResponse<GetListMaterialCopyDto>> //, ISecuredRequest //ICachableRequest,
 {
     public string SearchText { get; set; }
     public int PageIndex { get; set; }
@@ -46,9 +46,9 @@ public class GetListMaterialCopyQuery : IRequest<GetListResponse<GetListMaterial
         }
     }
 
-    public bool BypassCache { get; }
-    public string CacheKey { get; }
-    public string CacheGroupKey { get; }
-    public TimeSpan? SlidingExpiration { get; }
+    //public bool BypassCache { get; }
+    //public string CacheKey { get; }
+    //public string CacheGroupKey { get; }
+    //public TimeSpan? SlidingExpiration { get; }
     public string[] Roles { get; }
 }

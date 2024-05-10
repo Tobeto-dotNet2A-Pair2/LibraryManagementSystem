@@ -16,7 +16,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Application.Features.Materials.Queries.GetList;
 
-public class GetListMaterialQuery : IRequest<GetListResponse<GetListMaterialListItemDto>>, ICachableRequest, ISecuredRequest
+public class GetListMaterialQuery : IRequest<GetListResponse<GetListMaterialListItemDto>> //, ISecuredRequest //ICachableRequest
 {
     public int PageIndex { get; set; }
     public int PageSize { get; set; }
@@ -24,10 +24,10 @@ public class GetListMaterialQuery : IRequest<GetListResponse<GetListMaterialList
 
     public string[] Roles => [Admin, Read];
 
-    public bool BypassCache { get; }
-    public string? CacheKey => $"GetListMaterials({PageIndex},{PageSize})";
-    public string? CacheGroupKey => "GetMaterials";
-    public TimeSpan? SlidingExpiration { get; }
+    //public bool BypassCache { get; }
+    //public string? CacheKey => $"GetListMaterials({PageIndex},{PageSize})";
+    //public string? CacheGroupKey => "GetMaterials";
+    //public TimeSpan? SlidingExpiration { get; }
 
     public class GetListMaterialQueryHandler : IRequestHandler<GetListMaterialQuery, GetListResponse<GetListMaterialListItemDto>>
     {

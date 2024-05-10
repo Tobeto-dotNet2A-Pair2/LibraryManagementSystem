@@ -26,12 +26,12 @@ export class MaterialListHomeComponent implements OnInit {
   //
   searchText: string = '';
   selectedMaterialCopyId: string = ''; // Seçilen materyal kopyası kimliği
- 
 
- materialCopyId!:string;
-  currentPageNumber: number = 1; // initialize with 1
-
+  currentPageNumber: number = 1; 
   readonly PAGE_SIZE=2;
+
+  materialCopyId!:string;
+  material!:string;
   materialCopyList: MaterialCopyListItemDto={
     index:0,
     size:0,
@@ -142,6 +142,7 @@ getMaterialListBySearchTerm(searchText: string): void {
 //-----------------------------------------------------------
 
 onMaterialClick(materialCopyId: string): void {
+  debugger
   // Seçilen materyalin kopyası kimliğini ayarla
   this.selectedMaterialCopyId = materialCopyId;
   console.log("onMaterialClick"+ materialCopyId);
@@ -150,6 +151,7 @@ onMaterialClick(materialCopyId: string): void {
 
 borrowMaterial(): void {
   // Kullanıcının oturum durumunu kontrol et
+  debugger
   const isLoggedIn = this.authService.isLoggedIn();
   if (isLoggedIn && this.selectedMaterialCopyId) {
     // Oturumlu ise, materyal ödünç alma işlemini gerçekleştir

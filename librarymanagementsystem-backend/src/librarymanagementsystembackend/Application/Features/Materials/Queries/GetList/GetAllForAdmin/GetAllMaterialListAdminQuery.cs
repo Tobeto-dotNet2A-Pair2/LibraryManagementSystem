@@ -12,7 +12,7 @@ using System.Linq.Dynamic.Core;
 
 namespace Application.Features.Materials.Queries.GetList.GetAllForAdmin;
 
-public class GetAllMaterialListAdminQuery :IRequest<GetListResponse<GetAllMaterialListAdminDto>>, ICachableRequest //ISecuredRequest,
+public class GetAllMaterialListAdminQuery :IRequest<GetListResponse<GetAllMaterialListAdminDto>> //, ICachableRequest //ISecuredRequest,
 {
     public PageRequest PageRequest { get; set; }
     //public string SearchText { get; set; }
