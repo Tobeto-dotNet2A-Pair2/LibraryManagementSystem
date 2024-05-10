@@ -31,5 +31,11 @@ public class MappingProfiles : Profile
                 .MapFrom(src => src.Author.FirstName))
             .ForMember(a => a.LastName, opt => opt
                 .MapFrom(src => src.Author.LastName));
+        
+        CreateMap<AuthorMaterial, AuthorForMaterialDetailDto>()
+            .ForMember(a => a.FirstName, opt => opt
+                .MapFrom(src => src.Author.FirstName))
+            .ForMember(a => a.LastName, opt => opt
+                .MapFrom(src => src.Author.LastName));
     }
 }

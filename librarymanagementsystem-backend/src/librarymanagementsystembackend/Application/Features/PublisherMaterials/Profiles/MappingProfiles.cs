@@ -3,6 +3,7 @@ using Application.Features.PublisherMaterials.Commands.Delete;
 using Application.Features.PublisherMaterials.Commands.Update;
 using Application.Features.PublisherMaterials.Queries.GetById;
 using Application.Features.PublisherMaterials.Queries.GetList;
+using Application.Features.Publishers.Dtos;
 using AutoMapper;
 using NArchitecture.Core.Application.Responses;
 using Domain.Entities;
@@ -23,5 +24,12 @@ public class MappingProfiles : Profile
         CreateMap<PublisherMaterial, GetByIdPublisherMaterialResponse>().ReverseMap();
         CreateMap<PublisherMaterial, GetListPublisherMaterialListItemDto>().ReverseMap();
         CreateMap<IPaginate<PublisherMaterial>, GetListResponse<GetListPublisherMaterialListItemDto>>().ReverseMap();
+
+
+        CreateMap<PublisherMaterial, PublisherForMaterialDetailDto>()
+            .ForMember(a => a.PublicationPlace, opt => opt
+                .MapFrom(src => src.Publisher.PublicationPlace))
+            .ForMember(a => a.Name, opt => opt
+                .MapFrom(src => src.Publisher.Name));
     }
 }

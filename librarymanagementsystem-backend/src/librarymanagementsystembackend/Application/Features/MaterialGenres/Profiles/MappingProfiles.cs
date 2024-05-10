@@ -1,3 +1,4 @@
+using Application.Features.Genres.Dtos;
 using Application.Features.MaterialGenres.Commands.Create;
 using Application.Features.MaterialGenres.Commands.Delete;
 using Application.Features.MaterialGenres.Commands.Update;
@@ -23,5 +24,10 @@ public class MappingProfiles : Profile
         CreateMap<MaterialGenre, GetByIdMaterialGenreResponse>().ReverseMap();
         CreateMap<MaterialGenre, GetListMaterialGenreListItemDto>().ReverseMap();
         CreateMap<IPaginate<MaterialGenre>, GetListResponse<GetListMaterialGenreListItemDto>>().ReverseMap();
+
+
+        CreateMap<MaterialGenre, GenreForMaterialDetailDto>()
+            .ForMember(a => a.Name, opt => opt
+                .MapFrom(src => src.Genre.Name));
     }
 }

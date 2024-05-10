@@ -3,6 +3,7 @@ using Application.Features.MaterialCopies.Commands.Delete;
 using Application.Features.MaterialCopies.Commands.Update;
 using Application.Features.MaterialCopies.Dtos;
 using Application.Features.MaterialCopies.Queries.GetById;
+using Application.Features.MaterialCopies.Queries.GetById.GetDetails;
 using Application.Features.MaterialCopies.Queries.GetList;
 using NArchitecture.Core.Application.Requests;
 using NArchitecture.Core.Application.Responses;
@@ -41,7 +42,7 @@ public class MaterialCopiesController : BaseController
     [HttpGet("{id}")]
     public async Task<IActionResult> GetById([FromRoute] Guid id)
     {
-        GetByIdMaterialCopyResponse response = await Mediator.Send(new GetByIdMaterialCopyQuery { Id = id });
+        GetDetailByIdForAdminDto response = await Mediator.Send(new GetDetailByIdForAdminQuery { Id = id });
         return Ok(response);
     }
 

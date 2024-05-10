@@ -5,6 +5,7 @@ using Application.Features.MaterialCopies.Commands.Delete;
 using Application.Features.MaterialCopies.Commands.Update;
 using Application.Features.MaterialCopies.Dtos;
 using Application.Features.MaterialCopies.Queries.GetById;
+using Application.Features.MaterialCopies.Queries.GetById.GetDetails;
 using Application.Features.MaterialCopies.Queries.GetList;
 using AutoMapper;
 using NArchitecture.Core.Application.Responses;
@@ -53,6 +54,51 @@ public class MappingProfiles : Profile
                 .MapFrom(src => src.Material.PunishmentAmount))
             .ForMember(a => a.FullLocationMap, opt => opt
                 .MapFrom(src => src.Location.FullLocationMap));
+
+
+        CreateMap<MaterialCopy, GetDetailByIdForAdminDto>()
+            .ForMember(a => a.Name, opt => opt
+                .MapFrom(src => src.Material.Name))
+
+            .ForMember(a => a.Description, opt => opt
+                .MapFrom(src => src.Material.Description))
+
+            .ForMember(a => a.PunishmentAmount, opt => opt
+                .MapFrom(src => src.Material.PunishmentAmount))
+
+            .ForMember(a => a.BorrowDay, opt => opt
+                .MapFrom(src => src.Material.BorrowDay))
+
+            .ForMember(a => a.IsBorrowable, opt => opt
+                .MapFrom(src => src.Material.BorrowDay))
+
+            .ForMember(a => a.IsBorrowable, opt => opt
+                .MapFrom(src => src.Material.IsBorrowable))
+
+            .ForMember(a => a.MaterialImages, opt => opt
+                .MapFrom(src => src.Material.MaterialImages))
+
+            .ForMember(a => a.Authors, opt => opt
+                .MapFrom(src => src.Material.AuthorMaterials))
+
+            .ForMember(a => a.Genres, opt => opt
+                .MapFrom(src => src.Material.MaterialGenres))
+
+            .ForMember(a => a.Publishers, opt => opt
+                .MapFrom(src => src.Material.PublisherMaterials))
+
+            .ForMember(a => a.Languages, opt => opt
+                .MapFrom(src => src.Material.LanguageMaterials))
+
+            .ForMember(a => a.Translators, opt => opt
+                .MapFrom(src => src.Material.TranslatorMaterials))
+
+            .ForMember(src => src.MaterialProperties,
+                opt => opt
+                    .MapFrom(dest => dest.Material.MaterialPropertyValues.Select(a => a.MaterialProperty)));
+
+
+
     }
     
 }

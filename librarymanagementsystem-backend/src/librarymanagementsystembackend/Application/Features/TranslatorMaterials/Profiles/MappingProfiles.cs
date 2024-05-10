@@ -3,6 +3,7 @@ using Application.Features.TranslatorMaterials.Commands.Delete;
 using Application.Features.TranslatorMaterials.Commands.Update;
 using Application.Features.TranslatorMaterials.Queries.GetById;
 using Application.Features.TranslatorMaterials.Queries.GetList;
+using Application.Features.Translators.Dtos;
 using AutoMapper;
 using NArchitecture.Core.Application.Responses;
 using Domain.Entities;
@@ -23,5 +24,9 @@ public class MappingProfiles : Profile
         CreateMap<TranslatorMaterial, GetByIdTranslatorMaterialResponse>().ReverseMap();
         CreateMap<TranslatorMaterial, GetListTranslatorMaterialListItemDto>().ReverseMap();
         CreateMap<IPaginate<TranslatorMaterial>, GetListResponse<GetListTranslatorMaterialListItemDto>>().ReverseMap();
+
+        CreateMap<TranslatorMaterial, TranslatorForMaterialDetailDto>()
+            .ForMember(a => a.Name, opt => opt
+                .MapFrom(src => src.Translator.Name));
     }
 }

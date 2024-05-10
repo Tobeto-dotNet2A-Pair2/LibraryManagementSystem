@@ -3,6 +3,7 @@ using Application.Features.LanguageMaterials.Commands.Delete;
 using Application.Features.LanguageMaterials.Commands.Update;
 using Application.Features.LanguageMaterials.Queries.GetById;
 using Application.Features.LanguageMaterials.Queries.GetList;
+using Application.Features.Languages.Dtos;
 using AutoMapper;
 using NArchitecture.Core.Application.Responses;
 using Domain.Entities;
@@ -23,5 +24,9 @@ public class MappingProfiles : Profile
         CreateMap<LanguageMaterial, GetByIdLanguageMaterialResponse>().ReverseMap();
         CreateMap<LanguageMaterial, GetListLanguageMaterialListItemDto>().ReverseMap();
         CreateMap<IPaginate<LanguageMaterial>, GetListResponse<GetListLanguageMaterialListItemDto>>().ReverseMap();
+
+        CreateMap<LanguageMaterial, LanguageForMaterialDetailDto>()
+            .ForMember(a => a.Name, opt => opt
+                .MapFrom(src => src.Language.Name));
     }
 }
