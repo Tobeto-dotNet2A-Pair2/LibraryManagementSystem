@@ -1,7 +1,7 @@
 <div class="card">
     <div class="card-body pt-9 pb-0">
       <!--begin::Details-->
-      <div class="d-flex flex-wrap flex-sm-nowrap" *ngIf="materialDetail">
+      <div class="d-flex flex-wrap flex-sm-nowrap" *ngIf="materialHomeDetail">
         <!--begin: Pic-->
         <div *ngFor="let image of materialImages" class="images">
           <img [src]="image.url" class="material-pic" alt="Material Image" />
@@ -20,7 +20,7 @@
                 <a
                   href="#"
                   class="text-gray-900 text-hover-primary fs-2 fw-bold me-1"
-                  >{{ materialDetail.name }}</a
+                  >{{ materialHomeDetail.name }}</a
                 >
               </div>
               <!--end::Name-->
@@ -28,7 +28,7 @@
               <div class="d-flex flex-wrap fw-semibold fs-6 mb-4 pe-2">
                 <div
                   class="d-flex align-items-center text-gray-400 me-5 mb-2"
-                  *ngIf="materialDetail && materialDetail.isBorrowable"
+                  *ngIf="materialHomeDetail && materialHomeDetail.isBorrowable"
                 >
                   <i class="fa-solid fa-check fs-3 me-2" style="color: green">
                     <span class="path1"></span>
@@ -39,7 +39,7 @@
                 </div>
                 <div
                   class="d-flex align-items-center text-gray-400 me-5 mb-2"
-                  *ngIf="materialDetail && !materialDetail.isBorrowable"
+                  *ngIf="materialHomeDetail && !materialHomeDetail.isBorrowable"
                 >
                   <i class="fa-solid fa-xmark fs-3 me-2" style="color: red">
                     <span class="path1"></span>
@@ -53,14 +53,14 @@
                     <span class="path1"></span>
                     <span class="path2"></span>
                     <span class="path3"></span> </i
-                  >{{ materialDetail.borrowDay }} Gün Ödünç Alınabilir
+                  >{{ materialHomeDetail.borrowDay }} Gün Ödünç Alınabilir
                 </div>
                 <div class="d-flex align-items-center text-gray-400 me-5 mb-2">
                   <i class="fa-solid fa-money-bill-wave fs-3 me-2">
                     <span class="path1"></span>
                     <span class="path2"></span>
                     <span class="path3"></span> </i
-                  >{{ materialDetail.punishmentAmount }}₺ Ceza Miktarı
+                  >{{ materialHomeDetail.punishmentAmount }}₺ Ceza Miktarı
                 </div>
               </div>
               <!--end::Info-->
@@ -228,7 +228,7 @@
                   <!--end::Number-->
                   <!--begin::Label-->
                   <div class="fw-semibold fs-5 text-gray-400">
-                    {{ materialDetail.description }}<br />
+                    {{ materialHomeDetail.description }}<br />
                   </div>
                   <!--end::Label-->
                 </div>

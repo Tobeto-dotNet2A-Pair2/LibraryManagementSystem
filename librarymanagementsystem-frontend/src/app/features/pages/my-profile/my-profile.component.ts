@@ -44,7 +44,7 @@ export class MyProfileComponent implements OnInit {
     private toastr: ToastrService
   ) {}
 
-  readonly PAGE_SIZE = 1000000000;
+  readonly PAGE_SIZE = 100000;
 
   ngOnInit(): void {
     this.findMemberByUserId().then(() => {
