@@ -329,10 +329,21 @@ updateAuthorForm!: FormGroup;
       return;
     }
 
-    let materialCopyData: CreateMaterialCopyRequest = Object.assign(
-      {},
-      this.materialCopyForm.value
-    );
+    const materialCopyData: CreateMaterialCopyRequest={
+      dateReceipt: this.materialCopyForm.value.dateReceipt,
+      status:this.materialCopyForm.value.satus,
+      isReserved:this.isReserved,
+      isReservable:this.isReservable,
+      materialId:this.materialCopyForm.value.materialId,
+      branchId:this.materialCopyForm.value.branchId,
+      locationId:this.materialCopyForm.value.locationId,
+
+
+    }
+    // let materialCopyData: CreateMaterialCopyRequest = Object.assign(
+    //   {},
+    //   this.materialCopyForm.value
+    // );
 
     this.managementService.addMaterialCopy(materialCopyData).subscribe(
       () => {

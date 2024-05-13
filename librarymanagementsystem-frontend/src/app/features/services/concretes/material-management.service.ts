@@ -104,7 +104,7 @@ export class MaterialManagementService {
   ): Observable<CreatedMaterialCopyResponse> {
     return this.httpClient
       .post<CreatedMaterialCopyResponse>(
-        `${this.materialCopyApiUrl}`,
+        `${this.materialCopyApiUrl}/Add`,
         createMaterialCopyRequest
       )
       .pipe(
