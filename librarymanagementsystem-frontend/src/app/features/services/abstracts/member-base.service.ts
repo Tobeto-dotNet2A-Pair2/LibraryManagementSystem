@@ -1,7 +1,7 @@
 import { Injectable } from "@angular/core";
-import { PageRequest } from "../../models/page/page-request";
+import { PageRequest } from "../../../core/models/page/page-request";
 import { Observable } from "rxjs";
-import { MemberListDto } from "../../../features/models/responses/members/member-list-item-dto";
+import { MemberListDto } from "../../models/responses/members/member-list-item-dto";
 
 @Injectable()
 export abstract class MemberBaseService{
