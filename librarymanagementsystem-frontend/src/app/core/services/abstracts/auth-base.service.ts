@@ -15,6 +15,7 @@ export abstract class AuthBaseService {
   abstract login(
     userLoginRequest: UserForLoginRequest
   ): Observable<AccessTokenModel<TokenModel>>;
+  abstract refresh(): Observable<AccessTokenModel<TokenModel>>;
   abstract getDecodedToken(): void;
   abstract loggedIn(): boolean;
   abstract getUserName(): string;

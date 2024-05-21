@@ -1,6 +1,6 @@
 import { Injectable, inject } from '@angular/core';
 import { AuthBaseService } from '../abstracts/auth-base.service';
-import { Observable, catchError, map } from 'rxjs';
+import { Observable, catchError, map, throwError } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../../../../environments/environment';
 import { LocalStorageService } from './local-storage.service';
@@ -17,6 +17,7 @@ import { ToastrService } from 'ngx-toastr';
   providedIn: 'root'
 })
 export class AuthService extends AuthBaseService {
+
   fullname!:string;
   userId!:string;
   token:any;
@@ -59,6 +60,19 @@ export class AuthService extends AuthBaseService {
     )
   }
 
+
+ override refresh(): Observable<AccessTokenModel<TokenModel>> {
+    return this.httpClient.get<AccessTokenModel<TokenModel>>(`${this.apiUrl}/RefreshToken`).pipe(
+      map(response => {
+        this.storageService.setToken(response.accessToken.token);
+        return response;
+      }),
+      catchError(error => {
+        this.toastr.error('Token yenileme hatası.', 'Hata');
+        return throwError(error);
+      })
+    );
+  }
 
   getDecodedToken(){
     try{
