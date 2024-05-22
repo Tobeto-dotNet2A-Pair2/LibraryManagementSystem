@@ -331,7 +331,7 @@ updateAuthorForm!: FormGroup;
 
     const materialCopyData: CreateMaterialCopyRequest={
       dateReceipt: this.materialCopyForm.value.dateReceipt,
-      status:this.materialCopyForm.value.satus,
+      status:this.materialCopyForm.value.status,
       isReserved:this.isReserved,
       isReservable:this.isReservable,
       materialId:this.materialCopyForm.value.materialId,
