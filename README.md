@@ -30,7 +30,7 @@ Bu proje, kitap ödünç alma, iade etme ve envanter yönetimi gibi fonksiyonlar
   - Bootstrap
   - JavaScript
   - TypeScript
-  - CSS
+  - SCSS
 
 ### Veri Tabanı Yönetim Sistemi
 - **Veri Tabanı**: Microsoft SQL Server
