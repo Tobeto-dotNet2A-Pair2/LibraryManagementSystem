@@ -16,14 +16,14 @@
 ### 💻 Proje Hakkında
 Bu proje, kitap ödünç alma, iade etme ve envanter yönetimi gibi fonksiyonları sağlayan bir kütüphane yönetim sistemi tasarlamak amacıyla geliştirilmiştir.
 
-#### Kullanılan Teknolojiler
+### 🧰 Kullanılan Teknolojiler
 
-### Backend
+### 🔧 Backend
 - **Programlama Dili**: C#
 - **Geliştirme Platformu**: .NET 8.0
 - **Mimari**: Narchitecture
 
-### Frontend
+### 🔧 Frontend
 - **Framework**: Angular
 - **Mimari**: Feature-Based Architecture
 - **Teknolojiler**: 
@@ -32,15 +32,15 @@ Bu proje, kitap ödünç alma, iade etme ve envanter yönetimi gibi fonksiyonlar
   - TypeScript
   - SCSS
 
-### Veri Tabanı Yönetim Sistemi
+### 💼 Veri Tabanı Yönetim Sistemi
 - **Veri Tabanı**: Microsoft SQL Server
 
-### Bulut Bilişim Platformu
+### 🔒 Bulut Bilişim Platformu
 - **Platform**: Amazon Web Services (AWS)
 
-### Diğer Teknolojiler
-- **Mail Hizmeti**: Papercut SMTP
-- **Medya Yönetimi**: Cloudinary
+### ⚙️ Diğer Teknolojiler
+- 📩 **Mail Hizmeti**: Papercut SMTP
+- 📸 **Medya Yönetimi**: Cloudinary
 
   
 ### 🚧 Yol Haritası
@@ -65,7 +65,7 @@ MIT Lisansı altında dağıtılmaktadır. Daha fazla bilgi için `LICENSE` dosy
 
 Proje Linki: https://github.com/Tobeto-dotNet2A-Pair2/LibraryManagementSystem
 
-## Contributors
+### 👩‍💻👨‍💻 Takım Üyeleri
 
 Bu projeye katkıda bulunan herkese teşekkür ederiz:
 
@@ -74,6 +74,14 @@ Bu projeye katkıda bulunan herkese teşekkür ederiz:
 - **Zeynep YAŞAR** - [GitHub Profili](https://github.com/yasarzeynep)
 - **Güven ÇABAT** - [GitHub Profili](https://github.com/fakepokeball)
 - **Ebru Zeynep ADIGÜZEL** - [GitHub Profili](https://github.com/ebruadiguzel)
+- 
 ### 🙏 Teşekkürler
 
+### Takım Üyeleri
+
+[<img src="https://github.com/aysekardas.png" width="100"/>](https://github.com/aysekardas)
+[<img src="https://github.com/ycihan0.png" width="100"/>](https://github.com/ycihan0)
+[<img src="https://github.com/yasarzeynep.png" width="100"/>](https://github.com/yasarzeynep)
+[<img src="https://github.com/fakepokeball.png" width="100"/>](https://github.com/fakepokeball)
+[<img src="https://github.com/ebruadiguzel.png" width="100"/>](https://github.com/ebruadiguzel)
 
