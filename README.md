@@ -42,6 +42,10 @@ Bu proje, kitap ödünç alma, iade etme ve envanter yönetimi gibi fonksiyonlar
 - 📩 **Mail Hizmeti**: Papercut SMTP
 - 📸 **Medya Yönetimi**: Cloudinary
 
+### ⚙️ Proje Diyagramı
+![LMS_Diagram](https://github.com/Tobeto-dotNet2A-Pair2/LibraryManagementSystem/assets/116646963/05500231-bcb4-4083-a4f5-af4434c2e6b6)
+
+
   
 ### 🚧 Yol Haritası
 Önerilen özellikler ve bilinen sorunlar için [open issues](https://github.com/Tobeto-dotNet2A-Pair2/LibraryManagementSystem/issues) inceleyebilirsiniz.
@@ -74,14 +78,8 @@ Bu projeye katkıda bulunan herkese teşekkür ederiz:
 - **Zeynep YAŞAR** - [GitHub Profili](https://github.com/yasarzeynep)
 - **Güven ÇABAT** - [GitHub Profili](https://github.com/fakepokeball)
 - **Ebru Zeynep ADIGÜZEL** - [GitHub Profili](https://github.com/ebruadiguzel)
-- 
+  
 ### 🙏 Teşekkürler
 
-### Takım Üyeleri
 
-[<img src="https://github.com/aysekardas.png" width="100"/>](https://github.com/aysekardas)
-[<img src="https://github.com/ycihan0.png" width="100"/>](https://github.com/ycihan0)
-[<img src="https://github.com/yasarzeynep.png" width="100"/>](https://github.com/yasarzeynep)
-[<img src="https://github.com/fakepokeball.png" width="100"/>](https://github.com/fakepokeball)
-[<img src="https://github.com/ebruadiguzel.png" width="100"/>](https://github.com/ebruadiguzel)
 
