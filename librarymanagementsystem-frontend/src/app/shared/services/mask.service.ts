@@ -14,10 +14,32 @@ export class MaskService {
 
   maskPhoneNumber(value: string): string {
     let maskedValue = value.replace(/\D/g, '');
-    const maxLength = 11;
+    const maxLength = 15;
     maskedValue = maskedValue.slice(0, maxLength);
-    maskedValue = maskedValue.replace(/(\d{3})(\d{3})(\d{4})/, '($1) $2-$3');
-    return maskedValue;
+
+    //ToDo
+   // Farklı uzunluklardaki telefon numaralarını maskele
+//    if (maskedValue.length === 10) {
+//     return maskedValue.replace(/(\d{3})(\d{3})(\d{4})/, '($1) $2-$3');
+// } else if (maskedValue.length === 11) {
+
+//     return maskedValue.replace(/(\d{1})(\d{3})(\d{3})(\d{4})/, '($1) $2-$3-$4');
+// } else if (maskedValue.length === 12) {
+
+//     return maskedValue.replace(/(\d{2})(\d{4})(\d{6})/, '$1 $2 $3');
+// } else if (maskedValue.length === 13) {
+
+//     return maskedValue.replace(/(\d{3})(\d{3})(\d{7})/, '$1 $2 $3');
+// } else if (maskedValue.length === 14) {
+
+//     return maskedValue.replace(/(\d{4})(\d{3})(\d{7})/, '$1 $2 $3');
+// } else if (maskedValue.length === 15) {
+
+//     return maskedValue.replace(/(\d{5})(\d{3})(\d{7})/, '$1 $2 $3');
+// }
+
+
+   return maskedValue;
   }
 
 

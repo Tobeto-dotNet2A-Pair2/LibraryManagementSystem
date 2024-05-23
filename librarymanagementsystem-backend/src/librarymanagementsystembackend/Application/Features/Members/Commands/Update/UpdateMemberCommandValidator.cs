@@ -12,7 +12,7 @@ public class UpdateMemberCommandValidator : AbstractValidator<UpdateMemberComman
         RuleFor(c => c.NationalIdentity).NotEmpty().Must(ValidateTurkishIdentityNumber);
         RuleFor(c => c.BirthDate).NotEmpty();
         RuleFor(c => c.PhoneNumber).NotEmpty()
-                                   .Matches(@"^+?\d{10,15}$").WithMessage("Please enter a valid phone number (should be between 10 and 15 digits, starting with '+' if present).");
+                                     .Matches(@"^\d{10,15}$").WithMessage("Please enter a valid phone number (should be between 10 and 15 digits).");
         RuleFor(c => c.ProfilePicture).NotEmpty();
                                      
         RuleFor(c => c.Position).NotEmpty().Length(2, 50);

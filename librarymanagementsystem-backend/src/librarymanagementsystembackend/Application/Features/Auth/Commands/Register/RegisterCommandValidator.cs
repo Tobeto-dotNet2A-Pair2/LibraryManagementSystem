@@ -16,7 +16,7 @@ public class RegisterCommandValidator : AbstractValidator<RegisterCommand>
                 "Password must contain at least one uppercase letter, one lowercase letter, one number and one special character."
             );
         RuleFor(c => c.RegisterDto.PhoneNumber).NotEmpty()
-                                  .Matches(@"^+?\d{10,15}$").WithMessage("Please enter a valid phone number (should be between 10 and 15 digits, starting with '+' if present).");
+                                  .Matches(@"^\d{10,15}$").WithMessage("Please enter a valid phone number (should be between 10 and 15 digits).");
         RuleFor(c => c.RegisterDto.NationalIdentity).NotEmpty().Must(ValidateTurkishIdentityNumber);
     }
 
