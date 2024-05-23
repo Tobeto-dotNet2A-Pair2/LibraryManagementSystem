@@ -42,7 +42,7 @@ Bu proje, kitap ödünç alma, iade etme ve envanter yönetimi gibi fonksiyonlar
 - 📩 **Mail Hizmeti**: Papercut SMTP
 - 📸 **Medya Yönetimi**: Cloudinary
 
-### ⚙️ Proje Diyagramı
+### 📊 Proje Diyagramı
 ![LMS_Diagram](https://github.com/Tobeto-dotNet2A-Pair2/LibraryManagementSystem/assets/116646963/05500231-bcb4-4083-a4f5-af4434c2e6b6)
 
 
