@@ -46,6 +46,19 @@ Bu proje, kitap ödünç alma, iade etme ve envanter yönetimi gibi fonksiyonlar
 ![LMS_Diagram](https://github.com/Tobeto-dotNet2A-Pair2/LibraryManagementSystem/assets/116646963/05500231-bcb4-4083-a4f5-af4434c2e6b6)
 
 
+### 📸 Proje Görselleri 
+
+
+![responsiveLibrary](https://github.com/Tobeto-dotNet2A-Pair2/LibraryManagementSystem/assets/91956970/fd2c6ae2-1957-4196-a9fe-6db06c0c7434)
+
+
+![dark](https://github.com/Tobeto-dotNet2A-Pair2/LibraryManagementSystem/assets/91956970/7146139d-6695-4e4e-8fee-a856d5b75c65)
+
+
+![sliderLibrary](https://github.com/Tobeto-dotNet2A-Pair2/LibraryManagementSystem/assets/91956970/98135bcf-4e4e-4c10-b173-d25f9eed7be1)
+
+
+
   
 ### 🚧 Yol Haritası
 Önerilen özellikler ve bilinen sorunlar için [open issues](https://github.com/Tobeto-dotNet2A-Pair2/LibraryManagementSystem/issues) inceleyebilirsiniz.
