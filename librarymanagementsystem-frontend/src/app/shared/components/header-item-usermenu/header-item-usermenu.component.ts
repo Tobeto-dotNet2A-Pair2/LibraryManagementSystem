@@ -88,10 +88,15 @@ export class HeaderItemUsermenuComponent implements OnInit {
           if (foundMember) {
             this.memberByIdList = [foundMember];
             console.log('Found member:', this.memberByIdList);
+          
           } else {
             console.log('Member not found.');
+           
           }
+       
         });
+    } else{
+      this.callLogoutHandler();
     }
   }
 }
