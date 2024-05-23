@@ -3,10 +3,10 @@ import { Injectable } from '@angular/core';
 import { Observable, catchError, map, throwError } from 'rxjs';
 import { MemberBaseService } from '../abstracts/member-base.service';
 import { environment } from '../../../../environments/environment';
-import { PageRequest } from '../../models/page/page-request';
-import { MemberListDto } from '../../../features/models/responses/members/member-list-item-dto';
-import { UpdateMemberRequest } from '../../../features/models/requests/members/update-member-request';
-import { UpdatedMemberResponse } from '../../../features/models/responses/members/updated-member-response';
+import { PageRequest } from '../../../core/models/page/page-request';
+import { MemberListDto } from '../../models/responses/members/member-list-item-dto';
+import { UpdateMemberRequest } from '../../models/requests/members/update-member-request';
+import { UpdatedMemberResponse } from '../../models/responses/members/updated-member-response';
 import { ToastrService } from 'ngx-toastr';
 
 @Injectable({

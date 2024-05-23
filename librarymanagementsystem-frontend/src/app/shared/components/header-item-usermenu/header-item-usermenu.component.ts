@@ -8,7 +8,7 @@ import {
   JWT_ROLES,
 } from '../../../core/constants/jwtAttributes';
 import { MemberListDto } from '../../../features/models/responses/members/member-list-item-dto';
-import { MembersService } from '../../../core/services/concretes/members.service';
+import { MembersService } from '../../../features/services/concretes/members.service';
 import { Router, RouterModule } from '@angular/router';
 import { GetByIdMemberResponse } from '../../../features/models/responses/members/get-by-id-member-response';
 

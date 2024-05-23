@@ -8,6 +8,7 @@ import { CachingInterceptors } from "../../core/interceptors/cache/caching.inter
 import { ErrorInterceptors } from '../../core/interceptors/error/error.interceptor';
 import { LoggingInterceptor } from '../../core/interceptors/logging/log.interceptor';
 import { authInterceptor } from '../../core/interceptors/auth/auth.interceptor';
+import { loadingInterceptor } from '../../core/interceptors/loading/loading.interceptor';
 
 
 
@@ -21,6 +22,6 @@ export function getAppProviders(){
     return [
         authServiceProviders,
         provideRouter(routes),
-        provideHttpClient(withInterceptors([authInterceptor, CachingInterceptors,ErrorInterceptors,LoggingInterceptor]))
+        provideHttpClient(withInterceptors([authInterceptor, CachingInterceptors,ErrorInterceptors,LoggingInterceptor, loadingInterceptor]))
     ]
 }

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { MembersService } from '../../../core/services/concretes/members.service';
+import { MembersService } from '../../services/concretes/members.service';
 import { MemberListDto } from '../../models/responses/members/member-list-item-dto';
 import { LocalStorageService } from '../../../core/services/concretes/local-storage.service';
 import { JWT_ID } from '../../../core/constants/jwtAttributes';
