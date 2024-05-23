@@ -65,6 +65,15 @@ MIT Lisansı altında dağıtılmaktadır. Daha fazla bilgi için `LICENSE` dosy
 
 Proje Linki: https://github.com/Tobeto-dotNet2A-Pair2/LibraryManagementSystem
 
+## Contributors
+
+Bu projeye katkıda bulunan herkese teşekkür ederiz:
+
+- **Ayşe KARDAŞ** - [GitHub Profili](https://github.com/aysekardas)
+- **Cihan YÜKSEL** - [GitHub Profili](https://github.com/ycihan0)
+- **Zeynep YAŞAR** - [GitHub Profili](https://github.com/yasarzeynep)
+- **Güven ÇABAT** - [GitHub Profili](https://github.com/fakepokeball)
+- **Ebru Zeynep ADIGÜZEL** - [GitHub Profili](https://github.com/ebruadiguzel)
 ### 🙏 Teşekkürler
 
 
