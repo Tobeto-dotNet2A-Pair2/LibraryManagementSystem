@@ -17,9 +17,32 @@
 Bu proje, kitap ödünç alma, iade etme ve envanter yönetimi gibi fonksiyonları sağlayan bir kütüphane yönetim sistemi tasarlamak amacıyla geliştirilmiştir.
 
 #### Kullanılan Teknolojiler
-- Backend: C#, .NET
-- Frontend: Angular
 
+### Backend
+- **Programlama Dili**: C#
+- **Geliştirme Platformu**: .NET 8.0
+- **Mimari**: Narchitecture
+
+### Frontend
+- **Framework**: Angular
+- **Mimari**: Feature-Based Architecture
+- **Teknolojiler**: 
+  - Bootstrap
+  - JavaScript
+  - TypeScript
+  - CSS
+
+### Veri Tabanı Yönetim Sistemi
+- **Veri Tabanı**: Microsoft SQL Server
+
+### Bulut Bilişim Platformu
+- **Platform**: Amazon Web Services (AWS)
+
+### Diğer Teknolojiler
+- **Mail Hizmeti**: Papercut SMTP
+- **Medya Yönetimi**: Cloudinary
+
+  
 ### 🚧 Yol Haritası
 Önerilen özellikler ve bilinen sorunlar için [open issues](https://github.com/Tobeto-dotNet2A-Pair2/LibraryManagementSystem/issues) inceleyebilirsiniz.
 
